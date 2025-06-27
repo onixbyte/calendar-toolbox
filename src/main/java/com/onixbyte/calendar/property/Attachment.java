@@ -32,18 +32,18 @@ import java.util.Objects;
 
 public class Attachment {
 
-    private URI uri;
-    private InlineEncoding encoding;
-    private ValueDataType value;
-    private byte[] binary;
-    private FormatType formatType;
+    private final URI uri;
+    private final InlineEncoding encoding;
+    private final ValueDataType value;
+    private final byte[] binary;
+    private final FormatType formatType;
 
     private Attachment(URI uri, FormatType formatType) {
         this.uri = uri;
         this.formatType = formatType;
-        encoding = null;
-        value = null;
-        binary = null;
+        this.encoding = null;
+        this.value = null;
+        this.binary = null;
     }
 
     private Attachment(byte[] binary, FormatType formatType) {
@@ -79,26 +79,26 @@ public class Attachment {
     }
 
     public String formatted() {
-        var icsBuilder = new StringBuilder();
-        icsBuilder.append("ATTACH");
+        var builder = new StringBuilder();
+        builder.append("ATTACH");
 
         if (Objects.nonNull(binary) && binary.length > 0) {
-            icsBuilder.append(";").append(encoding.formatted())
+            builder.append(";").append(encoding.formatted())
                     .append(";").append(value.formatted());
 
             if (Objects.nonNull(formatType)) {
-                icsBuilder.append(";").append(formatType.formatted());
+                builder.append(";").append(formatType.formatted());
             }
 
-            icsBuilder.append(":").append(Base64.getEncoder().encodeToString(binary));
+            builder.append(":").append(Base64.getEncoder().encodeToString(binary));
         } else {
             if (Objects.nonNull(formatType)) {
-                icsBuilder.append(";").append(formatType.formatted());
+                builder.append(";").append(formatType.formatted());
             }
 
-            icsBuilder.append(":").append(uri.toString());
+            builder.append(":").append(uri.toString());
         }
 
-        return icsBuilder.toString();
+        return builder.toString();
     }
 }
