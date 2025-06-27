@@ -22,5 +22,88 @@
 
 package com.onixbyte.calendar.property;
 
-public class RecurrenceId {
+import com.onixbyte.calendar.parameter.RecurrenceIdentifierRange;
+import com.onixbyte.calendar.parameter.TimeZoneIdentifier;
+import com.onixbyte.calendar.parameter.ValueDataType;
+import com.onixbyte.calendar.util.ParamAppender;
+import com.onixbyte.calendar.util.PropertyAppender;
+
+import java.time.ZonedDateTime;
+
+public class RecurrenceId implements ComponentProperty, DateTimeProperty {
+
+    private final ValueDataType valueDataType;
+
+    private final TimeZoneIdentifier timeZoneIdentifier;
+
+    private final RecurrenceIdentifierRange recurrenceIdentifierRange;
+
+    private final ZonedDateTime value;
+
+    private RecurrenceId(
+            ValueDataType valueDataType,
+            TimeZoneIdentifier timeZoneIdentifier,
+            RecurrenceIdentifierRange recurrenceIdentifierRange,
+            ZonedDateTime value
+    ) {
+        DateTimeProperty.checkValueDataType(valueDataType);
+
+        this.valueDataType = valueDataType;
+        this.timeZoneIdentifier = timeZoneIdentifier;
+        this.recurrenceIdentifierRange = recurrenceIdentifierRange;
+        this.value = value;
+    }
+
+    public static RecurrenceIdBuilder builder() {
+        return new RecurrenceIdBuilder();
+    }
+
+    public static class RecurrenceIdBuilder {
+        private ValueDataType valueDataType;
+        private TimeZoneIdentifier timeZoneIdentifier;
+        private RecurrenceIdentifierRange recurrenceIdentifierRange;
+
+        private RecurrenceIdBuilder() {
+        }
+
+        public RecurrenceIdBuilder withValueDataType(ValueDataType valueDataType) {
+            this.valueDataType = valueDataType;
+            return this;
+        }
+
+        public RecurrenceIdBuilder withTimeZoneIdentifier(TimeZoneIdentifier timeZoneIdentifier) {
+            this.timeZoneIdentifier = timeZoneIdentifier;
+            return this;
+        }
+
+        public RecurrenceIdBuilder withRecurrenceIdentifierRange() {
+            this.recurrenceIdentifierRange = RecurrenceIdentifierRange.of();
+            return this;
+        }
+
+        public RecurrenceId build(ZonedDateTime value) {
+            return new RecurrenceId(valueDataType, timeZoneIdentifier, recurrenceIdentifierRange, value);
+        }
+    }
+
+    @Override
+    public ValueDataType getValueDataType() {
+        return valueDataType;
+    }
+
+    @Override
+    public TimeZoneIdentifier getTimeZoneIdentifier() {
+        return timeZoneIdentifier;
+    }
+
+    @Override
+    public String formatted() {
+        var builder = new StringBuilder();
+        builder.append("RECURRENCE-ID");
+        ParamAppender.append(builder, valueDataType);
+        ParamAppender.append(builder, timeZoneIdentifier);
+        ParamAppender.append(builder, recurrenceIdentifierRange);
+        builder.append(":").append(value.format(getDateTimeFormatter()));
+        return builder.toString();
+    }
 }
