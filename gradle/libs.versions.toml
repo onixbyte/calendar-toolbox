@@ -1,10 +1,13 @@
 [versions]
 slf4j = "2.0.17"
 logback = "1.5.18"
+onixbyte-toolbox = "3.0.0"
 jupiter = "5.10.0"
 
 [libraries]
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+onixbyte-versionCatalogue = { group = "com.onixbyte", name = "version-catalogue", version.ref = "onixbyte-toolbox" }
+onixbyte-commonToolbox = { group = "com.onixbyte", name = "common-toolbox", version.ref = "onixbyte-toolbox"  }
 junit-bom = { group = "org.junit",  name = "junit-bom", version.ref = "jupiter" }
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "jupiter" }

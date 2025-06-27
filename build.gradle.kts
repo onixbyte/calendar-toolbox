@@ -56,6 +56,8 @@ tasks.withType<Jar> {
 dependencies {
     compileOnly(libs.slf4j.api)
     implementation(libs.logback.classic)
+    api(platform(libs.onixbyte.versionCatalogue))
+    api(libs.onixbyte.commonToolbox)
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)
 }
