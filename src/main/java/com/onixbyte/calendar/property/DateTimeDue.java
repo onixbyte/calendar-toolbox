@@ -28,7 +28,7 @@ import com.onixbyte.calendar.util.ParamAppender;
 
 import java.time.ZonedDateTime;
 
-public class DateTimeDue implements ComponentProperty, DateTimeProperty {
+public final class DateTimeDue implements ComponentProperty, DateTimeProperty {
 
     private final TimeZoneIdentifier timeZoneIdentifier;
 

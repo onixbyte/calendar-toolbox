@@ -28,7 +28,7 @@ import com.onixbyte.calendar.util.ParamAppender;
 
 import java.time.ZonedDateTime;
 
-public class DateTimeStart implements ComponentProperty, DateTimeProperty {
+public final class DateTimeStart implements ComponentProperty, DateTimeProperty {
 
     private final ValueDataType valueDataType;
 

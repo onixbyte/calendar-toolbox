@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
-public class Priority implements ComponentProperty {
+public final class Priority implements ComponentProperty {
 
     private final int value;
 
@@ -34,8 +34,18 @@ public class Priority implements ComponentProperty {
         this.value = value;
     }
 
-    public static Priority of(int priority) {
-        return new Priority(priority);
+    public static PriorityBuilder builder() {
+        return new PriorityBuilder();
+    }
+
+    public static class PriorityBuilder {
+
+        private PriorityBuilder() {
+        }
+
+        public Priority build(int value) {
+            return new Priority(value);
+        }
     }
 
     @Override

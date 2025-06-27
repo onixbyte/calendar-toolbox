@@ -28,7 +28,7 @@ import com.onixbyte.calendar.util.ParamAppender;
 
 import java.util.List;
 
-public class Resources implements ComponentProperty {
+public final class Resources implements ComponentProperty {
 
     private final AlternateTextRepresentation alternateTextRepresentation;
 

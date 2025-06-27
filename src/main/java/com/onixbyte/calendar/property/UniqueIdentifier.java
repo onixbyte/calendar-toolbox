@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
-public class UniqueIdentifier implements ComponentProperty {
+public final class UniqueIdentifier implements ComponentProperty {
 
     private final String value;
 

@@ -26,7 +26,7 @@ import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.ParamAppender;
 
-public class Contact implements ComponentProperty {
+public final class Contact implements ComponentProperty {
 
     private final AlternateTextRepresentation alternateTextRepresentation;
 

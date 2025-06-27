@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
-public class PercentComplete implements ComponentProperty {
+public final class PercentComplete implements ComponentProperty {
 
     private final int value;
 
@@ -34,8 +34,18 @@ public class PercentComplete implements ComponentProperty {
         this.value = value;
     }
 
-    public static PercentComplete of(int percentComplete) {
-        return new PercentComplete(percentComplete);
+    public static PercentCompleteBuilder builder() {
+        return new PercentCompleteBuilder();
+    }
+
+    public static class PercentCompleteBuilder {
+
+        private PercentCompleteBuilder() {
+        }
+
+        public PercentComplete build(int value) {
+            return new PercentComplete(value);
+        }
     }
 
     @Override

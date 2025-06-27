@@ -26,7 +26,7 @@ import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.ParamAppender;
 
-public class Comment implements ComponentProperty {
+public final class Comment implements ComponentProperty {
 
     private final AlternateTextRepresentation alternateTextRepresentation;
 

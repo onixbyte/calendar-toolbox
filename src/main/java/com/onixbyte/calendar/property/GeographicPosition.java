@@ -33,8 +33,18 @@ public final class GeographicPosition implements ComponentProperty {
         this.longitude = longitude;
     }
 
-    public static GeographicPosition of(double latitude, double longitude) {
-        return new GeographicPosition(latitude, longitude);
+    public static GeographicPositionBuilder builder() {
+        return new GeographicPositionBuilder();
+    }
+
+    public static class GeographicPositionBuilder {
+
+        private GeographicPositionBuilder() {
+        }
+
+        public GeographicPosition build(double latitude, double longitude) {
+            return new GeographicPosition(latitude, longitude);
+        }
     }
 
     @Override

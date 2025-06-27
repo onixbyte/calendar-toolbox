@@ -25,7 +25,7 @@ package com.onixbyte.calendar.property;
 import com.onixbyte.calendar.parameter.RelationshipType;
 import com.onixbyte.calendar.util.ParamAppender;
 
-public class RelatedTo implements ComponentProperty {
+public final class RelatedTo implements ComponentProperty {
 
     private final RelationshipType relationshipType;
 

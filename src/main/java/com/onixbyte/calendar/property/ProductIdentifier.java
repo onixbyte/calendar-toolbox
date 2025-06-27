@@ -22,20 +22,30 @@
 
 package com.onixbyte.calendar.property;
 
-public class ProductIdentifier implements CalendarProperty {
+public final class ProductIdentifier implements CalendarProperty {
 
-    private final String productIdentifier;
+    private final String value;
 
-    private ProductIdentifier(String productIdentifier) {
-        this.productIdentifier = productIdentifier;
+    private ProductIdentifier(String value) {
+        this.value = value;
     }
 
-    public static ProductIdentifier of(String productIdentifier) {
-        return new ProductIdentifier(productIdentifier);
+    public static ProductIdentifierBuilder builder() {
+        return new ProductIdentifierBuilder();
+    }
+
+    public static class ProductIdentifierBuilder {
+
+        private ProductIdentifierBuilder() {
+        }
+
+        public ProductIdentifier build(String value) {
+            return new ProductIdentifier(value);
+        }
     }
 
     @Override
     public String formatted() {
-        return "PRODID:" + productIdentifier;
+        return "PRODID:" + value;
     }
 }

@@ -28,7 +28,7 @@ import com.onixbyte.calendar.util.ParamAppender;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Categories implements ComponentProperty {
+public final class Categories implements ComponentProperty {
 
     private final Language language;
 

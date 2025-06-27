@@ -27,7 +27,7 @@ import com.onixbyte.calendar.util.ParamAppender;
 
 import java.net.URI;
 
-public class Attendee implements ComponentProperty {
+public final class Attendee implements ComponentProperty {
 
     private final UserType userType;
 

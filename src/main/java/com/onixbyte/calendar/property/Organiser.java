@@ -30,7 +30,7 @@ import com.onixbyte.calendar.util.ParamAppender;
 
 import java.net.URI;
 
-public class Organiser implements ComponentProperty {
+public final class Organiser implements ComponentProperty {
 
     private final CommonName commonName;
 

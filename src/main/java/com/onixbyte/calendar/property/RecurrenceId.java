@@ -29,7 +29,7 @@ import com.onixbyte.calendar.util.ParamAppender;
 
 import java.time.ZonedDateTime;
 
-public class RecurrenceId implements ComponentProperty, DateTimeProperty {
+public final class RecurrenceId implements ComponentProperty, DateTimeProperty {
 
     private final ValueDataType valueDataType;
 

@@ -28,49 +28,47 @@ import com.onixbyte.calendar.util.ParamAppender;
 
 import java.time.ZonedDateTime;
 
-public final class DateTimeEnd implements ComponentProperty, DateTimeProperty {
-
-    private final TimeZoneIdentifier timeZoneIdentifier;
+public final class ExceptionDateTimes implements ComponentProperty, DateTimeProperty {
 
     private final ValueDataType valueDataType;
 
-    private final ZonedDateTime value;
+    private final TimeZoneIdentifier timeZoneIdentifier;
 
-    private DateTimeEnd(
-            TimeZoneIdentifier timeZoneIdentifier,
+    private final ZonedDateTime zonedDateTime;
+
+    private ExceptionDateTimes(
             ValueDataType valueDataType,
-            ZonedDateTime value
+            TimeZoneIdentifier timeZoneIdentifier,
+            ZonedDateTime zonedDateTime
     ) {
-        DateTimeProperty.checkValueDataType(valueDataType);
-
-        this.timeZoneIdentifier = timeZoneIdentifier;
         this.valueDataType = valueDataType;
-        this.value = value;
+        this.timeZoneIdentifier = timeZoneIdentifier;
+        this.zonedDateTime = zonedDateTime;
     }
 
-    public static DateTimeEndBuilder builder() {
-        return new DateTimeEndBuilder();
+    public static ExceptionDateTimesBuilder builder() {
+        return new ExceptionDateTimesBuilder();
     }
 
-    public static class DateTimeEndBuilder {
-        private TimeZoneIdentifier timeZoneIdentifier;
+    public static class ExceptionDateTimesBuilder {
         private ValueDataType valueDataType;
+        private TimeZoneIdentifier timeZoneIdentifier;
 
-        private DateTimeEndBuilder() {
+        private ExceptionDateTimesBuilder() {
         }
 
-        public DateTimeEndBuilder withTimeZoneIdentifier(TimeZoneIdentifier timeZoneIdentifier) {
-            this.timeZoneIdentifier = timeZoneIdentifier;
-            return this;
-        }
-
-        public DateTimeEndBuilder withValueDataType(ValueDataType valueDataType) {
+        public ExceptionDateTimesBuilder withValueDataType(ValueDataType valueDataType) {
             this.valueDataType = valueDataType;
             return this;
         }
 
-        public DateTimeEnd build(ZonedDateTime value) {
-            return new DateTimeEnd(timeZoneIdentifier, valueDataType, value);
+        public ExceptionDateTimesBuilder withTimeZoneIdentifier(TimeZoneIdentifier timeZoneIdentifier) {
+            this.timeZoneIdentifier = timeZoneIdentifier;
+            return this;
+        }
+
+        public ExceptionDateTimes build(ZonedDateTime zonedDateTime) {
+            return new ExceptionDateTimes(valueDataType, timeZoneIdentifier, zonedDateTime);
         }
     }
 
@@ -87,12 +85,10 @@ public final class DateTimeEnd implements ComponentProperty, DateTimeProperty {
     @Override
     public String formatted() {
         var builder = new StringBuilder();
-        builder.append("DTEND");
-
+        builder.append("EXDATE");
         ParamAppender.append(builder, valueDataType);
         ParamAppender.append(builder, timeZoneIdentifier);
-
-        builder.append(":").append(value.format(getDateTimeFormatter()));
+        builder.append(":").append(zonedDateTime.format(getDateTimeFormatter()));
         return builder.toString();
     }
 }

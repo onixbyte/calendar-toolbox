@@ -26,7 +26,7 @@ import com.onixbyte.calendar.util.Formatters;
 
 import java.time.ZonedDateTime;
 
-public class DateTimeCompleted implements ComponentProperty {
+public final class DateTimeCompleted implements ComponentProperty {
 
     private final ZonedDateTime value;
 
@@ -34,8 +34,17 @@ public class DateTimeCompleted implements ComponentProperty {
         this.value = value;
     }
 
-    public static DateTimeCompleted of(ZonedDateTime value) {
-        return new DateTimeCompleted(value);
+    public static DateTimeCompletedBuilder builder() {
+        return new DateTimeCompletedBuilder();
+    }
+
+    public static class DateTimeCompletedBuilder {
+        private DateTimeCompletedBuilder() {
+        }
+
+        public DateTimeCompleted build(ZonedDateTime value) {
+            return new DateTimeCompleted(value);
+        }
     }
 
     @Override

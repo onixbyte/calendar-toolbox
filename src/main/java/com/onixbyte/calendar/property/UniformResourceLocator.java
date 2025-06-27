@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
-public class UniformResourceLocator implements ComponentProperty {
+public final class UniformResourceLocator implements ComponentProperty {
 
     private final String value;
 
