@@ -22,13 +22,14 @@
 
 package com.onixbyte.calendar.property;
 
-public enum Classification {
+public enum Classification implements EventProperty {
 
     PUBLIC,
     PRIVATE,
     CONFIDENTIAL,
     ;
 
+    @Override
     public String formatted() {
         return "CLASS:" + name();
     }
