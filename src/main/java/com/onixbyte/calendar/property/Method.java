@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
-public enum Method {
+public enum Method implements CalendarProperty {
 
     PUBLISH,
     REQUEST,

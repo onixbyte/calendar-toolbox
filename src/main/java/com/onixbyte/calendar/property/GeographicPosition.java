@@ -22,19 +22,24 @@
 
 package com.onixbyte.calendar.property;
 
-public enum Version implements CalendarProperty {
+public class GeographicPosition implements EventProperty {
 
-    VERSION_2_0("2.0"),
-    ;
+    private final double latitude;
 
-    private final String label;
+    private final double longitude;
 
-    Version(String label) {
-        this.label = label;
+    private GeographicPosition(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public static GeographicPosition of(double latitude, double longitude) {
+        return new GeographicPosition(latitude, longitude);
     }
 
     @Override
     public String formatted() {
-        return "VERSION:" + label;
+        return "GEO:" + latitude + ";" + longitude;
     }
+
 }

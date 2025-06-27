@@ -27,7 +27,7 @@ import com.onixbyte.calendar.util.AppendUtil;
 
 import java.util.List;
 
-public class Categories {
+public class Categories implements EventProperty {
 
     private final Language language;
 
@@ -42,6 +42,7 @@ public class Categories {
         return new Categories(language, List.of(categories));
     }
 
+    @Override
     public String formatted() {
         var builder = new StringBuilder();
         builder.append("CATEGORIES");

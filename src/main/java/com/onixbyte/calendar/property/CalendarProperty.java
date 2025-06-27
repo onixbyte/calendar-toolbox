@@ -22,19 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
-public enum Version implements CalendarProperty {
+public interface CalendarProperty {
 
-    VERSION_2_0("2.0"),
-    ;
-
-    private final String label;
-
-    Version(String label) {
-        this.label = label;
-    }
-
-    @Override
-    public String formatted() {
-        return "VERSION:" + label;
-    }
+    String formatted();
 }

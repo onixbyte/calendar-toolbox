@@ -26,7 +26,7 @@ import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.AppendUtil;
 
-public class Description {
+public class Description implements EventProperty {
 
     private final AlternateTextRepresentation alternateTextRepresentation;
 
@@ -52,6 +52,7 @@ public class Description {
         return new Description(null, null, comment);
     }
 
+    @Override
     public String formatted() {
         var builder = new StringBuilder();
         builder.append("DESCRIPTION");

@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
-public enum CalendarScale {
+public enum CalendarScale implements CalendarProperty {
 
     GREGORIAN,
     ;

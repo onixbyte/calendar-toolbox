@@ -22,14 +22,19 @@
 
 package com.onixbyte.calendar.property;
 
-public record ProductIdentifier(
-        String productIdentifier
-) {
+public class ProductIdentifier implements CalendarProperty {
+
+    private final String productIdentifier;
+
+    private ProductIdentifier(String productIdentifier) {
+        this.productIdentifier = productIdentifier;
+    }
 
     public static ProductIdentifier of(String productIdentifier) {
         return new ProductIdentifier(productIdentifier);
     }
 
+    @Override
     public String formatted() {
         return "PRODID:" + productIdentifier;
     }
