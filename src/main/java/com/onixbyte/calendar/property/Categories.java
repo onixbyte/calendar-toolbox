@@ -24,7 +24,6 @@ package com.onixbyte.calendar.property;
 
 import com.onixbyte.calendar.parameter.Language;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
