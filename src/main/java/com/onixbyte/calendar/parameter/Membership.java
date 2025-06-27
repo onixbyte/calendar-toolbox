@@ -28,7 +28,7 @@ import java.util.stream.Stream;
 
 public record Membership(
         List<URI> members
-) implements CalendarParameter {
+) implements Parameter {
 
     public static Membership of(URI... members) {
         return new Membership(List.of(members));

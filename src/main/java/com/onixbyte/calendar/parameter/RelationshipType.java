@@ -1,6 +1,6 @@
 package com.onixbyte.calendar.parameter;
 
-public enum RelationshipType implements CalendarParameter {
+public enum RelationshipType implements Parameter {
 
     CHILD,
     PARENT,

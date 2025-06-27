@@ -28,7 +28,7 @@ import java.util.Objects;
 
 public final class AppendUtil {
 
-    public static StringBuilder append(StringBuilder builder, CalendarParameter param) {
+    public static StringBuilder append(StringBuilder builder, Parameter param) {
         if (Objects.nonNull(param)) {
             builder.append(";").append(param.formatted());
         }

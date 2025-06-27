@@ -1,6 +1,6 @@
 package com.onixbyte.calendar.parameter;
 
-public enum AlarmTriggerRelationship implements CalendarParameter {
+public enum AlarmTriggerRelationship implements Parameter {
 
     START,
     END,

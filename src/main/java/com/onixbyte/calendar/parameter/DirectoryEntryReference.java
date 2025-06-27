@@ -24,7 +24,7 @@ package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
 
-public record DirectoryEntryReference(URI directoryEntryReference) implements CalendarParameter {
+public record DirectoryEntryReference(URI directoryEntryReference) implements Parameter {
 
     public static DirectoryEntryReference of(String directoryEntryReference) {
         return new DirectoryEntryReference(URI.create(directoryEntryReference));

@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.parameter;
 
-public enum InlineEncoding implements CalendarParameter {
+public enum InlineEncoding implements Parameter {
 
     EIGHT_BIT("8BIT"),
     BASE_64("BASE64"),

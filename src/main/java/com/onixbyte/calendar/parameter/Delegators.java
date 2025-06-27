@@ -28,7 +28,7 @@ import java.util.stream.Stream;
 
 public record Delegators(
         List<URI> delegators
-) implements CalendarParameter {
+) implements Parameter {
 
     public static Delegators of(URI... delegators) {
         return new Delegators(List.of(delegators));

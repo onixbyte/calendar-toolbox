@@ -1,6 +1,6 @@
 package com.onixbyte.calendar.parameter;
 
-public enum ValueDataType implements CalendarParameter {
+public enum ValueDataType implements Parameter {
 
     BINARY,
     BOOLEAN,

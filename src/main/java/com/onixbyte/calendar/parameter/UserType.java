@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.parameter;
 
-public enum CalendarUserType implements CalendarParameter {
+public enum UserType implements Parameter {
 
     INDIVIDUAL,
     GROUP,

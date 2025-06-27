@@ -24,7 +24,7 @@ package com.onixbyte.calendar.parameter;
 
 import java.util.Locale;
 
-public record Language(Locale language) implements CalendarParameter {
+public record Language(Locale language) implements Parameter {
 
     public static Language of(Locale locale) {
         return new Language(locale);

@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.parameter;
 
-public interface CalendarParameter {
+public interface Parameter {
 
     String formatted();
 }

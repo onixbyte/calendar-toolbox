@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.parameter;
 
-public enum FreeBusyTimeType implements CalendarParameter {
+public enum FreeBusyTimeType implements Parameter {
 
     FREE,
     BUSY,

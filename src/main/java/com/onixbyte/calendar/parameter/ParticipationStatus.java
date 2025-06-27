@@ -2,7 +2,7 @@ package com.onixbyte.calendar.parameter;
 
 import java.util.List;
 
-public enum ParticipationStatus implements CalendarParameter {
+public enum ParticipationStatus implements Parameter {
 
     NEEDS_ACTION,
     ACCEPTED,

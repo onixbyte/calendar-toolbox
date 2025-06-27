@@ -24,7 +24,7 @@ package com.onixbyte.calendar.parameter;
 
 public record CommonName(
         String commonName
-) implements CalendarParameter {
+) implements Parameter {
 
     public static CommonName of(String commonName) {
         return new CommonName(commonName);

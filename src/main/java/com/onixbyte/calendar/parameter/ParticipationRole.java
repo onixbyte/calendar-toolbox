@@ -1,6 +1,6 @@
 package com.onixbyte.calendar.parameter;
 
-public enum ParticipationRole implements CalendarParameter {
+public enum ParticipationRole implements Parameter {
 
     CHAIR,
     REQ_PARTICIPANT,

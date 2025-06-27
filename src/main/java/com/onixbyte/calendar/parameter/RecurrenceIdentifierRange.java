@@ -1,6 +1,6 @@
 package com.onixbyte.calendar.parameter;
 
-public record RecurrenceIdentifierRange() implements CalendarParameter {
+public record RecurrenceIdentifierRange() implements Parameter {
 
     public static RecurrenceIdentifierRange of() {
         return new RecurrenceIdentifierRange();

@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.parameter;
 
-public record FormatType(String mediaType) implements CalendarParameter {
+public record FormatType(String mediaType) implements Parameter {
 
     public static FormatType of(String mediaType) {
         return new FormatType(mediaType);
