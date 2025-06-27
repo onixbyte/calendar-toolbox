@@ -45,30 +45,32 @@ public class Summary implements ComponentProperty {
         this.value = value;
     }
 
-    public static Summary of(
-            AlternateTextRepresentation alternateTextRepresentation,
-            Language language,
-            String value
-    ) {
-        return new Summary(alternateTextRepresentation, language, value);
+    public static SummaryBuilder builder() {
+        return new SummaryBuilder();
     }
 
-    public static Summary of(
-            Language language,
-            String value
-    ) {
-        return new Summary(null, language, value);
-    }
+    public static class SummaryBuilder {
+        private AlternateTextRepresentation alternateTextRepresentation;
+        private Language language;
 
-    public static Summary of(
-            AlternateTextRepresentation alternateTextRepresentation,
-            String value
-    ) {
-        return new Summary(alternateTextRepresentation, null, value);
-    }
+        private SummaryBuilder() {
+        }
 
-    public static Summary of(String value) {
-        return new Summary(null, null, value);
+        public SummaryBuilder withAlternateTextRepresentation(
+                AlternateTextRepresentation alternateTextRepresentation
+        ) {
+            this.alternateTextRepresentation = alternateTextRepresentation;
+            return this;
+        }
+
+        public SummaryBuilder withLanguage(Language language) {
+            this.language = language;
+            return this;
+        }
+
+        public Summary build(String value) {
+            return new Summary(alternateTextRepresentation, language, value);
+        }
     }
 
     @Override

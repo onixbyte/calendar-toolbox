@@ -48,24 +48,30 @@ public class DateTimeStart implements ComponentProperty, DateTimeProperty {
         this.value = value;
     }
 
-    public static DateTimeStart of(
-            ValueDataType valueDataType,
-            TimeZoneIdentifier timeZoneIdentifier,
-            ZonedDateTime value
-    ) {
-        return new DateTimeStart(valueDataType, timeZoneIdentifier, value);
+    public static DateTimeStartBuilder builder() {
+        return new DateTimeStartBuilder();
     }
 
-    public static DateTimeStart of(TimeZoneIdentifier timeZoneIdentifier, ZonedDateTime value) {
-        return new DateTimeStart(null, timeZoneIdentifier, value);
-    }
+    public static class DateTimeStartBuilder {
+        private ValueDataType valueDataType;
+        private TimeZoneIdentifier timeZoneIdentifier;
 
-    public static DateTimeStart of(ValueDataType valueDataType, ZonedDateTime value) {
-        return new DateTimeStart(valueDataType, null, value);
-    }
+        private DateTimeStartBuilder() {
+        }
 
-    public static DateTimeStart of(ZonedDateTime value) {
-        return new DateTimeStart(null, null, value);
+        public DateTimeStartBuilder withValueDataType(ValueDataType valueDataType) {
+            this.valueDataType = valueDataType;
+            return this;
+        }
+
+        public DateTimeStartBuilder withTimeZoneIdentifier(TimeZoneIdentifier timeZoneIdentifier) {
+            this.timeZoneIdentifier = timeZoneIdentifier;
+            return this;
+        }
+
+        public DateTimeStart build(ZonedDateTime value) {
+            return new DateTimeStart(valueDataType, timeZoneIdentifier, value);
+        }
     }
 
     @Override

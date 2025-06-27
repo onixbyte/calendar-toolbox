@@ -28,48 +28,44 @@ import com.onixbyte.calendar.util.ParamAppender;
 
 public class Location implements ComponentProperty {
 
-    private final String location;
-
     private final AlternateTextRepresentation alternateTextRepresentation;
 
     private final Language language;
 
+    private final String value;
+
     private Location(
-            String location,
             AlternateTextRepresentation alternateTextRepresentation,
-            Language language
+            Language language,
+            String value
     ) {
-        this.location = location;
+        this.value = value;
         this.alternateTextRepresentation = alternateTextRepresentation;
         this.language = language;
     }
 
-    public static Location of(
-            String location,
-            AlternateTextRepresentation alternateTextRepresentation,
-            Language language
-    ) {
-        return new Location(location, alternateTextRepresentation, language);
-    }
+    public static class LocationBuilder {
+        private AlternateTextRepresentation alternateTextRepresentation;
+        private Language language;
 
-    public static Location of(
-            String location,
-            Language language
-    ) {
-        return new Location(location, null, language);
-    }
+        private LocationBuilder() {
+        }
 
-    public static Location of(
-            String location,
-            AlternateTextRepresentation alternateTextRepresentation
-    ) {
-        return new Location(location, alternateTextRepresentation, null);
-    }
+        public LocationBuilder withAlternateTextRepresentation(
+                AlternateTextRepresentation alternateTextRepresentation
+        ) {
+            this.alternateTextRepresentation = alternateTextRepresentation;
+            return this;
+        }
 
-    public static Location of(
-            String location
-    ) {
-        return new Location(location, null, null);
+        public LocationBuilder withLanguage(Language language) {
+            this.language = language;
+            return this;
+        }
+
+        public Location build(String value) {
+            return new Location(alternateTextRepresentation, language, value);
+        }
     }
 
     public String formatted() {
@@ -79,7 +75,7 @@ public class Location implements ComponentProperty {
         ParamAppender.append(builder, alternateTextRepresentation);
         ParamAppender.append(builder, language);
 
-        builder.append(":").append(location);
+        builder.append(":").append(value);
 
         return builder.toString();
     }

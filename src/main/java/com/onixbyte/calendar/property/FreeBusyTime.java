@@ -30,7 +30,7 @@ import com.onixbyte.calendar.value.FreeBusyTimeValue;
 import java.util.List;
 import java.util.Objects;
 
-public final class FreeBusyTime {
+public final class FreeBusyTime implements ComponentProperty {
 
     private final FreeBusyTimeType fbType;
 
@@ -45,8 +45,28 @@ public final class FreeBusyTime {
         this.values = values;
     }
 
-    public static FreeBusyTime of(FreeBusyTimeType fbType, FreeBusyTimeValue... values) {
-        return new FreeBusyTime(fbType, List.of(values));
+    public static FreeBusyTimeBuilder builder() {
+        return new FreeBusyTimeBuilder();
+    }
+
+    public static class FreeBusyTimeBuilder {
+        private FreeBusyTimeType fbType;
+
+        private FreeBusyTimeBuilder() {
+        }
+
+        public FreeBusyTimeBuilder withFreeBusyType(FreeBusyTimeType fbType) {
+            this.fbType = fbType;
+            return this;
+        }
+
+        public FreeBusyTime build(List<FreeBusyTimeValue> values) {
+            return new FreeBusyTime(fbType, values);
+        }
+
+        public FreeBusyTime build(FreeBusyTimeValue... values) {
+            return new FreeBusyTime(fbType, List.of(values));
+        }
     }
 
     public String formatted() {

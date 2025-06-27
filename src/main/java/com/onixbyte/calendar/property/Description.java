@@ -32,24 +32,40 @@ public class Description implements ComponentProperty {
 
     private final Language language;
 
-    private final String description;
+    private final String value;
 
-    private Description(AlternateTextRepresentation alternateTextRepresentation, Language language, String description) {
+    private Description(
+            AlternateTextRepresentation alternateTextRepresentation,
+            Language language,
+            String value
+    ) {
         this.alternateTextRepresentation = alternateTextRepresentation;
         this.language = language;
-        this.description = description;
+        this.value = value;
     }
 
-    public static Description of(AlternateTextRepresentation alternateTextRepresentation, Language language, String comment) {
-        return new Description(alternateTextRepresentation, language, comment);
-    }
+    public static class DescriptionBuilder {
+        private AlternateTextRepresentation alternateTextRepresentation;
+        private Language language;
 
-    public static Description of(Language language, String comment) {
-        return new Description(null, language, comment);
-    }
+        private DescriptionBuilder() {
+        }
 
-    public static Description of(String comment) {
-        return new Description(null, null, comment);
+        public DescriptionBuilder withAlternateTextRepresentation(
+                AlternateTextRepresentation alternateTextRepresentation
+        ) {
+            this.alternateTextRepresentation = alternateTextRepresentation;
+            return this;
+        }
+
+        public DescriptionBuilder withLanguage(Language language) {
+            this.language = language;
+            return this;
+        }
+
+        public Description build(String value) {
+            return new Description(alternateTextRepresentation, language, value);
+        }
     }
 
     @Override
@@ -60,7 +76,7 @@ public class Description implements ComponentProperty {
         ParamAppender.append(builder, alternateTextRepresentation);
         ParamAppender.append(builder, language);
 
-        builder.append(":").append(description);
+        builder.append(":").append(value);
         return builder.toString();
     }
 }

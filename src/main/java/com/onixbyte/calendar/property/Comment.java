@@ -32,26 +32,43 @@ public class Comment implements ComponentProperty {
 
     private final Language language;
 
-    private final String comment;
+    private final String value;
 
-    private Comment(AlternateTextRepresentation alternateTextRepresentation, Language language, String comment) {
+    private Comment(AlternateTextRepresentation alternateTextRepresentation, Language language, String value) {
         this.alternateTextRepresentation = alternateTextRepresentation;
         this.language = language;
-        this.comment = comment;
+        this.value = value;
     }
 
-    public static Comment of(AlternateTextRepresentation alternateTextRepresentation, Language language, String comment) {
-        return new Comment(alternateTextRepresentation, language, comment);
+    public static CommentBuilder builder() {
+        return new CommentBuilder();
     }
 
-    public static Comment of(Language language, String comment) {
-        return new Comment(null, language, comment);
+    public static class CommentBuilder {
+        private AlternateTextRepresentation alternateTextRepresentation;
+        private Language language;
+
+        private CommentBuilder() {
+        }
+
+        public CommentBuilder withAlternateTextRepresentation(
+                AlternateTextRepresentation alternateTextRepresentation
+        ) {
+            this.alternateTextRepresentation = alternateTextRepresentation;
+            return this;
+        }
+
+        public CommentBuilder withLanguage(Language language) {
+            this.language = language;
+            return this;
+        }
+
+        public Comment build(String value) {
+            return new Comment(alternateTextRepresentation, language, value);
+        }
     }
 
-    public static Comment of(String comment) {
-        return new Comment(null, null, comment);
-    }
-
+    @Override
     public String formatted() {
         var builder = new StringBuilder();
         builder.append("COMMENT");
@@ -59,7 +76,7 @@ public class Comment implements ComponentProperty {
         ParamAppender.append(builder, alternateTextRepresentation);
         ParamAppender.append(builder, language);
 
-        builder.append(":").append(comment);
+        builder.append(":").append(value);
         return builder.toString();
     }
 }

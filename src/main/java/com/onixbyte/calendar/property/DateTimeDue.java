@@ -48,24 +48,30 @@ public class DateTimeDue implements ComponentProperty, DateTimeProperty {
         this.value = value;
     }
 
-    public static DateTimeDue of(
-            TimeZoneIdentifier timeZoneIdentifier,
-            ValueDataType valueDataType,
-            ZonedDateTime value
-    ) {
-        return new DateTimeDue(timeZoneIdentifier, valueDataType, value);
+    public static DateTimeDueBuilder builder() {
+        return new DateTimeDueBuilder();
     }
 
-    public static DateTimeDue of(TimeZoneIdentifier timeZoneIdentifier, ZonedDateTime value) {
-        return new DateTimeDue(timeZoneIdentifier, null, value);
-    }
+    public static class DateTimeDueBuilder {
+        private TimeZoneIdentifier timeZoneIdentifier;
+        private ValueDataType valueDataType;
 
-    public static DateTimeDue of(ValueDataType valueDataType, ZonedDateTime value) {
-        return new DateTimeDue(null, valueDataType, value);
-    }
+        private DateTimeDueBuilder() {
+        }
 
-    public static DateTimeDue of(ZonedDateTime value) {
-        return new DateTimeDue(null, null, value);
+        public DateTimeDueBuilder withTimeZoneIdentifier(TimeZoneIdentifier timeZoneIdentifier) {
+            this.timeZoneIdentifier = timeZoneIdentifier;
+            return this;
+        }
+
+        public DateTimeDueBuilder withValueDataType(ValueDataType valueDataType) {
+            this.valueDataType = valueDataType;
+            return this;
+        }
+
+        public DateTimeDue build(ZonedDateTime value) {
+            return new DateTimeDue(timeZoneIdentifier, valueDataType, value);
+        }
     }
 
     @Override

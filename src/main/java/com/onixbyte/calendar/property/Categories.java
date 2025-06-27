@@ -25,6 +25,7 @@ package com.onixbyte.calendar.property;
 import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.ParamAppender;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Categories implements ComponentProperty {
@@ -38,8 +39,26 @@ public class Categories implements ComponentProperty {
         this.categories = categories;
     }
 
-    public static Categories of(Language language, String... categories) {
-        return new Categories(language, List.of(categories));
+    public static CategoriesBuilder builder() {
+        return new CategoriesBuilder();
+    }
+
+    public static class CategoriesBuilder {
+        private Language language;
+        private List<String> categories;
+
+        private CategoriesBuilder() {
+            this.categories = new ArrayList<>();
+        }
+
+        public CategoriesBuilder withLanguage(Language language) {
+            this.language = language;
+            return this;
+        }
+
+        public Categories build(String... categories) {
+            return new Categories(language, List.of(categories));
+        }
     }
 
     @Override

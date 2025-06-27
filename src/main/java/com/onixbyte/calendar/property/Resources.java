@@ -46,20 +46,36 @@ public class Resources implements ComponentProperty {
         this.values = values;
     }
 
-    public static Resources of(AlternateTextRepresentation alternateTextRepresentation, Language language, String... values) {
-        return new Resources(alternateTextRepresentation, language, List.of(values));
+    public static ResourcesBuilder builder() {
+        return new ResourcesBuilder();
     }
 
-    public static Resources of(Language language, String... values) {
-        return new Resources(null, language, List.of(values));
-    }
+    public static class ResourcesBuilder {
+        private AlternateTextRepresentation alternateTextRepresentation;
+        private Language language;
 
-    public static Resources of(AlternateTextRepresentation alternateTextRepresentation, String... values) {
-        return new Resources(alternateTextRepresentation, null, List.of(values));
-    }
+        private ResourcesBuilder() {
+        }
 
-    public static Resources of(String... values) {
-        return new Resources(null, null, List.of(values));
+        public ResourcesBuilder withAlternateTextRepresentation(
+                AlternateTextRepresentation alternateTextRepresentation
+        ) {
+            this.alternateTextRepresentation = alternateTextRepresentation;
+            return this;
+        }
+
+        public ResourcesBuilder withLanguage(Language language) {
+            this.language = language;
+            return this;
+        }
+
+        public Resources build(List<String> values) {
+            return new Resources(alternateTextRepresentation, language, values);
+        }
+
+        public Resources build(String... values) {
+            return new Resources(alternateTextRepresentation, language, List.of(values));
+        }
     }
 
     @Override

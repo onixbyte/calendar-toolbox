@@ -48,24 +48,30 @@ public class DateTimeEnd implements ComponentProperty, DateTimeProperty {
         this.value = value;
     }
 
-    public static DateTimeEnd of(
-            TimeZoneIdentifier timeZoneIdentifier,
-            ValueDataType valueDataType,
-            ZonedDateTime value
-    ) {
-        return new DateTimeEnd(timeZoneIdentifier, valueDataType, value);
+    public static DateTimeEndBuilder builder() {
+        return new DateTimeEndBuilder();
     }
 
-    public static DateTimeEnd of(TimeZoneIdentifier timeZoneIdentifier, ZonedDateTime value) {
-        return new DateTimeEnd(timeZoneIdentifier, null, value);
-    }
+    public static class DateTimeEndBuilder {
+        private TimeZoneIdentifier timeZoneIdentifier;
+        private ValueDataType valueDataType;
 
-    public static DateTimeEnd of(ValueDataType valueDataType, ZonedDateTime value) {
-        return new DateTimeEnd(null, valueDataType, value);
-    }
+        private DateTimeEndBuilder() {
+        }
 
-    public static DateTimeEnd of(ZonedDateTime value) {
-        return new DateTimeEnd(null, null, value);
+        public DateTimeEndBuilder withTimeZoneIdentifier(TimeZoneIdentifier timeZoneIdentifier) {
+            this.timeZoneIdentifier = timeZoneIdentifier;
+            return this;
+        }
+
+        public DateTimeEndBuilder withValueDataType(ValueDataType valueDataType) {
+            this.valueDataType = valueDataType;
+            return this;
+        }
+
+        public DateTimeEnd build(ZonedDateTime value) {
+            return new DateTimeEnd(timeZoneIdentifier, valueDataType, value);
+        }
     }
 
     @Override
