@@ -31,7 +31,7 @@ import java.net.URI;
 import java.util.Base64;
 import java.util.Objects;
 
-public class Attachment implements EventProperty {
+public class Attachment implements ComponentProperty {
 
     private final URI uri;
     private final InlineEncoding encoding;

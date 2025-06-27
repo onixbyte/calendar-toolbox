@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
-public class GeographicPosition implements EventProperty {
+public class GeographicPosition implements ComponentProperty {
 
     private final double latitude;
 

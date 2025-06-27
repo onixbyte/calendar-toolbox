@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
-public enum Classification implements EventProperty {
+public enum Classification implements ComponentProperty {
 
     PUBLIC,
     PRIVATE,

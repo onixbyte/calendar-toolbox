@@ -27,7 +27,7 @@ import com.onixbyte.calendar.util.AppendUtil;
 
 import java.util.List;
 
-public class Categories implements EventProperty {
+public class Categories implements ComponentProperty {
 
     private final Language language;
 
