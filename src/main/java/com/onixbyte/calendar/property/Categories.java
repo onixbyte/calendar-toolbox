@@ -23,9 +23,9 @@
 package com.onixbyte.calendar.property;
 
 import com.onixbyte.calendar.parameter.Language;
+import com.onixbyte.calendar.util.AppendUtil;
 
 import java.util.List;
-import java.util.Objects;
 
 public class Categories {
 
@@ -46,9 +46,7 @@ public class Categories {
         var builder = new StringBuilder();
         builder.append("CATEGORIES");
 
-        if (Objects.nonNull(language)) {
-            builder.append(';').append(language.formatted());
-        }
+        AppendUtil.append(builder, language);
 
         builder.append(":").append(String.join(",", categories));
         return builder.toString();
