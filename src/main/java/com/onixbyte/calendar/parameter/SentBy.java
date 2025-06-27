@@ -2,7 +2,13 @@ package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
 
-public record SentBy(URI sentBy) implements Parameter {
+public class SentBy implements Parameter {
+
+    private final URI sentBy;
+
+    private SentBy(URI sentBy) {
+        this.sentBy = sentBy;
+    }
 
     public static SentBy of(URI sentBy) {
         return new SentBy(sentBy);

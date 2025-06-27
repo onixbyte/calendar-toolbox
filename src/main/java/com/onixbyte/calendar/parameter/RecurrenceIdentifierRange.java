@@ -1,9 +1,20 @@
 package com.onixbyte.calendar.parameter;
 
-public record RecurrenceIdentifierRange() implements Parameter {
+import java.util.Objects;
+
+public class RecurrenceIdentifierRange implements Parameter {
+
+    private static RecurrenceIdentifierRange _instance;
 
     public static RecurrenceIdentifierRange of() {
-        return new RecurrenceIdentifierRange();
+        if (Objects.nonNull(_instance)) {
+            synchronized (RecurrenceIdentifierRange.class) {
+                if (Objects.nonNull(_instance)) {
+                    _instance = new RecurrenceIdentifierRange();
+                }
+            }
+        }
+        return _instance;
     }
 
     @Override

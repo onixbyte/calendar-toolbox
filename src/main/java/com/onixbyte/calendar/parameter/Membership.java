@@ -26,9 +26,13 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Stream;
 
-public record Membership(
-        List<URI> members
-) implements Parameter {
+public class Membership implements Parameter {
+
+    private final List<URI> values;
+
+    private Membership(List<URI> values) {
+        this.values = values;
+    }
 
     public static Membership of(URI... members) {
         return new Membership(List.of(members));
@@ -42,7 +46,7 @@ public record Membership(
 
     @Override
     public String formatted() {
-        var _members = members.stream()
+        var _members = values.stream()
                 .map((member) -> '"' + member.toString() + '"')
                 .toList();
         return "MEMBER=" + String.join(",", _members);

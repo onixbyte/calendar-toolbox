@@ -26,16 +26,20 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Stream;
 
-public record Delegatees(
-        List<URI> delegators
-) implements Parameter {
+public class Delegatees implements Parameter {
 
-    public static Delegatees of(URI... delegators) {
-        return new Delegatees(List.of(delegators));
+    private final List<URI> values;
+
+    private Delegatees(List<URI> values) {
+        this.values = values;
     }
 
-    public static Delegatees of(String... delegators) {
-        var _delegators = Stream.of(delegators)
+    public static Delegatees of(URI... delegatees) {
+        return new Delegatees(List.of(delegatees));
+    }
+
+    public static Delegatees of(String... delegatees) {
+        var _delegators = Stream.of(delegatees)
                 .map(URI::create)
                 .toList();
         return new Delegatees(_delegators);
@@ -43,10 +47,10 @@ public record Delegatees(
 
     @Override
     public String formatted() {
-        var _delegators = delegators.stream()
-                .map((delegator) -> '"' + delegator.toString() + '"')
+        var _delegatees = values.stream()
+                .map((delegatee) -> '"' + delegatee.toString() + '"')
                 .toList();
 
-        return "DELEGATED-TO=" + String.join(",", _delegators);
+        return "DELEGATED-TO=" + String.join(",", _delegatees);
     }
 }

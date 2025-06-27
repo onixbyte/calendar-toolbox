@@ -24,7 +24,13 @@ package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
 
-public record DirectoryEntryReference(URI directoryEntryReference) implements Parameter {
+public class DirectoryEntryReference implements Parameter {
+
+    private final URI value;
+
+    private DirectoryEntryReference(URI value) {
+        this.value = value;
+    }
 
     public static DirectoryEntryReference of(String directoryEntryReference) {
         return new DirectoryEntryReference(URI.create(directoryEntryReference));
@@ -36,6 +42,6 @@ public record DirectoryEntryReference(URI directoryEntryReference) implements Pa
 
     @Override
     public String formatted() {
-        return "DIR=\"" + directoryEntryReference.toString() + '"';
+        return "DIR=\"" + value.toString() + '"';
     }
 }

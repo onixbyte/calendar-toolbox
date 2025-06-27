@@ -24,7 +24,13 @@ package com.onixbyte.calendar.parameter;
 
 import java.util.Locale;
 
-public record Language(Locale language) implements Parameter {
+public class Language implements Parameter {
+
+    private final Locale value;
+
+    private Language(Locale language) {
+        this.value = language;
+    }
 
     public static Language of(Locale locale) {
         return new Language(locale);
@@ -36,6 +42,6 @@ public record Language(Locale language) implements Parameter {
 
     @Override
     public String formatted() {
-        return "LANGUAGE=" + language.toLanguageTag();
+        return "LANGUAGE=" + value.toLanguageTag();
     }
 }

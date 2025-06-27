@@ -2,7 +2,13 @@ package com.onixbyte.calendar.parameter;
 
 import java.time.ZoneId;
 
-public record TimeZoneIdentifier(ZoneId zoneId) implements Parameter {
+public class TimeZoneIdentifier implements Parameter {
+
+    private final ZoneId zoneId;
+
+    private TimeZoneIdentifier(ZoneId zoneId) {
+        this.zoneId = zoneId;
+    }
 
     public static TimeZoneIdentifier of(ZoneId zoneId) {
         return new TimeZoneIdentifier(zoneId);

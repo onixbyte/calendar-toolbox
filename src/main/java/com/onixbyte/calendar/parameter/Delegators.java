@@ -26,9 +26,13 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Stream;
 
-public record Delegators(
-        List<URI> delegators
-) implements Parameter {
+public class Delegators implements Parameter {
+
+    private final List<URI> values;
+
+    private Delegators(List<URI> values) {
+        this.values = values;
+    }
 
     public static Delegators of(URI... delegators) {
         return new Delegators(List.of(delegators));
@@ -43,7 +47,7 @@ public record Delegators(
 
     @Override
     public String formatted() {
-        var _delegators = delegators.stream()
+        var _delegators = values.stream()
                 .map((delegator) -> '"' + delegator.toString() + '"')
                 .toList();
 

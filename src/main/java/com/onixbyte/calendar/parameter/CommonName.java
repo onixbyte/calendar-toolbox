@@ -22,9 +22,13 @@
 
 package com.onixbyte.calendar.parameter;
 
-public record CommonName(
-        String commonName
-) implements Parameter {
+public class CommonName implements Parameter {
+
+    private final String value;
+
+    private CommonName(String value) {
+        this.value = value;
+    }
 
     public static CommonName of(String commonName) {
         return new CommonName(commonName);
@@ -32,6 +36,6 @@ public record CommonName(
 
     @Override
     public String formatted() {
-        return "CN=" + commonName;
+        return "CN=" + value;
     }
 }
