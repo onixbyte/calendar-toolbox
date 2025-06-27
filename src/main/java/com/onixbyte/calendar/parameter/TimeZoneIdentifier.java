@@ -18,6 +18,10 @@ public class TimeZoneIdentifier implements Parameter {
         return new TimeZoneIdentifier(ZoneId.of(zoneId));
     }
 
+    public ZoneId getZoneId() {
+        return zoneId;
+    }
+
     @Override
     public String formatted() {
         return "TZID=" + zoneId.getId();
