@@ -34,6 +34,7 @@ public enum Method implements CalendarProperty {
     DECLINE_COUNTER,
     ;
 
+    @Override
     public String formatted() {
         return "METHOD:" + name().replaceAll("_", "-");
     }
