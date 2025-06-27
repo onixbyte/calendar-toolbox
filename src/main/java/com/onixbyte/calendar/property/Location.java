@@ -24,7 +24,7 @@ package com.onixbyte.calendar.property;
 
 import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
-import com.onixbyte.calendar.util.AppendUtil;
+import com.onixbyte.calendar.util.ParamAppender;
 
 public class Location implements ComponentProperty {
 
@@ -76,8 +76,8 @@ public class Location implements ComponentProperty {
         var builder = new StringBuilder();
         builder.append("LOCATION");
 
-        AppendUtil.append(builder, alternateTextRepresentation);
-        AppendUtil.append(builder, language);
+        ParamAppender.append(builder, alternateTextRepresentation);
+        ParamAppender.append(builder, language);
 
         builder.append(":").append(location);
 

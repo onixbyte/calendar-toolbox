@@ -20,36 +20,17 @@
  * SOFTWARE.
  */
 
-package com.onixbyte.calendar.property;
+package com.onixbyte.calendar.util;
 
-import com.onixbyte.calendar.parameter.Language;
-import com.onixbyte.calendar.util.ParamAppender;
+import java.time.Duration;
+import java.util.Objects;
 
-import java.util.List;
+public final class PropertyAppender {
 
-public class Categories implements ComponentProperty {
-
-    private final Language language;
-
-    private final List<String> categories;
-
-    private Categories(Language language, List<String> categories) {
-        this.language = language;
-        this.categories = categories;
-    }
-
-    public static Categories of(Language language, String... categories) {
-        return new Categories(language, List.of(categories));
-    }
-
-    @Override
-    public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("CATEGORIES");
-
-        ParamAppender.append(builder, language);
-
-        builder.append(":").append(String.join(",", categories));
-        return builder.toString();
+    public static StringBuilder append(StringBuilder builder, Duration duration) {
+        if (Objects.nonNull(duration)) {
+            builder.append("DURATION:").append(duration);
+        }
+        return builder;
     }
 }

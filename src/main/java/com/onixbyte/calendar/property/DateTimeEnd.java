@@ -24,11 +24,9 @@ package com.onixbyte.calendar.property;
 
 import com.onixbyte.calendar.parameter.TimeZoneIdentifier;
 import com.onixbyte.calendar.parameter.ValueDataType;
-import com.onixbyte.calendar.util.AppendUtil;
+import com.onixbyte.calendar.util.ParamAppender;
 
 import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.Objects;
 
 public class DateTimeEnd implements ComponentProperty, DateTimeProperty {
 
@@ -85,8 +83,8 @@ public class DateTimeEnd implements ComponentProperty, DateTimeProperty {
         var builder = new StringBuilder();
         builder.append("DTEND");
 
-        AppendUtil.append(builder, valueDataType);
-        AppendUtil.append(builder, timeZoneIdentifier);
+        ParamAppender.append(builder, valueDataType);
+        ParamAppender.append(builder, timeZoneIdentifier);
 
         builder.append(":").append(value.format(getDateTimeFormatter()));
         return builder.toString();

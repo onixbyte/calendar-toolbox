@@ -24,7 +24,7 @@ package com.onixbyte.calendar.property;
 
 import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
-import com.onixbyte.calendar.util.AppendUtil;
+import com.onixbyte.calendar.util.ParamAppender;
 
 public class Comment implements ComponentProperty {
 
@@ -56,8 +56,8 @@ public class Comment implements ComponentProperty {
         var builder = new StringBuilder();
         builder.append("COMMENT");
 
-        AppendUtil.append(builder, alternateTextRepresentation);
-        AppendUtil.append(builder, language);
+        ParamAppender.append(builder, alternateTextRepresentation);
+        ParamAppender.append(builder, language);
 
         builder.append(":").append(comment);
         return builder.toString();

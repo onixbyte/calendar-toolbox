@@ -25,7 +25,7 @@ package com.onixbyte.calendar.property;
 import com.onixbyte.calendar.parameter.FormatType;
 import com.onixbyte.calendar.parameter.InlineEncoding;
 import com.onixbyte.calendar.parameter.ValueDataType;
-import com.onixbyte.calendar.util.AppendUtil;
+import com.onixbyte.calendar.util.ParamAppender;
 
 import java.net.URI;
 import java.util.Base64;
@@ -85,13 +85,13 @@ public class Attachment implements ComponentProperty {
         builder.append("ATTACH");
 
         if (Objects.nonNull(binary) && binary.length > 0) {
-            AppendUtil.append(builder, encoding);
-            AppendUtil.append(builder, value);
-            AppendUtil.append(builder, formatType);
+            ParamAppender.append(builder, encoding);
+            ParamAppender.append(builder, value);
+            ParamAppender.append(builder, formatType);
 
             builder.append(":").append(Base64.getEncoder().encodeToString(binary));
         } else {
-            AppendUtil.append(builder, formatType);
+            ParamAppender.append(builder, formatType);
 
             builder.append(":").append(uri);
         }

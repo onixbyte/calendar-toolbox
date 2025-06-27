@@ -26,7 +26,7 @@ import com.onixbyte.calendar.parameter.*;
 
 import java.util.Objects;
 
-public final class AppendUtil {
+public final class ParamAppender {
 
     public static StringBuilder append(StringBuilder builder, Parameter param) {
         if (Objects.nonNull(param)) {
