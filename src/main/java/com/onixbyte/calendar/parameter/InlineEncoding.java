@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.parameter;
 
-public enum InlineEncoding {
+public enum InlineEncoding implements CalendarParameter {
 
     EIGHT_BIT("8BIT"),
     BASE_64("BASE64"),
@@ -34,7 +34,8 @@ public enum InlineEncoding {
         this.label = label;
     }
 
+    @Override
     public String formatted() {
-        return label;
+        return "ENCODING=" + label;
     }
 }

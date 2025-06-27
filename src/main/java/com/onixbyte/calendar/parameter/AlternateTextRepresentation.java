@@ -24,8 +24,11 @@ package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
 
-public record AlternateTextRepresentation(URI alternateTextRepresentation) {
+public record AlternateTextRepresentation(
+        URI alternateTextRepresentation
+) implements CalendarParameter {
 
+    @Override
     public String formatted() {
         return "ALTREP=\"" + alternateTextRepresentation.toString() + '"';
     }

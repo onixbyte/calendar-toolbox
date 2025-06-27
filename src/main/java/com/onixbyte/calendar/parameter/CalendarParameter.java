@@ -22,17 +22,7 @@
 
 package com.onixbyte.calendar.parameter;
 
-public enum CalendarUserType implements CalendarParameter {
+public interface CalendarParameter {
 
-    INDIVIDUAL,
-    GROUP,
-    RESOURCE,
-    ROOM,
-    UNKNOWN,
-    ;
-
-    @Override
-    public String formatted() {
-        return "CUTYPE=" + name();
-    }
+    String formatted();
 }

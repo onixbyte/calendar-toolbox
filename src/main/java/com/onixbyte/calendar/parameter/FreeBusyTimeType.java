@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.parameter;
 
-public enum FreeBusyTimeType {
+public enum FreeBusyTimeType implements CalendarParameter {
 
     FREE,
     BUSY,
@@ -30,6 +30,7 @@ public enum FreeBusyTimeType {
     BUSY_TENTATIVE,
     ;
 
+    @Override
     public String formatted() {
         return "FBTYPE=" + name().replaceAll("_", "-");
     }

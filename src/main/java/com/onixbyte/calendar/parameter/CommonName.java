@@ -24,12 +24,13 @@ package com.onixbyte.calendar.parameter;
 
 public record CommonName(
         String commonName
-) {
+) implements CalendarParameter {
 
     public static CommonName of(String commonName) {
         return new CommonName(commonName);
     }
 
+    @Override
     public String formatted() {
         return "CN=" + commonName;
     }

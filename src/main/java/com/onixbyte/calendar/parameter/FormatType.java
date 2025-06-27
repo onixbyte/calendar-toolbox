@@ -22,12 +22,13 @@
 
 package com.onixbyte.calendar.parameter;
 
-public record FormatType(String mediaType) {
+public record FormatType(String mediaType) implements CalendarParameter {
 
     public static FormatType of(String mediaType) {
         return new FormatType(mediaType);
     }
 
+    @Override
     public String formatted() {
         return "FMTTYPE=" + mediaType;
     }

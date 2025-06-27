@@ -28,7 +28,7 @@ import java.util.stream.Stream;
 
 public record Membership(
         List<URI> members
-) {
+) implements CalendarParameter {
 
     public static Membership of(URI... members) {
         return new Membership(List.of(members));
@@ -40,6 +40,7 @@ public record Membership(
                 .toList());
     }
 
+    @Override
     public String formatted() {
         var _members = members.stream()
                 .map((member) -> '"' + member.toString() + '"')

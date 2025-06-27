@@ -28,7 +28,7 @@ import java.util.stream.Stream;
 
 public record Delegatees(
         List<URI> delegators
-) {
+) implements CalendarParameter {
 
     public static Delegatees of(URI... delegators) {
         return new Delegatees(List.of(delegators));
@@ -41,6 +41,7 @@ public record Delegatees(
         return new Delegatees(_delegators);
     }
 
+    @Override
     public String formatted() {
         var _delegators = delegators.stream()
                 .map((delegator) -> '"' + delegator.toString() + '"')

@@ -1,6 +1,6 @@
 package com.onixbyte.calendar.parameter;
 
-public enum RelationshipType {
+public enum RelationshipType implements CalendarParameter {
 
     CHILD,
     PARENT,
@@ -27,6 +27,7 @@ public enum RelationshipType {
         this.label = label;
     }
 
+    @Override
     public String formatted() {
         return "RELTYPE=" + label;
     }

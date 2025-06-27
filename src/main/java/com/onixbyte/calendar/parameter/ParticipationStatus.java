@@ -2,7 +2,7 @@ package com.onixbyte.calendar.parameter;
 
 import java.util.List;
 
-public enum ParticipationStatus {
+public enum ParticipationStatus implements CalendarParameter {
 
     NEEDS_ACTION,
     ACCEPTED,
@@ -37,6 +37,7 @@ public enum ParticipationStatus {
         return JOURNAL_PARTICIPATION_STATUS.contains(participationStatus);
     }
 
+    @Override
     public String formatted() {
         return "PARTSTAT=" + name().replaceAll("_", "-");
     }

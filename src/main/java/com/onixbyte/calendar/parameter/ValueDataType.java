@@ -1,6 +1,6 @@
 package com.onixbyte.calendar.parameter;
 
-public enum ValueDataType {
+public enum ValueDataType implements CalendarParameter {
 
     BINARY,
     BOOLEAN,
@@ -21,9 +21,7 @@ public enum ValueDataType {
     UID,
     ;
 
-    ValueDataType() {
-    }
-
+    @Override
     public String formatted() {
         return "VALUE=" + name().replaceAll("_", "-");
     }

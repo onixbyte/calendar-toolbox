@@ -2,7 +2,7 @@ package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
 
-public record SentBy(URI sentBy) {
+public record SentBy(URI sentBy) implements CalendarParameter {
 
     public static SentBy of(URI sentBy) {
         return new SentBy(sentBy);
@@ -12,6 +12,7 @@ public record SentBy(URI sentBy) {
         return new SentBy(URI.create(sentBy));
     }
 
+    @Override
     public String formatted() {
         return "SENT-BY=\"" + sentBy.toString() + '"';
     }
