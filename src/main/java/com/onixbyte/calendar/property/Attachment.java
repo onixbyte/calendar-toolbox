@@ -33,50 +33,52 @@ import java.util.Objects;
 
 public class Attachment implements ComponentProperty {
 
+    private final FormatType formatType;
     private final URI uri;
     private final InlineEncoding encoding;
     private final ValueDataType value;
     private final byte[] binary;
-    private final FormatType formatType;
 
-    private Attachment(URI uri, FormatType formatType) {
+    private Attachment(
+            FormatType formatType,
+            URI uri,
+            InlineEncoding encoding,
+            ValueDataType value,
+            byte[] binary
+    ) {
+        this.formatType = formatType;
         this.uri = uri;
-        this.formatType = formatType;
-        this.encoding = null;
-        this.value = null;
-        this.binary = null;
-    }
-
-    private Attachment(byte[] binary, FormatType formatType) {
-        this.value = ValueDataType.BINARY;
-        this.encoding = InlineEncoding.BASE_64;
+        this.encoding = encoding;
+        this.value = value;
         this.binary = binary;
-        this.formatType = formatType;
-        this.uri = null;
     }
 
-    public static Attachment of(URI uri, FormatType formatType) {
-        return new Attachment(uri, formatType);
+    public static AttachmentBuilder builder() {
+        return new AttachmentBuilder();
     }
 
-    public static Attachment of(URI uri) {
-        return of(uri, null);
-    }
+    public static class AttachmentBuilder {
+        private FormatType formatType;
 
-    public static Attachment of(String uri, FormatType formatType) {
-        return of(URI.create(uri), formatType);
-    }
+        private AttachmentBuilder() {
+        }
 
-    public static Attachment of(String uri) {
-        return of(uri, null);
-    }
+        public AttachmentBuilder withFormatType(FormatType formatType) {
+            this.formatType = formatType;
+            return this;
+        }
 
-    public static Attachment of(byte[] binary, FormatType formatType) {
-        return new Attachment(binary, formatType);
-    }
+        public Attachment build(URI uri) {
+            return new Attachment(formatType, uri, null, null, null);
+        }
 
-    public static Attachment of(byte[] binary) {
-        return new Attachment(binary, null);
+        public Attachment build(String uri) {
+            return new Attachment(formatType, URI.create(uri), null, null, null);
+        }
+
+        public Attachment build(byte[] binary) {
+            return new Attachment(formatType, null, InlineEncoding.BASE_64, ValueDataType.BINARY, binary);
+        }
     }
 
     @Override
