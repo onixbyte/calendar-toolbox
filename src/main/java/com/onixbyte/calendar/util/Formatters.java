@@ -27,7 +27,13 @@ import java.time.format.DateTimeFormatter;
 
 public final class Formatters {
 
-    public static final DateTimeFormatter ICALENDAR_TIMESTAMP_FORMATTER = DateTimeFormatter
+    public static final DateTimeFormatter ICALENDAR_UTC_TIMESTAMP_FORMATTER = DateTimeFormatter
             .ofPattern("yyyyMMdd'T'HHmmss'Z'")
             .withZone(ZoneOffset.UTC);
+
+    public static final DateTimeFormatter ICALENDAR_TIMESTAMP_FORMATTER = DateTimeFormatter
+            .ofPattern("yyyyMMdd'T'HHmmss");
+
+    public static final DateTimeFormatter ICALENDAR_DATE_FORMATTER = DateTimeFormatter
+            .ofPattern("yyyyMMdd");
 }
