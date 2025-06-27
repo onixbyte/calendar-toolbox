@@ -20,35 +20,31 @@
  * SOFTWARE.
  */
 
-package com.onixbyte.calendar.util;
+package com.onixbyte.calendar.value;
 
-import com.onixbyte.calendar.value.PropertyValue;
+import com.onixbyte.calendar.util.Formatters;
 
 import java.time.Duration;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.time.ZonedDateTime;
 
-public final class Formatters {
+public class FreeBusyTimeValue implements PropertyValue {
 
-    public static final DateTimeFormatter ICALENDAR_UTC_TIMESTAMP_FORMATTER = DateTimeFormatter
-            .ofPattern("yyyyMMdd'T'HHmmss'Z'")
-            .withZone(ZoneOffset.UTC);
+    private final ZonedDateTime startTime;
 
-    public static final DateTimeFormatter ICALENDAR_TIMESTAMP_FORMATTER = DateTimeFormatter
-            .ofPattern("yyyyMMdd'T'HHmmss");
+    private final Duration duration;
 
-    public static final DateTimeFormatter ICALENDAR_DATE_FORMATTER = DateTimeFormatter
-            .ofPattern("yyyyMMdd");
-
-    public static String formatDuration(Duration duration) {
-        return "DURATION:" + duration.toString();
+    private FreeBusyTimeValue(ZonedDateTime startTime, Duration duration) {
+        this.startTime = startTime;
+        this.duration = duration;
     }
 
-    public static String formatValue(String delimiter, List<? extends PropertyValue> values) {
-        var _values = values.stream()
-                .map(PropertyValue::formatted)
-                .toList();
-        return String.join(delimiter, _values);
+    public static FreeBusyTimeValue of(ZonedDateTime startTime, Duration duration) {
+        return new FreeBusyTimeValue(startTime, duration);
+    }
+
+    @Override
+    public String formatted() {
+        return startTime.format(Formatters.ICALENDAR_UTC_TIMESTAMP_FORMATTER) + "/" +
+                duration.toString();
     }
 }

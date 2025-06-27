@@ -20,35 +20,9 @@
  * SOFTWARE.
  */
 
-package com.onixbyte.calendar.util;
+package com.onixbyte.calendar.value;
 
-import com.onixbyte.calendar.value.PropertyValue;
+public interface PropertyValue {
 
-import java.time.Duration;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
-public final class Formatters {
-
-    public static final DateTimeFormatter ICALENDAR_UTC_TIMESTAMP_FORMATTER = DateTimeFormatter
-            .ofPattern("yyyyMMdd'T'HHmmss'Z'")
-            .withZone(ZoneOffset.UTC);
-
-    public static final DateTimeFormatter ICALENDAR_TIMESTAMP_FORMATTER = DateTimeFormatter
-            .ofPattern("yyyyMMdd'T'HHmmss");
-
-    public static final DateTimeFormatter ICALENDAR_DATE_FORMATTER = DateTimeFormatter
-            .ofPattern("yyyyMMdd");
-
-    public static String formatDuration(Duration duration) {
-        return "DURATION:" + duration.toString();
-    }
-
-    public static String formatValue(String delimiter, List<? extends PropertyValue> values) {
-        var _values = values.stream()
-                .map(PropertyValue::formatted)
-                .toList();
-        return String.join(delimiter, _values);
-    }
+    String formatted();
 }

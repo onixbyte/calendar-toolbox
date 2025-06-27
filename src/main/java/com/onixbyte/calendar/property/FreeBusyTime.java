@@ -23,66 +23,39 @@
 package com.onixbyte.calendar.property;
 
 import com.onixbyte.calendar.parameter.FreeBusyTimeType;
-import com.onixbyte.calendar.util.ParamAppender;
 import com.onixbyte.calendar.util.Formatters;
+import com.onixbyte.calendar.util.ParamAppender;
+import com.onixbyte.calendar.value.FreeBusyTimeValue;
 
-import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Objects;
 
 public final class FreeBusyTime {
 
     private final FreeBusyTimeType fbType;
 
-    private final ZonedDateTime start;
+    private final List<FreeBusyTimeValue> values;
 
-    private final ZonedDateTime end;
-
-    private FreeBusyTime(FreeBusyTimeType fbType, ZonedDateTime start, ZonedDateTime end) {
-        if (Objects.isNull(start) || Objects.isNull(end)) {
-            throw new IllegalArgumentException("Start and end time must not be null.");
-        }
-
-        if (end.isBefore(start) || end.equals(start)) {
-            throw new IllegalArgumentException("End time must be after start time.");
+    private FreeBusyTime(FreeBusyTimeType fbType, List<FreeBusyTimeValue> values) {
+        if (Objects.isNull(values) || values.isEmpty()) {
+            throw new IllegalArgumentException("Free/Busy Time values should not be empty.");
         }
 
         this.fbType = fbType;
-        this.start = start;
-        this.end = end;
+        this.values = values;
     }
 
-    public static FreeBusyTime of(FreeBusyTimeType fbType, ZonedDateTime start, ZonedDateTime end) {
-        return new FreeBusyTime(fbType, start, end);
-    }
-
-    public static FreeBusyTime of(ZonedDateTime start, ZonedDateTime end) {
-        return new FreeBusyTime(null, start, end);
-    }
-
-    public FreeBusyTimeType getFbType() {
-        return fbType;
-    }
-
-    public ZonedDateTime getStart() {
-        return start;
-    }
-
-    public ZonedDateTime getEnd() {
-        return end;
+    public static FreeBusyTime of(FreeBusyTimeType fbType, FreeBusyTimeValue... values) {
+        return new FreeBusyTime(fbType, List.of(values));
     }
 
     public String formatted() {
-        var sb = new StringBuilder();
-        sb.append("FREEBUSY");
-        if (Objects.nonNull(fbType)) {
-            ParamAppender.append(sb, fbType);
-        }
-        sb.append(':');
-        var startStr = start.format(Formatters.ICALENDAR_UTC_TIMESTAMP_FORMATTER);
-        var endStr = end.format(Formatters.ICALENDAR_UTC_TIMESTAMP_FORMATTER);
-        sb.append(startStr)
-                .append('/')
-                .append(endStr);
-        return sb.toString();
+        var builder = new StringBuilder();
+        builder.append("FREEBUSY");
+
+        ParamAppender.append(builder, fbType);
+
+        builder.append(":").append(Formatters.formatValue(",", values));
+        return builder.toString();
     }
 }
