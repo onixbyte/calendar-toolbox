@@ -22,15 +22,24 @@
 
 package com.onixbyte.calendar.property;
 
-public enum Classification implements ComponentProperty {
+public class Priority implements ComponentProperty {
 
-    PUBLIC,
-    PRIVATE,
-    CONFIDENTIAL,
-    ;
+    private final int value;
+
+    private Priority(int value) {
+        if (value < 0 || value > 9) {
+            throw new IllegalArgumentException("Property PRIORITY should between 0 and 9.");
+        }
+
+        this.value = value;
+    }
+
+    public static Priority of(int priority) {
+        return new Priority(priority);
+    }
 
     @Override
     public String formatted() {
-        return "CLASS:" + name();
+        return "PRIORITY:" + value;
     }
 }

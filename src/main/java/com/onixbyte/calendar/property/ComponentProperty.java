@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
-public interface EventProperty {
+public interface ComponentProperty {
 
     String formatted();
 }

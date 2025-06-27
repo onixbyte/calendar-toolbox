@@ -26,7 +26,7 @@ import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.AppendUtil;
 
-public class Description implements EventProperty {
+public class Description implements ComponentProperty {
 
     private final AlternateTextRepresentation alternateTextRepresentation;
 

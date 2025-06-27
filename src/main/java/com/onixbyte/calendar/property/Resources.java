@@ -26,40 +26,51 @@ import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.AppendUtil;
 
-public class Comment implements ComponentProperty {
+import java.util.List;
+
+public class Resources implements ComponentProperty {
 
     private final AlternateTextRepresentation alternateTextRepresentation;
 
     private final Language language;
 
-    private final String comment;
+    private final List<String> values;
 
-    private Comment(AlternateTextRepresentation alternateTextRepresentation, Language language, String comment) {
+    private Resources(
+            AlternateTextRepresentation alternateTextRepresentation,
+            Language language,
+            List<String> values
+    ) {
         this.alternateTextRepresentation = alternateTextRepresentation;
         this.language = language;
-        this.comment = comment;
+        this.values = values;
     }
 
-    public static Comment of(AlternateTextRepresentation alternateTextRepresentation, Language language, String comment) {
-        return new Comment(alternateTextRepresentation, language, comment);
+    public static Resources of(AlternateTextRepresentation alternateTextRepresentation, Language language, String... values) {
+        return new Resources(alternateTextRepresentation, language, List.of(values));
     }
 
-    public static Comment of(Language language, String comment) {
-        return new Comment(null, language, comment);
+    public static Resources of(Language language, String... values) {
+        return new Resources(null, language, List.of(values));
     }
 
-    public static Comment of(String comment) {
-        return new Comment(null, null, comment);
+    public static Resources of(AlternateTextRepresentation alternateTextRepresentation, String... values) {
+        return new Resources(alternateTextRepresentation, null, List.of(values));
     }
 
+    public static Resources of(String... values) {
+        return new Resources(null, null, List.of(values));
+    }
+
+    @Override
     public String formatted() {
         var builder = new StringBuilder();
-        builder.append("COMMENT");
+        builder.append("RESOURCES");
 
         AppendUtil.append(builder, alternateTextRepresentation);
         AppendUtil.append(builder, language);
 
-        builder.append(":").append(comment);
+        builder.append(":").append(String.join(",", values));
         return builder.toString();
     }
 }

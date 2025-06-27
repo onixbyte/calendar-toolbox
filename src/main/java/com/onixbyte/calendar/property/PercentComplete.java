@@ -22,15 +22,24 @@
 
 package com.onixbyte.calendar.property;
 
-public enum Classification implements ComponentProperty {
+public class PercentComplete implements ComponentProperty {
 
-    PUBLIC,
-    PRIVATE,
-    CONFIDENTIAL,
-    ;
+    private final int value;
+
+    private PercentComplete(int value) {
+        if (value < 0 || value > 100) {
+            throw new IllegalArgumentException("Property PERCENT-COMPLETE should between 0 and 100.");
+        }
+
+        this.value = value;
+    }
+
+    public static PercentComplete of(int percentComplete) {
+        return new PercentComplete(percentComplete);
+    }
 
     @Override
     public String formatted() {
-        return "CLASS:" + name();
+        return "PERCENT-COMPLETE:" + value;
     }
 }

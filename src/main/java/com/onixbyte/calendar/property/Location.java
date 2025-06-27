@@ -26,40 +26,61 @@ import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.AppendUtil;
 
-public class Comment implements ComponentProperty {
+public class Location implements ComponentProperty {
+
+    private final String location;
 
     private final AlternateTextRepresentation alternateTextRepresentation;
 
     private final Language language;
 
-    private final String comment;
-
-    private Comment(AlternateTextRepresentation alternateTextRepresentation, Language language, String comment) {
+    private Location(
+            String location,
+            AlternateTextRepresentation alternateTextRepresentation,
+            Language language
+    ) {
+        this.location = location;
         this.alternateTextRepresentation = alternateTextRepresentation;
         this.language = language;
-        this.comment = comment;
     }
 
-    public static Comment of(AlternateTextRepresentation alternateTextRepresentation, Language language, String comment) {
-        return new Comment(alternateTextRepresentation, language, comment);
+    public static Location of(
+            String location,
+            AlternateTextRepresentation alternateTextRepresentation,
+            Language language
+    ) {
+        return new Location(location, alternateTextRepresentation, language);
     }
 
-    public static Comment of(Language language, String comment) {
-        return new Comment(null, language, comment);
+    public static Location of(
+            String location,
+            Language language
+    ) {
+        return new Location(location, null, language);
     }
 
-    public static Comment of(String comment) {
-        return new Comment(null, null, comment);
+    public static Location of(
+            String location,
+            AlternateTextRepresentation alternateTextRepresentation
+    ) {
+        return new Location(location, alternateTextRepresentation, null);
+    }
+
+    public static Location of(
+            String location
+    ) {
+        return new Location(location, null, null);
     }
 
     public String formatted() {
         var builder = new StringBuilder();
-        builder.append("COMMENT");
+        builder.append("LOCATION");
 
         AppendUtil.append(builder, alternateTextRepresentation);
         AppendUtil.append(builder, language);
 
-        builder.append(":").append(comment);
+        builder.append(":").append(location);
+
         return builder.toString();
     }
 }
