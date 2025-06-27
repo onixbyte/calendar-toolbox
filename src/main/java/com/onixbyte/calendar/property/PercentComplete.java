@@ -40,6 +40,6 @@ public class PercentComplete implements ComponentProperty {
 
     @Override
     public String formatted() {
-        return "PERCENT-COMPLETE=" + value;
+        return "PERCENT-COMPLETE:" + value;
     }
 }

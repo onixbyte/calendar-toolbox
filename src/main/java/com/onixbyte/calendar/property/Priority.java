@@ -40,6 +40,6 @@ public class Priority implements ComponentProperty {
 
     @Override
     public String formatted() {
-        return "PRIORITY=" + value;
+        return "PRIORITY:" + value;
     }
 }
