@@ -30,6 +30,6 @@ public enum Classification {
     ;
 
     public String formatted() {
-        return name();
+        return "CLASS:" + name();
     }
 }
