@@ -25,12 +25,14 @@ package com.onixbyte.calendar.property;
 import com.onixbyte.calendar.parameter.TimeZoneIdentifier;
 import com.onixbyte.calendar.parameter.ValueDataType;
 import com.onixbyte.calendar.util.AppendUtil;
+import com.onixbyte.calendar.util.Formatters;
 
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
-public class DateTimeEnd implements ComponentProperty, DateTimeProperty {
+public class DateTimeDue implements ComponentProperty, DateTimeProperty {
 
     private final TimeZoneIdentifier timeZoneIdentifier;
 
@@ -38,7 +40,7 @@ public class DateTimeEnd implements ComponentProperty, DateTimeProperty {
 
     private final ZonedDateTime value;
 
-    private DateTimeEnd(
+    private DateTimeDue(
             TimeZoneIdentifier timeZoneIdentifier,
             ValueDataType valueDataType,
             ZonedDateTime value
@@ -52,24 +54,24 @@ public class DateTimeEnd implements ComponentProperty, DateTimeProperty {
         this.value = value;
     }
 
-    public static DateTimeEnd of(
+    public static DateTimeDue of(
             TimeZoneIdentifier timeZoneIdentifier,
             ValueDataType valueDataType,
             ZonedDateTime value
     ) {
-        return new DateTimeEnd(timeZoneIdentifier, valueDataType, value);
+        return new DateTimeDue(timeZoneIdentifier, valueDataType, value);
     }
 
-    public static DateTimeEnd of(TimeZoneIdentifier timeZoneIdentifier, ZonedDateTime value) {
-        return new DateTimeEnd(timeZoneIdentifier, null, value);
+    public static DateTimeDue of(TimeZoneIdentifier timeZoneIdentifier, ZonedDateTime value) {
+        return new DateTimeDue(timeZoneIdentifier, null, value);
     }
 
-    public static DateTimeEnd of(ValueDataType valueDataType, ZonedDateTime value) {
-        return new DateTimeEnd(null, valueDataType, value);
+    public static DateTimeDue of(ValueDataType valueDataType, ZonedDateTime value) {
+        return new DateTimeDue(null, valueDataType, value);
     }
 
-    public static DateTimeEnd of(ZonedDateTime value) {
-        return new DateTimeEnd(null, null, value);
+    public static DateTimeDue of(ZonedDateTime value) {
+        return new DateTimeDue(null, null, value);
     }
 
     @Override
@@ -85,7 +87,7 @@ public class DateTimeEnd implements ComponentProperty, DateTimeProperty {
     @Override
     public String formatted() {
         var builder = new StringBuilder();
-        builder.append("DTEND");
+        builder.append("DUE");
 
         AppendUtil.append(builder, valueDataType);
         AppendUtil.append(builder, timeZoneIdentifier);
