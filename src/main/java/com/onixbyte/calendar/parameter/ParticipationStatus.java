@@ -17,24 +17,24 @@ public enum ParticipationStatus implements Parameter {
             NEEDS_ACTION, ACCEPTED, DECLINED, TENTATIVE, DELEGATED
     );
 
-    public boolean isEventParticipationStatus(ParticipationStatus participationStatus) {
-        return EVENT_PARTICIPATION_STATUS.contains(participationStatus);
+    public boolean isEventParticipationStatus() {
+        return EVENT_PARTICIPATION_STATUS.contains(this);
     }
 
     private final static List<ParticipationStatus> TODO_PARTICIPATION_STATUS = List.of(
             NEEDS_ACTION, ACCEPTED, DECLINED, TENTATIVE, DELEGATED, COMPLETED, IN_PROGRESS
     );
 
-    public boolean isTodoParticipationStatus(ParticipationStatus participationStatus) {
-        return TODO_PARTICIPATION_STATUS.contains(participationStatus);
+    public boolean isTodoParticipationStatus() {
+        return TODO_PARTICIPATION_STATUS.contains(this);
     }
 
     private final static List<ParticipationStatus> JOURNAL_PARTICIPATION_STATUS = List.of(
             NEEDS_ACTION, ACCEPTED, DECLINED
     );
 
-    public boolean isJournalParticipationStatus(ParticipationStatus participationStatus) {
-        return JOURNAL_PARTICIPATION_STATUS.contains(participationStatus);
+    public boolean isJournalParticipationStatus() {
+        return JOURNAL_PARTICIPATION_STATUS.contains(this);
     }
 
     @Override
