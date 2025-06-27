@@ -43,9 +43,7 @@ public class DateTimeEnd implements ComponentProperty, DateTimeProperty {
             ValueDataType valueDataType,
             ZonedDateTime value
     ) {
-        if (Objects.nonNull(valueDataType) && List.of(ValueDataType.DATE, ValueDataType.DATE_TIME).contains(valueDataType)) {
-            throw new IllegalArgumentException("Value Type accepts DATE and DATE-TIME in property `Date-Time End`.");
-        }
+        DateTimeProperty.checkValueDataType(valueDataType);
 
         this.timeZoneIdentifier = timeZoneIdentifier;
         this.valueDataType = valueDataType;

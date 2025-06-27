@@ -27,9 +27,16 @@ import com.onixbyte.calendar.parameter.ValueDataType;
 import com.onixbyte.calendar.util.Formatters;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Objects;
 
 public interface DateTimeProperty {
+
+    static void checkValueDataType(ValueDataType valueDataType) {
+        if (Objects.nonNull(valueDataType) && !List.of(ValueDataType.DATE, ValueDataType.DATE_TIME).contains(valueDataType)) {
+            throw new IllegalArgumentException("Value Type accepts DATE and DATE-TIME in property `Date-Time End`.");
+        }
+    }
 
     ValueDataType getValueDataType();
 

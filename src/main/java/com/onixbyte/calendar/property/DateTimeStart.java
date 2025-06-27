@@ -25,51 +25,47 @@ package com.onixbyte.calendar.property;
 import com.onixbyte.calendar.parameter.TimeZoneIdentifier;
 import com.onixbyte.calendar.parameter.ValueDataType;
 import com.onixbyte.calendar.util.AppendUtil;
-import com.onixbyte.calendar.util.Formatters;
 
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Objects;
 
-public class DateTimeDue implements ComponentProperty, DateTimeProperty {
-
-    private final TimeZoneIdentifier timeZoneIdentifier;
+public class DateTimeStart implements ComponentProperty, DateTimeProperty {
 
     private final ValueDataType valueDataType;
 
+    private final TimeZoneIdentifier timeZoneIdentifier;
+
     private final ZonedDateTime value;
 
-    private DateTimeDue(
-            TimeZoneIdentifier timeZoneIdentifier,
+    private DateTimeStart(
             ValueDataType valueDataType,
+            TimeZoneIdentifier timeZoneIdentifier,
             ZonedDateTime value
     ) {
         DateTimeProperty.checkValueDataType(valueDataType);
 
-        this.timeZoneIdentifier = timeZoneIdentifier;
         this.valueDataType = valueDataType;
+        this.timeZoneIdentifier = timeZoneIdentifier;
         this.value = value;
     }
 
-    public static DateTimeDue of(
-            TimeZoneIdentifier timeZoneIdentifier,
+    public static DateTimeStart of(
             ValueDataType valueDataType,
+            TimeZoneIdentifier timeZoneIdentifier,
             ZonedDateTime value
     ) {
-        return new DateTimeDue(timeZoneIdentifier, valueDataType, value);
+        return new DateTimeStart(valueDataType, timeZoneIdentifier, value);
     }
 
-    public static DateTimeDue of(TimeZoneIdentifier timeZoneIdentifier, ZonedDateTime value) {
-        return new DateTimeDue(timeZoneIdentifier, null, value);
+    public static DateTimeStart of(TimeZoneIdentifier timeZoneIdentifier, ZonedDateTime value) {
+        return new DateTimeStart(null, timeZoneIdentifier, value);
     }
 
-    public static DateTimeDue of(ValueDataType valueDataType, ZonedDateTime value) {
-        return new DateTimeDue(null, valueDataType, value);
+    public static DateTimeStart of(ValueDataType valueDataType, ZonedDateTime value) {
+        return new DateTimeStart(valueDataType, null, value);
     }
 
-    public static DateTimeDue of(ZonedDateTime value) {
-        return new DateTimeDue(null, null, value);
+    public static DateTimeStart of(ZonedDateTime value) {
+        return new DateTimeStart(null, null, value);
     }
 
     @Override
@@ -85,12 +81,12 @@ public class DateTimeDue implements ComponentProperty, DateTimeProperty {
     @Override
     public String formatted() {
         var builder = new StringBuilder();
-        builder.append("DUE");
+        builder.append("DTSTART");
 
-        AppendUtil.append(builder, valueDataType);
         AppendUtil.append(builder, timeZoneIdentifier);
-
+        AppendUtil.append(builder, valueDataType);
         builder.append(":").append(value.format(getDateTimeFormatter()));
+
         return builder.toString();
     }
 }
