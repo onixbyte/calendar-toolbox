@@ -29,7 +29,7 @@ public final class PropertyAppender {
 
     public static StringBuilder append(StringBuilder builder, Duration duration) {
         if (Objects.nonNull(duration)) {
-            builder.append("DURATION:").append(duration);
+            builder.append(Formatters.formatDuration(duration));
         }
         return builder;
     }

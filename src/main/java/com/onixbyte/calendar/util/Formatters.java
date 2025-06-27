@@ -22,6 +22,7 @@
 
 package com.onixbyte.calendar.util;
 
+import java.time.Duration;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
@@ -36,4 +37,8 @@ public final class Formatters {
 
     public static final DateTimeFormatter ICALENDAR_DATE_FORMATTER = DateTimeFormatter
             .ofPattern("yyyyMMdd");
+
+    public static String formatDuration(Duration duration) {
+        return "DURATION:" + duration.toString();
+    }
 }
