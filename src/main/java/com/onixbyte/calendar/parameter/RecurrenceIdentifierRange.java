@@ -2,7 +2,7 @@ package com.onixbyte.calendar.parameter;
 
 import java.util.Objects;
 
-public class RecurrenceIdentifierRange implements Parameter {
+public final class RecurrenceIdentifierRange implements Parameter {
 
     private static RecurrenceIdentifierRange _instance;
 

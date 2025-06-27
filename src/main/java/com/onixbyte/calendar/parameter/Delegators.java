@@ -26,7 +26,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Delegators implements Parameter {
+public final class Delegators implements Parameter {
 
     private final List<URI> values;
 

@@ -26,7 +26,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Membership implements Parameter {
+public final class Membership implements Parameter {
 
     private final List<URI> values;
 

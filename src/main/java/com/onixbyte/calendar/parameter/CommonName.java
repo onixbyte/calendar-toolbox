@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.parameter;
 
-public class CommonName implements Parameter {
+public final class CommonName implements Parameter {
 
     private final String value;
 

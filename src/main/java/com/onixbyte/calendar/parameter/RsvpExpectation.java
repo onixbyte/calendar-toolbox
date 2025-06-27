@@ -1,6 +1,6 @@
 package com.onixbyte.calendar.parameter;
 
-public class RsvpExpectation implements Parameter {
+public final class RsvpExpectation implements Parameter {
 
     private final boolean rsvpExpectation;
 

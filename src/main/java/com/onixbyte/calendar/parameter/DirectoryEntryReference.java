@@ -24,7 +24,7 @@ package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
 
-public class DirectoryEntryReference implements Parameter {
+public final class DirectoryEntryReference implements Parameter {
 
     private final URI value;
 
