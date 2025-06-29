@@ -29,10 +29,10 @@ plugins {
     id("signing")
 }
 
-val _version = "1.0.0"
+val artefactVersion = "0.1.0"
 
 group = "com.onixbyte"
-version = _version
+version = artefactVersion
 
 repositories {
     mavenCentral()
@@ -71,7 +71,7 @@ publishing {
         create<MavenPublication>("calendarToolbox") {
             groupId = group.toString()
             artifactId = "calendar-toolbox"
-            version = _version
+            version = artefactVersion
 
             pom {
                 name = "OnixByte Calendar Toolbox"
