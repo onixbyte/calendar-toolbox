@@ -34,12 +34,12 @@ public final class DateTimeStamp implements ComponentProperty {
         this.value = value;
     }
 
-    public static DateTimeCreatedBuilder builder() {
-        return new DateTimeCreatedBuilder();
+    public static DateTimeStampBuilder builder() {
+        return new DateTimeStampBuilder();
     }
 
-    public static class DateTimeCreatedBuilder {
-        private DateTimeCreatedBuilder() {
+    public static class DateTimeStampBuilder {
+        private DateTimeStampBuilder() {
         }
 
         public DateTimeStamp build(ZonedDateTime value) {
