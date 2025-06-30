@@ -22,6 +22,8 @@
 
 package com.onixbyte.calendar.util;
 
+import com.onixbyte.calendar.property.ComponentProperty;
+
 import java.time.Duration;
 import java.util.Objects;
 
@@ -29,7 +31,14 @@ public final class PropertyAppender {
 
     public static StringBuilder append(StringBuilder builder, Duration duration) {
         if (Objects.nonNull(duration)) {
-            builder.append(Formatters.formatDuration(duration));
+            builder.append("\n").append(Formatters.formatDuration(duration));
+        }
+        return builder;
+    }
+
+    public static StringBuilder append(StringBuilder builder, ComponentProperty componentProperty) {
+        if (Objects.nonNull(componentProperty)) {
+            builder.append("\n").append(componentProperty.formatted());
         }
         return builder;
     }
