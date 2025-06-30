@@ -20,26 +20,9 @@
  * SOFTWARE.
  */
 
-package com.onixbyte.calendar.util;
+package com.onixbyte.calendar.component;
 
-import com.onixbyte.calendar.property.ComponentProperty;
+public interface CalendarComponent {
 
-import java.time.Duration;
-import java.util.Objects;
-
-public final class PropertyAppender {
-
-    public static StringBuilder append(StringBuilder builder, Duration duration) {
-        if (Objects.nonNull(duration)) {
-            builder.append("\n").append(Formatters.formatDuration(duration));
-        }
-        return builder;
-    }
-
-    public static StringBuilder append(StringBuilder builder, ComponentProperty componentProperty) {
-        if (Objects.nonNull(componentProperty)) {
-            builder.append("\n").append(componentProperty.formatted());
-        }
-        return builder;
-    }
+    String formatted();
 }
