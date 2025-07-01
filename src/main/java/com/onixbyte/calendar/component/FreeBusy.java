@@ -32,7 +32,7 @@ public final class FreeBusy implements CalendarComponent {
     public static final String COMPONENT_NAME = "VFREEBUSY";
 
     // The following are REQUIRED, but MUST NOT occur more than once.
-    // private final DateTimeStamp dateTimeStamp;
+    private final DateTimeStamp dateTimeStamp;
 
     private final UniqueIdentifier uniqueIdentifier;
 
@@ -57,6 +57,7 @@ public final class FreeBusy implements CalendarComponent {
     // todo: rstatus
 
     private FreeBusy(
+            DateTimeStamp dateTimeStamp,
             UniqueIdentifier uniqueIdentifier,
             Contact contact,
             DateTimeStart dateTimeStart,
@@ -67,6 +68,7 @@ public final class FreeBusy implements CalendarComponent {
             List<Comment> comments,
             List<FreeBusyTime> freeBusyTimes
     ) {
+        this.dateTimeStamp = dateTimeStamp;
         this.uniqueIdentifier = uniqueIdentifier;
         this.contact = contact;
         this.dateTimeStart = dateTimeStart;
@@ -83,6 +85,7 @@ public final class FreeBusy implements CalendarComponent {
     }
 
     public static class FreeBusyBuilder {
+        private DateTimeStamp dateTimeStamp;
         private UniqueIdentifier uniqueIdentifier;
         private Contact contact;
         private DateTimeStart dateTimeStart;
@@ -94,6 +97,11 @@ public final class FreeBusy implements CalendarComponent {
         private List<FreeBusyTime> freeBusyTimes;
 
         private FreeBusyBuilder() {
+        }
+
+        public FreeBusyBuilder withDateTimeStamp(DateTimeStamp dateTimeStamp) {
+            this.dateTimeStamp = dateTimeStamp;
+            return this;
         }
 
         public FreeBusyBuilder withUniqueIdentifier(UniqueIdentifier uniqueIdentifier) {
@@ -142,8 +150,9 @@ public final class FreeBusy implements CalendarComponent {
         }
 
         public FreeBusy build() {
-            return new FreeBusy(uniqueIdentifier, contact, dateTimeStart, dateTimeEnd, organiser,
-                    uniformResourceLocator, attendees, comments, freeBusyTimes);
+            return new FreeBusy(dateTimeStamp, uniqueIdentifier, contact, dateTimeStart,
+                    dateTimeEnd, organiser, uniformResourceLocator, attendees, comments,
+                    freeBusyTimes);
         }
     }
 
@@ -165,7 +174,6 @@ public final class FreeBusy implements CalendarComponent {
         freeBusyTimes.forEach((freeBusyTime) -> PropertyAppender.append(builder, freeBusyTime));
 
         builder.append("\n").append("END:").append(COMPONENT_NAME);
-
 
         return builder.toString();
     }
