@@ -161,6 +161,7 @@ public final class FreeBusy implements CalendarComponent {
         var builder = new StringBuilder();
         builder.append("BEGIN:").append(COMPONENT_NAME);
 
+        PropertyAppender.append(builder, dateTimeStamp);
         PropertyAppender.append(builder, uniqueIdentifier);
         PropertyAppender.append(builder, contact);
         PropertyAppender.append(builder, dateTimeStart);
