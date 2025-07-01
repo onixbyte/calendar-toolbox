@@ -51,4 +51,50 @@ public final class Formatters {
                 .toList();
         return String.join(delimiter, _values);
     }
+
+    /**
+     * Folds the lines of text in the given StringBuilder according to the iCalendar specification.
+     * <p>
+     * Lines of text SHOULD NOT be longer than 75 octets, excluding the line break. Long content
+     * lines are split into multiple lines using a line “folding” technique. That is, a long line
+     * is split between any two characters by inserting a CRLF immediately followed by a single
+     * linear white-space character (SPACE).
+     * <p>
+     * For example, a long line:
+     * <pre>
+     * DESCRIPTION:This is a long description that exists on a long line.
+     * </pre>
+     * would be folded as:
+     * <pre>
+     * DESCRIPTION:This is a lo
+     *  ng description
+     *   that exists on a long line.
+     * </pre>
+     *
+     * @param builder the StringBuilder containing the text line(s) to be folded
+     * @return a new StringBuilder containing the folded content
+     */
+    public static String folding(StringBuilder builder) {
+        final var maxLineLength = 75;
+        var folded = new StringBuilder();
+
+        var length = builder.length();
+        var lineStart = 0;
+
+        while (lineStart < length) {
+            int lineEnd = Math.min(lineStart + maxLineLength, length);
+
+            folded.append(builder, lineStart, lineEnd);
+            folded.append("\r\n");
+
+            lineStart = lineEnd;
+
+            // Insert a space character as the folding whitespace at the start of the new folded line
+            if (lineStart < length) {
+                folded.append(' ');
+            }
+        }
+
+        return folded.toString();
+    }
 }
