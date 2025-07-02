@@ -22,7 +22,21 @@
 
 package com.onixbyte.calendar.parameter;
 
+/**
+ * Represents a general parameter that can be formatted into a string representation.
+ * <p>
+ * Implementations of this interface define how the parameter should be rendered in
+ * textual form, typically conforming to specific formatting rules (e.g., iCalendar format).
+ *
+ * @author zihluwang
+ * @author siujamo
+ */
 public interface Parameter {
 
+    /**
+     * Returns the formatted string representation of this parameter.
+     *
+     * @return a {@code String} containing the properly formatted parameter
+     */
     String formatted();
 }
