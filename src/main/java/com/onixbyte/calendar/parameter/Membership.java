@@ -26,24 +26,66 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * Represents the iCalendar MEMBER property parameter.
+ * <p>
+ * This parameter specifies one or more URIs that identify members associated with a calendar
+ * component or event, such as members of a group or organizer's team.
+ * <p>
+ * Instances of this class are immutable and can be created from one or more URIs representing
+ * the members.
+ *
+ * @author siujamo
+ */
 public final class Membership implements Parameter {
 
+    /**
+     * The list of URIs representing the members.
+     */
     private final List<URI> values;
 
+    /**
+     * Constructs a {@code Membership} instance with a list of member URIs.
+     *
+     * @param values the list of member URIs
+     */
     private Membership(List<URI> values) {
         this.values = values;
     }
 
+    /**
+     * Creates a {@code Membership} instance from an array of {@link URI} objects.
+     *
+     * @param members one or more URIs representing the members
+     * @return a new {@code Membership} instance
+     */
     public static Membership of(URI... members) {
         return new Membership(List.of(members));
     }
 
+    /**
+     * Creates a {@code Membership} instance from an array of strings that represent URIs.
+     * Each string is converted to a {@link URI}.
+     *
+     * @param members one or more strings representing the member URIs
+     * @return a new {@code Membership} instance
+     * @throws IllegalArgumentException if any string is not a valid URI
+     */
     public static Membership of(String... members) {
         return new Membership(Stream.of(members)
                 .map(URI::create)
                 .toList());
     }
 
+    /**
+     * Returns the formatted {@code MEMBER} parameter string as specified in the
+     * iCalendar specification.
+     * <p>
+     * Each URI is quoted and multiple values are separated by commas.
+     *
+     * @return a formatted string in the form {@code MEMBER="uri1","uri2",...} suitable for
+     * inclusion in an iCalendar entity
+     */
     @Override
     public String formatted() {
         var _members = values.stream()
