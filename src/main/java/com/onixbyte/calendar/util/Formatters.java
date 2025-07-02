@@ -75,24 +75,27 @@ public final class Formatters {
      * @return a new StringBuilder containing the folded content
      */
     public static String folding(StringBuilder builder) {
-        final var maxLineLength = 75;
+        final var firstLineMaxLength = 75;
+        final var subsequentLineMaxLength = 74;
+
         var folded = new StringBuilder();
 
         var length = builder.length();
-        var lineStart = 0;
+        var pos = 0;
 
-        while (lineStart < length) {
-            int lineEnd = Math.min(lineStart + maxLineLength, length);
+        // Handle first line with max 75 chars
+        var end = Math.min(pos + firstLineMaxLength, length);
+        folded.append(builder, pos, end);
+        folded.append("\r\n");
+        pos = end;
 
-            folded.append(builder, lineStart, lineEnd);
+        // Handle subsequent lines with max 74 chars, each starting with a space
+        while (pos < length) {
+            folded.append(' '); // folding space
+            end = Math.min(pos + subsequentLineMaxLength, length);
+            folded.append(builder, pos, end);
             folded.append("\r\n");
-
-            lineStart = lineEnd;
-
-            // Insert a space character as the folding whitespace at the start of the new folded line
-            if (lineStart < length) {
-                folded.append(' ');
-            }
+            pos = end;
         }
 
         return folded.toString();
