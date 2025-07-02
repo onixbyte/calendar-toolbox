@@ -25,8 +25,7 @@ package com.onixbyte.calendar.parameter;
 import java.net.URI;
 
 /**
- * Represents the iCalendar {@code ALTREP} parameter, which specifies an alternate text
- * representation of a property value.
+ * Represents the iCalendar {@code ALTREP} parameter.
  * <p>
  * This parameter provides a URI that points to an alternate representation of the property's text,
  * such as a URL to an HTML version.
