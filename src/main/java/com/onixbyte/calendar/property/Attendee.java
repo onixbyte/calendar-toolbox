@@ -29,7 +29,7 @@ import java.net.URI;
 
 public final class Attendee implements ComponentProperty {
 
-    private final UserType userType;
+    private final CalendarUserType calendarUserType;
 
     private final Membership membership;
 
@@ -54,7 +54,7 @@ public final class Attendee implements ComponentProperty {
     private final URI value;
 
     private Attendee(
-            UserType userType,
+            CalendarUserType calendarUserType,
             Membership membership,
             ParticipationRole participationRole,
             ParticipationStatus participationStatus,
@@ -67,7 +67,7 @@ public final class Attendee implements ComponentProperty {
             Language language,
             URI value
     ) {
-        this.userType = userType;
+        this.calendarUserType = calendarUserType;
         this.membership = membership;
         this.participationRole = participationRole;
         this.participationStatus = participationStatus;
@@ -86,7 +86,7 @@ public final class Attendee implements ComponentProperty {
     }
 
     public static class AttendeeBuilder {
-        private UserType userType;
+        private CalendarUserType calendarUserType;
         private Membership membership;
         private ParticipationRole participationRole;
         private ParticipationStatus participationStatus;
@@ -101,8 +101,8 @@ public final class Attendee implements ComponentProperty {
         private AttendeeBuilder() {
         }
 
-        public AttendeeBuilder withUserType(UserType userType) {
-            this.userType = userType;
+        public AttendeeBuilder withUserType(CalendarUserType calendarUserType) {
+            this.calendarUserType = calendarUserType;
             return this;
         }
 
@@ -158,7 +158,7 @@ public final class Attendee implements ComponentProperty {
 
         public Attendee build(URI uri) {
             return new Attendee(
-                    userType, membership, participationRole, participationStatus, rsvpExpectation,
+                    calendarUserType, membership, participationRole, participationStatus, rsvpExpectation,
                     delegatees, delegators, sentBy, commonName, directoryEntryReference, language,
                     uri
             );
@@ -166,7 +166,7 @@ public final class Attendee implements ComponentProperty {
 
         public Attendee build(String uri) {
             return new Attendee(
-                    userType, membership, participationRole, participationStatus, rsvpExpectation,
+                    calendarUserType, membership, participationRole, participationStatus, rsvpExpectation,
                     delegatees, delegators, sentBy, commonName, directoryEntryReference, language,
                     URI.create(uri)
             );
@@ -178,7 +178,7 @@ public final class Attendee implements ComponentProperty {
         var builder = new StringBuilder();
         builder.append("ATTENDEE");
 
-        ParamAppender.append(builder, userType);
+        ParamAppender.append(builder, calendarUserType);
         ParamAppender.append(builder, membership);
         ParamAppender.append(builder, participationRole);
         ParamAppender.append(builder, participationStatus);

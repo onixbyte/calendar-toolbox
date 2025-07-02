@@ -22,15 +22,51 @@
 
 package com.onixbyte.calendar.parameter;
 
-public enum UserType implements Parameter {
+/**
+ * Defines the iCalendar CUTYPE (Calendar User Type) parameter.
+ * <p>
+ * This parameter specifies the type of calendar user associated with a calendar component.
+ * Valid types include individual users, groups, resources, rooms, and unknown types.
+ * <p>
+ * Each constant corresponds to a specific user type defined by the iCalendar specification.
+ *
+ * @author siujamo
+ */
+public enum CalendarUserType implements Parameter {
 
+    /**
+     * An individual calendar user.
+     */
     INDIVIDUAL,
+
+    /**
+     * A group of calendar users.
+     */
     GROUP,
+
+    /**
+     * A resource associated with a calendar.
+     */
     RESOURCE,
+
+    /**
+     * A room associated with a calendar.
+     */
     ROOM,
+
+    /**
+     * An unknown type of calendar user.
+     */
     UNKNOWN,
     ;
 
+    /**
+     * Returns the formatted {@code CUTYPE} parameter string as specified in the
+     * iCalendar specification.
+     *
+     * @return a formatted string in the form {@code CUTYPE=value} suitable for inclusion in an
+     * iCalendar entity
+     */
     @Override
     public String formatted() {
         return "CUTYPE=" + name();
