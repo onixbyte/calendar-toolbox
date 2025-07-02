@@ -22,18 +22,49 @@
 
 package com.onixbyte.calendar.parameter;
 
+/**
+ * Enum representing the iCalendar encoding types for inline content.
+ * <p>
+ * This parameter specifies the encoding mechanism used for inline content, such as 8-bit data
+ * or Base64 encoded data.
+ * <p>
+ * The supported encoding types are as defined by the iCalendar specification.
+ *
+ * @author siujamo
+ */
 public enum InlineEncoding implements Parameter {
 
+    /**
+     * Represents 8-bit encoding, allowing raw 8-bit data.
+     */
     EIGHT_BIT("8BIT"),
+
+    /**
+     * Represents Base64 encoding, used for binary data encoded as ASCII text.
+     */
     BASE_64("BASE64"),
     ;
 
+    /**
+     * The label used in the formatted parameter string.
+     */
     private final String label;
 
+    /**
+     * Constructs an {@code InlineEncoding} enum constant with a specific label.
+     *
+     * @param label the string label for the encoding (e.g., "8BIT", "BASE64")
+     */
     InlineEncoding(String label) {
         this.label = label;
     }
 
+    /**
+     * Returns the formatted ENCODING parameter string as specified in the iCalendar specification.
+     *
+     * @return a formatted string in the form {@code ENCODING=value} suitable for inclusion in an
+     * iCalendar entity
+     */
     @Override
     public String formatted() {
         return "ENCODING=" + label;
