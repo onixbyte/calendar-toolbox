@@ -24,22 +24,62 @@ package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
 
+/**
+ * Represents the iCalendar {@code DIR} parameter.
+ * <p>
+ * This parameter specifies a reference to the directory entry associated with the calendar user
+ * specified by the property.
+ * <p>
+ * Instances of this class are immutable and can be created from one or more URIs representing
+ * the delegatees.
+ *
+ * @author siujamo
+ */
 public final class DirectoryEntryReference implements Parameter {
 
+    /**
+     * The value of the directory reference.
+     */
     private final URI value;
 
+    /**
+     * Constructs a {@code DirectoryEntryReference} instance with the specified directory
+     * reference value.
+     *
+     * @param value the common name value
+     */
     private DirectoryEntryReference(URI value) {
         this.value = value;
     }
 
-    public static DirectoryEntryReference of(String directoryEntryReference) {
-        return new DirectoryEntryReference(URI.create(directoryEntryReference));
+    /**
+     * Creates an {@code DirectoryEntryReference} instance from a string representation of a URI.
+     *
+     * @param value the string representing the URI of the alternate text representation
+     * @return a new instance of {@code DirectoryEntryReference}
+     * @throws IllegalArgumentException if the given string violates URI syntax
+     */
+    public static DirectoryEntryReference of(String value) {
+        return new DirectoryEntryReference(URI.create(value));
     }
 
-    public static DirectoryEntryReference of(URI directoryEntryReference) {
-        return new DirectoryEntryReference(directoryEntryReference);
+    /**
+     * Creates an {@code DirectoryEntryReference} instance from a URI.
+     *
+     * @param value the URI representing the directory reference
+     * @return a new instance of {@code DirectoryEntryReference}
+     */
+    public static DirectoryEntryReference of(URI value) {
+        return new DirectoryEntryReference(value);
     }
 
+    /**
+     * Returns the formatted {@code DIR} parameter string as specified in the
+     * iCalendar specification.
+     *
+     * @return a formatted string in the form {@code DIR=value} suitable for inclusion in an
+     * iCalendar entity
+     */
     @Override
     public String formatted() {
         return "DIR=\"" + value.toString() + '"';

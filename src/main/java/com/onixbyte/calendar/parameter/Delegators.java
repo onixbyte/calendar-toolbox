@@ -79,7 +79,8 @@ public final class Delegators implements Parameter {
     }
 
     /**
-     * Returns the formatted DELEGATED-FROM parameter string as specified in the iCalendar specification.
+     * Returns the formatted DELEGATED-FROM parameter string as specified in the
+     * iCalendar specification.
      * <p>
      * Each URI is quoted and multiple values are separated by commas.
      *

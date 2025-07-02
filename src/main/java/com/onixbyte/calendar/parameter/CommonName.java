@@ -61,9 +61,11 @@ public final class CommonName implements Parameter {
     }
 
     /**
-     * Returns the formatted CN parameter string as specified in the iCalendar specification.
+     * Returns the formatted {@code CN} parameter string as specified in the
+     * iCalendar specification.
      *
-     * @return a formatted string in the form {@code CN=value} suitable for inclusion in an iCalendar entity
+     * @return a formatted string in the form {@code CN=value} suitable for inclusion in an
+     * iCalendar entity
      */
     @Override
     public String formatted() {

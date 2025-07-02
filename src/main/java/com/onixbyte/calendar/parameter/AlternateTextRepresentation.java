@@ -74,7 +74,8 @@ public final class AlternateTextRepresentation implements Parameter {
     }
 
     /**
-     * Returns the formatted ALTREP parameter string as specified in the iCalendar specification.
+     * Returns the formatted {@code ALTREP} parameter string as specified in the
+     * iCalendar specification.
      *
      * @return a formatted string in the form {@code ALTREP="URI"} suitable for inclusion in an
      * iCalendar entity
