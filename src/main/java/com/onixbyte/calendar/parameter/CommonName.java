@@ -22,18 +22,49 @@
 
 package com.onixbyte.calendar.parameter;
 
+
+/**
+ * Represents the iCalendar {@code CN} parameter.
+ * <p>
+ * This parameter specifies a common name associated with a calendar user or resource, typically
+ * used to provide a human-readable identifier.
+ * <p>
+ * Instances of this class are immutable and can be created via the static factory
+ * method {@link #of(String)}.
+ *
+ * @author siujamo
+ */
 public final class CommonName implements Parameter {
 
+    /**
+     * The value of the common name.
+     */
     private final String value;
 
+    /**
+     * Constructs a {@code CommonName} instance with the specified name value.
+     *
+     * @param value the common name value
+     */
     private CommonName(String value) {
         this.value = value;
     }
 
-    public static CommonName of(String commonName) {
-        return new CommonName(commonName);
+    /**
+     * Creates a {@code CommonName} instance from a given string value.
+     *
+     * @param value the string representing the common name
+     * @return a new instance of {@code CommonName}
+     */
+    public static CommonName of(String value) {
+        return new CommonName(value);
     }
 
+    /**
+     * Returns the formatted CN parameter string as specified in the iCalendar specification.
+     *
+     * @return a formatted string in the form {@code CN=value} suitable for inclusion in an iCalendar entity
+     */
     @Override
     public String formatted() {
         return "CN=" + value;
