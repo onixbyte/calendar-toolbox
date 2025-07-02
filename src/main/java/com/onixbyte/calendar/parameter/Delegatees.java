@@ -26,25 +26,67 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * Represents the iCalendar {@code DELEGATED-TO} parameter.
+ * <p>
+ * This parameter specifies one or more calendar users who are delegated responsibility for a
+ * calendar component or event.
+ * <p>
+ * Instances of this class are immutable and can be created from one or more URIs representing
+ * the delegatees.
+ *
+ * @author siujamo
+ */
 public final class Delegatees implements Parameter {
 
+    /**
+     * The list of URIs representing the delegatees.
+     */
     private final List<URI> values;
 
+    /**
+     * Constructs a {@code Delegatees} instance with a list of URIs.
+     *
+     * @param values the list of delegatee URIs
+     */
     private Delegatees(List<URI> values) {
         this.values = values;
     }
 
+    /**
+     * Creates a {@code Delegatees} instance from an array of {@link URI} objects.
+     *
+     * @param delegatees one or more URIs representing the delegatees
+     * @return a new {@code Delegatees} instance
+     */
     public static Delegatees of(URI... delegatees) {
         return new Delegatees(List.of(delegatees));
     }
 
+    /**
+     * Creates a {@code Delegatees} instance from an array of strings that represent URIs.
+     * Each string is converted to a {@link URI}.
+     *
+     * @param delegatees one or more strings representing the delegatee URIs
+     * @return a new {@code Delegatees} instance
+     * @throws IllegalArgumentException if any string is not a valid URI
+     */
     public static Delegatees of(String... delegatees) {
-        var _delegators = Stream.of(delegatees)
+        var _delegatees = Stream.of(delegatees)
                 .map(URI::create)
                 .toList();
-        return new Delegatees(_delegators);
+        return new Delegatees(_delegatees);
     }
 
+    /**
+     * Returns the formatted {@code DELEGATED-TO} parameter string as specified in the
+     * iCalendar specification.
+     * <p>
+     * Each URI is quoted and multiple values are separated by commas.
+     *
+     * @return a formatted string in the form {@code DELEGATED-TO="uri1","uri2",...} suitable for
+     * inclusion in an iCalendar entity
+     */
     @Override
     public String formatted() {
         var _delegatees = values.stream()
