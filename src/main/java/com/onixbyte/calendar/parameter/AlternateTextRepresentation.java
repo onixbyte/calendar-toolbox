@@ -24,24 +24,64 @@ package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
 
+/**
+ * Represents the iCalendar {@code ALTREP} parameter, which specifies an alternate text
+ * representation of a property value.
+ * <p>
+ * This parameter provides a URI that points to an alternate representation of the property's text,
+ * such as a URL to an HTML version.
+ * <p>
+ * Instances of this class are immutable and can be created via the static factory methods
+ * {@link #of(URI)} and {@link #of(String)}.
+ *
+ * @author siujamo
+ */
 public final class AlternateTextRepresentation implements Parameter {
 
-    private final URI alternateTextRepresentation;
+    /**
+     * The URI value representing the alternate text representation.
+     */
+    private final URI value;
 
-    private AlternateTextRepresentation(URI alternateTextRepresentation) {
-        this.alternateTextRepresentation = alternateTextRepresentation;
+    /**
+     * Constructs an {@code AlternateTextRepresentation} with the specified URI.
+     *
+     * @param value the URI representing the alternate text representation
+     */
+    private AlternateTextRepresentation(URI value) {
+        this.value = value;
     }
 
-    public static AlternateTextRepresentation of(URI alternateTextRepresentation) {
-        return new AlternateTextRepresentation(alternateTextRepresentation);
+    /**
+     * Creates an {@code AlternateTextRepresentation} instance from a URI.
+     *
+     * @param value the URI representing the alternate text representation
+     * @return a new instance of {@code AlternateTextRepresentation}
+     */
+    public static AlternateTextRepresentation of(URI value) {
+        return new AlternateTextRepresentation(value);
     }
 
-    public static AlternateTextRepresentation of(String alternateTextRepresentation) {
-        return new AlternateTextRepresentation(URI.create(alternateTextRepresentation));
+    /**
+     * Creates an {@code AlternateTextRepresentation} instance from a string representation of
+     * a URI.
+     *
+     * @param value the string representing the URI of the alternate text representation
+     * @return a new instance of {@code AlternateTextRepresentation}
+     * @throws IllegalArgumentException if the given string violates URI syntax
+     */
+    public static AlternateTextRepresentation of(String value) {
+        return new AlternateTextRepresentation(URI.create(value));
     }
 
+    /**
+     * Returns the formatted ALTREP parameter string as specified in the iCalendar specification.
+     *
+     * @return a formatted string in the form {@code ALTREP="URI"} suitable for inclusion in an
+     * iCalendar entity
+     */
     @Override
     public String formatted() {
-        return "ALTREP=\"" + alternateTextRepresentation.toString() + '"';
+        return "ALTREP=\"" + value.toString() + '"';
     }
 }
