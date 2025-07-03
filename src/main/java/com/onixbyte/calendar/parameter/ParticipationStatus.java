@@ -100,12 +100,11 @@ public enum ParticipationStatus implements Parameter {
     }
 
     /**
-     * Returns the formatted string representation of this participation status
-     * as defined in the iCalendar specification.
+     * Returns the formatted string representation of this participation status as defined in the
+     * iCalendar specification.
      * <p>
-     * The returned string is suitable for use in iCalendar properties such as
-     * ATTENDEE, where the status is represented in uppercase with hyphens
-     * replacing underscores (e.g., NEEDS-ACTION).
+     * The returned string is suitable for use in iCalendar properties such as ATTENDEE, where the
+     * status is represented in uppercase with hyphens replacing underscores (e.g., NEEDS-ACTION).
      *
      * @return a formatted string representing this participation status
      */
