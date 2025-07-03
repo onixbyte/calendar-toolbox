@@ -22,20 +22,57 @@
 
 package com.onixbyte.calendar.parameter;
 
+/**
+ * Represents the iCalendar {@code FMTTYPE} parameter, which specifies the format type of a
+ * property value. This parameter is used to indicate the media type (MIME type) of the value
+ * of a property, such as the format of a calendar attachment or the content type of a
+ * descriptive property.
+ * <p>
+ * Instances of this class are immutable and can be created via the static factory method
+ * {@link #of(String)}. The media type string should conform to the standard MIME type format
+ * (e.g., "text/plain", "application/pdf").
+ *
+ * @author siujamo
+ */
 public final class FormatType implements Parameter {
 
-    private final String mediaType;
+    /**
+     * The media type (MIME type) string.
+     */
+    private final String value;
 
-    private FormatType(String mediaType) {
-        this.mediaType = mediaType;
+    /**
+     * Constructs a {@code FormatType} with the specified media type.
+     *
+     * @param value the media type string (MIME type)
+     */
+    private FormatType(String value) {
+        this.value = value;
     }
 
-    public static FormatType of(String mediaType) {
-        return new FormatType(mediaType);
+    /**
+     * Creates a {@code FormatType} instance from the given media type string.
+     *
+     * @param value the media type string (MIME type)
+     * @return a new instance of {@code FormatType}
+     * @throws IllegalArgumentException if the given media type is null or empty
+     */
+    public static FormatType of(String value) {
+        if (value == null || value.isEmpty()) {
+            throw new IllegalArgumentException("Media type cannot be null or empty");
+        }
+        return new FormatType(value);
     }
 
+    /**
+     * Returns the formatted {@code FMTTYPE} parameter string as specified in the
+     * iCalendar specification.
+     *
+     * @return a formatted string in the form {@code FMTTYPE=value} suitable for inclusion in an
+     * iCalendar entity
+     */
     @Override
     public String formatted() {
-        return "FMTTYPE=" + mediaType;
+        return "FMTTYPE=" + value;
     }
 }

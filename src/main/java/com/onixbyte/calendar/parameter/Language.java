@@ -24,22 +24,63 @@ package com.onixbyte.calendar.parameter;
 
 import java.util.Locale;
 
+/**
+ * Represents the iCalendar {@code LANGUAGE} parameter, which specifies the language used in the
+ * property value. This parameter is used to indicate the natural language of text-based properties
+ * such as summaries, descriptions, or comments.
+ * <p>
+ * Instances of this class are immutable and can be created via the static factory methods
+ * {@link #of(Locale)} and {@link #of(String)}. The language tag is formatted according to the
+ * IETF BCP 47 standard using {@link Locale#toLanguageTag()}.
+ *
+ * @author siujamo
+ */
 public final class Language implements Parameter {
 
+    /**
+     * The locale representing the language.
+     */
     private final Locale value;
 
+    /**
+     * Constructs a {@code Language} with the specified locale.
+     *
+     * @param language the locale representing the language
+     */
     private Language(Locale language) {
         this.value = language;
     }
 
+    /**
+     * Creates a {@code Language} instance from a {@link Locale}.
+     *
+     * @param locale the locale representing the language
+     * @return a new instance of {@code Language}
+     */
     public static Language of(Locale locale) {
         return new Language(locale);
     }
 
+    /**
+     * Creates a {@code Language} instance from a language tag string.
+     * <p>
+     * The language tag must be in a format compatible with {@link Locale#forLanguageTag(String)}.
+     *
+     * @param locale the language tag string
+     * @return a new instance of {@code Language}
+     * @throws IllegalArgumentException if the given string cannot be parsed as a valid language tag
+     */
     public static Language of(String locale) {
         return new Language(Locale.forLanguageTag(locale));
     }
 
+    /**
+     * Returns the formatted {@code LANGUAGE} parameter string as specified in the
+     * iCalendar specification.
+     *
+     * @return a formatted string in the form {@code LANGUAGE=language-tag} suitable for inclusion
+     * in an iCalendar entity
+     */
     @Override
     public String formatted() {
         return "LANGUAGE=" + value.toLanguageTag();
