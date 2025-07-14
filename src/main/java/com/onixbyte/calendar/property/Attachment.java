@@ -25,6 +25,7 @@ package com.onixbyte.calendar.property;
 import com.onixbyte.calendar.parameter.FormatType;
 import com.onixbyte.calendar.parameter.InlineEncoding;
 import com.onixbyte.calendar.parameter.ValueDataType;
+import com.onixbyte.calendar.util.Formatters;
 import com.onixbyte.calendar.util.ParamAppender;
 
 import java.net.URI;
@@ -98,6 +99,6 @@ public final class Attachment implements ComponentProperty {
             builder.append(":").append(uri);
         }
 
-        return builder.toString();
+        return Formatters.folding(builder);
     }
 }
