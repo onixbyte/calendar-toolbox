@@ -22,37 +22,43 @@
 
 package com.onixbyte.calendar.property;
 
-import java.time.ZoneId;
+import com.onixbyte.calendar.parameter.Language;
+import com.onixbyte.calendar.util.ParamAppender;
+import com.onixbyte.calendar.util.PropertyAppender;
 
-public final class TimeZoneIdentifier implements ComponentProperty {
+public final class TimeZoneName implements ComponentProperty {
 
-    private final ZoneId value;
+    private final Language language;
 
-    private TimeZoneIdentifier(final ZoneId value) {
+    private final String value;
+
+    private TimeZoneName(Language language, String value) {
+        this.language = language;
         this.value = value;
     }
 
-    public static TimeZoneIdentifierBuilder builder() {
-        return new TimeZoneIdentifierBuilder();
-    }
+    public static class TimeZoneNameBuilder {
+        private Language language;
 
-    public static class TimeZoneIdentifierBuilder {
-        private ZoneId zoneId;
-
-        private TimeZoneIdentifierBuilder() {
+        private TimeZoneNameBuilder() {
         }
 
-        public TimeZoneIdentifier build(ZoneId value) {
-            return new TimeZoneIdentifier(value);
+        public TimeZoneNameBuilder withLanguage(Language language) {
+            this.language = language;
+            return this;
         }
 
-        public TimeZoneIdentifier build(String value) {
-            return new TimeZoneIdentifier(ZoneId.of(value));
+        public TimeZoneName build(String value) {
+            return new TimeZoneName(language, value);
         }
     }
 
     @Override
     public String formatted() {
-        return "TZID:" + value.getId();
+        var builder = new StringBuilder();
+        builder.append("TZNAME");
+        ParamAppender.append(builder, language);
+        builder.append(":").append(value);
+        return builder.toString();
     }
 }
