@@ -24,8 +24,6 @@ package com.onixbyte.calendar.parameter;
 
 import java.time.ZoneId;
 
-import java.time.ZoneId;
-
 /**
  * Represents the iCalendar {@code TZID} parameter, which specifies the time zone identifier
  * for a time-related property. This parameter is used to associate date and time values with
@@ -42,25 +40,25 @@ public final class TimeZoneIdentifier implements Parameter {
     /**
      * The time zone identifier.
      */
-    private final ZoneId zoneId;
+    private final ZoneId value;
 
     /**
      * Constructs a {@code TimeZoneIdentifier} with the specified zone ID.
      *
-     * @param zoneId the time zone identifier
+     * @param value the time zone identifier
      */
-    private TimeZoneIdentifier(ZoneId zoneId) {
-        this.zoneId = zoneId;
+    private TimeZoneIdentifier(ZoneId value) {
+        this.value = value;
     }
 
     /**
      * Creates a {@code TimeZoneIdentifier} instance from a {@link ZoneId}.
      *
-     * @param zoneId the time zone identifier
+     * @param value the time zone identifier
      * @return a new instance of {@code TimeZoneIdentifier}
      */
-    public static TimeZoneIdentifier of(ZoneId zoneId) {
-        return new TimeZoneIdentifier(zoneId);
+    public static TimeZoneIdentifier of(ZoneId value) {
+        return new TimeZoneIdentifier(value);
     }
 
     /**
@@ -68,11 +66,11 @@ public final class TimeZoneIdentifier implements Parameter {
      * <p>
      * The string must be a valid time zone ID as recognized by {@link ZoneId#of(String)}.
      *
-     * @param zoneId the time zone identifier string
+     * @param value the time zone identifier string
      * @return a new instance of {@code TimeZoneIdentifier}
      */
-    public static TimeZoneIdentifier of(String zoneId) {
-        return new TimeZoneIdentifier(ZoneId.of(zoneId));
+    public static TimeZoneIdentifier of(String value) {
+        return new TimeZoneIdentifier(ZoneId.of(value));
     }
 
     /**
@@ -81,7 +79,7 @@ public final class TimeZoneIdentifier implements Parameter {
      * @return the time zone identifier as a {@code ZoneId}
      */
     public ZoneId getZoneId() {
-        return zoneId;
+        return value;
     }
 
     /**
@@ -93,6 +91,6 @@ public final class TimeZoneIdentifier implements Parameter {
      */
     @Override
     public String formatted() {
-        return "TZID=" + zoneId.getId();
+        return "TZID=" + value.getId();
     }
 }
