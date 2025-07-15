@@ -26,36 +26,9 @@ import org.junit.jupiter.api.Test;
 
 public class FormattersTest {
 
-    private static String folding(String string) {
-        final var firstLineMaxLength = 75;
-        final var subsequentLineMaxLength = 74;
-
-        var folded = new StringBuilder();
-
-        var length = string.length();
-        var pos = 0;
-
-        // Handle first line with max 75 chars
-        var end = Math.min(pos + firstLineMaxLength, length);
-        folded.append(string, pos, end);
-        folded.append("\r\n");
-        pos = end;
-
-        // Handle subsequent lines with max 74 chars, each starting with a space
-        while (pos < length) {
-            folded.append(' '); // folding space
-            end = Math.min(pos + subsequentLineMaxLength, length);
-            folded.append(string, pos, end);
-            folded.append("\r\n");
-            pos = end;
-        }
-
-        return folded.toString();
-    }
-
     @Test
     void testFolding() {
-        var folded = folding("ATTACH;FMTTYPE=image/vnd.microsoft.icon;ENCODING=BASE64;VALUE=BINARY:AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgIAAAICAgADAwMAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwAAAAAAABNEMQAAAAAAAkQgAAAAAAJEREQgAAACECQ0QgEgAAQxQzM0E0AABERCRCREQAADRDJEJEQwAAAhA0QwEQAAAAAEREAAAAAAAAREQAAAAAAAAkQgAAAAAAAAMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        var folded = Formatters.folding("ATTACH;FMTTYPE=image/vnd.microsoft.icon;ENCODING=BASE64;VALUE=BINARY:AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgIAAAICAgADAwMAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwAAAAAAABNEMQAAAAAAAkQgAAAAAAJEREQgAAACECQ0QgEgAAQxQzM0E0AABERCRCREQAADRDJEJEQwAAAhA0QwEQAAAAAEREAAAAAAAAREQAAAAAAAAkQgAAAAAAAAMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         System.out.println(folded);
     }
 }

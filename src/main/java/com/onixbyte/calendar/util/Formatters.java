@@ -75,17 +75,43 @@ public final class Formatters {
      * @return a new StringBuilder containing the folded content
      */
     public static String folding(StringBuilder builder) {
+        return folding(builder.toString());
+    }
+
+    /**
+     * Folds the lines of text in the given StringBuilder according to the iCalendar specification.
+     * <p>
+     * Lines of text SHOULD NOT be longer than 75 octets, excluding the line break. Long content
+     * lines are split into multiple lines using a line “folding” technique. That is, a long line
+     * is split between any two characters by inserting a CRLF immediately followed by a single
+     * linear white-space character (SPACE).
+     * <p>
+     * For example, a long line:
+     * <pre>
+     * DESCRIPTION:This is a long description that exists on a long line.
+     * </pre>
+     * would be folded as:
+     * <pre>
+     * DESCRIPTION:This is a lo
+     *  ng description
+     *   that exists on a long line.
+     * </pre>
+     *
+     * @param builder the StringBuilder containing the text line(s) to be folded
+     * @return a new StringBuilder containing the folded content
+     */
+    public static String folding(String string) {
         final var firstLineMaxLength = 75;
         final var subsequentLineMaxLength = 74;
 
         var folded = new StringBuilder();
 
-        var length = builder.length();
+        var length = string.length();
         var pos = 0;
 
         // Handle first line with max 75 chars
         var end = Math.min(pos + firstLineMaxLength, length);
-        folded.append(builder, pos, end);
+        folded.append(string, pos, end);
         folded.append("\r\n");
         pos = end;
 
@@ -93,7 +119,7 @@ public final class Formatters {
         while (pos < length) {
             folded.append(' '); // folding space
             end = Math.min(pos + subsequentLineMaxLength, length);
-            folded.append(builder, pos, end);
+            folded.append(string, pos, end);
             folded.append("\r\n");
             pos = end;
         }
