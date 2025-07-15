@@ -79,9 +79,10 @@ public final class UtcOffset implements PropertyValue {
     public String formatted() {
         var builder = new StringBuilder();
         builder.append(sign)
-                .append(hour)
-                .append(minute);
-        Optional.ofNullable(second).ifPresent(builder::append);
+                .append(String.format("%02d", hour))
+                .append(String.format("%02d", minute));
+        Optional.ofNullable(second)
+                .ifPresent((_second) -> builder.append(String.format("%02d", _second)));
         return builder.toString();
     }
 }

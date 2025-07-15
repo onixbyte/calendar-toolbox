@@ -27,7 +27,7 @@ import com.onixbyte.calendar.util.Formatters;
 import java.time.Duration;
 import java.time.ZonedDateTime;
 
-public class FreeBusyTimeValue implements PropertyValue {
+public final class FreeBusyTimeValue implements PropertyValue {
 
     private final ZonedDateTime startTime;
 
