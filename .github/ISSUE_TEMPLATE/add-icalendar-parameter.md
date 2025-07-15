@@ -1,7 +1,7 @@
 ---
 name: Add iCalendar Parameter
 about: Propose a new iCalendar Parameter to be supported
-title: '[Parameter] '
+title: '[Parameter]'
 type: feature
 labels: enhancement
 assignees: ''

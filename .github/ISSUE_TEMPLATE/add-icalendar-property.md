@@ -1,7 +1,7 @@
 ---
 name: Add iCalendar Property
 about: Propose a new iCalendar property to be supported
-title: '[Property] '
+title: '[Property]'
 type: feature
 labels: enhancement
 assignees: ''

@@ -1,7 +1,7 @@
 ---
 name: Add iCalendar Component
 about: Propose a new iCalendar Component to be supported
-title: '[Component] '
+title: '[Component]'
 type: feature
 labels: enhancement
 assignees: ''
