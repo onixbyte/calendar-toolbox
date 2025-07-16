@@ -50,12 +50,29 @@ public final class Alarm implements CalendarComponent {
         return builder.toString();
     }
 
+    public static AlarmBuilder builder() {
+        return new AlarmBuilder();
+    }
+
     public static Audio.AudioBuilder audioBuilder() {
         return new Audio.AudioBuilder();
     }
 
     public static Display.DisplayBuilder displayBuilder() {
         return new Display.DisplayBuilder();
+    }
+
+    public static Email.EmailBuilder emailBuilder() {
+        return new Email.EmailBuilder();
+    }
+
+    public static class AlarmBuilder {
+        private AlarmBuilder() {
+        }
+
+        public Alarm build(AlarmProp alarmProp) {
+            return new Alarm(alarmProp);
+        }
     }
 
     public interface AlarmProp extends ComponentProperty {
