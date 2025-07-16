@@ -25,7 +25,6 @@ package com.onixbyte.calendar.property;
 import com.onixbyte.calendar.recurrence.Frequency;
 import com.onixbyte.calendar.recurrence.WeekdayNum;
 import com.onixbyte.calendar.util.Formatters;
-import com.onixbyte.calendar.value.PropertyValue;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
