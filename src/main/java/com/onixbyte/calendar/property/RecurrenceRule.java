@@ -20,11 +20,12 @@
  * SOFTWARE.
  */
 
-package com.onixbyte.calendar.value;
+package com.onixbyte.calendar.property;
 
 import com.onixbyte.calendar.recurrence.Frequency;
 import com.onixbyte.calendar.recurrence.WeekdayNum;
 import com.onixbyte.calendar.util.Formatters;
+import com.onixbyte.calendar.value.PropertyValue;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public final class RecurrenceRule implements PropertyValue {
+public final class RecurrenceRule implements ComponentProperty {
 
     // Required
     private final Frequency frequency;
