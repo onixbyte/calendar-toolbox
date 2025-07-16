@@ -54,7 +54,7 @@ public final class FreeBusy implements CalendarComponent {
 
     private final List<FreeBusyTime> freeBusyTimes;
 
-    // todo: rstatus
+    private final List<RequestStatus> requestStatuses;
 
     private FreeBusy(
             DateTimeStamp dateTimeStamp,
@@ -66,7 +66,8 @@ public final class FreeBusy implements CalendarComponent {
             UniformResourceLocator uniformResourceLocator,
             List<Attendee> attendees,
             List<Comment> comments,
-            List<FreeBusyTime> freeBusyTimes
+            List<FreeBusyTime> freeBusyTimes,
+            List<RequestStatus> requestStatuses
     ) {
         this.dateTimeStamp = dateTimeStamp;
         this.uniqueIdentifier = uniqueIdentifier;
@@ -78,6 +79,7 @@ public final class FreeBusy implements CalendarComponent {
         this.attendees = attendees;
         this.comments = comments;
         this.freeBusyTimes = freeBusyTimes;
+        this.requestStatuses = requestStatuses;
     }
 
     public static FreeBusyBuilder builder() {
@@ -95,6 +97,7 @@ public final class FreeBusy implements CalendarComponent {
         private List<Attendee> attendees;
         private List<Comment> comments;
         private List<FreeBusyTime> freeBusyTimes;
+        private List<RequestStatus> requestStatuses;
 
         private FreeBusyBuilder() {
         }
@@ -149,10 +152,15 @@ public final class FreeBusy implements CalendarComponent {
             return this;
         }
 
+        public FreeBusyBuilder withRequestStatuses(RequestStatus... requestStatuses) {
+            this.requestStatuses = List.of(requestStatuses);
+            return this;
+        }
+
         public FreeBusy build() {
             return new FreeBusy(dateTimeStamp, uniqueIdentifier, contact, dateTimeStart,
                     dateTimeEnd, organiser, uniformResourceLocator, attendees, comments,
-                    freeBusyTimes);
+                    freeBusyTimes, requestStatuses);
         }
     }
 
@@ -173,6 +181,7 @@ public final class FreeBusy implements CalendarComponent {
         attendees.forEach((attendee) -> PropertyAppender.append(builder, attendee));
         comments.forEach((comment) -> PropertyAppender.append(builder, comment));
         freeBusyTimes.forEach((freeBusyTime) -> PropertyAppender.append(builder, freeBusyTime));
+        requestStatuses.forEach((requestStatus) -> PropertyAppender.append(builder, requestStatus));
 
         builder.append("\n").append("END:").append(COMPONENT_NAME);
 
