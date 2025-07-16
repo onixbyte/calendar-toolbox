@@ -221,7 +221,7 @@ public final class RecurrenceRule implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        StringBuilder builder = new StringBuilder();
+        var builder = new StringBuilder();
         builder.append("FREQ=").append(frequency.name());
 
         if (interval != null) {
