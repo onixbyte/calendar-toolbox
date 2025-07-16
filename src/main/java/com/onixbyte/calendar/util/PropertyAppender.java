@@ -31,14 +31,14 @@ public final class PropertyAppender {
 
     public static StringBuilder append(StringBuilder builder, Duration duration) {
         if (Objects.nonNull(duration)) {
-            builder.append("\n").append(Formatters.formatDuration(duration));
+            builder.append("\n").append(Formatters.folding(Formatters.formatDuration(duration)));
         }
         return builder;
     }
 
     public static StringBuilder append(StringBuilder builder, ComponentProperty componentProperty) {
         if (Objects.nonNull(componentProperty)) {
-            builder.append("\n").append(componentProperty.formatted());
+            builder.append("\n").append(Formatters.folding(componentProperty.formatted()));
         }
         return builder;
     }
