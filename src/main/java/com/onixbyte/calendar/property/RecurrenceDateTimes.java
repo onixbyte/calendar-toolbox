@@ -230,9 +230,11 @@ public class RecurrenceDateTimes implements ComponentProperty {
         var builder = new StringBuilder();
         builder.append("RDATE");
 
+        var paramAppender = ParamAppender.of(builder);
+
         // append property parameters
-        ParamAppender.append(builder, valueDataType);
-        ParamAppender.append(builder, timeZoneIdentifier);
+        paramAppender.append(valueDataType);
+        paramAppender.append(timeZoneIdentifier);
 
         // append colon
         builder.append(":");

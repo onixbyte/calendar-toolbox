@@ -73,7 +73,9 @@ public final class FreeBusyTime implements ComponentProperty {
         var builder = new StringBuilder();
         builder.append("FREEBUSY");
 
-        ParamAppender.append(builder, fbType);
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(fbType);
 
         builder.append(":").append(Formatters.formatValue(",", values));
         return builder.toString();

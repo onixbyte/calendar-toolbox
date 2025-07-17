@@ -31,6 +31,6 @@ public enum Action implements ComponentProperty {
 
     @Override
     public String formatted() {
-        return name();
+        return "ACTION:" + name();
     }
 }

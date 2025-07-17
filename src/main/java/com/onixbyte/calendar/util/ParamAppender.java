@@ -28,7 +28,17 @@ import java.util.Objects;
 
 public final class ParamAppender {
 
-    public static StringBuilder append(StringBuilder builder, Parameter param) {
+    private final StringBuilder builder;
+
+    private ParamAppender(StringBuilder builder) {
+        this.builder = builder;
+    }
+
+    public static ParamAppender of(StringBuilder builder) {
+        return new ParamAppender(builder);
+    }
+
+    public StringBuilder append(Parameter param) {
         if (Objects.nonNull(param)) {
             builder.append(";").append(param.formatted());
         }

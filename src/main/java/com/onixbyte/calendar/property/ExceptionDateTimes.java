@@ -86,8 +86,12 @@ public final class ExceptionDateTimes implements ComponentProperty, DateTimeProp
     public String formatted() {
         var builder = new StringBuilder();
         builder.append("EXDATE");
-        ParamAppender.append(builder, valueDataType);
-        ParamAppender.append(builder, timeZoneIdentifier);
+
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(valueDataType);
+        paramAppender.append(timeZoneIdentifier);
+
         builder.append(":").append(zonedDateTime.format(getDateTimeFormatter()));
         return builder.toString();
     }

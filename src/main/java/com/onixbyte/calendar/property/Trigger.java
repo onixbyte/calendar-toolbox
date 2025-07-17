@@ -81,8 +81,11 @@ public final class Trigger implements ComponentProperty {
     public String formatted() {
         var builder = new StringBuilder();
         builder.append("TRIGGER");
-        ParamAppender.append(builder, valueDataType);
-        ParamAppender.append(builder, relationship);
+
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(valueDataType);
+        paramAppender.append(relationship);
 
         builder.append(":");
         if (Objects.equals(ValueDataType.DURATION, valueDataType) && Objects.nonNull(durationValue)) {

@@ -178,17 +178,19 @@ public final class Attendee implements ComponentProperty {
         var builder = new StringBuilder();
         builder.append("ATTENDEE");
 
-        ParamAppender.append(builder, calendarUserType);
-        ParamAppender.append(builder, membership);
-        ParamAppender.append(builder, participationRole);
-        ParamAppender.append(builder, participationStatus);
-        ParamAppender.append(builder, rsvpExpectation);
-        ParamAppender.append(builder, delegatees);
-        ParamAppender.append(builder, delegators);
-        ParamAppender.append(builder, sentBy);
-        ParamAppender.append(builder, commonName);
-        ParamAppender.append(builder, directoryEntryReference);
-        ParamAppender.append(builder, language);
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(calendarUserType);
+        paramAppender.append(membership);
+        paramAppender.append(participationRole);
+        paramAppender.append(participationStatus);
+        paramAppender.append(rsvpExpectation);
+        paramAppender.append(delegatees);
+        paramAppender.append(delegators);
+        paramAppender.append(sentBy);
+        paramAppender.append(commonName);
+        paramAppender.append(directoryEntryReference);
+        paramAppender.append(language);
 
         builder.append(":").append(value.toString());
         return builder.toString();

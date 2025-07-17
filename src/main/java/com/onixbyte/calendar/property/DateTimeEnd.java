@@ -89,8 +89,10 @@ public final class DateTimeEnd implements ComponentProperty, DateTimeProperty {
         var builder = new StringBuilder();
         builder.append("DTEND");
 
-        ParamAppender.append(builder, valueDataType);
-        ParamAppender.append(builder, timeZoneIdentifier);
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(valueDataType);
+        paramAppender.append(timeZoneIdentifier);
 
         builder.append(":").append(value.format(getDateTimeFormatter()));
         return builder.toString();

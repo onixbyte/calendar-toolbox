@@ -99,9 +99,13 @@ public final class RecurrenceId implements ComponentProperty, DateTimeProperty {
     public String formatted() {
         var builder = new StringBuilder();
         builder.append("RECURRENCE-ID");
-        ParamAppender.append(builder, valueDataType);
-        ParamAppender.append(builder, timeZoneIdentifier);
-        ParamAppender.append(builder, recurrenceIdentifierRange);
+
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(valueDataType);
+        paramAppender.append(timeZoneIdentifier);
+        paramAppender.append(recurrenceIdentifierRange);
+
         builder.append(":").append(value.format(getDateTimeFormatter()));
         return builder.toString();
     }

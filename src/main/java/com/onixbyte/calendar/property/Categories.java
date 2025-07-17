@@ -66,7 +66,9 @@ public final class Categories implements ComponentProperty {
         var builder = new StringBuilder();
         builder.append("CATEGORIES");
 
-        ParamAppender.append(builder, language);
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(language);
 
         builder.append(":").append(String.join(",", categories));
         return builder.toString();

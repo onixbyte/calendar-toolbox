@@ -58,7 +58,11 @@ public final class RelatedTo implements ComponentProperty {
     @Override
     public String formatted() {
         var builder = new StringBuilder("RELATED-TO:");
-        ParamAppender.append(builder, relationshipType);
+
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(relationshipType);
+
         builder.append(":").append(value);
         return builder.toString();
     }

@@ -89,8 +89,10 @@ public final class DateTimeStart implements ComponentProperty, DateTimeProperty 
         var builder = new StringBuilder();
         builder.append("DTSTART");
 
-        ParamAppender.append(builder, timeZoneIdentifier);
-        ParamAppender.append(builder, valueDataType);
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(timeZoneIdentifier);
+        paramAppender.append(valueDataType);
         builder.append(":").append(value.format(getDateTimeFormatter()));
 
         return builder.toString();

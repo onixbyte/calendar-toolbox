@@ -87,14 +87,16 @@ public final class Attachment implements ComponentProperty {
         var builder = new StringBuilder();
         builder.append("ATTACH");
 
+        var paramAppender = ParamAppender.of(builder);
+
         if (Objects.nonNull(binary) && binary.length > 0) {
-            ParamAppender.append(builder, encoding);
-            ParamAppender.append(builder, value);
-            ParamAppender.append(builder, formatType);
+            paramAppender.append(encoding);
+            paramAppender.append(value);
+            paramAppender.append(formatType);
 
             builder.append(":").append(Base64.getEncoder().encodeToString(binary));
         } else {
-            ParamAppender.append(builder, formatType);
+            paramAppender.append(formatType);
 
             builder.append(":").append(uri);
         }

@@ -57,7 +57,11 @@ public final class TimeZoneName implements ComponentProperty {
     public String formatted() {
         var builder = new StringBuilder();
         builder.append("TZNAME");
-        ParamAppender.append(builder, language);
+
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(language);
+
         builder.append(":").append(value);
         return builder.toString();
     }

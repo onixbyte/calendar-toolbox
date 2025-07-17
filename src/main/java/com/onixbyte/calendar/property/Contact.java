@@ -76,8 +76,12 @@ public final class Contact implements ComponentProperty {
     public String formatted() {
         var builder = new StringBuilder();
         builder.append("CONTACT");
-        ParamAppender.append(builder, alternateTextRepresentation);
-        ParamAppender.append(builder, language);
+
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(alternateTextRepresentation);
+        paramAppender.append(language);
+
         builder.append(":").append(value);
         return builder.toString();
     }

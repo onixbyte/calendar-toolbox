@@ -106,10 +106,14 @@ public final class Organiser implements ComponentProperty {
     public String formatted() {
         var builder = new StringBuilder();
         builder.append("ORGANIZER");
-        ParamAppender.append(builder, commonName);
-        ParamAppender.append(builder, directoryEntryReference);
-        ParamAppender.append(builder, sentBy);
-        ParamAppender.append(builder, language);
+
+        var paramAppender = ParamAppender.of(builder);
+
+        paramAppender.append(commonName);
+        paramAppender.append(directoryEntryReference);
+        paramAppender.append(sentBy);
+        paramAppender.append(language);
+
         builder.append(":").append(value.toString());
         return builder.toString();
     }
