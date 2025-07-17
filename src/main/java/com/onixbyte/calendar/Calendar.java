@@ -96,7 +96,6 @@ public final class Calendar {
 
     public String formatted() {
         var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
 
         builder.append("BEGIN:VCALENDAR");
         builder.append("\n").append(calendarScale.formatted());
