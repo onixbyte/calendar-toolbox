@@ -29,24 +29,14 @@ import java.util.Objects;
 
 public final class PropertyAppender {
 
-    private final StringBuilder builder;
-
-    private PropertyAppender(StringBuilder builder) {
-        this.builder = builder;
-    }
-
-    public static PropertyAppender of(StringBuilder builder) {
-        return new PropertyAppender(builder);
-    }
-
-    public StringBuilder append(Duration duration) {
+    public static StringBuilder append(StringBuilder builder, Duration duration) {
         if (Objects.nonNull(duration)) {
             builder.append("\n").append(Formatters.folding(Formatters.formatDuration(duration)));
         }
         return builder;
     }
 
-    public StringBuilder append(ComponentProperty componentProperty) {
+    public static StringBuilder append(StringBuilder builder, ComponentProperty componentProperty) {
         if (Objects.nonNull(componentProperty)) {
             builder.append("\n").append(Formatters.folding(componentProperty.formatted()));
         }

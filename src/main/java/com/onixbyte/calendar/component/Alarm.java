@@ -42,12 +42,9 @@ public final class Alarm implements CalendarComponent {
     @Override
     public String formatted() {
         var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
 
         builder.append("BEGIN").append(":").append(COMPONENT_NAME);
-
-        propertyAppender.append(alarmProp);
-
+        PropertyAppender.append(builder, alarmProp);
         builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
 
         return builder.toString();
@@ -167,13 +164,11 @@ public final class Alarm implements CalendarComponent {
         @Override
         public String formatted() {
             var builder = new StringBuilder();
-            var propertyAppender = PropertyAppender.of(builder);
-
-            propertyAppender.append(action);
-            propertyAppender.append(trigger);
-            propertyAppender.append(duration);
-            propertyAppender.append(repeatCount);
-            propertyAppender.append(attachment);
+            PropertyAppender.append(builder, action);
+            PropertyAppender.append(builder, trigger);
+            PropertyAppender.append(builder, duration);
+            PropertyAppender.append(builder, repeatCount);
+            PropertyAppender.append(builder, attachment);
             return builder.toString();
         }
     }
@@ -266,13 +261,11 @@ public final class Alarm implements CalendarComponent {
         @Override
         public String formatted() {
             var builder = new StringBuilder();
-            var propertyAppender = PropertyAppender.of(builder);
-
-            propertyAppender.append(action);
-            propertyAppender.append(description);
-            propertyAppender.append(trigger);
-            propertyAppender.append(duration);
-            propertyAppender.append(repeatCount);
+            PropertyAppender.append(builder, action);
+            PropertyAppender.append(builder, description);
+            PropertyAppender.append(builder, trigger);
+            PropertyAppender.append(builder, duration);
+            PropertyAppender.append(builder, repeatCount);
             return builder.toString();
         }
     }
@@ -405,16 +398,14 @@ public final class Alarm implements CalendarComponent {
         @Override
         public String formatted() {
             var builder = new StringBuilder();
-            var propertyAppender = PropertyAppender.of(builder);
-
-            propertyAppender.append(action);
-            propertyAppender.append(description);
-            propertyAppender.append(trigger);
-            propertyAppender.append(summary);
-            attendees.forEach(propertyAppender::append);
-            propertyAppender.append(duration);
-            propertyAppender.append(repeatCount);
-            attachments.forEach(propertyAppender::append);
+            PropertyAppender.append(builder, action);
+            PropertyAppender.append(builder, description);
+            PropertyAppender.append(builder, trigger);
+            PropertyAppender.append(builder, summary);
+            attendees.forEach((attendee) -> PropertyAppender.append(builder, attendee));
+            PropertyAppender.append(builder, duration);
+            PropertyAppender.append(builder, repeatCount);
+            attachments.forEach((attachment) -> PropertyAppender.append(builder, attachment));
             return builder.toString();
         }
     }

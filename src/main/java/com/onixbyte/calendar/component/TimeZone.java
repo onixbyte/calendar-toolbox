@@ -95,14 +95,12 @@ public final class TimeZone implements CalendarComponent {
     @Override
     public String formatted() {
         var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
-        
         builder.append("BEGIN").append(":").append(COMPONENT_NAME);
 
-        propertyAppender.append(timeZoneIdentifier);
-        propertyAppender.append(lastModified);
-        propertyAppender.append(timeZoneUrl);
-        timeZoneProperties.forEach(propertyAppender::append);
+        PropertyAppender.append(builder, timeZoneIdentifier);
+        PropertyAppender.append(builder, lastModified);
+        PropertyAppender.append(builder, timeZoneUrl);
+        timeZoneProperties.forEach((timeZoneProperty) -> PropertyAppender.append(builder, timeZoneProperty));
 
         builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
         return builder.toString();
@@ -181,18 +179,17 @@ public final class TimeZone implements CalendarComponent {
         @Override
         public String formatted() {
             var builder = new StringBuilder();
-            var propertyAppender = PropertyAppender.of(builder);
 
             builder.append("BEGIN").append(":").append(componentName);
 
-            propertyAppender.append(dateTimeStart);
-            propertyAppender.append(timeZoneOffsetTo);
-            propertyAppender.append(timeZoneOffsetFrom);
-            propertyAppender.append(recurrenceRule);
+            PropertyAppender.append(builder, dateTimeStart);
+            PropertyAppender.append(builder, timeZoneOffsetTo);
+            PropertyAppender.append(builder, timeZoneOffsetFrom);
+            PropertyAppender.append(builder, recurrenceRule);
 
-            comments.forEach(propertyAppender::append);
-            recurrenceDateTimes.forEach(propertyAppender::append);
-            timeZoneNames.forEach(propertyAppender::append);
+            comments.forEach((comment) -> PropertyAppender.append(builder, comment));
+            recurrenceDateTimes.forEach((recurrenceDateTime) -> PropertyAppender.append(builder, recurrenceDateTime));
+            timeZoneNames.forEach((timeZoneName) -> PropertyAppender.append(builder, timeZoneName));
 
             builder.append("\n").append("END").append(":").append(componentName);
             return builder.toString();

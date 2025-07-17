@@ -158,33 +158,30 @@ public final class FreeBusy implements CalendarComponent {
         }
 
         public FreeBusy build() {
-            return new FreeBusy(
-                    dateTimeStamp, uniqueIdentifier, contact, dateTimeStart, dateTimeEnd, organiser,
-                    uniformResourceLocator, attendees, comments, freeBusyTimes, requestStatuses
-            );
+            return new FreeBusy(dateTimeStamp, uniqueIdentifier, contact, dateTimeStart,
+                    dateTimeEnd, organiser, uniformResourceLocator, attendees, comments,
+                    freeBusyTimes, requestStatuses);
         }
     }
 
     @Override
     public String formatted() {
         var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
-
         builder.append("BEGIN:").append(COMPONENT_NAME);
 
-        propertyAppender.append(dateTimeStamp);
-        propertyAppender.append(uniqueIdentifier);
-        propertyAppender.append(contact);
-        propertyAppender.append(dateTimeStart);
-        propertyAppender.append(dateTimeEnd);
-        propertyAppender.append(organiser);
-        propertyAppender.append(contact);
-        propertyAppender.append(uniformResourceLocator);
+        PropertyAppender.append(builder, dateTimeStamp);
+        PropertyAppender.append(builder, uniqueIdentifier);
+        PropertyAppender.append(builder, contact);
+        PropertyAppender.append(builder, dateTimeStart);
+        PropertyAppender.append(builder, dateTimeEnd);
+        PropertyAppender.append(builder, organiser);
+        PropertyAppender.append(builder, contact);
+        PropertyAppender.append(builder, uniformResourceLocator);
 
-        attendees.forEach(propertyAppender::append);
-        comments.forEach(propertyAppender::append);
-        freeBusyTimes.forEach(propertyAppender::append);
-        requestStatuses.forEach(propertyAppender::append);
+        attendees.forEach((attendee) -> PropertyAppender.append(builder, attendee));
+        comments.forEach((comment) -> PropertyAppender.append(builder, comment));
+        freeBusyTimes.forEach((freeBusyTime) -> PropertyAppender.append(builder, freeBusyTime));
+        requestStatuses.forEach((requestStatus) -> PropertyAppender.append(builder, requestStatus));
 
         builder.append("\n").append("END:").append(COMPONENT_NAME);
 

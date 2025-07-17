@@ -382,75 +382,74 @@ public final class Event implements CalendarComponent {
     }
 
     public String formatted() {
-        var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
-        
-        builder.append("BEGIN").append(":").append(COMPONENT_NAME);
+        var sb = new StringBuilder();
+        sb.append("BEGIN").append(":").append(COMPONENT_NAME);
 
-        propertyAppender.append(dateTimeStamp);
-        propertyAppender.append(uniqueIdentifier);
-        propertyAppender.append(dateTimeStart);
+        PropertyAppender.append(sb, dateTimeStamp);
+        PropertyAppender.append(sb, uniqueIdentifier);
+        PropertyAppender.append(sb, dateTimeStart);
 
-        propertyAppender.append(classification);
-        propertyAppender.append(dateTimeCreated);
-        propertyAppender.append(description);
-        propertyAppender.append(geographicPosition);
-        propertyAppender.append(lastModified);
-        propertyAppender.append(location);
-        propertyAppender.append(organiser);
-        propertyAppender.append(priority);
-        propertyAppender.append(sequenceNumber);
-        propertyAppender.append(status);
-        propertyAppender.append(summary);
-        propertyAppender.append(timeTransparency);
-        propertyAppender.append(uniformResourceLocator);
-        propertyAppender.append(recurrenceId);
-        propertyAppender.append(recurrenceRule);
+        PropertyAppender.append(sb, classification);
+        PropertyAppender.append(sb, dateTimeCreated);
+        PropertyAppender.append(sb, description);
+        PropertyAppender.append(sb, geographicPosition);
+        PropertyAppender.append(sb, lastModified);
+        PropertyAppender.append(sb, location);
+        PropertyAppender.append(sb, organiser);
+        PropertyAppender.append(sb, priority);
+        PropertyAppender.append(sb, sequenceNumber);
+        PropertyAppender.append(sb, status);
+        PropertyAppender.append(sb, summary);
+        PropertyAppender.append(sb, timeTransparency);
+        PropertyAppender.append(sb, uniformResourceLocator);
+        PropertyAppender.append(sb, recurrenceId);
+        PropertyAppender.append(sb, recurrenceRule);
 
         if (Objects.nonNull(dateTimeEnd)) {
-            propertyAppender.append(dateTimeEnd);
+            PropertyAppender.append(sb, dateTimeEnd);
         } else if (Objects.nonNull(duration)) {
-            propertyAppender.append(duration);
+            PropertyAppender.append(sb, duration);
         }
 
-        attachments.forEach(propertyAppender::append);
+        attachments.forEach((attachment) -> PropertyAppender.append(sb, attachment));
 
         if (Objects.nonNull(attendees) && !attendees.isEmpty()) {
-            attendees.forEach(propertyAppender::append);
+            attendees.forEach((attendee) -> PropertyAppender.append(sb, attendee));
         }
 
         if (Objects.nonNull(categories) && !categories.isEmpty()) {
-            categories.forEach(propertyAppender::append);
+            categories.forEach((category) -> PropertyAppender.append(sb, category));
         }
 
         if (Objects.nonNull(comments) && !comments.isEmpty()) {
-            comments.forEach(propertyAppender::append);
+            comments.forEach((comment) -> PropertyAppender.append(sb, comment));
         }
 
         if (Objects.nonNull(contacts) && !contacts.isEmpty()) {
-            contacts.forEach(propertyAppender::append);
+            contacts.forEach((contact) -> PropertyAppender.append(sb, contact));
         }
 
         if (Objects.nonNull(exceptionDateTimes) && !exceptionDateTimes.isEmpty()) {
-            exceptionDateTimes.forEach(propertyAppender::append);
+            exceptionDateTimes.forEach((exceptionDateTime) -> PropertyAppender.append(sb, exceptionDateTime));
         }
 
         if (Objects.nonNull(requestStatuses) && !requestStatuses.isEmpty()) {
-            requestStatuses.forEach(propertyAppender::append);
+            requestStatuses.forEach((requestStatus) -> PropertyAppender.append(sb, requestStatus));
         }
 
         if (Objects.nonNull(related) && !related.isEmpty()) {
-            related.forEach(propertyAppender::append);
+            related.forEach((_related) -> PropertyAppender.append(sb, _related));
         }
 
         if (Objects.nonNull(resources) && !resources.isEmpty()) {
-            resources.forEach(propertyAppender::append);
+            resources.forEach((resource) -> PropertyAppender.append(sb, resource));
         }
 
         if (Objects.nonNull(recurrenceDateTimes) && !recurrenceDateTimes.isEmpty()) {
-            recurrenceDateTimes.forEach(propertyAppender::append);
+            recurrenceDateTimes.forEach((recurrenceDateTime) ->
+                    PropertyAppender.append(sb, recurrenceDateTime));
         }
 
-        return builder.toString();
+        return sb.toString();
     }
 }
