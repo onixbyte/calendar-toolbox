@@ -97,7 +97,7 @@ public final class Formatters {
      *   that exists on a long line.
      * </pre>
      *
-     * @param builder the StringBuilder containing the text line(s) to be folded
+     * @param string the string containing the text line(s) to be folded
      * @return a new StringBuilder containing the folded content
      */
     public static String folding(String string) {
@@ -112,15 +112,14 @@ public final class Formatters {
         // Handle first line with max 75 chars
         var end = Math.min(pos + firstLineMaxLength, length);
         folded.append(string, pos, end);
-        folded.append("\r\n");
         pos = end;
 
         // Handle subsequent lines with max 74 chars, each starting with a space
         while (pos < length) {
+            folded.append("\r\n");
             folded.append(' '); // folding space
             end = Math.min(pos + subsequentLineMaxLength, length);
             folded.append(string, pos, end);
-            folded.append("\r\n");
             pos = end;
         }
 
