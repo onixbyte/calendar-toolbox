@@ -26,19 +26,23 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AlarmTriggerRelationshipTest {
+class AlarmTriggerRelationshipTest {
 
     @Test
-    void testFormattedForStart() {
-        AlarmTriggerRelationship relationship = AlarmTriggerRelationship.START;
-        String expected = "RELATED=START";
-        assertEquals(expected, relationship.formatted(), "START formatted value should be 'RELATED=START'");
+    void testFormattedStart() {
+        AlarmTriggerRelationship start = AlarmTriggerRelationship.START;
+        assertEquals("RELATED=START", start.formatted(), "START should format as RELATED=START");
     }
 
     @Test
-    void testFormattedForEnd() {
-        AlarmTriggerRelationship relationship = AlarmTriggerRelationship.END;
-        String expected = "RELATED=END";
-        assertEquals(expected, relationship.formatted(), "END formatted value should be 'RELATED=END'");
+    void testFormattedEnd() {
+        AlarmTriggerRelationship end = AlarmTriggerRelationship.END;
+        assertEquals("RELATED=END", end.formatted(), "END should format as RELATED=END");
+    }
+
+    @Test
+    void testEnumNameMapping() {
+        assertEquals("START", AlarmTriggerRelationship.START.name());
+        assertEquals("END", AlarmTriggerRelationship.END.name());
     }
 }
