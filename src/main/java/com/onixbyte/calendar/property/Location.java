@@ -44,6 +44,10 @@ public final class Location implements ComponentProperty {
         this.language = language;
     }
 
+    public static LocationBuilder builder() {
+        return new LocationBuilder();
+    }
+
     public static class LocationBuilder {
         private AlternateTextRepresentation alternateTextRepresentation;
         private Language language;

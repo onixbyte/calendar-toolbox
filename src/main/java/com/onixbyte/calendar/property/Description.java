@@ -44,6 +44,10 @@ public final class Description implements ComponentProperty {
         this.value = value;
     }
 
+    public static DescriptionBuilder builder() {
+        return new DescriptionBuilder();
+    }
+
     public static class DescriptionBuilder {
         private AlternateTextRepresentation alternateTextRepresentation;
         private Language language;
