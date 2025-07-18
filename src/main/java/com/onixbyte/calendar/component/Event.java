@@ -413,45 +413,16 @@ public final class Event implements CalendarComponent {
             propertyAppender.append(duration);
         }
 
-        if (Objects.nonNull(attachments) && !attachments.isEmpty()) {
-            attachments.forEach(propertyAppender::append);
-        }
-
-        if (Objects.nonNull(attendees) && !attendees.isEmpty()) {
-            attendees.forEach(propertyAppender::append);
-        }
-
-        if (Objects.nonNull(categories) && !categories.isEmpty()) {
-            categories.forEach(propertyAppender::append);
-        }
-
-        if (Objects.nonNull(comments) && !comments.isEmpty()) {
-            comments.forEach(propertyAppender::append);
-        }
-
-        if (Objects.nonNull(contacts) && !contacts.isEmpty()) {
-            contacts.forEach(propertyAppender::append);
-        }
-
-        if (Objects.nonNull(exceptionDateTimes) && !exceptionDateTimes.isEmpty()) {
-            exceptionDateTimes.forEach(propertyAppender::append);
-        }
-
-        if (Objects.nonNull(requestStatuses) && !requestStatuses.isEmpty()) {
-            requestStatuses.forEach(propertyAppender::append);
-        }
-
-        if (Objects.nonNull(related) && !related.isEmpty()) {
-            related.forEach(propertyAppender::append);
-        }
-
-        if (Objects.nonNull(resources) && !resources.isEmpty()) {
-            resources.forEach(propertyAppender::append);
-        }
-
-        if (Objects.nonNull(recurrenceDateTimes) && !recurrenceDateTimes.isEmpty()) {
-            recurrenceDateTimes.forEach(propertyAppender::append);
-        }
+        propertyAppender.append(attachments);
+        propertyAppender.append(attendees);
+        propertyAppender.append(categories);
+        propertyAppender.append(comments);
+        propertyAppender.append(contacts);
+        propertyAppender.append(exceptionDateTimes);
+        propertyAppender.append(requestStatuses);
+        propertyAppender.append(related);
+        propertyAppender.append(resources);
+        propertyAppender.append(recurrenceDateTimes);
 
         builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
         return builder.toString();

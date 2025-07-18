@@ -24,6 +24,7 @@ package com.onixbyte.calendar.component;
 
 import com.onixbyte.calendar.property.*;
 import com.onixbyte.calendar.util.PropertyAppender;
+import com.onixbyte.common.util.CollectionUtil;
 
 import java.time.Duration;
 import java.util.List;
@@ -411,10 +412,13 @@ public final class Alarm implements CalendarComponent {
             propertyAppender.append(description);
             propertyAppender.append(trigger);
             propertyAppender.append(summary);
-            attendees.forEach(propertyAppender::append);
+
+            if (CollectionUtil.notEmpty(attendees)) {
+                attendees.forEach(propertyAppender::append);
+            }
             propertyAppender.append(duration);
             propertyAppender.append(repeatCount);
-            attachments.forEach(propertyAppender::append);
+            propertyAppender.append(attachments);
             return builder.toString();
         }
     }

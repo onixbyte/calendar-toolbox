@@ -102,7 +102,7 @@ public final class TimeZone implements CalendarComponent {
         propertyAppender.append(timeZoneIdentifier);
         propertyAppender.append(lastModified);
         propertyAppender.append(timeZoneUrl);
-        timeZoneProperties.forEach(propertyAppender::append);
+        propertyAppender.append(timeZoneProperties);
 
         builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
         return builder.toString();
@@ -190,9 +190,9 @@ public final class TimeZone implements CalendarComponent {
             propertyAppender.append(timeZoneOffsetFrom);
             propertyAppender.append(recurrenceRule);
 
-            comments.forEach(propertyAppender::append);
-            recurrenceDateTimes.forEach(propertyAppender::append);
-            timeZoneNames.forEach(propertyAppender::append);
+            propertyAppender.append(comments);
+            propertyAppender.append(recurrenceDateTimes);
+            propertyAppender.append(timeZoneNames);
 
             builder.append("\n").append("END").append(":").append(componentName);
             return builder.toString();

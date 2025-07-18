@@ -295,16 +295,16 @@ public final class Journal implements ComponentProperty {
         propertyAppender.append(summary);
         propertyAppender.append(uniformResourceLocator);
         propertyAppender.append(recurrenceRule);
-        attachments.forEach(propertyAppender::append);
-        attendees.forEach(propertyAppender::append);
-        categories.forEach(propertyAppender::append);
-        comments.forEach(propertyAppender::append);
-        contacts.forEach(propertyAppender::append);
-        descriptions.forEach(propertyAppender::append);
-        exceptionDateTimes.forEach(propertyAppender::append);
-        relatedToList.forEach(propertyAppender::append);
-        recurrenceDate.forEach(propertyAppender::append);
-        requestStatuses.forEach(propertyAppender::append);
+        propertyAppender.append(attachments);
+        propertyAppender.append(attendees);
+        propertyAppender.append(categories);
+        propertyAppender.append(comments);
+        propertyAppender.append(contacts);
+        propertyAppender.append(descriptions);
+        propertyAppender.append(exceptionDateTimes);
+        propertyAppender.append(relatedToList);
+        propertyAppender.append(recurrenceDate);
+        propertyAppender.append(requestStatuses);
 
         builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
 

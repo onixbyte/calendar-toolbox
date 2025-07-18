@@ -391,16 +391,16 @@ public final class Todo implements ComponentProperty {
         propertyAppender.append(recurrenceRule);
         propertyAppender.append(dateTimeDue);
         propertyAppender.append(duration);
-        attachments.forEach(propertyAppender::append);
-        attendees.forEach(propertyAppender::append);
-        categories.forEach(propertyAppender::append);
-        comments.forEach(propertyAppender::append);
-        contacts.forEach(propertyAppender::append);
-        exceptionDateTimes.forEach(propertyAppender::append);
-        requestStatuses.forEach(propertyAppender::append);
-        relatedToList.forEach(propertyAppender::append);
-        resources.forEach(propertyAppender::append);
-        recurrenceDateTimes.forEach(propertyAppender::append);
+        propertyAppender.append(attachments);
+        propertyAppender.append(attendees);
+        propertyAppender.append(categories);
+        propertyAppender.append(comments);
+        propertyAppender.append(contacts);
+        propertyAppender.append(exceptionDateTimes);
+        propertyAppender.append(requestStatuses);
+        propertyAppender.append(relatedToList);
+        propertyAppender.append(resources);
+        propertyAppender.append(recurrenceDateTimes);
 
         builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
         return builder.toString();

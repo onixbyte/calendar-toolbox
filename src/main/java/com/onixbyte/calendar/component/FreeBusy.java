@@ -24,6 +24,7 @@ package com.onixbyte.calendar.component;
 
 import com.onixbyte.calendar.property.*;
 import com.onixbyte.calendar.util.PropertyAppender;
+import com.onixbyte.common.util.CollectionUtil;
 
 import java.util.List;
 
@@ -180,11 +181,10 @@ public final class FreeBusy implements CalendarComponent {
         propertyAppender.append(organiser);
         propertyAppender.append(contact);
         propertyAppender.append(uniformResourceLocator);
-
-        attendees.forEach(propertyAppender::append);
-        comments.forEach(propertyAppender::append);
-        freeBusyTimes.forEach(propertyAppender::append);
-        requestStatuses.forEach(propertyAppender::append);
+        propertyAppender.append(attendees);
+        propertyAppender.append(comments);
+        propertyAppender.append(freeBusyTimes);
+        propertyAppender.append(requestStatuses);
 
         builder.append("\n").append("END:").append(COMPONENT_NAME);
 
