@@ -73,7 +73,7 @@ public final class Delegatees implements Parameter {
      * @return a new {@code Delegatees} instance
      * @throws IllegalArgumentException if any string is not a valid URI
      */
-    public static Delegatees of(String... delegatees) throws URISyntaxException {
+    public static Delegatees of(String... delegatees) {
         var _delegatees = Stream.of(delegatees)
                 .map((delegatee) -> {
                     try {
