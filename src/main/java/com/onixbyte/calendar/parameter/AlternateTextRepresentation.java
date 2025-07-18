@@ -82,6 +82,6 @@ public final class AlternateTextRepresentation implements Parameter {
      */
     @Override
     public String formatted() {
-        return "ALTREP=\"" + value.toString() + '"';
+        return "ALTREP=\"" + value.toASCIIString() + '"';
     }
 }
