@@ -86,6 +86,11 @@ public final class Calendar {
             return this;
         }
 
+        public CalendarBuilder withComponents(CalendarComponent... components) {
+            this.components = List.of(components);
+            return this;
+        }
+
         public Calendar build() {
             return new Calendar(
                     calendarScale, method, productIdentifier, version, components
