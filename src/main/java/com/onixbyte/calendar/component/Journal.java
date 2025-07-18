@@ -33,20 +33,20 @@ public final class Journal implements ComponentProperty {
     private final static String COMPONENT_NAME = "VJOURNAL";
 
     // The following are required, but must not occur more than once.
-    private final DateTimeStamp stamp;
-    private final UniqueIdentifier uid;
+    private final DateTimeStamp dateTimeStamp;
+    private final UniqueIdentifier uniqueIdentifier;
 
     // The following are optional, but must not occur more than once.
     private final Classification classification;
-    private final DateTimeCreated created;
-    private final DateTimeStart start;
-    private final LastModified lastMod;
+    private final DateTimeCreated dateTimeCreated;
+    private final DateTimeStart dateTimeStart;
+    private final LastModified lastModified;
     private final Organiser organiser;
-    private final RecurrenceId recurId;
-    private final SequenceNumber seq;
+    private final RecurrenceId recurrenceId;
+    private final SequenceNumber sequenceNumber;
     private final Status status;
     private final Summary summary;
-    private final UniformResourceLocator url;
+    private final UniformResourceLocator uniformResourceLocator;
 
     // The following are optional, and should not occur more than once.
     private final RecurrenceRule recurrenceRule;
@@ -64,18 +64,18 @@ public final class Journal implements ComponentProperty {
     private final List<RequestStatus> requestStatuses;
 
     private Journal(
-            DateTimeStamp stamp,
-            UniqueIdentifier uid,
+            DateTimeStamp dateTimeStamp,
+            UniqueIdentifier uniqueIdentifier,
             Classification classification,
-            DateTimeCreated created,
-            DateTimeStart start,
-            LastModified lastMod,
+            DateTimeCreated dateTimeCreated,
+            DateTimeStart dateTimeStart,
+            LastModified lastModified,
             Organiser organiser,
-            RecurrenceId recurId,
-            SequenceNumber seq,
+            RecurrenceId recurrenceId,
+            SequenceNumber sequenceNumber,
             Status status,
             Summary summary,
-            UniformResourceLocator url,
+            UniformResourceLocator uniformResourceLocator,
             RecurrenceRule recurrenceRule,
             List<Attachment> attachments,
             List<Attendee> attendees,
@@ -88,18 +88,18 @@ public final class Journal implements ComponentProperty {
             List<RecurrenceDateTimes> recurrenceDate,
             List<RequestStatus> requestStatuses
     ) {
-        this.stamp = stamp;
-        this.uid = uid;
+        this.dateTimeStamp = dateTimeStamp;
+        this.uniqueIdentifier = uniqueIdentifier;
         this.classification = classification;
-        this.created = created;
-        this.start = start;
-        this.lastMod = lastMod;
+        this.dateTimeCreated = dateTimeCreated;
+        this.dateTimeStart = dateTimeStart;
+        this.lastModified = lastModified;
         this.organiser = organiser;
-        this.recurId = recurId;
-        this.seq = seq;
+        this.recurrenceId = recurrenceId;
+        this.sequenceNumber = sequenceNumber;
         this.status = status;
         this.summary = summary;
-        this.url = url;
+        this.uniformResourceLocator = uniformResourceLocator;
         this.recurrenceRule = recurrenceRule;
         this.attachments = attachments;
         this.attendees = attendees;
@@ -142,12 +142,12 @@ public final class Journal implements ComponentProperty {
         private List<RecurrenceDateTimes> recurrenceDates;
         private List<RequestStatus> requestStatuses;
 
-        public JournalBuilder withStamp(DateTimeStamp stamp) {
+        public JournalBuilder withDateTimeStamp(DateTimeStamp stamp) {
             this.stamp = stamp;
             return this;
         }
 
-        public JournalBuilder withUid(UniqueIdentifier uid) {
+        public JournalBuilder withUniqueIdentifier(UniqueIdentifier uid) {
             this.uid = uid;
             return this;
         }
@@ -157,17 +157,17 @@ public final class Journal implements ComponentProperty {
             return this;
         }
 
-        public JournalBuilder withCreated(DateTimeCreated created) {
+        public JournalBuilder withDateTimeCreated(DateTimeCreated created) {
             this.created = created;
             return this;
         }
 
-        public JournalBuilder withStart(DateTimeStart start) {
+        public JournalBuilder withDateTimeStart(DateTimeStart start) {
             this.start = start;
             return this;
         }
 
-        public JournalBuilder withLastMod(LastModified lastMod) {
+        public JournalBuilder withLastModified(LastModified lastMod) {
             this.lastMod = lastMod;
             return this;
         }
@@ -177,12 +177,12 @@ public final class Journal implements ComponentProperty {
             return this;
         }
 
-        public JournalBuilder withRecurId(RecurrenceId recurId) {
+        public JournalBuilder withRecurrenceId(RecurrenceId recurId) {
             this.recurId = recurId;
             return this;
         }
 
-        public JournalBuilder withSeq(SequenceNumber seq) {
+        public JournalBuilder withSequenceNumber(SequenceNumber seq) {
             this.seq = seq;
             return this;
         }
@@ -197,7 +197,7 @@ public final class Journal implements ComponentProperty {
             return this;
         }
 
-        public JournalBuilder withUrl(UniformResourceLocator url) {
+        public JournalBuilder withUniformResourceLocator(UniformResourceLocator url) {
             this.url = url;
             return this;
         }
@@ -282,18 +282,18 @@ public final class Journal implements ComponentProperty {
 
         builder.append("BEGIN").append(":").append(COMPONENT_NAME);
 
-        propertyAppender.append(stamp);
-        propertyAppender.append(uid);
+        propertyAppender.append(dateTimeStamp);
+        propertyAppender.append(uniqueIdentifier);
         propertyAppender.append(classification);
-        propertyAppender.append(created);
-        propertyAppender.append(start);
-        propertyAppender.append(lastMod);
+        propertyAppender.append(dateTimeCreated);
+        propertyAppender.append(dateTimeStart);
+        propertyAppender.append(lastModified);
         propertyAppender.append(organiser);
-        propertyAppender.append(recurId);
-        propertyAppender.append(seq);
+        propertyAppender.append(recurrenceId);
+        propertyAppender.append(sequenceNumber);
         propertyAppender.append(status);
         propertyAppender.append(summary);
-        propertyAppender.append(url);
+        propertyAppender.append(uniformResourceLocator);
         propertyAppender.append(recurrenceRule);
         attachments.forEach(propertyAppender::append);
         attendees.forEach(propertyAppender::append);
@@ -306,7 +306,7 @@ public final class Journal implements ComponentProperty {
         recurrenceDate.forEach(propertyAppender::append);
         requestStatuses.forEach(propertyAppender::append);
 
-        builder.append("\n").append("BEGIN").append(":").append(COMPONENT_NAME);
+        builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
 
         return builder.toString();
     }
