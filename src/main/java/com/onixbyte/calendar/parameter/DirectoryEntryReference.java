@@ -23,6 +23,7 @@
 package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Represents the iCalendar {@code DIR} parameter.
@@ -60,7 +61,12 @@ public final class DirectoryEntryReference implements Parameter {
      * @throws IllegalArgumentException if the given string violates URI syntax
      */
     public static DirectoryEntryReference of(String value) {
-        return new DirectoryEntryReference(URI.create(value));
+        try {
+            var _value = new URI(value);
+            return new DirectoryEntryReference(_value);
+        } catch (URISyntaxException e) {
+            throw new IllegalArgumentException("Invalid URI: " + value, e);
+        }
     }
 
     /**
@@ -82,6 +88,6 @@ public final class DirectoryEntryReference implements Parameter {
      */
     @Override
     public String formatted() {
-        return "DIR=\"" + value.toString() + '"';
+        return "DIR=\"" + value.toASCIIString() + '"';
     }
 }

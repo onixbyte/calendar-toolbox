@@ -23,6 +23,7 @@
 package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Represents the iCalendar {@code SENT-BY} parameter, which is used to identify the calendar user
@@ -40,36 +41,41 @@ public final class SentBy implements Parameter {
     /**
      * The URI identifying the calendar user acting on behalf of another.
      */
-    private final URI sentBy;
+    private final URI value;
 
     /**
      * Constructs a {@code SentBy} with the specified URI.
      *
-     * @param sentBy the URI identifying the calendar user acting on behalf of another
+     * @param value the URI identifying the calendar user acting on behalf of another
      */
-    private SentBy(URI sentBy) {
-        this.sentBy = sentBy;
+    private SentBy(URI value) {
+        this.value = value;
     }
 
     /**
      * Creates a {@code SentBy} instance from a URI.
      *
-     * @param sentBy the URI identifying the calendar user acting on behalf of another
+     * @param value the URI identifying the calendar user acting on behalf of another
      * @return a new instance of {@code SentBy}
      */
-    public static SentBy of(URI sentBy) {
-        return new SentBy(sentBy);
+    public static SentBy of(URI value) {
+        return new SentBy(value);
     }
 
     /**
      * Creates a {@code SentBy} instance from a string representation of a URI.
      *
-     * @param sentBy the string representing the URI of the calendar user acting on behalf of another
+     * @param value the string representing the URI of the calendar user acting on behalf of another
      * @return a new instance of {@code SentBy}
      * @throws IllegalArgumentException if the given string violates URI syntax
      */
-    public static SentBy of(String sentBy) {
-        return new SentBy(URI.create(sentBy));
+    public static SentBy of(String value) {
+        try {
+            var _value = new URI(value);
+            return new SentBy(_value);
+        } catch (URISyntaxException e) {
+            throw new IllegalArgumentException("Invalid URI: " + value, e);
+        }
     }
 
     /**
@@ -81,6 +87,6 @@ public final class SentBy implements Parameter {
      */
     @Override
     public String formatted() {
-        return "SENT-BY=\"" + sentBy.toString() + '"';
+        return "SENT-BY=\"" + value.toASCIIString() + '"';
     }
 }

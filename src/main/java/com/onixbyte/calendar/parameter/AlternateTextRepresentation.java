@@ -23,6 +23,7 @@
 package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Represents the iCalendar {@code ALTREP} parameter.
@@ -70,7 +71,12 @@ public final class AlternateTextRepresentation implements Parameter {
      * @throws IllegalArgumentException if the given string violates URI syntax
      */
     public static AlternateTextRepresentation of(String value) {
-        return new AlternateTextRepresentation(URI.create(value));
+        try {
+            var _value = new URI(value);
+            return new AlternateTextRepresentation(_value);
+        } catch (URISyntaxException e) {
+            throw new IllegalArgumentException("Invalid URI: " + value, e);
+        }
     }
 
     /**

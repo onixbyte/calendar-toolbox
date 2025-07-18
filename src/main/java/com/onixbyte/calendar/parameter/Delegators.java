@@ -23,6 +23,7 @@
 package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -73,7 +74,13 @@ public final class Delegators implements Parameter {
      */
     public static Delegators of(String... delegators) {
         var _delegators = Stream.of(delegators)
-                .map(URI::create)
+                .map((delegator) -> {
+                    try {
+                        return new URI(delegator);
+                    } catch (URISyntaxException e) {
+                        throw new IllegalArgumentException("Invalid URI: " + delegator, e);
+                    }
+                })
                 .toList();
         return new Delegators(_delegators);
     }
@@ -90,7 +97,7 @@ public final class Delegators implements Parameter {
     @Override
     public String formatted() {
         var _delegators = values.stream()
-                .map((delegator) -> '"' + delegator.toString() + '"')
+                .map((delegator) -> '"' + delegator.toASCIIString() + '"')
                 .toList();
 
         return "DELEGATED-FROM=" + String.join(",", _delegators);

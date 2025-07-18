@@ -23,6 +23,8 @@
 package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -71,9 +73,15 @@ public final class Delegatees implements Parameter {
      * @return a new {@code Delegatees} instance
      * @throws IllegalArgumentException if any string is not a valid URI
      */
-    public static Delegatees of(String... delegatees) {
+    public static Delegatees of(String... delegatees) throws URISyntaxException {
         var _delegatees = Stream.of(delegatees)
-                .map(URI::create)
+                .map((delegatee) -> {
+                    try {
+                        return new URI(delegatee);
+                    } catch (URISyntaxException e) {
+                        throw new IllegalArgumentException("Invalid URI: " + delegatee, e);
+                    }
+                })
                 .toList();
         return new Delegatees(_delegatees);
     }
