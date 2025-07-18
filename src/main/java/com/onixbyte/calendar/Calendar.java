@@ -27,7 +27,6 @@ import com.onixbyte.calendar.property.CalendarScale;
 import com.onixbyte.calendar.property.Method;
 import com.onixbyte.calendar.property.ProductIdentifier;
 import com.onixbyte.calendar.property.Version;
-import com.onixbyte.calendar.util.PropertyAppender;
 
 import java.util.List;
 
