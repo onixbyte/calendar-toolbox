@@ -23,6 +23,8 @@
 package com.onixbyte.calendar.parameter;
 
 
+import java.util.Objects;
+
 /**
  * Represents the iCalendar {@code CN} parameter.
  * <p>
@@ -47,6 +49,9 @@ public final class CommonName implements Parameter {
      * @param value the common name value
      */
     private CommonName(String value) {
+        if (Objects.isNull(value)) {
+            throw new NullPointerException("Common Name value cannot be null.");
+        }
         this.value = value;
     }
 
