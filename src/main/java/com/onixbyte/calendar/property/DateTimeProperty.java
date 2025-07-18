@@ -29,6 +29,7 @@ import com.onixbyte.calendar.util.Formatters;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public interface DateTimeProperty {
 
@@ -43,18 +44,13 @@ public interface DateTimeProperty {
     TimeZoneIdentifier getTimeZoneIdentifier();
 
     default DateTimeFormatter getDateTimeFormatter() {
-        var timeZoneIdentifier = getTimeZoneIdentifier();
-        return switch (getValueDataType()) {
-            case DATE_TIME -> {
-                if (Objects.nonNull(timeZoneIdentifier)) {
-                    yield Formatters.ICALENDAR_TIMESTAMP_FORMATTER
-                            .withZone(timeZoneIdentifier.getZoneId());
-                } else {
-                    yield Formatters.ICALENDAR_DATE_FORMATTER;
-                }
-            }
-            case DATE -> Formatters.ICALENDAR_DATE_FORMATTER;
-            default -> throw new IllegalArgumentException();
-        };
+        return Optional.ofNullable(getTimeZoneIdentifier())
+                .map((timeZone) -> switch (getValueDataType()) {
+                    case DATE_TIME -> Formatters.ICALENDAR_TIMESTAMP_FORMATTER
+                            .withZone(timeZone.getZoneId());
+                    case DATE -> Formatters.ICALENDAR_DATE_FORMATTER;
+                    default -> throw new IllegalArgumentException();
+                })
+                .orElse(Formatters.ICALENDAR_UTC_TIMESTAMP_FORMATTER);
     }
 }
