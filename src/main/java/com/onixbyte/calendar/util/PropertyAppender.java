@@ -23,8 +23,10 @@
 package com.onixbyte.calendar.util;
 
 import com.onixbyte.calendar.property.ComponentProperty;
+import com.onixbyte.common.util.CollectionUtil;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Objects;
 
 public final class PropertyAppender {
@@ -49,6 +51,15 @@ public final class PropertyAppender {
     public StringBuilder append(ComponentProperty componentProperty) {
         if (Objects.nonNull(componentProperty)) {
             builder.append("\n").append(Formatters.folding(componentProperty.formatted()));
+        }
+        return builder;
+    }
+
+    public StringBuilder append(List<? extends ComponentProperty> componentProperties) {
+        if (CollectionUtil.notEmpty(componentProperties)) {
+            componentProperties.forEach((componentProperty) -> builder
+                    .append("\n")
+                    .append(Formatters.folding(componentProperty.formatted())));
         }
         return builder;
     }
