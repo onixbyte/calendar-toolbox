@@ -425,8 +425,11 @@ public final class Alarm implements CalendarComponent {
 
     private record AlarmPropAppender(StringBuilder builder) {
 
-        public void append(AlarmProp alarmProp) {
-            builder.append(alarmProp.formatted());
+        public StringBuilder append(AlarmProp alarmProp) {
+            if (Objects.nonNull(alarmProp)) {
+                builder.append("\n").append(alarmProp.formatted());
+            }
+            return builder;
         }
     }
 }
