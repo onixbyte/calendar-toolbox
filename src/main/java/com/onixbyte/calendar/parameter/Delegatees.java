@@ -90,7 +90,7 @@ public final class Delegatees implements Parameter {
     @Override
     public String formatted() {
         var _delegatees = values.stream()
-                .map((delegatee) -> '"' + delegatee.toString() + '"')
+                .map((delegatee) -> '"' + delegatee.toASCIIString() + '"')
                 .toList();
 
         return "DELEGATED-TO=" + String.join(",", _delegatees);
