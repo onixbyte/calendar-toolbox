@@ -42,7 +42,7 @@ public final class Alarm implements CalendarComponent {
     @Override
     public String formatted() {
         var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
+        var propertyAppender = of(builder);
 
         builder.append("BEGIN").append(":").append(COMPONENT_NAME);
 
@@ -169,7 +169,7 @@ public final class Alarm implements CalendarComponent {
             var builder = new StringBuilder();
             var propertyAppender = PropertyAppender.of(builder);
 
-            propertyAppender.append(action);
+            builder.append(action.formatted());
             propertyAppender.append(trigger);
             propertyAppender.append(duration);
             propertyAppender.append(repeatCount);
@@ -268,7 +268,7 @@ public final class Alarm implements CalendarComponent {
             var builder = new StringBuilder();
             var propertyAppender = PropertyAppender.of(builder);
 
-            propertyAppender.append(action);
+            builder.append(action.formatted());
             propertyAppender.append(description);
             propertyAppender.append(trigger);
             propertyAppender.append(duration);
@@ -407,7 +407,7 @@ public final class Alarm implements CalendarComponent {
             var builder = new StringBuilder();
             var propertyAppender = PropertyAppender.of(builder);
 
-            propertyAppender.append(action);
+            builder.append(action.formatted());
             propertyAppender.append(description);
             propertyAppender.append(trigger);
             propertyAppender.append(summary);
@@ -416,6 +416,17 @@ public final class Alarm implements CalendarComponent {
             propertyAppender.append(repeatCount);
             attachments.forEach(propertyAppender::append);
             return builder.toString();
+        }
+    }
+
+    private static AlarmPropAppender of(StringBuilder builder) {
+        return new AlarmPropAppender(builder);
+    }
+
+    private record AlarmPropAppender(StringBuilder builder) {
+
+        public void append(AlarmProp alarmProp) {
+            builder.append(alarmProp.formatted());
         }
     }
 }
