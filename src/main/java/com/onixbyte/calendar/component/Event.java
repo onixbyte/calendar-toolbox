@@ -413,7 +413,9 @@ public final class Event implements CalendarComponent {
             propertyAppender.append(duration);
         }
 
-        attachments.forEach(propertyAppender::append);
+        if (Objects.nonNull(attachments) && !attachments.isEmpty()) {
+            attachments.forEach(propertyAppender::append);
+        }
 
         if (Objects.nonNull(attendees) && !attendees.isEmpty()) {
             attendees.forEach(propertyAppender::append);
@@ -451,6 +453,7 @@ public final class Event implements CalendarComponent {
             recurrenceDateTimes.forEach(propertyAppender::append);
         }
 
+        builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
         return builder.toString();
     }
 }
