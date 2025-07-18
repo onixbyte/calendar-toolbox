@@ -140,9 +140,9 @@ class TodoTest {
 
         String formatted = todo.formatted();
         String[] lines = formatted.split("\n");
-        
-        assertTrue(lines[0].equals("BEGIN:VTODO"));
-        assertTrue(lines[lines.length - 1].equals("END:VTODO"));
+
+        assertEquals("BEGIN:VTODO", lines[0]);
+        assertEquals("END:VTODO", lines[lines.length - 1]);
         
         // Check that required properties are present
         boolean hasDtStamp = false, hasUid = false, hasSummary = false;
