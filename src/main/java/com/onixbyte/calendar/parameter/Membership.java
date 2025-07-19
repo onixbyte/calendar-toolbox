@@ -37,6 +37,8 @@ import java.util.stream.Stream;
  * the members.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class Membership implements Parameter {
 

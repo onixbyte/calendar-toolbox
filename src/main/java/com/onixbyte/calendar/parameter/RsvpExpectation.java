@@ -32,6 +32,8 @@ package com.onixbyte.calendar.parameter;
  * formatted, as per iCalendar syntax requirements.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class RsvpExpectation implements Parameter {
 

@@ -38,6 +38,8 @@ import java.util.stream.Stream;
  * the delegatees.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class Delegatees implements Parameter {
 

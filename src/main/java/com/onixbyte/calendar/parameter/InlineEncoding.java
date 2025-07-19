@@ -31,6 +31,8 @@ package com.onixbyte.calendar.parameter;
  * The supported encoding types are as defined by the iCalendar specification.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public enum InlineEncoding implements Parameter {
 

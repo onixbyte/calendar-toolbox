@@ -33,6 +33,8 @@ import java.util.Objects;
  * {@code THISANDFUTURE}.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class RecurrenceIdentifierRange implements Parameter {
 

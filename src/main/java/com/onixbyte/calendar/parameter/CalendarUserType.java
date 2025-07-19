@@ -31,6 +31,8 @@ package com.onixbyte.calendar.parameter;
  * Each constant corresponds to a specific user type defined by the iCalendar specification.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public enum CalendarUserType implements Parameter {
 

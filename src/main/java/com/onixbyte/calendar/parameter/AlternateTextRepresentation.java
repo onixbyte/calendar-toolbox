@@ -35,6 +35,8 @@ import java.net.URISyntaxException;
  * {@link #of(URI)} and {@link #of(String)}.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class AlternateTextRepresentation implements Parameter {
 

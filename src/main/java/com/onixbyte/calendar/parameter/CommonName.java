@@ -35,6 +35,8 @@ import java.util.Objects;
  * method {@link #of(String)}.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class CommonName implements Parameter {
 

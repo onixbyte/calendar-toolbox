@@ -35,6 +35,8 @@ import java.net.URISyntaxException;
  * formatted, as required by the iCalendar specification.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class SentBy implements Parameter {
 

@@ -33,6 +33,8 @@ import java.util.List;
  * regarding a calendar item.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public enum ParticipationStatus implements Parameter {
 

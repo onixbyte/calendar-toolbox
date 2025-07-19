@@ -32,6 +32,8 @@ package com.onixbyte.calendar.parameter;
  * Instances of this enum are formatted as specified in RFC 5545 for use in iCalendar properties.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public enum AlarmTriggerRelationship implements Parameter {
 

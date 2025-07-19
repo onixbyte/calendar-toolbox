@@ -33,6 +33,8 @@ package com.onixbyte.calendar.parameter;
  * (e.g., "text/plain", "application/pdf").
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class FormatType implements Parameter {
 

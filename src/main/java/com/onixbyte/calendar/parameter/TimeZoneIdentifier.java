@@ -34,6 +34,8 @@ import java.time.ZoneId;
  * to the rules of the underlying {@link ZoneId}.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class TimeZoneIdentifier implements Parameter {
 

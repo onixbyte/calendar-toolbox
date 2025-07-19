@@ -35,6 +35,8 @@ import java.net.URISyntaxException;
  * the delegatees.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class DirectoryEntryReference implements Parameter {
 

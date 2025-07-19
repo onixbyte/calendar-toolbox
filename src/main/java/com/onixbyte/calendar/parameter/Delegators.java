@@ -37,6 +37,8 @@ import java.util.stream.Stream;
  * the delegators.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class Delegators implements Parameter {
 
