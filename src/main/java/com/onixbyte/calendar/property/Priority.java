@@ -23,8 +23,8 @@
 package com.onixbyte.calendar.property;
 
 /**
- * Represents the iCalendar PRIORITY property, which defines the relative priority 
- * for a calendar component.
+ * Represents the iCalendar {@code PRIORITY} property, which defines the relative priority for a
+ * calendar component.
  * <p>
  * The priority is represented as an integer value ranging from 0 to 9, where:
  * <ul>
@@ -36,8 +36,8 @@ package com.onixbyte.calendar.property;
  *   <li>9 = Lowest priority</li>
  * </ul>
  * <p>
- * This property is commonly used in to-do items and events to indicate their
- * relative importance compared to other calendar components.
+ * This property is commonly used in to-do items and events to indicate their relative importance
+ * compared to other calendar components.
  * <p>
  * Instances of this class are immutable and can be created using the builder pattern
  * via {@link #builder()}.
@@ -50,9 +50,8 @@ package com.onixbyte.calendar.property;
 public final class Priority implements ComponentProperty {
 
     /**
-     * The priority value, ranging from 0 to 9.
-     * Lower values indicate higher priority, with 1 being the highest priority
-     * and 9 being the lowest.
+     * The priority value, ranging from 0 to 9. Lower values indicate higher priority, with 1 being
+     * the highest priority and 9 being the lowest.
      */
     private final int value;
 

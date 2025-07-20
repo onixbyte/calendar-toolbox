@@ -28,8 +28,8 @@ package com.onixbyte.calendar.parameter;
  * entity requires an RSVP (response) from the attendee.
  * <p>
  * Instances of this class are immutable and can be created via the static factory method
- * {@link #of(boolean)}. The boolean value is converted to uppercase ("TRUE" or "FALSE") when
- * formatted, as per iCalendar syntax requirements.
+ * {@link #of(boolean)}. The boolean value is converted to uppercase ("{@code TRUE}" or
+ * "{@code FALSE}") when formatted, as per iCalendar syntax requirements.
  *
  * @author siujamo
  * @author zihluwang

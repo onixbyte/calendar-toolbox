@@ -30,14 +30,12 @@ import java.util.List;
 /**
  * Represents a {@code VTIMEZONE} component in an iCalendar object.
  * <p>
- * This component provides a grouping of component properties that define a
- * time zone. It is used to specify the rules for converting between local
- * time and Coordinated Universal Time (UTC).
+ * This component provides a grouping of component properties that define a time zone. It is used to
+ * specify the rules for converting between local time and Coordinated Universal Time (UTC).
  * <p>
- * A time zone component includes a required time zone identifier and may include
- * optional properties such as last modification date and time zone URL. It must
- * contain one or more time zone property components that define the standard
- * and daylight time rules.
+ * A time zone component includes a required time zone identifier and may include optional
+ * properties such as last modification date and time zone URL. It must contain one or more time
+ * zone property components that define the standard and daylight time rules.
  * <p>
  * This component follows RFC 5545 specifications for time zone components.
  *
@@ -52,13 +50,11 @@ public final class TimeZone implements CalendarComponent {
      */
     private final static String COMPONENT_NAME = "VTIMEZONE";
 
-    // `TZID` is required, but must not occur more than once
     /**
-     * The time zone identifier property (required).
+     * The time zone identifier property.
      */
     private final TimeZoneIdentifier timeZoneIdentifier;
 
-    // `last-mod` and `tzurl` are optional, but must not occur more than once
     /**
      * The optional last modified property.
      */
@@ -69,7 +65,6 @@ public final class TimeZone implements CalendarComponent {
      */
     private final TimeZoneUrl timeZoneUrl;
 
-    // one of `standardc` or `daylightc` must occur and each may occur more than once
     /**
      * The list of time zone properties (standard and daylight time rules).
      */
@@ -79,9 +74,9 @@ public final class TimeZone implements CalendarComponent {
      * Constructs a new TimeZone instance with the specified properties.
      * <p>
      * This constructor is private to enforce the use of the builder pattern for creating
-     * TimeZone instances. Use {@link #builder()} to create new TimeZone objects.
+     * {@code TimeZone} instances. Use {@link #builder()} to create new TimeZone objects.
      *
-     * @param timeZoneIdentifier the time zone identifier property (required)
+     * @param timeZoneIdentifier the time zone identifier property
      * @param lastModified       the last modified property
      * @param timeZoneUrl        the time zone URL property
      * @param timeZoneProperties the list of time zone properties defining standard and
@@ -102,8 +97,8 @@ public final class TimeZone implements CalendarComponent {
     /**
      * Creates a new builder instance for constructing TimeZone objects.
      * <p>
-     * This is the preferred way to create TimeZone instances, as it provides a flexible
-     * and readable approach to setting the various optional and required properties.
+     * This is the preferred way to create TimeZone instances, as it provides a flexible and
+     * readable approach to setting the various optional and required properties.
      *
      * @return a new TimeZoneBuilder instance
      */
@@ -115,7 +110,7 @@ public final class TimeZone implements CalendarComponent {
      * Builder class for constructing TimeZone instances using the builder pattern.
      * <p>
      * This builder provides a fluent interface for creating TimeZone objects with the required
-     * timeZoneIdentifier property and various optional properties. The builder enforces
+     * {@code timeZoneIdentifier} property and various optional properties. The builder enforces
      * RFC 5545 constraints for time zone components.
      * <p>
      * Example usage:
@@ -157,7 +152,7 @@ public final class TimeZone implements CalendarComponent {
         /**
          * Sets the time zone identifier for the time zone.
          *
-         * @param timeZoneIdentifier the time zone identifier property (required)
+         * @param timeZoneIdentifier the time zone identifier property
          * @return this builder instance for method chaining
          */
         public TimeZoneBuilder withTimeZoneIdentifier(TimeZoneIdentifier timeZoneIdentifier) {
@@ -259,17 +254,17 @@ public final class TimeZone implements CalendarComponent {
         private final String componentName;
 
         /**
-         * The start date and time when this time zone rule becomes effective (required).
+         * The start date and time when this time zone rule becomes effective.
          */
         private final DateTimeStart dateTimeStart;
 
         /**
-         * The time zone offset to which this rule applies (required).
+         * The time zone offset to which this rule applies.
          */
         private final TimeZoneOffsetTo timeZoneOffsetTo;
 
         /**
-         * The time zone offset from which this rule applies (required).
+         * The time zone offset from which this rule applies.
          */
         private final TimeZoneOffsetFrom timeZoneOffsetFrom;
 
@@ -297,13 +292,13 @@ public final class TimeZone implements CalendarComponent {
          * Constructs a new TimeZoneProperty instance with the specified properties.
          * <p>
          * This constructor is private to enforce the use of the builder pattern for creating
-         * TimeZoneProperty instances. Use {@link #builder()} to create new TimeZoneProperty objects.
+         * {@code TimeZoneProperty} instances. Use {@link #builder()} to create new
+         * {@code TimeZoneProperty} objects.
          *
          * @param componentName       the component name ("STANDARD" or "DAYLIGHT")
-         * @param dateTimeStart       the start date and time when this rule becomes
-         *                            effective (required)
-         * @param timeZoneOffsetTo    the time zone offset to which this rule applies (required)
-         * @param timeZoneOffsetFrom  the time zone offset from which this rule applies (required)
+         * @param dateTimeStart       the start date and time when this rule becomes effective
+         * @param timeZoneOffsetTo    the time zone offset to which this rule applies
+         * @param timeZoneOffsetFrom  the time zone offset from which this rule applies
          * @param recurrenceRule      the recurrence rule defining when this rule repeats
          * @param comments            the list of comments associated with this time zone property
          * @param recurrenceDateTimes the list of recurrence date and times
@@ -403,8 +398,7 @@ public final class TimeZone implements CalendarComponent {
             /**
              * Sets the start date and time for the time zone property.
              *
-             * @param dateTimeStart the start date and time when this rule becomes
-             *                      effective (required)
+             * @param dateTimeStart the start date and time when this rule becomes effective
              * @return this builder instance for method chaining
              */
             public TimeZonePropertyBuilder withDateTimeStart(DateTimeStart dateTimeStart) {
@@ -415,7 +409,7 @@ public final class TimeZone implements CalendarComponent {
             /**
              * Sets the time zone offset to for the time zone property.
              *
-             * @param timeZoneOffsetTo the time zone offset to which this rule applies (required)
+             * @param timeZoneOffsetTo the time zone offset to which this rule applies
              * @return this builder instance for method chaining
              */
             public TimeZonePropertyBuilder withTimeZoneOffsetTo(TimeZoneOffsetTo timeZoneOffsetTo) {
@@ -426,8 +420,7 @@ public final class TimeZone implements CalendarComponent {
             /**
              * Sets the time zone offset from for the time zone property.
              *
-             * @param timeZoneOffsetFrom the time zone offset from which this rule
-             *                           applies (required)
+             * @param timeZoneOffsetFrom the time zone offset from which this rule applies
              * @return this builder instance for method chaining
              */
             public TimeZonePropertyBuilder withTimeZoneOffsetFrom(TimeZoneOffsetFrom timeZoneOffsetFrom) {
@@ -482,7 +475,7 @@ public final class TimeZone implements CalendarComponent {
             /**
              * Builds and returns a new TimeZoneProperty instance as a standard time component.
              * <p>
-             * Creates a TimeZoneProperty with component name "STANDARD" representing
+             * Creates a {@code TimeZoneProperty} with component name "STANDARD" representing
              * standard time rules for the time zone.
              *
              * @return a new TimeZoneProperty instance for standard time

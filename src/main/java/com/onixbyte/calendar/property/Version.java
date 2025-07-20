@@ -23,18 +23,17 @@
 package com.onixbyte.calendar.property;
 
 /**
- * Enumeration representing the iCalendar VERSION property values.
+ * Enumeration representing the iCalendar {@code VERSION} property values.
  * <p>
- * The VERSION property specifies the identifier corresponding to the highest
- * version number or the minimum and maximum range of the iCalendar specification
- * that is required in order to interpret the iCalendar object.
+ * The {@code VERSION} property specifies the identifier corresponding to the highest version number
+ * or the minimum and maximum range of the iCalendar specification that is required in order to
+ * interpret the iCalendar object.
  * <p>
- * This property is required and must appear exactly once in an iCalendar object.
- * It identifies the version of the iCalendar specification that the calendar
- * data conforms to.
+ * This property is required and must appear exactly once in an iCalendar object. It identifies the
+ * version of the iCalendar specification that the calendar data conforms to.
  * <p>
- * Currently, version 2.0 is the standard version as defined in RFC 5545.
- * This version superseded the earlier 1.0 version defined in RFC 2445.
+ * Currently, version 2.0 is the standard version as defined in RFC 5545. This version superseded
+ * the earlier 1.0 version defined in RFC 2445.
  *
  * @author siujamo
  * @author zihluwang
@@ -46,9 +45,8 @@ public enum Version implements CalendarProperty {
     /**
      * iCalendar specification version 2.0.
      * <p>
-     * This is the current standard version of the iCalendar specification
-     * as defined in RFC 5545. It includes all the features and fixes from
-     * the previous 1.0 version.
+     * This is the current standard version of the iCalendar specification as defined in RFC 5545.
+     * It includes all the features and fixes from the previous 1.0 version.
      */
     VERSION_2_0("2.0"),
     ;

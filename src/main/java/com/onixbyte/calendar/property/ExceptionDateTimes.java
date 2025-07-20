@@ -31,12 +31,12 @@ import java.time.ZonedDateTime;
 /**
  * Represents the {@code EXDATE} property in an iCalendar component.
  * <p>
- * This property defines a list of date-time values that represent exceptions
- * to a recurring calendar component. These dates specify instances that should
- * be excluded from the recurrence pattern.
+ * This property defines a list of date-time values that represent exceptions to a recurring
+ * calendar component. These dates specify instances that should be excluded from the
+ * recurrence pattern.
  * <p>
- * The property supports optional time zone and value data type parameters for
- * precise date-time representation and formatting.
+ * The property supports optional time zone and value data type parameters for precise date-time
+ * representation and formatting.
  *
  * @author siujamo
  * @author zihluwang
@@ -93,7 +93,7 @@ public final class ExceptionDateTimes implements ComponentProperty, DateTimeProp
          * The optional value data type parameter.
          */
         private ValueDataType valueDataType;
-        
+
         /**
          * The optional time zone identifier parameter.
          */
@@ -128,7 +128,8 @@ public final class ExceptionDateTimes implements ComponentProperty, DateTimeProp
         }
 
         /**
-         * Builds a new {@code ExceptionDateTimes} instance with the specified exception date-time value.
+         * Builds a new {@code ExceptionDateTimes} instance with the specified exception
+         * date-time value.
          *
          * @param zonedDateTime the exception date-time value
          * @return a new {@code ExceptionDateTimes} instance
@@ -159,8 +160,8 @@ public final class ExceptionDateTimes implements ComponentProperty, DateTimeProp
     }
 
     /**
-     * Returns the formatted string representation of this exception date-times property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this exception date-times property for
+     * inclusion in an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications and includes any specified parameters.
      *

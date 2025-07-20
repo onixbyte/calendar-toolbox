@@ -25,12 +25,11 @@ package com.onixbyte.calendar.property;
 /**
  * Represents the {@code URL} property in an iCalendar component.
  * <p>
- * This property defines a Uniform Resource Locator (URL) associated with the
- * iCalendar object. It provides a way to associate a location where additional
- * information about the calendar component can be found.
+ * This property defines a Uniform Resource Locator (URL) associated with the iCalendar object. It
+ * provides a way to associate a location where additional information about the calendar component
+ * can be found.
  * <p>
- * The property value is a URL string that points to a resource on the internet
- * or a local network.
+ * The property value is a URL string that points to a resource on the internet or a local network.
  *
  * @author siujamo
  * @author zihluwang
@@ -84,8 +83,8 @@ public final class UniformResourceLocator implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this URL property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this URL property for inclusion in
+     * an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications.
      *

@@ -31,12 +31,11 @@ import java.util.List;
 /**
  * Represents the {@code RESOURCES} property in an iCalendar component.
  * <p>
- * This property defines the equipment or resources anticipated for an activity
- * specified by a calendar component. It can contain multiple resource values
- * separated by commas.
+ * This property defines the equipment or resources anticipated for an activity specified by a
+ * calendar component. It can contain multiple resource values separated by commas.
  * <p>
- * The property supports optional parameters for alternate text representation
- * and language specification to enhance accessibility and internationalisation.
+ * The property supports optional parameters for alternate text representation and language
+ * specification to enhance accessibility and internationalisation.
  *
  * @author siujamo
  * @author zihluwang
@@ -57,17 +56,14 @@ public final class Resources implements ComponentProperty {
     /**
      * The list of resource names.
      */
-    /**
-     * The list of resource names.
-     */
     private final List<String> values;
 
     /**
      * Constructs a new {@code Resources} instance with the specified parameters.
      *
      * @param alternateTextRepresentation the optional alternate text representation parameter
-     * @param language                   the optional language parameter
-     * @param values                     the list of resource names
+     * @param language                    the optional language parameter
+     * @param values                      the list of resource names
      */
     private Resources(
             AlternateTextRepresentation alternateTextRepresentation,
@@ -96,7 +92,7 @@ public final class Resources implements ComponentProperty {
          * The optional alternate text representation parameter.
          */
         private AlternateTextRepresentation alternateTextRepresentation;
-        
+
         /**
          * The optional language parameter.
          */
@@ -144,11 +140,11 @@ public final class Resources implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this resources property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this resources property for inclusion in
+     * an iCalendar.
      * <p>
-     * The format follows RFC 5545 specifications and includes any specified parameters.
-     * Multiple resource names are joined with commas.
+     * The format follows RFC 5545 specifications and includes any specified parameters. Multiple
+     * resource names are joined with commas.
      *
      * @return the formatted {@code RESOURCES} property string
      */

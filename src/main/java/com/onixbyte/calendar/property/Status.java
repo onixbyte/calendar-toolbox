@@ -25,14 +25,14 @@ package com.onixbyte.calendar.property;
 import java.util.List;
 
 /**
- * Enumeration representing the iCalendar STATUS property values.
+ * Enumeration representing the iCalendar {@code STATUS} property values.
  * <p>
- * The STATUS property defines the overall status or confirmation of a calendar component.
- * Different status values are applicable to different types of calendar components
- * (events, to-dos, and journals) as defined in RFC 5545.
+ * The {@code STATUS} property defines the overall status or confirmation of a calendar component.
+ * Different status values are applicable to different types of calendar components (events,
+ * to-dos, and journals) as defined in RFC 5545.
  * <p>
- * This enumeration provides methods to check which status values are valid for
- * each type of calendar component.
+ * This enumeration provides methods to check which status values are valid for each type of
+ * calendar component.
  * 
  * @author siujamo
  * @author zihluwang
@@ -42,50 +42,43 @@ import java.util.List;
 public enum Status implements ComponentProperty {
 
     /**
-     * Tentative status - indicates that the event is tentative.
-     * Valid for events.
+     * Tentative status - indicates that the event is tentative. Valid for events.
      */
     TENTATIVE,
     
     /**
-     * Confirmed status - indicates that the event is confirmed.
-     * Valid for events.
+     * Confirmed status - indicates that the event is confirmed. Valid for events.
      */
     CONFIRMED,
     
     /**
-     * Cancelled status - indicates that the component has been cancelled.
-     * Valid for events, to-dos, and journals.
+     * Cancelled status - indicates that the component has been cancelled. Valid for events, to-dos,
+     * and journals.
      */
     CANCELLED,
     
     /**
-     * Needs action status - indicates that action is needed.
-     * Valid for to-dos.
+     * Needs action status - indicates that action is needed. Valid for to-dos.
      */
     NEEDS_ACTION,
     
     /**
-     * Completed status - indicates that the to-do has been completed.
-     * Valid for to-dos.
+     * Completed status - indicates that the to-do has been completed. Valid for to-dos.
      */
     COMPLETED,
     
     /**
-     * In progress status - indicates that the to-do is in progress.
-     * Valid for to-dos.
+     * In progress status - indicates that the to-do is in progress. Valid for to-dos.
      */
     IN_PROGRESS,
     
     /**
-     * Draft status - indicates that the journal is a draft.
-     * Valid for journals.
+     * Draft status - indicates that the journal is a draft. Valid for journals.
      */
     DRAFT,
     
     /**
-     * Final status - indicates that the journal is final.
-     * Valid for journals.
+     * Final status - indicates that the journal is final. Valid for journals.
      */
     FINAL
     ;
@@ -141,10 +134,10 @@ public enum Status implements ComponentProperty {
     /**
      * Returns the formatted string representation of this status property.
      * <p>
-     * The format follows the iCalendar specification: "STATUS:" followed by
-     * the status name with underscores replaced by hyphens.
+     * The format follows the iCalendar specification: "{@code STATUS:}" followed by the status name
+     * with underscores replaced by hyphens.
      * 
-     * @return the formatted status string (e.g., "STATUS:IN-PROGRESS")
+     * @return the formatted status string (e.g., "{@code STATUS:IN-PROGRESS}")
      */
     @Override
     public String formatted() {

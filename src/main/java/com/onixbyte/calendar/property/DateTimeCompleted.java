@@ -29,12 +29,11 @@ import java.time.ZonedDateTime;
 /**
  * Represents the {@code COMPLETED} property in an iCalendar component.
  * <p>
- * This property defines the date and time when a calendar component (typically
- * a to-do) was completed. It is commonly used with {@code VTODO} components
- * to track when a task was finished.
+ * This property defines the date and time when a calendar component (typically a to-do)
+ * was completed. It is commonly used with {@code VTODO} components to track when a task
+ * was finished.
  * <p>
- * The property value is always expressed in UTC time format according to
- * RFC 5545 specifications.
+ * The property value is always expressed in UTC time format according to RFC 5545 specifications.
  *
  * @author siujamo
  * @author zihluwang
@@ -76,7 +75,8 @@ public final class DateTimeCompleted implements ComponentProperty {
         }
 
         /**
-         * Builds a new {@code DateTimeCompleted} instance with the specified completion date-time value.
+         * Builds a new {@code DateTimeCompleted} instance with the specified completion
+         * date-time value.
          *
          * @param value the completion date-time value in UTC
          * @return a new {@code DateTimeCompleted} instance
@@ -87,8 +87,8 @@ public final class DateTimeCompleted implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this completion date-time property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this completion date-time property for
+     * inclusion in an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications and uses UTC timestamp format.
      *

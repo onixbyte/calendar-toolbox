@@ -89,8 +89,8 @@ public class PeriodOfTime implements PropertyValue {
     }
 
     /**
-     * Returns the formatted string representation of this period of time
-     * for inclusion in an iCalendar property value.
+     * Returns the formatted string representation of this period of time for inclusion in an
+     * iCalendar property value.
      * <p>
      * The format follows RFC 5545 specifications for period values.
      *
@@ -149,7 +149,7 @@ public class PeriodOfTime implements PropertyValue {
          * The start time of the period.
          */
         private final LocalDateTime startTime;
-        
+
         /**
          * The duration of the period.
          */

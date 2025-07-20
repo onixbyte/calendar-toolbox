@@ -28,9 +28,9 @@ import java.util.Optional;
 /**
  * Represents a UTC offset value used in iCalendar time zone properties.
  * <p>
- * UTC offset values specify the offset from Coordinated Universal Time (UTC)
- * for a particular time zone. The offset is represented as a signed time
- * difference in hours, minutes, and optionally seconds.
+ * UTC offset values specify the offset from Coordinated Universal Time (UTC) for a particular time
+ * zone. The offset is represented as a signed time difference in hours, minutes, and
+ * optionally seconds.
  * <p>
  * UTC offsets are used in:
  * <ul>
@@ -61,8 +61,8 @@ import java.util.Optional;
  *   <li>Minutes and seconds must be between 0 and 59 inclusive</li>
  * </ul>
  * <p>
- * Instances of this class are immutable and can be created using the static
- * factory methods {@link #ofPositive(int, int)} and {@link #ofNegative(int, int)}.
+ * Instances of this class are immutable and can be created using the static factory methods
+ * {@link #ofPositive(int, int)} and {@link #ofNegative(int, int)}.
  *
  * @author siujamo
  * @author zihluwang
@@ -87,13 +87,13 @@ public final class UtcOffset implements PropertyValue {
     private final int minute;
 
     /**
-     * The seconds component of the offset (0-59), optional.
-     * May be null if seconds precision is not needed.
+     * The seconds component of the offset (0-59), optional. May be null if seconds precision is
+     * not needed.
      */
     private final Integer second;
 
     /**
-     * Constructs a new UtcOffset with the specified components.
+     * Constructs a new {@code UtcOffset} with the specified components.
      *
      * @param sign   the sign of the offset ('+' or '-')
      * @param hour   the hours component (0-12)
@@ -178,8 +178,7 @@ public final class UtcOffset implements PropertyValue {
     /**
      * Returns the formatted iCalendar representation of this UTC offset.
      * <p>
-     * The format follows the pattern: [+/-]HHMM[SS]
-     * where seconds are included only if specified.
+     * The format follows the pattern: [+/-]HHMM[SS] where seconds are included only if specified.
      *
      * @return the formatted UTC offset string
      */

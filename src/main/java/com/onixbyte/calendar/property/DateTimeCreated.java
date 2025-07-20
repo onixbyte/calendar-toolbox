@@ -29,11 +29,10 @@ import java.time.ZonedDateTime;
 /**
  * Represents the {@code CREATED} property in an iCalendar component.
  * <p>
- * This property specifies the date and time when a calendar component was created.
- * It is used to record when the calendar entry was first created in the calendar store.
+ * This property specifies the date and time when a calendar component was created. It is used to
+ * record when the calendar entry was first created in the calendar store.
  * <p>
- * The property value is always expressed in UTC time format according to
- * RFC 5545 specifications.
+ * The property value is always expressed in UTC time format according to RFC 5545 specifications.
  *
  * @author siujamo
  * @author zihluwang
@@ -86,8 +85,8 @@ public final class DateTimeCreated implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this creation date-time property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this creation date-time property for inclusion
+     * in an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications and uses UTC timestamp format.
      *

@@ -30,9 +30,8 @@ import java.time.ZonedDateTime;
 /**
  * Represents a free/busy time value in an iCalendar property.
  * <p>
- * This class encapsulates a time period that defines when someone is free or busy.
- * It consists of a start time and a duration that defines the length of the
- * free/busy period.
+ * This class encapsulates a time period that defines when someone is free or busy. It consists of a
+ * start time and a duration that defines the length of the free/busy period.
  * <p>
  * The formatted output follows RFC 5545 specifications for free/busy time values.
  *
@@ -75,8 +74,8 @@ public final class FreeBusyTimeValue implements PropertyValue {
     }
 
     /**
-     * Returns the formatted string representation of this free/busy time value
-     * for inclusion in an iCalendar property.
+     * Returns the formatted string representation of this free/busy time value for inclusion in an
+     * iCalendar property.
      * <p>
      * The format follows RFC 5545 specifications for free/busy time periods.
      *

@@ -27,9 +27,9 @@ import java.util.Objects;
 /**
  * Represents the {@code REQUEST-STATUS} property value as defined in RFC 5545.
  * <p>
- * This class encapsulates the status code, description, and optional additional data
- * for a scheduling request response, formatted as a semicolon-separated TEXT value.
- * The status code is a hierarchical numeric code (e.g., "2.0", "3.7"), the description
+ * This class encapsulates the status code, description, and optional additional data for a
+ * scheduling request response, formatted as a semicolon-separated {@code TEXT} value. The status
+ * code is a hierarchical numeric code (e.g., "{@code 2.0}", "{@code 3.7}"), the description
  * provides a brief explanation, and additional data may include further context.
  *
  * @author siujamo
@@ -42,24 +42,24 @@ public final class RequestStatus implements ComponentProperty {
      * The status class value (1-5) indicating the general outcome category.
      */
     private final int statusClass;
-    
+
     /**
      * The status detail value (0-99) providing additional specificity within the class.
      */
     private final int statusDetail;
-    
+
     /**
      * The mandatory description providing human-readable explanation of the status.
      */
     private final String description;
-    
+
     /**
      * Optional additional data providing further context for the status.
      */
     private final String additionalData;
 
     /**
-     * Constructs a RequestStatus instance.
+     * Constructs a {@code RequestStatus} instance.
      *
      * @param statusClass    the status class (1 to 5)
      * @param statusDetail   the status detail (0 to 99)
@@ -90,19 +90,19 @@ public final class RequestStatus implements ComponentProperty {
     }
 
     /**
-     * Creates a new builder instance for constructing RequestStatus objects.
+     * Creates a new builder instance for constructing {@code RequestStatus} objects.
      *
-     * @return a new RequestStatusBuilder instance
+     * @return a new {@code RequestStatusBuilder} instance
      */
     public static RequestStatusBuilder builder() {
         return new RequestStatusBuilder();
     }
 
     /**
-     * Builder class for constructing RequestStatus instances.
+     * Builder class for constructing {@code RequestStatus} instances.
      * <p>
-     * This builder provides factory methods for creating RequestStatus instances
-     * with or without additional data.
+     * This builder provides factory methods for creating {@code RequestStatus} instances with or
+     * without additional data.
      */
     public static class RequestStatusBuilder {
         /**
@@ -112,12 +112,12 @@ public final class RequestStatus implements ComponentProperty {
         }
 
         /**
-         * Creates a RequestStatus with a mandatory description and no additional data.
+         * Creates a {@code RequestStatus} with a mandatory description and no additional data.
          *
          * @param statusClass  the status class (1 to 5)
          * @param statusDetail the status detail (0 to 9)
          * @param description  the mandatory description
-         * @return a new RequestStatus instance
+         * @return a new {@code RequestStatus} instance
          * @throws IllegalArgumentException if validation fails
          */
         public RequestStatus build(int statusClass, int statusDetail, String description) {
@@ -125,7 +125,7 @@ public final class RequestStatus implements ComponentProperty {
         }
 
         /**
-         * Creates a RequestStatus with both a description and additional data.
+         * Creates a {@code RequestStatus} with both a description and additional data.
          *
          * @param statusClass    the status class (1 to 5)
          * @param statusDetail   the status detail (0 to 9)
@@ -142,8 +142,8 @@ public final class RequestStatus implements ComponentProperty {
     /**
      * Returns the formatted REQUEST-STATUS value as a semicolon-separated string.
      * <p>
-     * The format is: <code>class.detail;description[;additionalData]</code>
-     * where additionalData is included only if non-null.
+     * The format is: {@code class.detail;description[;additionalData]} where {@code additionalData}
+     * is included only if non-null.
      * </p>
      *
      * @return the formatted string
@@ -164,7 +164,7 @@ public final class RequestStatus implements ComponentProperty {
     }
 
     /**
-     * Escapes special characters in TEXT values as per RFC 5545.
+     * Escapes special characters in {@code TEXT} values as per RFC 5545.
      *
      * @param text the text to escape
      * @return the escaped text
@@ -218,14 +218,12 @@ public final class RequestStatus implements ComponentProperty {
     /**
      * Indicates whether some other object is "equal to" this RequestStatus.
      * <p>
-     * Two RequestStatus objects are considered equal if they have the same
-     * status class, status detail, description, and additional data (including
-     * both being null for additional data).
-     * </p>
+     * Two RequestStatus objects are considered equal if they have the same status class, status
+     * detail, description, and additional data (including both being null for additional data).
      *
      * @param o the reference object with which to compare
      * @return {@code true} if this object is the same as the obj argument;
-     *         {@code false} otherwise
+     * {@code false} otherwise
      */
     @Override
     public boolean equals(Object o) {
@@ -241,10 +239,9 @@ public final class RequestStatus implements ComponentProperty {
     /**
      * Returns a hash code value for this RequestStatus.
      * <p>
-     * This method is supported for the benefit of hash tables such as those
-     * provided by {@link java.util.HashMap}. The hash code is computed based
-     * on the status class, status detail, description, and additional data.
-     * </p>
+     * This method is supported for the benefit of hash tables such as those provided by
+     * {@link java.util.HashMap}. The hash code is computed based on the status class, status
+     * detail, description, and additional data.
      *
      * @return a hash code value for this object
      */

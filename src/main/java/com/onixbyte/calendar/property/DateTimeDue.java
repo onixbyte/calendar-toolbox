@@ -31,9 +31,8 @@ import java.time.ZonedDateTime;
 /**
  * Represents the {@code DUE} property in an iCalendar component.
  * <p>
- * This property defines the date and time when a calendar component (typically a to-do)
- * is due. It is commonly used with {@code VTODO} components to specify when a task
- * should be completed.
+ * This property defines the date and time when a calendar component (typically a to-do) is due. It
+ * is commonly used with {@code VTODO} components to specify when a task should be completed.
  * <p>
  * The property supports optional time zone and value data type parameters for precise
  * date-time representation.
@@ -54,9 +53,6 @@ public final class DateTimeDue implements ComponentProperty, DateTimeProperty {
      */
     private final ValueDataType valueDataType;
 
-    /**
-     * The due date-time value.
-     */
     /**
      * The due date-time value.
      */
@@ -98,7 +94,7 @@ public final class DateTimeDue implements ComponentProperty, DateTimeProperty {
          * The optional time zone identifier parameter.
          */
         private TimeZoneIdentifier timeZoneIdentifier;
-        
+
         /**
          * The optional value data type parameter.
          */
@@ -164,8 +160,8 @@ public final class DateTimeDue implements ComponentProperty, DateTimeProperty {
     }
 
     /**
-     * Returns the formatted string representation of this due date-time property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this due date-time property for inclusion in
+     * an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications and includes any specified parameters.
      *

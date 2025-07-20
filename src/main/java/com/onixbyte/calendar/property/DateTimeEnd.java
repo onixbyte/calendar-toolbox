@@ -29,12 +29,12 @@ import com.onixbyte.calendar.util.ParamAppender;
 import java.time.ZonedDateTime;
 
 /**
- * Represents the iCalendar DTEND property, which specifies the end date and time 
- * for a calendar component.
+ * Represents the iCalendar {@code DTEND} property, which specifies the end date and time for a
+ * calendar component.
  * <p>
- * The DTEND property defines when a calendar component ends. For events, this
- * represents when the event concludes. The end time is exclusive, meaning the
- * event runs up to but not including the end time.
+ * The {@code DTEND} property defines when a calendar component ends. For events, this represents
+ * when the event concludes. The end time is exclusive, meaning the event runs up to but not
+ * including the end time.
  * <p>
  * This property supports various date and time formats:
  * <ul>
@@ -46,16 +46,16 @@ import java.time.ZonedDateTime;
  * <p>
  * The property can include optional parameters:
  * <ul>
- *   <li>TIME ZONE IDENTIFIER - specifies the time zone</li>
- *   <li>VALUE DATA TYPE - specifies whether the value is DATE or DATE-TIME</li>
+ *   <li>{@code TIME ZONE IDENTIFIER} - specifies the time zone</li>
+ *   <li>{@code VALUE DATA TYPE} - specifies whether the value is DATE or DATE-TIME</li>
  * </ul>
  * <p>
- * Important rules for DTEND:
+ * Important rules for {@code DTEND}:
  * <ul>
- *   <li>Must be later than or equal to DTSTART</li>
- *   <li>Must use the same value data type as DTSTART</li>
- *   <li>For all-day events, DTEND should be the day after the event ends</li>
- *   <li>Cannot be used together with DURATION property</li>
+ *   <li>Must be later than or equal to {@code DTSTART}</li>
+ *   <li>Must use the same value data type as {@code DTSTART}</li>
+ *   <li>For all-day events, {@code DTEND} should be the day after the event ends</li>
+ *   <li>Cannot be used together with {@code DURATION} property</li>
  * </ul>
  * <p>
  * Instances of this class are immutable and can be created using the builder pattern
@@ -69,20 +69,19 @@ import java.time.ZonedDateTime;
 public final class DateTimeEnd implements ComponentProperty, DateTimeProperty {
 
     /**
-     * Optional parameter specifying the time zone identifier.
-     * This provides time zone context for the date/time value.
+     * Optional parameter specifying the time zone identifier. This provides time zone context for
+     * the date/time value.
      */
     private final TimeZoneIdentifier timeZoneIdentifier;
 
     /**
-     * Optional parameter specifying the value data type (DATE or DATE-TIME).
-     * This determines how the date/time value should be interpreted.
+     * Optional parameter specifying the value data type (DATE or DATE-TIME). This determines how
+     * the date/time value should be interpreted.
      */
     private final ValueDataType valueDataType;
 
     /**
-     * The end date and time value.
-     * This represents when the calendar component ends (exclusive).
+     * The end date and time value. This represents when the calendar component ends (exclusive).
      */
     private final ZonedDateTime value;
 
@@ -90,8 +89,8 @@ public final class DateTimeEnd implements ComponentProperty, DateTimeProperty {
      * Constructs a new DateTimeEnd instance with the specified parameters.
      *
      * @param timeZoneIdentifier optional time zone identifier parameter
-     * @param valueDataType optional value data type parameter
-     * @param value the end date and time value
+     * @param valueDataType      optional value data type parameter
+     * @param value              the end date and time value
      */
     private DateTimeEnd(
             TimeZoneIdentifier timeZoneIdentifier,
@@ -117,16 +116,15 @@ public final class DateTimeEnd implements ComponentProperty, DateTimeProperty {
     /**
      * Builder class for constructing DateTimeEnd instances.
      * <p>
-     * This builder allows for optional configuration of time zone identifier and
-     * value data type parameters before creating the final DateTimeEnd instance
-     * with a specific date/time value.
+     * This builder allows for optional configuration of time zone identifier and value data type
+     * parameters before creating the final DateTimeEnd instance with a specific date/time value.
      */
     public static class DateTimeEndBuilder {
         /**
          * Optional time zone identifier parameter.
          */
         private TimeZoneIdentifier timeZoneIdentifier;
-        
+
         /**
          * Optional value data type parameter.
          */
@@ -194,15 +192,15 @@ public final class DateTimeEnd implements ComponentProperty, DateTimeProperty {
     /**
      * Returns the formatted iCalendar representation of this end date/time property.
      * <p>
-     * The format follows the iCalendar specification: DTEND[;parameters]:value
-     * where parameters may include value data type and time zone identifier if specified.
+     * The format follows the iCalendar specification: {@code DTEND[;parameters]:value} where
+     * parameters may include value data type and time zone identifier if specified.
      *
      * @return the formatted iCalendar property string
      */
     @Override
     public String formatted() {
         var builder = new StringBuilder();
-        builder.append("DTEND");
+        builder.append("{@code DTEND}");
 
         var paramAppender = ParamAppender.of(builder);
 

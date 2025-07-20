@@ -35,12 +35,12 @@ import java.util.Objects;
 /**
  * Represents the {@code ATTACH} property in an iCalendar component.
  * <p>
- * This property provides the capability to associate a document object with
- * a calendar component. The attachment can be either a URI reference to a
- * resource or inline binary data encoded in Base64.
+ * This property provides the capability to associate a document object with a calendar component.
+ * The attachment can be either a URI reference to a resource or inline binary data encoded
+ * in Base64.
  * <p>
- * The property supports optional parameters for format type specification,
- * inline encoding method, and value data type.
+ * The property supports optional parameters for format type specification, inline encoding method,
+ * and value data type.
  *
  * @author siujamo
  * @author zihluwang
@@ -52,22 +52,22 @@ public final class Attachment implements ComponentProperty {
      * The optional format type parameter for this attachment.
      */
     private final FormatType formatType;
-    
+
     /**
      * The URI reference to the attachment resource, if applicable.
      */
     private final URI uri;
-    
+
     /**
      * The inline encoding parameter for binary data, if applicable.
      */
     private final InlineEncoding encoding;
-    
+
     /**
      * The value data type parameter for binary data, if applicable.
      */
     private final ValueDataType value;
-    
+
     /**
      * The binary data for inline attachments, if applicable.
      */
@@ -77,10 +77,10 @@ public final class Attachment implements ComponentProperty {
      * Private constructor to create an Attachment instance.
      *
      * @param formatType the optional format type parameter
-     * @param uri the URI reference to the attachment resource
-     * @param encoding the inline encoding parameter for binary data
-     * @param value the value data type parameter for binary data
-     * @param binary the binary data for inline attachments
+     * @param uri        the URI reference to the attachment resource
+     * @param encoding   the inline encoding parameter for binary data
+     * @param value      the value data type parameter for binary data
+     * @param binary     the binary data for inline attachments
      */
     private Attachment(
             FormatType formatType,
@@ -108,9 +108,9 @@ public final class Attachment implements ComponentProperty {
     /**
      * Builder class for constructing Attachment instances.
      * <p>
-     * This builder provides a fluent interface for creating Attachment objects
-     * with optional format type parameters and various build methods for different
-     * attachment types (URI-based or binary data).
+     * This builder provides a fluent interface for creating Attachment objects with optional format
+     * type parameters and various build methods for different attachment types
+     * (URI-based or binary data).
      */
     public static class AttachmentBuilder {
         /**
@@ -136,30 +136,30 @@ public final class Attachment implements ComponentProperty {
         }
 
         /**
-         * Builds an Attachment instance with a URI reference.
+         * Builds an attachment instance with a URI reference.
          *
          * @param uri the URI reference to the attachment resource
-         * @return a new Attachment instance
+         * @return a new attachment instance
          */
         public Attachment build(URI uri) {
             return new Attachment(formatType, uri, null, null, null);
         }
 
         /**
-         * Builds an Attachment instance with a URI reference from a string.
+         * Builds an attachment instance with a URI reference from a string.
          *
          * @param uri the string representation of the URI reference
-         * @return a new Attachment instance
+         * @return a new attachment instance
          */
         public Attachment build(String uri) {
             return new Attachment(formatType, URI.create(uri), null, null, null);
         }
 
         /**
-         * Builds an Attachment instance with inline binary data.
+         * Builds an attachment instance with inline binary data.
          *
          * @param binary the binary data for the inline attachment
-         * @return a new Attachment instance
+         * @return a new attachment instance
          */
         public Attachment build(byte[] binary) {
             return new Attachment(formatType, null, InlineEncoding.BASE_64, ValueDataType.BINARY, binary);
@@ -178,9 +178,9 @@ public final class Attachment implements ComponentProperty {
     @Override
     public String formatted() {
         var builder = new StringBuilder();
-        builder.append("ATTACH");
-
         var paramAppender = ParamAppender.of(builder);
+
+        builder.append("ATTACH");
 
         if (Objects.nonNull(binary) && binary.length > 0) {
             paramAppender.append(encoding);

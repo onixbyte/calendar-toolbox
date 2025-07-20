@@ -33,12 +33,12 @@ import java.util.Objects;
 /**
  * Represents the {@code FREEBUSY} property in an iCalendar free/busy component.
  * <p>
- * This property defines one or more free or busy time intervals. It is used to
- * specify times when a calendar user is free or busy. The property can contain
- * multiple time periods and supports optional free/busy time type specification.
+ * This property defines one or more free or busy time intervals. It is used to specify times when
+ * a calendar user is free or busy. The property can contain multiple time periods and supports
+ * optional free/busy time type specification.
  * <p>
- * The property value consists of one or more period values that define the
- * free/busy time intervals.
+ * The property value consists of one or more period values that define the free/busy
+ * time intervals.
  *
  * @author siujamo
  * @author zihluwang
@@ -51,9 +51,6 @@ public final class FreeBusyTime implements ComponentProperty {
      */
     private final FreeBusyTimeType fbType;
 
-    /**
-     * The list of free/busy time period values.
-     */
     /**
      * The list of free/busy time period values.
      */
@@ -134,11 +131,11 @@ public final class FreeBusyTime implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this free/busy time property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this free/busy time property for inclusion in
+     * an iCalendar.
      * <p>
-     * The format follows RFC 5545 specifications and includes any specified parameters.
-     * Multiple time periods are separated by commas.
+     * The format follows RFC 5545 specifications and includes any specified parameters. Multiple
+     * time periods are separated by commas.
      *
      * @return the formatted {@code FREEBUSY} property string
      */

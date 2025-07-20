@@ -27,12 +27,11 @@ import com.onixbyte.calendar.value.UtcOffset;
 /**
  * Represents the {@code TZOFFSETTO} property in an iCalendar time zone component.
  * <p>
- * This property specifies the offset that is in use when the onset of this
- * time zone observance begins. It is used to specify the UTC offset for the
- * time zone period.
+ * This property specifies the offset that is in use when the onset of this time zone
+ * observance begins. It is used to specify the UTC offset for the time zone period.
  * <p>
- * The property value is a UTC offset value that indicates the number of hours
- * and minutes from Coordinated Universal Time (UTC).
+ * The property value is a UTC offset value that indicates the number of hours and minutes from
+ * Coordinated Universal Time (UTC).
  *
  * @author siujamo
  * @author zihluwang
@@ -85,8 +84,8 @@ public final class TimeZoneOffsetTo implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this time zone offset to property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this time zone offset to property for
+     * inclusion in an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications.
      *

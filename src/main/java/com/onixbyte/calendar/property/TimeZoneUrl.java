@@ -28,13 +28,12 @@ import java.sql.Time;
 /**
  * Represents the {@code TZURL} property in an iCalendar time zone component.
  * <p>
- * This property provides a means for a {@code VTIMEZONE} component to point to
- * a network location that can be used to retrieve an up-to-date version of
- * itself. This property should be specified in a {@code VTIMEZONE} component
- * when the definition might be updated.
+ * This property provides a means for a {@code VTIMEZONE} component to point to a network location
+ * that can be used to retrieve an up-to-date version of itself. This property should be specified
+ * in a {@code VTIMEZONE} component when the definition might be updated.
  * <p>
- * The property value is a URI that points to a resource containing the time zone
- * definition in iCalendar format.
+ * The property value is a URI that points to a resource containing the time zone definition in
+ * iCalendar format.
  *
  * @author siujamo
  * @author zihluwang
@@ -98,8 +97,8 @@ public final class TimeZoneUrl implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this time zone URL property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this time zone URL property for inclusion in
+     * an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications.
      *

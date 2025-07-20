@@ -67,8 +67,8 @@ public final class Delegators implements Parameter {
     }
 
     /**
-     * Creates a {@code Delegators} instance from an array of strings that represent URIs.
-     * Each string is converted to a {@link URI}.
+     * Creates a {@code Delegators} instance from an array of strings that represent URIs. Each
+     * string is converted to a {@link URI}.
      *
      * @param delegators one or more strings representing the delegator URIs
      * @return a new {@code Delegators} instance

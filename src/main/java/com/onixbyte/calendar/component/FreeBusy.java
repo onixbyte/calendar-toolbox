@@ -31,12 +31,12 @@ import java.util.List;
 /**
  * Represents a {@code VFREEBUSY} component in an iCalendar object.
  * <p>
- * This component provides a grouping of component properties that describe either
- * a request for free or busy time information, a reply to a request for free or
- * busy time information, or a published set of busy time information.
+ * This component provides a grouping of component properties that describe either a request for
+ * free or busy time information, a reply to a request for free or busy time information, or a
+ * published set of busy time information.
  * <p>
- * The free/busy time information is used by scheduling applications to determine
- * when calendar users are available for meetings or appointments.
+ * The free/busy time information is used by scheduling applications to determine when calendar
+ * users are available for meetings or appointments.
  * <p>
  * This component follows RFC 5545 specifications for free/busy components.
  *
@@ -51,7 +51,6 @@ public final class FreeBusy implements CalendarComponent {
      */
     public static final String COMPONENT_NAME = "VFREEBUSY";
 
-    // The following are REQUIRED, but MUST NOT occur more than once.
     /**
      * The date-time stamp property (required).
      */
@@ -62,7 +61,6 @@ public final class FreeBusy implements CalendarComponent {
      */
     private final UniqueIdentifier uniqueIdentifier;
 
-    // The following are OPTIONAL, but MUST NOT occur more than once.
     /**
      * The optional contact property.
      */
@@ -88,7 +86,6 @@ public final class FreeBusy implements CalendarComponent {
      */
     private final UniformResourceLocator uniformResourceLocator;
 
-    // The following are OPTIONAL, and MAY occur more than once.
     /**
      * The optional list of attendee properties.
      */

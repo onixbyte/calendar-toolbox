@@ -27,8 +27,8 @@ import java.time.DayOfWeek;
 /**
  * Utility class for working with day-of-week values in iCalendar format.
  * <p>
- * This class provides helper methods for converting between Java's {@link DayOfWeek}
- * enumeration and the two-letter abbreviations used in iCalendar specifications.
+ * This class provides helper methods for converting between Java's {@link DayOfWeek} enumeration
+ * and the two-letter abbreviations used in iCalendar specifications.
  * <p>
  * The iCalendar specification uses specific two-letter codes for days of the week:
  * <ul>
@@ -41,8 +41,8 @@ import java.time.DayOfWeek;
  *   <li>SU - Sunday</li>
  * </ul>
  * <p>
- * These abbreviations are used in recurrence rules, weekday numbers, and other
- * iCalendar properties where days of the week need to be specified.
+ * These abbreviations are used in recurrence rules, weekday numbers, and other iCalendar properties
+ * where days of the week need to be specified.
  * <p>
  * This is a utility class with only static methods and cannot be instantiated.
  *
@@ -62,9 +62,8 @@ public final class DayOfWeekUtil {
     /**
      * Returns the iCalendar two-letter abbreviation for the specified day of week.
      * <p>
-     * This method converts a Java {@link DayOfWeek} enumeration value to the
-     * corresponding iCalendar abbreviation used in recurrence rules and other
-     * calendar properties.
+     * This method converts a Java {@link DayOfWeek} enumeration value to the corresponding
+     * iCalendar abbreviation used in recurrence rules and other calendar properties.
      *
      * @param dayOfWeek the day of week to convert
      * @return the two-letter iCalendar abbreviation

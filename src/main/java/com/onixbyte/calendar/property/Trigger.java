@@ -34,12 +34,11 @@ import java.util.Objects;
 /**
  * Represents the {@code TRIGGER} property in an iCalendar alarm component.
  * <p>
- * This property specifies when an alarm will trigger. It can specify either
- * a duration before or after the start or end of the event, or an absolute
- * date-time when the alarm should trigger.
+ * This property specifies when an alarm will trigger. It can specify either a duration before or
+ * after the start or end of the event, or an absolute date-time when the alarm should trigger.
  * <p>
- * The property supports optional parameters for value data type specification
- * and alarm trigger relationship to define relative triggering.
+ * The property supports optional parameters for value data type specification and alarm trigger
+ * relationship to define relative triggering.
  *
  * @author siujamo
  * @author zihluwang
@@ -70,10 +69,10 @@ public final class Trigger implements ComponentProperty {
     /**
      * Constructs a new {@code Trigger} instance with the specified parameters.
      *
-     * @param valueDataType  the value data type parameter (DURATION or DATE-TIME)
-     * @param relationship   the optional alarm trigger relationship parameter
-     * @param durationValue  the duration value for relative triggers
-     * @param dateTimeValue  the absolute date-time value for absolute triggers
+     * @param valueDataType the value data type parameter (DURATION or DATE-TIME)
+     * @param relationship  the optional alarm trigger relationship parameter
+     * @param durationValue the duration value for relative triggers
+     * @param dateTimeValue the absolute date-time value for absolute triggers
      */
     private Trigger(
             ValueDataType valueDataType,
@@ -144,8 +143,8 @@ public final class Trigger implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this trigger property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this trigger property for inclusion in
+     * an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications and includes any specified parameters.
      *

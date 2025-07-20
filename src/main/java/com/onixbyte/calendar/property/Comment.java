@@ -27,12 +27,12 @@ import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.ParamAppender;
 
 /**
- * Represents the iCalendar COMMENT property, which specifies non-processing 
- * information intended to provide additional context or notes about a calendar component.
+ * Represents the iCalendar {@code COMMENT} property, which specifies non-processing information
+ * intended to provide additional context or notes about a calendar component.
  * <p>
- * The COMMENT property provides a way to add explanatory or supplementary information
- * to calendar components without affecting their processing or behaviour. Comments
- * are typically used for:
+ * The {@code COMMENT} property provides a way to add explanatory or supplementary information to
+ * calendar components without affecting their processing or behaviour. Comments are typically
+ * used for:
  * <ul>
  *   <li>Additional notes about an event or task</li>
  *   <li>Instructions for attendees</li>
@@ -40,18 +40,18 @@ import com.onixbyte.calendar.util.ParamAppender;
  *   <li>Metadata that doesn't fit other properties</li>
  * </ul>
  * <p>
- * Unlike DESCRIPTION, which provides the main descriptive text, COMMENT is intended
- * for auxiliary information that may not be displayed prominently to users but
- * provides useful context.
+ * Unlike {@code DESCRIPTION}, which provides the main descriptive text, {@code COMMENT} is intended
+ * for auxiliary information that may not be displayed prominently to users but provides
+ * useful context.
  * <p>
  * The COMMENT property supports optional parameters:
  * <ul>
- *   <li>LANGUAGE - specifies the language of the comment text</li>
- *   <li>ALTREP - provides an alternate text representation</li>
+ *   <li>{@code LANGUAGE} - specifies the language of the comment text</li>
+ *   <li>{@code ALTREP} - provides an alternate text representation</li>
  * </ul>
  * <p>
- * Multiple COMMENT properties can be specified for a single component to provide
- * different types of commentary or comments in different languages.
+ * Multiple {@code COMMENT} properties can be specified for a single component to provide different
+ * types of commentary or comments in different languages.
  * <p>
  * Examples of comment usage:
  * <ul>
@@ -92,8 +92,8 @@ public final class Comment implements ComponentProperty {
      * Constructs a new Comment instance with the specified parameters.
      *
      * @param alternateTextRepresentation optional alternate text representation parameter
-     * @param language optional language parameter
-     * @param value the comment text value
+     * @param language                    optional language parameter
+     * @param value                       the comment text value
      */
     private Comment(AlternateTextRepresentation alternateTextRepresentation, Language language, String value) {
         this.alternateTextRepresentation = alternateTextRepresentation;
@@ -122,7 +122,7 @@ public final class Comment implements ComponentProperty {
          * Optional alternate text representation parameter.
          */
         private AlternateTextRepresentation alternateTextRepresentation;
-        
+
         /**
          * Optional language parameter.
          */

@@ -25,15 +25,15 @@ package com.onixbyte.calendar.property;
 /**
  * Enumeration representing the iCalendar {@code ACTION} property values for alarm components.
  * <p>
- * The {@code ACTION} property defines the action to be invoked when an alarm is triggered.
- * This property is required for {@code VALARM} components and determines the type of
- * notification or action that should occur at the specified alarm time.
+ * The {@code ACTION} property defines the action to be invoked when an alarm is triggered. This
+ * property is required for {@code VALARM} components and determines the type of notification or
+ * action that should occur at the specified alarm time.
  * <p>
  * Each action type has different requirements for additional properties:
  * <ul>
- *   <li>AUDIO - may include an ATTACH property for the sound file</li>
- *   <li>DISPLAY - requires a DESCRIPTION property for the text to display</li>
- *   <li>EMAIL - requires DESCRIPTION and SUMMARY properties, and ATTENDEE properties</li>
+ *   <li>{@code AUDIO} - may include an ATTACH property for the sound file</li>
+ *   <li>{@code DISPLAY} - requires a DESCRIPTION property for the text to display</li>
+ *   <li>{@code EMAIL} - requires DESCRIPTION and SUMMARY properties, and ATTENDEE properties</li>
  * </ul>
  *
  * @author siujamo
@@ -46,27 +46,25 @@ public enum Action implements ComponentProperty {
     /**
      * Audio alarm action.
      * <p>
-     * Specifies that the alarm should play an audio file or generate an audible alert.
-     * This action may optionally include an ATTACH property that specifies the
-     * sound file to play.
+     * Specifies that the alarm should play an audio file or generate an audible alert. This action
+     * may optionally include an {@code ATTACH} property that specifies the sound file to play.
      */
     AUDIO,
 
     /**
      * Display alarm action.
      * <p>
-     * Specifies that the alarm should display a text message to the user.
-     * This action requires a DESCRIPTION property that contains the text
-     * to be displayed.
+     * Specifies that the alarm should display a text message to the user. This action requires a
+     * {@code DESCRIPTION} property that contains the text to be displayed.
      */
     DISPLAY,
 
     /**
      * Email alarm action.
      * <p>
-     * Specifies that the alarm should send an email message.
-     * This action requires DESCRIPTION and SUMMARY properties for the email
-     * content, and one or more ATTENDEE properties specifying the recipients.
+     * Specifies that the alarm should send an email message. This action requires
+     * {@code DESCRIPTION} and {@code SUMMARY} properties for the email content, and one or more
+     * {@code ATTENDEE} properties specifying the recipients.
      */
     EMAIL,
     ;
@@ -74,7 +72,7 @@ public enum Action implements ComponentProperty {
     /**
      * Returns the formatted iCalendar representation of this action property.
      * <p>
-     * The format follows the iCalendar specification: ACTION:value
+     * The format follows the iCalendar specification: {@code ACTION:value}
      *
      * @return the formatted iCalendar property string
      */

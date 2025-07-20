@@ -27,20 +27,19 @@ import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.ParamAppender;
 
 /**
- * Represents the iCalendar SUMMARY property, which provides a short, one-line summary 
- * or subject for a calendar component.
+ * Represents the iCalendar {@code SUMMARY} property, which provides a short, one-line summary or
+ * subject for a calendar component.
  * <p>
- * This property defines a brief description or title of the calendar component.
- * It is commonly used in events, to-do items, and journal entries to provide
- * a concise overview that can be displayed in calendar views or summaries.
+ * This property defines a brief description or title of the calendar component. It is commonly used
+ * in events, to-do items, and journal entries to provide a concise overview that can be displayed
+ * in calendar views or summaries.
  * <p>
- * The SUMMARY property supports optional parameters for language specification
- * and alternate text representation, making it suitable for internationalised
- * calendar applications.
+ * The {@code SUMMARY} property supports optional parameters for language specification and
+ * alternate text representation, making it suitable for internationalised calendar applications.
  * <p>
- * Unlike the DESCRIPTION property, which can contain multiple lines of detailed
- * text, the SUMMARY should be a single line of text that captures the essence
- * of the calendar component.
+ * Unlike the {@code DESCRIPTION} property, which can contain multiple lines of detailed text, the
+ * {@code SUMMARY} should be a single line of text that captures the essence of the
+ * calendar component.
  * <p>
  * Instances of this class are immutable and can be created using the builder pattern
  * via {@link #builder()}.
@@ -53,20 +52,20 @@ import com.onixbyte.calendar.util.ParamAppender;
 public final class Summary implements ComponentProperty {
 
     /**
-     * Optional parameter specifying an alternate text representation for the summary.
-     * This can be used to reference external resources containing the summary text.
+     * Optional parameter specifying an alternate text representation for the summary. This can be
+     * used to reference external resources containing the summary text.
      */
     private final AlternateTextRepresentation alternateTextRepresentation;
 
     /**
-     * Optional parameter specifying the language of the summary text.
-     * This helps with internationalisation and localisation of calendar data.
+     * Optional parameter specifying the language of the summary text. This helps with
+     * internationalisation and localisation of calendar data.
      */
     private final Language language;
 
     /**
-     * The actual summary text value.
-     * This contains the brief title or subject of the calendar component.
+     * The actual summary text value. This contains the brief title or subject of the
+     * calendar component.
      */
     private final String value;
 
@@ -74,8 +73,8 @@ public final class Summary implements ComponentProperty {
      * Constructs a new Summary instance with the specified parameters.
      *
      * @param alternateTextRepresentation optional alternate text representation parameter
-     * @param language optional language parameter
-     * @param value the summary text value
+     * @param language                    optional language parameter
+     * @param value                       the summary text value
      */
     private Summary(
             AlternateTextRepresentation alternateTextRepresentation,
@@ -88,16 +87,16 @@ public final class Summary implements ComponentProperty {
     }
 
     /**
-     * Creates a new builder instance for constructing a Summary.
+     * Creates a new builder instance for constructing a {@code Summary}.
      *
-     * @return a new SummaryBuilder instance
+     * @return a new {@code SummaryBuilder} instance
      */
     public static SummaryBuilder builder() {
         return new SummaryBuilder();
     }
 
     /**
-     * Builder class for constructing Summary instances.
+     * Builder class for constructing {@code Summary} instances.
      * <p>
      * This builder follows the builder pattern and allows for the optional configuration
      * of alternate text representation and language parameters before creating the
@@ -108,7 +107,7 @@ public final class Summary implements ComponentProperty {
          * Optional alternate text representation parameter.
          */
         private AlternateTextRepresentation alternateTextRepresentation;
-        
+
         /**
          * Optional language parameter.
          */
@@ -145,10 +144,11 @@ public final class Summary implements ComponentProperty {
         }
 
         /**
-         * Creates a new Summary instance with the specified value and configured parameters.
+         * Creates a new {@code Summary} instance with the specified value and
+         * configured parameters.
          *
          * @param value the summary text value
-         * @return a new Summary instance
+         * @return a new {@code Summary} instance
          */
         public Summary build(String value) {
             return new Summary(alternateTextRepresentation, language, value);
@@ -158,8 +158,8 @@ public final class Summary implements ComponentProperty {
     /**
      * Returns the formatted iCalendar representation of this summary property.
      * <p>
-     * The format follows the iCalendar specification: SUMMARY[;parameters]:value
-     * where parameters may include language and alternate text representation if specified.
+     * The format follows the iCalendar specification: {@code SUMMARY[;parameters]:value} where
+     * parameters may include language and alternate text representation if specified.
      *
      * @return the formatted iCalendar property string
      */

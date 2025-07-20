@@ -27,14 +27,14 @@ import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.ParamAppender;
 
 /**
- * Represents the iCalendar DESCRIPTION property, which provides a detailed description 
- * of a calendar component.
+ * Represents the iCalendar DESCRIPTION property, which provides a detailed description of a
+ * calendar component.
  * <p>
- * This property defines a more complete description of the calendar component than that 
- * provided by the SUMMARY property. The description can include multiple lines of text 
- * and supports optional parameters for language and alternate text representation.
+ * This property defines a more complete description of the calendar component than that provided by
+ * the {@code SUMMARY} property. The description can include multiple lines of text and supports
+ * optional parameters for language and alternate text representation.
  * <p>
- * The DESCRIPTION property is commonly used in events, to-do items, and journal entries
+ * The {@code DESCRIPTION} property is commonly used in events, to-do items, and journal entries
  * to provide comprehensive details about the calendar component.
  * <p>
  * Instances of this class are immutable and can be created using the builder pattern
@@ -48,20 +48,20 @@ import com.onixbyte.calendar.util.ParamAppender;
 public final class Description implements ComponentProperty {
 
     /**
-     * Optional parameter specifying an alternate text representation for the description.
-     * This can be used to reference external resources containing the description text.
+     * Optional parameter specifying an alternate text representation for the description. This can
+     * be used to reference external resources containing the description text.
      */
     private final AlternateTextRepresentation alternateTextRepresentation;
 
     /**
-     * Optional parameter specifying the language of the description text.
-     * This helps with internationalisation and localisation of calendar data.
+     * Optional parameter specifying the language of the description text. This helps with
+     * internationalisation and localisation of calendar data.
      */
     private final Language language;
 
     /**
-     * The actual description text value.
-     * This contains the detailed description of the calendar component.
+     * The actual description text value. This contains the detailed description of the
+     * calendar component.
      */
     private final String value;
 
@@ -69,8 +69,8 @@ public final class Description implements ComponentProperty {
      * Constructs a new Description instance with the specified parameters.
      *
      * @param alternateTextRepresentation optional alternate text representation parameter
-     * @param language optional language parameter
-     * @param value the description text value
+     * @param language                    optional language parameter
+     * @param value                       the description text value
      */
     private Description(
             AlternateTextRepresentation alternateTextRepresentation,
@@ -83,27 +83,27 @@ public final class Description implements ComponentProperty {
     }
 
     /**
-     * Creates a new builder instance for constructing a Description.
+     * Creates a new builder instance for constructing a {@code Description}.
      *
-     * @return a new DescriptionBuilder instance
+     * @return a new {@code DescriptionBuilder} instance
      */
     public static DescriptionBuilder builder() {
         return new DescriptionBuilder();
     }
 
     /**
-     * Builder class for constructing Description instances.
+     * Builder class for constructing {@code Description} instances.
      * <p>
-     * This builder follows the builder pattern and allows for the optional configuration
-     * of alternate text representation and language parameters before creating the
-     * final Description instance.
+     * This builder follows the builder pattern and allows for the optional configuration of
+     * alternate text representation and language parameters before creating the final
+     * {@code Description} instance.
      */
     public static class DescriptionBuilder {
         /**
          * Optional alternate text representation parameter.
          */
         private AlternateTextRepresentation alternateTextRepresentation;
-        
+
         /**
          * Optional language parameter.
          */

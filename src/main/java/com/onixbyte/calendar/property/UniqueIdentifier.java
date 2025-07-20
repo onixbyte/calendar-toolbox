@@ -23,12 +23,12 @@
 package com.onixbyte.calendar.property;
 
 /**
- * Represents the iCalendar UID property, which specifies a unique identifier 
- * for a calendar component.
+ * Represents the iCalendar UID property, which specifies a unique identifier for a
+ * calendar component.
  * <p>
- * The UID property is used to uniquely identify a calendar component within
- * a calendar system. This identifier should be globally unique and persistent
- * across different calendar systems and updates to the component.
+ * The UID property is used to uniquely identify a calendar component within a calendar system. This
+ * identifier should be globally unique and persistent across different calendar systems and updates
+ * to the component.
  * <p>
  * The UID is essential for:
  * <ul>
@@ -38,11 +38,11 @@ package com.onixbyte.calendar.property;
  *   <li>Relating components to each other</li>
  * </ul>
  * <p>
- * The identifier format is typically a combination of a timestamp, random data,
- * and a domain name to ensure global uniqueness (e.g., "20050101T120000Z@example.com").
+ * The identifier format is typically a combination of a timestamp, random data, and a domain name
+ * to ensure global uniqueness (e.g., "{@code 20050101T120000Z@example.com}").
  * <p>
- * This property is required for most calendar components including events,
- * to-do items, and journal entries.
+ * This property is required for most calendar components including events, to-do items, and
+ * journal entries.
  * <p>
  * Instances of this class are immutable and can be created using the builder pattern
  * via {@link #builder()}.
@@ -55,13 +55,13 @@ package com.onixbyte.calendar.property;
 public final class UniqueIdentifier implements ComponentProperty {
 
     /**
-     * The unique identifier value.
-     * This should be a globally unique string that identifies the calendar component.
+     * The unique identifier value. This should be a globally unique string that identifies the
+     * calendar component.
      */
     private final String value;
 
     /**
-     * Constructs a new UniqueIdentifier instance with the specified value.
+     * Constructs a new {@code UniqueIdentifier} instance with the specified value.
      *
      * @param value the unique identifier value
      */
@@ -70,19 +70,19 @@ public final class UniqueIdentifier implements ComponentProperty {
     }
 
     /**
-     * Creates a new builder instance for constructing a UniqueIdentifier.
+     * Creates a new builder instance for constructing a {@code UniqueIdentifier}.
      *
-     * @return a new UniqueIdentifierBuilder instance
+     * @return a new {@code UniqueIdentifierBuilder} instance
      */
     public static UniqueIdentifierBuilder builder() {
         return new UniqueIdentifierBuilder();
     }
 
     /**
-     * Builder class for constructing UniqueIdentifier instances.
+     * Builder class for constructing {@code UniqueIdentifier} instances.
      * <p>
-     * This builder provides a simple factory method for creating UniqueIdentifier
-     * instances with the specified identifier value.
+     * This builder provides a simple factory method for creating {@code UniqueIdentifier} instances
+     * with the specified identifier value.
      */
     public static class UniqueIdentifierBuilder {
 
@@ -106,7 +106,7 @@ public final class UniqueIdentifier implements ComponentProperty {
     /**
      * Returns the formatted iCalendar representation of this unique identifier property.
      * <p>
-     * The format follows the iCalendar specification: UID:value
+     * The format follows the iCalendar specification: {@code UID:value}
      *
      * @return the formatted iCalendar property string
      */

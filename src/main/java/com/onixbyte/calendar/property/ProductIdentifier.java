@@ -23,12 +23,11 @@
 package com.onixbyte.calendar.property;
 
 /**
- * Represents the iCalendar PRODID property, which specifies the identifier for 
- * the product that created the iCalendar object.
+ * Represents the iCalendar {@code PRODID} property, which specifies the identifier for the product
+ * that created the iCalendar object.
  * <p>
- * The PRODID property is required and must appear exactly once in an iCalendar
- * object. It identifies the software product that created the calendar data,
- * which is useful for:
+ * The {@code PRODID} property is required and must appear exactly once in an iCalendar object. It
+ * identifies the software product that created the calendar data, which is useful for:
  * <ul>
  *   <li>Debugging and troubleshooting calendar issues</li>
  *   <li>Understanding the source of calendar data</li>
@@ -36,8 +35,8 @@ package com.onixbyte.calendar.property;
  *   <li>Supporting product-specific features or extensions</li>
  * </ul>
  * <p>
- * The product identifier should be a globally unique identifier that includes
- * the vendor name and product name. Common formats include:
+ * The product identifier should be a globally unique identifier that includes the vendor name and
+ * product name. Common formats include:
  * <ul>
  *   <li>-//Company Name//Product Name//EN</li>
  *   <li>-//Company Name//Product Name Version//EN</li>
@@ -62,14 +61,13 @@ package com.onixbyte.calendar.property;
 public final class ProductIdentifier implements CalendarProperty {
 
     /**
-     * The product identifier value.
-     * This should be a globally unique identifier for the product that created
-     * the iCalendar object.
+     * The product identifier value. This should be a globally unique identifier for the product
+     * that created the iCalendar object.
      */
     private final String value;
 
     /**
-     * Constructs a new ProductIdentifier instance with the specified value.
+     * Constructs a new {@code ProductIdentifier} instance with the specified value.
      *
      * @param value the product identifier value
      */
@@ -78,18 +76,18 @@ public final class ProductIdentifier implements CalendarProperty {
     }
 
     /**
-     * Creates a new builder instance for constructing a ProductIdentifier.
+     * Creates a new builder instance for constructing a {@code ProductIdentifier}.
      *
-     * @return a new ProductIdentifierBuilder instance
+     * @return a new {@code ProductIdentifierBuilder} instance
      */
     public static ProductIdentifierBuilder builder() {
         return new ProductIdentifierBuilder();
     }
 
     /**
-     * Builder class for constructing ProductIdentifier instances.
+     * Builder class for constructing {@code ProductIdentifier} instances.
      * <p>
-     * This builder provides a simple factory method for creating ProductIdentifier
+     * This builder provides a simple factory method for creating {@code ProductIdentifier}
      * instances with the specified identifier value.
      */
     public static class ProductIdentifierBuilder {
@@ -114,7 +112,7 @@ public final class ProductIdentifier implements CalendarProperty {
     /**
      * Returns the formatted iCalendar representation of this product identifier property.
      * <p>
-     * The format follows the iCalendar specification: PRODID:value
+     * The format follows the iCalendar specification: {@code PRODID:value}
      *
      * @return the formatted iCalendar property string
      */

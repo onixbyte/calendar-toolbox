@@ -25,10 +25,9 @@ package com.onixbyte.calendar.property;
 /**
  * Enumeration representing the iCalendar CLASS property values.
  * <p>
- * The CLASS property defines the access classification for a calendar component.
- * This property is used to specify the intended access level of the calendar information,
- * which can be used by calendar applications to determine how to handle and display
- * the calendar data.
+ * The CLASS property defines the access classification for a calendar component. This property is
+ * used to specify the intended access level of the calendar information, which can be used by
+ * calendar applications to determine how to handle and display the calendar data.
  * <p>
  * The three standard classification levels are:
  * <ul>
@@ -36,7 +35,7 @@ package com.onixbyte.calendar.property;
  * <li>{@code PRIVATE} - The calendar component is restricted to the owner</li>
  * <li>{@code CONFIDENTIAL} - The calendar component is restricted to authorised users</li>
  * </ul>
- * 
+ *
  * @author siujamo
  * @author zihluwang
  * @version 1.0.0
@@ -45,23 +44,20 @@ package com.onixbyte.calendar.property;
 public enum Classification implements ComponentProperty {
 
     /**
-     * Public classification level.
-     * Indicates that the calendar component is accessible to anyone and can be
-     * freely shared or displayed.
+     * Public classification level. Indicates that the calendar component is accessible to anyone
+     * and can be freely shared or displayed.
      */
     PUBLIC,
-    
+
     /**
-     * Private classification level.
-     * Indicates that the calendar component is restricted to the owner and should
-     * not be shared with others.
+     * Private classification level. Indicates that the calendar component is restricted to the
+     * owner and should not be shared with others.
      */
     PRIVATE,
-    
+
     /**
-     * Confidential classification level.
-     * Indicates that the calendar component is restricted to authorised users only
-     * and should be handled with special care.
+     * Confidential classification level. Indicates that the calendar component is restricted to
+     * authorised users only and should be handled with special care.
      */
     CONFIDENTIAL,
     ;
@@ -69,9 +65,9 @@ public enum Classification implements ComponentProperty {
     /**
      * Returns the formatted string representation of this classification property.
      * <p>
-     * The format follows the iCalendar specification: "CLASS:" followed by
-     * the classification name in uppercase.
-     * 
+     * The format follows the iCalendar specification: "{@code CLASS:}" followed by the
+     * classification name in uppercase.
+     *
      * @return the formatted classification string (e.g., "CLASS:PRIVATE")
      */
     @Override

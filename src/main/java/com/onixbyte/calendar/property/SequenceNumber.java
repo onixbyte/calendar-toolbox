@@ -23,12 +23,12 @@
 package com.onixbyte.calendar.property;
 
 /**
- * Represents the iCalendar SEQUENCE property, which defines the revision sequence 
- * number for a calendar component.
+ * Represents the iCalendar {@code SEQUENCE} property, which defines the revision sequence number
+ * for a calendar component.
  * <p>
- * The SEQUENCE property is used to indicate the revision number of a calendar
- * component within a sequence of revisions. When a component is updated, the
- * sequence number should be incremented to indicate that it's a newer version.
+ * The {@code SEQUENCE} property is used to indicate the revision number of a calendar component
+ * within a sequence of revisions. When a component is updated, the sequence number should be
+ * incremented to indicate that it's a newer version.
  * <p>
  * Key characteristics of the sequence number:
  * <ul>
@@ -65,13 +65,13 @@ package com.onixbyte.calendar.property;
 public final class SequenceNumber implements ComponentProperty {
 
     /**
-     * The sequence number value.
-     * This must be a non-negative integer representing the revision number.
+     * The sequence number value. This must be a non-negative integer representing the
+     * revision number.
      */
     private final int value;
 
     /**
-     * Constructs a new SequenceNumber instance with the specified value.
+     * Constructs a new {@code SequenceNumber} instance with the specified value.
      *
      * @param value the sequence number value (must be non-negative)
      * @throws IllegalArgumentException if the value is negative
@@ -85,19 +85,19 @@ public final class SequenceNumber implements ComponentProperty {
     }
 
     /**
-     * Creates a new builder instance for constructing a SequenceNumber.
+     * Creates a new builder instance for constructing a {@code SequenceNumber}.
      *
-     * @return a new SequenceNumberBuilder instance
+     * @return a new {@code SequenceNumberBuilder} instance
      */
     public static SequenceNumberBuilder builder() {
         return new SequenceNumberBuilder();
     }
 
     /**
-     * Builder class for constructing SequenceNumber instances.
+     * Builder class for constructing {@code SequenceNumber} instances.
      * <p>
-     * This builder provides a simple factory method for creating SequenceNumber
-     * instances with validation.
+     * This builder provides a simple factory method for creating {@code SequenceNumber} instances
+     * with validation.
      */
     public static class SequenceNumberBuilder {
         /**
@@ -121,7 +121,7 @@ public final class SequenceNumber implements ComponentProperty {
     /**
      * Returns the formatted iCalendar representation of this sequence number property.
      * <p>
-     * The format follows the iCalendar specification: SEQUENCE:value
+     * The format follows the iCalendar specification: {@code SEQUENCE:value}
      *
      * @return the formatted iCalendar property string
      */

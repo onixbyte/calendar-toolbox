@@ -28,13 +28,13 @@ import com.onixbyte.calendar.util.ParamAppender;
 /**
  * Represents the {@code RELATED-TO} property in an iCalendar component.
  * <p>
- * This property is used to specify a relationship between calendar components.
- * It contains the persistent, globally unique identifier of another calendar
- * component. The property also supports a relationship type parameter to define
- * the nature of the relationship (e.g., parent, child, sibling).
+ * This property is used to specify a relationship between calendar components. It contains the
+ * persistent, globally unique identifier of another calendar component. The property also supports
+ * a relationship type parameter to define the nature of the relationship
+ * (e.g., parent, child, sibling).
  * <p>
- * This property is commonly used to create hierarchical relationships between
- * calendar components or to reference related components.
+ * This property is commonly used to create hierarchical relationships between calendar components
+ * or to reference related components.
  *
  * @author siujamo
  * @author zihluwang
@@ -56,7 +56,7 @@ public final class RelatedTo implements ComponentProperty {
      * Constructs a new {@code RelatedTo} instance with the specified parameters.
      *
      * @param relationshipType the optional relationship type parameter
-     * @param value           the unique identifier of the related calendar component
+     * @param value            the unique identifier of the related calendar component
      */
     private RelatedTo(RelationshipType relationshipType, String value) {
         this.relationshipType = relationshipType;
@@ -80,7 +80,7 @@ public final class RelatedTo implements ComponentProperty {
          * The optional relationship type parameter.
          */
         private RelationshipType relationshipType;
-        
+
         /**
          * Private constructor to enforce builder pattern usage.
          */
@@ -110,8 +110,8 @@ public final class RelatedTo implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this related-to property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this related-to property for inclusion in
+     * an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications and includes any specified parameters.
      *

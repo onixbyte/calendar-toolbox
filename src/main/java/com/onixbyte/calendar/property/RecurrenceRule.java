@@ -37,14 +37,12 @@ import java.util.stream.Stream;
 /**
  * Represents the {@code RRULE} property in an iCalendar component.
  * <p>
- * This property defines a rule or repeating pattern for recurring events,
- * to-dos, journal entries, or time zone definitions. The recurrence rule
- * specification allows for complex recurring patterns including frequency,
- * interval, count, end date, and various by-rules for fine-grained control.
+ * This property defines a rule or repeating pattern for recurring events, to-dos, journal entries,
+ * or time zone definitions. The recurrence rule specification allows for complex recurring patterns
+ * including frequency, interval, count, end date, and various by-rules for fine-grained control.
  * <p>
- * The property supports all recurrence rule components as defined in RFC 5545,
- * including frequency (required) and various optional components for detailed
- * recurrence pattern specification.
+ * The property supports all recurrence rule components as defined in RFC 5545, including frequency
+ * and various optional components for detailed recurrence pattern specification.
  *
  * @author siujamo
  * @author zihluwang
@@ -52,108 +50,106 @@ import java.util.stream.Stream;
  */
 public final class RecurrenceRule implements ComponentProperty {
 
-    // Required
     /**
-     * The frequency component of the recurrence rule (required).
+     * The frequency component of the recurrence rule.
      */
     private final Frequency frequency;
 
-    // Optional components
     /**
-     * The interval component specifying the frequency interval (optional).
-     * For example, an interval of 2 with DAILY frequency means every 2 days.
+     * The interval component specifying the frequency interval. For example, an interval of 2 with
+     * DAILY frequency means every 2 days.
      */
     private final Integer interval;
 
     /**
-     * The count component specifying the number of occurrences (optional).
-     * This limits the recurrence to a specific number of instances.
+     * The count component specifying the number of occurrences. This limits the recurrence to a
+     * specific number of instances.
      */
     private final Integer count;
 
     /**
-     * The until component specifying the end date/time for the recurrence (optional).
-     * The recurrence will end at or before this date/time.
+     * The until component specifying the end date/time for the recurrence. The recurrence will end
+     * at or before this date/time.
      */
     private final LocalDateTime until;
 
     /**
-     * The BYSECOND rule component specifying seconds within a minute (optional).
-     * Values range from 0 to 60 (including leap seconds).
+     * The {@code BYSECOND} rule component specifying seconds within a minute. Values range from
+     * {@code 0} to {@code 60} (including leap seconds).
      */
     private final List<Integer> bySecondList;
 
     /**
-     * The BYMINUTE rule component specifying minutes within an hour (optional).
-     * Values range from 0 to 59.
+     * The {@code BYMINUTE} rule component specifying minutes within an hour. Values range from
+     * {@code 0} to {@code 59}.
      */
     private final List<Integer> byMinuteList;
 
     /**
-     * The BYHOUR rule component specifying hours within a day (optional).
-     * Values range from 0 to 23.
+     * The {@code BYHOUR} rule component specifying hours within a day. Values range from
+     * {@code 0} to {@code 23}.
      */
     private final List<Integer> byHourList;
 
     /**
-     * The BYDAY rule component specifying days of the week (optional).
-     * Can include ordinal numbers for specific occurrences (e.g., first Monday).
+     * The {@code BYDAY} rule component specifying days of the week. Can include ordinal numbers for
+     * specific occurrences (e.g., first Monday).
      */
     private final List<WeekdayNum> byDayList;
 
     /**
-     * The BYMONTHDAY rule component specifying days of the month (optional).
-     * Values range from 1 to 31.
+     * The {@code BYMONTHDAY} rule component specifying days of the month. Values range from
+     * {@code 1} to {@code 31}.
      */
     private final List<Integer> byMonthDayList;
 
     /**
-     * The BYYEARDAY rule component specifying days of the year (optional).
-     * Values range from 1 to 366.
+     * The {@code BYYEARDAY} rule component specifying days of the year. Values range from {@code 1}
+     * to {@code 366}.
      */
     private final List<Integer> byYearDayList;
 
     /**
-     * The BYWEEKNO rule component specifying weeks of the year (optional).
-     * Values range from 1 to 53.
+     * The {@code BYWEEKNO} rule component specifying weeks of the year. Values range from {@code 1}
+     * to {@code 53}.
      */
     private final List<Integer> byWeekNoList;
 
     /**
-     * The BYMONTH rule component specifying months of the year (optional).
-     * Values range from 1 to 12.
+     * The {@code BYMONTH} rule component specifying months of the year. Values range from {@code 1}
+     * to {@code 12}.
      */
     private final List<Integer> byMonthList;
 
     /**
-     * The BYSETPOS rule component for limiting recurrence instances (optional).
-     * Values range from -366 to 366 (excluding 0).
+     * The {@code BYSETPOS} rule component for limiting recurrence instances. Values range from
+     * {@code -366} to {@code 366} (excluding 0).
      */
     private final List<Integer> bySetPosList;
 
     /**
-     * The WKST rule component specifying the start of the week (optional).
-     * Defaults to Monday if not specified.
+     * The {@code WKST} rule component specifying the start of the week. Defaults to <b>Monday</b>
+     * if not specified.
      */
     private final DayOfWeek weekStart;
 
     /**
      * Constructs a new RecurrenceRule instance with the specified components.
      *
-     * @param frequency      the frequency component (required)
-     * @param interval       the interval component (optional)
-     * @param count          the count component (optional)
-     * @param until          the until component (optional)
-     * @param bySecondList   the BYSECOND rule component (optional)
-     * @param byMinuteList   the BYMINUTE rule component (optional)
-     * @param byHourList     the BYHOUR rule component (optional)
-     * @param byDayList      the BYDAY rule component (optional)
-     * @param byMonthDayList the BYMONTHDAY rule component (optional)
-     * @param byYearDayList  the BYYEARDAY rule component (optional)
-     * @param byWeekNoList   the BYWEEKNO rule component (optional)
-     * @param byMonthList    the BYMONTH rule component (optional)
-     * @param bySetPosList   the BYSETPOS rule component (optional)
-     * @param weekStart      the WKST rule component (optional)
+     * @param frequency      the frequency component
+     * @param interval       the interval component
+     * @param count          the count component
+     * @param until          the until component
+     * @param bySecondList   the {@code BYSECOND} rule component
+     * @param byMinuteList   the {@code BYMINUTE} rule component
+     * @param byHourList     the {@code BYHOUR} rule component
+     * @param byDayList      the {@code BYDAY} rule component
+     * @param byMonthDayList the {@code BYMONTHDAY} rule component
+     * @param byYearDayList  the {@code BYYEARDAY} rule component
+     * @param byWeekNoList   the {@code BYWEEKNO} rule component
+     * @param byMonthList    the {@code BYMONTH} rule component
+     * @param bySetPosList   the {@code BYSETPOS} rule component
+     * @param weekStart      the {@code WKST} rule component
      */
     private RecurrenceRule(
             Frequency frequency,
@@ -188,20 +184,21 @@ public final class RecurrenceRule implements ComponentProperty {
     }
 
     /**
-     * Creates a new RecurrenceRuleBuilder instance for constructing RecurrenceRule objects.
+     * Creates a new {@code RecurrenceRuleBuilder} instance for constructing
+     * {@code RecurrenceRule} objects.
      *
-     * @return a new RecurrenceRuleBuilder instance
+     * @return a new {@code RecurrenceRuleBuilder} instance
      */
     public static RecurrenceRuleBuilder builder() {
         return new RecurrenceRuleBuilder();
     }
 
     /**
-     * Builder class for constructing RecurrenceRule instances using the builder pattern.
+     * Builder class for constructing {@code RecurrenceRule} instances using the builder pattern.
      * <p>
-     * This builder provides a fluent interface for creating RecurrenceRule objects with
-     * the required frequency component and various optional rule components. The builder
-     * validates input values to ensure they conform to RFC 5545 specifications.
+     * This builder provides a fluent interface for creating {@code RecurrenceRule} objects with the
+     * required frequency component and various optional rule components. The builder validates
+     * input values to ensure they conform to RFC 5545 specifications.
      * <p>
      * Example usage:
      * <pre>{@code
@@ -235,52 +232,52 @@ public final class RecurrenceRule implements ComponentProperty {
         private LocalDateTime until;
 
         /**
-         * The BYSECOND rule component of the recurrence rule being built.
+         * The {@code BYSECOND} rule component of the recurrence rule being built.
          */
         private List<Integer> bySecond;
 
         /**
-         * The BYMINUTE rule component of the recurrence rule being built.
+         * The {@code BYMINUTE} rule component of the recurrence rule being built.
          */
         private List<Integer> byMinute;
 
         /**
-         * The BYHOUR rule component of the recurrence rule being built.
+         * The {@code BYHOUR} rule component of the recurrence rule being built.
          */
         private List<Integer> byHour;
 
         /**
-         * The BYDAY rule component of the recurrence rule being built.
+         * The {@code BYDAY} rule component of the recurrence rule being built.
          */
         private List<WeekdayNum> byDay;
 
         /**
-         * The BYMONTHDAY rule component of the recurrence rule being built.
+         * The {@code BYMONTHDAY} rule component of the recurrence rule being built.
          */
         private List<Integer> byMonthDay;
 
         /**
-         * The BYYEARDAY rule component of the recurrence rule being built.
+         * The {@code BYYEARDAY} rule component of the recurrence rule being built.
          */
         private List<Integer> byYearDay;
 
         /**
-         * The BYWEEKNO rule component of the recurrence rule being built.
+         * The {@code BYWEEKNO} rule component of the recurrence rule being built.
          */
         private List<Integer> byWeekNo;
 
         /**
-         * The BYMONTH rule component of the recurrence rule being built.
+         * The {@code BYMONTH} rule component of the recurrence rule being built.
          */
         private List<Integer> byMonth;
 
         /**
-         * The BYSETPOS rule component of the recurrence rule being built.
+         * The {@code BYSETPOS} rule component of the recurrence rule being built.
          */
         private List<Integer> bySetPos;
 
         /**
-         * The WKST rule component of the recurrence rule being built.
+         * The {@code WKST} rule component of the recurrence rule being built.
          */
         private DayOfWeek weekStart;
 
@@ -291,7 +288,7 @@ public final class RecurrenceRule implements ComponentProperty {
         }
 
         /**
-         * Sets the frequency component for the recurrence rule (required).
+         * Sets the frequency component for the recurrence rule.
          *
          * @param frequency the frequency component
          * @return this builder instance for method chaining
@@ -342,13 +339,6 @@ public final class RecurrenceRule implements ComponentProperty {
             return this;
         }
 
-        /**
-         * Sets the until component for the recurrence rule using a LocalDate.
-         * The time will be set to 23:59:59 on the specified date.
-         *
-         * @param until the until component as a LocalDate
-         * @return this builder instance for method chaining
-         */
         /**
          * Sets the until component for the recurrence rule using a LocalDate.
          * The time will be set to 23:59:59 on the specified date.
@@ -552,7 +542,7 @@ public final class RecurrenceRule implements ComponentProperty {
      * The resulting format is: {@code ;PARAMNAME=value1,value2,value3}
      *
      * @param builder   the StringBuilder to append the parameter to
-     * @param paramName the name of the parameter (e.g., "BYSECOND", "BYMINUTE")
+     * @param paramName the name of the parameter (e.g., "{@code BYSECOND}", "{@code BYMINUTE}")
      * @param values    the list of integer values to append, may be null or empty
      */
     private void appendListParameter(StringBuilder builder, String paramName, List<Integer> values) {

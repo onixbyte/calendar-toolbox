@@ -25,10 +25,9 @@ package com.onixbyte.calendar.property;
 /**
  * Enumeration representing the iCalendar METHOD property values.
  * <p>
- * The METHOD property defines the calendar's intended use and the processing
- * requirements for calendar objects. These values are used to indicate whether
- * a calendar is being published, used for scheduling requests, or for other
- * calendar-related operations.
+ * The {@code METHOD} property defines the calendar's intended use and the processing requirements
+ * for calendar objects. These values are used to indicate whether a calendar is being published,
+ * used for scheduling requests, or for other calendar-related operations.
  * <p>
  * Each method value has specific semantics as defined in RFC 5545:
  * <ul>
@@ -50,50 +49,50 @@ package com.onixbyte.calendar.property;
 public enum Method implements CalendarProperty {
 
     /**
-     * Method value for publishing calendar information.
-     * Used when calendar information is being made available to others.
+     * Method value for publishing calendar information. Used when calendar information is being
+     * made available to others.
      */
     PUBLISH,
     
     /**
-     * Method value for scheduling requests.
-     * Used when requesting meetings or appointments with others.
+     * Method value for scheduling requests. Used when requesting meetings or appointments
+     * with others.
      */
     REQUEST,
     
     /**
-     * Method value for replying to scheduling requests.
-     * Used when responding to meeting or appointment requests.
+     * Method value for replying to scheduling requests. Used when responding to meeting or
+     * appointment requests.
      */
     REPLY,
     
     /**
-     * Method value for adding calendar components.
-     * Used when adding new components to an existing calendar.
+     * Method value for adding calendar components. Used when adding new components to an
+     * existing calendar.
      */
     ADD,
     
     /**
-     * Method value for cancelling calendar components.
-     * Used when cancelling meetings or appointments.
+     * Method value for cancelling calendar components. Used when cancelling meetings
+     * or appointments.
      */
     CANCEL,
     
     /**
-     * Method value for requesting updated calendar information.
-     * Used when requesting fresh calendar data from the organiser.
+     * Method value for requesting updated calendar information. Used when requesting fresh calendar
+     * data from the organiser.
      */
     REFRESH,
     
     /**
-     * Method value for counter-proposing meeting times.
-     * Used when suggesting alternative meeting times.
+     * Method value for counter-proposing meeting times. Used when suggesting alternative
+     * meeting times.
      */
     COUNTER,
     
     /**
-     * Method value for declining counter-proposals.
-     * Used when rejecting alternative meeting time suggestions.
+     * Method value for declining counter-proposals. Used when rejecting alternative meeting
+     * time suggestions.
      */
     DECLINE_COUNTER,
     ;
@@ -101,10 +100,10 @@ public enum Method implements CalendarProperty {
     /**
      * Returns the formatted string representation of this method property.
      * <p>
-     * The format follows the iCalendar specification: "METHOD:" followed by
-     * the method name with underscores replaced by hyphens.
+     * The format follows the iCalendar specification: "{@code METHOD:}" followed by the method name
+     * with underscores replaced by hyphens.
      * 
-     * @return the formatted method string (e.g., "METHOD:DECLINE-COUNTER")
+     * @return the formatted method string (e.g., "{@code METHOD:DECLINE-COUNTER}")
      */
     @Override
     public String formatted() {

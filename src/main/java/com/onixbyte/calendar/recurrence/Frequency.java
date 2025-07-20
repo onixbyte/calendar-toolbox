@@ -25,9 +25,8 @@ package com.onixbyte.calendar.recurrence;
 /**
  * Enumeration representing the frequency values for iCalendar recurrence rules.
  * <p>
- * The Frequency enum defines the intervals at which recurrence rules repeat.
- * These values are used in the RRULE property to specify how often an event,
- * task, or journal entry should recur.
+ * The Frequency enum defines the intervals at which recurrence rules repeat. These values are used
+ * in the RRULE property to specify how often an event, task, or journal entry should recur.
  * <p>
  * Each frequency value corresponds to a specific time interval:
  * <ul>
@@ -48,44 +47,37 @@ package com.onixbyte.calendar.recurrence;
 public enum Frequency {
 
     /**
-     * Recurrence frequency of every second.
-     * The event will repeat every second.
+     * Recurrence frequency of every second. The event will repeat every second.
      */
     SECONDLY,
 
     /**
-     * Recurrence frequency of every minute.
-     * The event will repeat every minute.
+     * Recurrence frequency of every minute. The event will repeat every minute.
      */
     MINUTELY,
 
     /**
-     * Recurrence frequency of every hour.
-     * The event will repeat every hour.
+     * Recurrence frequency of every hour. The event will repeat every hour.
      */
     HOURLY,
 
     /**
-     * Recurrence frequency of every day.
-     * The event will repeat every day.
+     * Recurrence frequency of every day. The event will repeat every day.
      */
     DAILY,
 
     /**
-     * Recurrence frequency of every week.
-     * The event will repeat every week.
+     * Recurrence frequency of every week. The event will repeat every week.
      */
     WEEKLY,
 
     /**
-     * Recurrence frequency of every month.
-     * The event will repeat every month.
+     * Recurrence frequency of every month. The event will repeat every month.
      */
     MONTHLY,
 
     /**
-     * Recurrence frequency of every year.
-     * The event will repeat every year.
+     * Recurrence frequency of every year. The event will repeat every year.
      */
     YEARLY;
 }

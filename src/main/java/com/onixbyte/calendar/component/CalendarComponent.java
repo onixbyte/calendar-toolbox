@@ -31,12 +31,12 @@ package com.onixbyte.calendar.component;
  * <p>
  * The main types of calendar components include:
  * <ul>
- *   <li>VEVENT - represents a scheduled event</li>
- *   <li>VTODO - represents a to-do item or task</li>
- *   <li>VJOURNAL - represents a journal entry</li>
- *   <li>VFREEBUSY - represents free/busy time information</li>
- *   <li>VTIMEZONE - represents time zone information</li>
- *   <li>VALARM - represents alarm/reminder information</li>
+ *   <li>{@code VEVENT} - represents a scheduled event</li>
+ *   <li>{@code VTODO} - represents a to-do item or task</li>
+ *   <li>{@code VJOURNAL} - represents a journal entry</li>
+ *   <li>{@code VFREEBUSY} - represents free/busy time information</li>
+ *   <li>{@code VTIMEZONE} - represents time zone information</li>
+ *   <li>{@code VALARM} - represents alarm/reminder information</li>
  * </ul>
  * <p>
  * Each component is delimited by {@code BEGIN:COMPONENT} and {@code END:COMPONENT} markers in the

@@ -23,12 +23,11 @@
 package com.onixbyte.calendar.property;
 
 /**
- * Enumeration representing the iCalendar TRANSP property values.
+ * Enumeration representing the iCalendar {@code TRANSP} property values.
  * <p>
- * The TRANSP property defines whether a calendar component is transparent or
- * opaque with respect to busy time searches. This property is used to indicate
- * whether the time consumed by the component should be considered when performing
- * free/busy time calculations.
+ * The {@code TRANSP} property defines whether a calendar component is transparent or opaque with
+ * respect to busy time searches. This property is used to indicate whether the time consumed by the
+ * component should be considered when performing free/busy time calculations.
  * <p>
  * Time transparency affects how calendar applications handle scheduling:
  * <ul>
@@ -62,18 +61,18 @@ public enum TimeTransparency implements ComponentProperty {
     /**
      * Indicates that the time covered by the component should be considered busy.
      * <p>
-     * Events with OPAQUE transparency will block out time in free/busy calculations
-     * and appear as busy time slots. This is the typical setting for meetings,
-     * appointments, and other events that require the person's full attention.
+     * Events with OPAQUE transparency will block out time in free/busy calculations and appear as
+     * busy time slots. This is the typical setting for meetings, appointments, and other events
+     * that require the person's full attention.
      */
     OPAQUE,
 
     /**
      * Indicates that the time covered by the component should be considered free.
      * <p>
-     * Events with TRANSPARENT transparency will not block out time in free/busy
-     * calculations and allow other events to be scheduled at the same time.
-     * This is useful for reminders, birthdays, holidays, or tentative events.
+     * Events with TRANSPARENT transparency will not block out time in free/busy calculations and
+     * allow other events to be scheduled at the same time. This is useful for reminders, birthdays,
+     * holidays, or tentative events.
      */
     TRANSPARENT,
     ;
@@ -81,7 +80,7 @@ public enum TimeTransparency implements ComponentProperty {
     /**
      * Returns the formatted iCalendar representation of this time transparency property.
      * <p>
-     * The format follows the iCalendar specification: TRANSP:value
+     * The format follows the iCalendar specification: {@code TRANSP:value}
      *
      * @return the formatted iCalendar property string
      */

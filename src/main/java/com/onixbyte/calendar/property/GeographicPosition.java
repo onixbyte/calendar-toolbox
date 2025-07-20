@@ -25,13 +25,13 @@ package com.onixbyte.calendar.property;
 /**
  * Represents the {@code GEO} property in an iCalendar component.
  * <p>
- * This property specifies information related to the global position for the
- * activity specified by a calendar component. The property value consists of
- * latitude and longitude coordinates expressed as decimal degrees.
+ * This property specifies information related to the global position for the activity specified by
+ * a calendar component. The property value consists of latitude and longitude coordinates expressed
+ * as decimal degrees.
  * <p>
- * The latitude represents the location north or south of the equator, and the
- * longitude represents the location east or west of the prime meridian.
- * Both values are expressed as floating-point numbers in decimal degrees.
+ * The latitude represents the location north or south of the equator, and the longitude represents
+ * the location east or west of the prime meridian. Both values are expressed as floating-point
+ * numbers in decimal degrees.
  *
  * @author siujamo
  * @author zihluwang
@@ -40,18 +40,14 @@ package com.onixbyte.calendar.property;
 public final class GeographicPosition implements ComponentProperty {
 
     /**
-     * The latitude coordinate in decimal degrees.
-     * Positive values represent north of the equator, negative values represent south.
+     * The latitude coordinate in decimal degrees. Positive values represent north of the equator,
+     * negative values represent south.
      */
     private final double latitude;
 
     /**
-     * The longitude coordinate in decimal degrees.
-     * Positive values represent east of the prime meridian, negative values represent west.
-     */
-    /**
-     * The longitude coordinate in decimal degrees.
-     * Positive values represent east of the prime meridian, negative values represent west.
+     * The longitude coordinate in decimal degrees. Positive values represent east of the prime
+     * meridian, negative values represent west.
      */
     private final double longitude;
 
@@ -99,13 +95,13 @@ public final class GeographicPosition implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this geographic position property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this geographic position property for
+     * inclusion in an iCalendar.
      * <p>
-     * The format follows RFC 5545 specifications with latitude and longitude
-     * separated by a semicolon.
+     * The format follows RFC 5545 specifications with latitude and longitude separated by
+     * a semicolon.
      *
-     * @return the formatted {@code GEO} property string in the format "GEO:latitude;longitude"
+     * @return the formatted {@code GEO} property string in the format "{@code GEO:latitude;longitude}"
      */
     @Override
     public String formatted() {

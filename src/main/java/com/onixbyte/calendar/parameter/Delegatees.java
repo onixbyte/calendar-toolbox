@@ -68,8 +68,8 @@ public final class Delegatees implements Parameter {
     }
 
     /**
-     * Creates a {@code Delegatees} instance from an array of strings that represent URIs.
-     * Each string is converted to a {@link URI}.
+     * Creates a {@code Delegatees} instance from an array of strings that represent URIs. Each
+     * string is converted to a {@link URI}.
      *
      * @param delegatees one or more strings representing the delegatee URIs
      * @return a new {@code Delegatees} instance

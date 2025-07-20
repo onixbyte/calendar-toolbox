@@ -25,12 +25,12 @@ package com.onixbyte.calendar.property;
 /**
  * Represents the {@code REPEAT} property in an iCalendar component.
  * <p>
- * This property defines the number of times an alarm should be repeated after
- * its initial trigger. It is used in conjunction with the {@code DURATION}
- * property to specify how often the alarm should repeat.
+ * This property defines the number of times an alarm should be repeated after its initial trigger.
+ * It is used in conjunction with the {@code DURATION} property to specify how often the alarm
+ * should repeat.
  * <p>
- * A value of zero indicates that the alarm should not repeat beyond its
- * initial trigger. Positive values indicate the number of additional repetitions.
+ * A value of zero indicates that the alarm should not repeat beyond its initial trigger. Positive
+ * values indicate the number of additional repetitions.
  *
  * @author siujamo
  * @author zihluwang
@@ -83,8 +83,8 @@ public final class RepeatCount implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this repeat count property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this repeat count property for inclusion in
+     * an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications.
      *

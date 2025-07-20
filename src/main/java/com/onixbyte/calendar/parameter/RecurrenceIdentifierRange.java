@@ -39,7 +39,7 @@ import java.util.Objects;
 public final class RecurrenceIdentifierRange implements Parameter {
 
     /**
-     * Singleton instance of RecurrenceIdentifierRange.
+     * Singleton instance of {@code RecurrenceIdentifierRange}.
      */
     private static RecurrenceIdentifierRange _instance;
 
@@ -51,8 +51,8 @@ public final class RecurrenceIdentifierRange implements Parameter {
     /**
      * Returns the singleton instance of RecurrenceIdentifierRange.
      * <p>
-     * This method implements the double-checked locking mechanism to ensure
-     * thread-safe lazy initialization of the instance.
+     * This method implements the double-checked locking mechanism to ensure thread-safe lazy
+     * initialisation of the instance.
      *
      * @return the singleton instance of RecurrenceIdentifierRange
      */
@@ -68,8 +68,8 @@ public final class RecurrenceIdentifierRange implements Parameter {
     }
 
     /**
-     * Returns the formatted string representation of this parameter
-     * as defined in the iCalendar specification.
+     * Returns the formatted string representation of this parameter as defined in the
+     * iCalendar specification.
      *
      * @return a formatted string in the form {@code RANGE=THISANDFUTURE}
      */

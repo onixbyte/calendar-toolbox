@@ -32,13 +32,13 @@ import java.util.Objects;
 /**
  * Utility class for appending iCalendar properties to a StringBuilder.
  * <p>
- * This class provides a convenient way to append formatted property strings to
- * iCalendar component output. It handles the proper formatting of properties
- * including line breaks, folding for long lines, and collection handling.
+ * This class provides a convenient way to append formatted property strings to iCalendar component
+ * output. It handles the proper formatting of properties including line breaks, folding for
+ * long lines, and collection handling.
  * <p>
- * Properties in iCalendar format are each on separate lines, and lines longer
- * than 75 characters are folded (wrapped) with a space continuation character.
- * This utility automatically handles this formatting.
+ * Properties in iCalendar format are each on separate lines, and lines longer than 75 characters
+ * are folded (wrapped) with a space continuation character. This utility automatically handles
+ * this formatting.
  * <p>
  * Supported property types include:
  * <ul>
@@ -48,14 +48,14 @@ import java.util.Objects;
  * </ul>
  * <p>
  * Usage example:
- * <pre>
+ * <pre>{@code
  * StringBuilder builder = new StringBuilder("BEGIN:VEVENT");
  * PropertyAppender appender = PropertyAppender.of(builder);
  * appender.append(summary);
  * appender.append(description);
  * appender.append(attendees);
  * builder.append("\nEND:VEVENT");
- * </pre>
+ * }</pre>
  *
  * @author siujamo
  * @author zihluwang
@@ -65,23 +65,23 @@ import java.util.Objects;
 public final class PropertyAppender {
 
     /**
-     * The StringBuilder instance to which properties are appended.
+     * The {@code StringBuilder} instance to which properties are appended.
      */
     private final StringBuilder builder;
 
     /**
-     * Constructs a new PropertyAppender with the specified StringBuilder.
+     * Constructs a new {@code PropertyAppender} with the specified {@code StringBuilder}.
      *
-     * @param builder the StringBuilder to append properties to
+     * @param builder the {@code StringBuilder} to append properties to
      */
     private PropertyAppender(StringBuilder builder) {
         this.builder = builder;
     }
 
     /**
-     * Creates a new PropertyAppender instance for the specified StringBuilder.
+     * Creates a new {@code PropertyAppender} instance for the specified {@code StringBuilder}.
      *
-     * @param builder the StringBuilder to append properties to
+     * @param builder the {@code StringBuilder} to append properties to
      * @return a new PropertyAppender instance
      */
     public static PropertyAppender of(StringBuilder builder) {
@@ -89,14 +89,13 @@ public final class PropertyAppender {
     }
 
     /**
-     * Appends the specified Duration as a formatted iCalendar property.
+     * Appends the specified {@code Duration} as a formatted iCalendar property.
      * <p>
-     * The duration is formatted according to ISO 8601 duration format and
-     * appended with proper line folding if necessary. If the duration is null,
-     * it is ignored.
+     * The duration is formatted according to ISO 8601 duration format and appended with proper line
+     * folding if necessary. If the duration is null, it is ignored.
      *
      * @param duration the duration to append, may be null
-     * @return the underlying StringBuilder for method chaining
+     * @return the underlying {@code StringBuilder} for method chaining
      */
     public StringBuilder append(Duration duration) {
         if (Objects.nonNull(duration)) {
@@ -108,11 +107,11 @@ public final class PropertyAppender {
     /**
      * Appends the specified ComponentProperty as a formatted iCalendar property.
      * <p>
-     * The property is formatted using its formatted() method and appended with
-     * proper line folding if necessary. If the property is null, it is ignored.
+     * The property is formatted using its formatted() method and appended with proper line folding
+     * if necessary. If the property is null, it is ignored.
      *
      * @param componentProperty the component property to append, may be null
-     * @return the underlying StringBuilder for method chaining
+     * @return the underlying {@code StringBuilder} for method chaining
      */
     public StringBuilder append(ComponentProperty componentProperty) {
         if (Objects.nonNull(componentProperty)) {
@@ -124,12 +123,11 @@ public final class PropertyAppender {
     /**
      * Appends the specified list of ComponentProperties as formatted iCalendar properties.
      * <p>
-     * Each property in the list is formatted using its formatted() method and
-     * appended with proper line folding if necessary. If the list is null or empty,
-     * it is ignored.
+     * Each property in the list is formatted using its formatted() method and appended with proper
+     * line folding if necessary. If the list is null or empty, it is ignored.
      *
      * @param componentProperties the list of component properties to append, may be null or empty
-     * @return the underlying StringBuilder for method chaining
+     * @return the underlying {@code StringBuilder} for method chaining
      */
     public StringBuilder append(List<? extends ComponentProperty> componentProperties) {
         if (CollectionUtil.notEmpty(componentProperties)) {

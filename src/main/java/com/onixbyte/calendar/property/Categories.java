@@ -29,12 +29,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents the iCalendar CATEGORIES property, which specifies categories or 
+ * Represents the iCalendar {@code CATEGORIES} property, which specifies categories or
  * subtypes for a calendar component.
  * <p>
- * This property is used to categorize or classify calendar components, making it
- * easier to organize and filter calendar data. Categories can be used to group
- * related events, tasks, or journal entries together.
+ * This property is used to categorise or classify calendar components, making it easier to organise
+ * and filter calendar data. Categories can be used to group related events, tasks, or journal
+ * entries together.
  * <p>
  * Examples of categories might include:
  * <ul>
@@ -52,8 +52,8 @@ import java.util.List;
  *   <li>VACATION</li>
  * </ul>
  * <p>
- * Multiple categories can be specified for a single component, and the property
- * supports optional language specification for internationalisation.
+ * Multiple categories can be specified for a single component, and the property supports optional
+ * language specification for internationalisation.
  * <p>
  * Instances of this class are immutable and can be created using the builder pattern
  * via {@link #builder()}.
@@ -66,21 +66,21 @@ import java.util.List;
 public final class Categories implements ComponentProperty {
 
     /**
-     * Optional parameter specifying the language of the category text.
-     * This helps with internationalisation and localisation of calendar data.
+     * Optional parameter specifying the language of the category text. This helps with
+     * internationalisation and localisation of calendar data.
      */
     private final Language language;
 
     /**
-     * The list of category names for this component.
-     * Each category is a text string that classifies the component.
+     * The list of category names for this component. Each category is a text string that classifies
+     * the component.
      */
     private final List<String> categories;
 
     /**
      * Constructs a new Categories instance with the specified parameters.
      *
-     * @param language optional language parameter
+     * @param language   optional language parameter
      * @param categories the list of category names
      */
     private Categories(Language language, List<String> categories) {
@@ -100,8 +100,8 @@ public final class Categories implements ComponentProperty {
     /**
      * Builder class for constructing Categories instances.
      * <p>
-     * This builder allows for optional configuration of language parameters
-     * before creating the final Categories instance with one or more category names.
+     * This builder allows for optional configuration of language parameters before creating the
+     * final Categories instance with one or more category names.
      */
     public static class CategoriesBuilder {
         /**
@@ -127,7 +127,7 @@ public final class Categories implements ComponentProperty {
         }
 
         /**
-         * Creates a new Categories instance with the specified category names.
+         * Creates a new {@code Categories} instance with the specified category names.
          *
          * @param categories one or more category names
          * @return a new Categories instance
@@ -140,9 +140,9 @@ public final class Categories implements ComponentProperty {
     /**
      * Returns the formatted iCalendar representation of this categories property.
      * <p>
-     * The format follows the iCalendar specification: CATEGORIES[;parameters]:value1,value2,...
-     * where multiple categories are separated by commas and parameters may include
-     * language if specified.
+     * The format follows the iCalendar specification:
+     * {@code CATEGORIES[;parameters]:value1,value2,...} where multiple categories are separated by
+     * commas and parameters may include language if specified.
      *
      * @return the formatted iCalendar property string
      */

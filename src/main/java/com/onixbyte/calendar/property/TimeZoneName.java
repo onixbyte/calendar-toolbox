@@ -29,12 +29,12 @@ import com.onixbyte.calendar.util.PropertyAppender;
 /**
  * Represents the {@code TZNAME} property in an iCalendar time zone component.
  * <p>
- * This property specifies the customary designation for a time zone description.
- * It provides a human-readable name for the time zone, which can be localised
- * using the optional language parameter.
+ * This property specifies the customary designation for a time zone description. It provides a
+ * human-readable name for the time zone, which can be localised using the optional
+ * language parameter.
  * <p>
- * This property is typically used within {@code VTIMEZONE} components to provide
- * descriptive names for different time zone periods (standard time or daylight time).
+ * This property is typically used within {@code VTIMEZONE} components to provide descriptive names
+ * for different time zone periods (standard time or daylight time).
  *
  * @author siujamo
  * @author zihluwang
@@ -110,8 +110,8 @@ public final class TimeZoneName implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this time zone name property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this time zone name property for inclusion in
+     * an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications and includes any specified parameters.
      *

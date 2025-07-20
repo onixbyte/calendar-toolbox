@@ -32,13 +32,13 @@ import java.time.ZonedDateTime;
 /**
  * Represents the {@code RECURRENCE-ID} property in an iCalendar component.
  * <p>
- * This property is used in conjunction with the {@code UID} and {@code SEQUENCE}
- * properties to identify a specific instance of a recurring calendar component.
- * The value type of this property must match the value type of the {@code DTSTART}
- * property contained within the recurring component.
+ * This property is used in conjunction with the {@code UID} and {@code SEQUENCE} properties to
+ * identify a specific instance of a recurring calendar component. The value type of this property
+ * must match the value type of the {@code DTSTART} property contained within the
+ * recurring component.
  * <p>
- * This property supports optional parameters for time zone identification,
- * value data type specification, and recurrence identifier range.
+ * This property supports optional parameters for time zone identification, value data type
+ * specification, and recurrence identifier range.
  *
  * @author siujamo
  * @author zihluwang
@@ -64,18 +64,15 @@ public final class RecurrenceId implements ComponentProperty, DateTimeProperty {
     /**
      * The recurrence identifier date-time value.
      */
-    /**
-     * The recurrence identifier date-time value.
-     */
     private final ZonedDateTime value;
 
     /**
      * Constructs a new {@code RecurrenceId} instance with the specified parameters.
      *
-     * @param valueDataType                the optional value data type parameter
-     * @param timeZoneIdentifier          the optional time zone identifier parameter
-     * @param recurrenceIdentifierRange   the optional recurrence identifier range parameter
-     * @param value                       the recurrence identifier date-time value
+     * @param valueDataType             the optional value data type parameter
+     * @param timeZoneIdentifier        the optional time zone identifier parameter
+     * @param recurrenceIdentifierRange the optional recurrence identifier range parameter
+     * @param value                     the recurrence identifier date-time value
      */
     private RecurrenceId(
             ValueDataType valueDataType,
@@ -108,12 +105,12 @@ public final class RecurrenceId implements ComponentProperty, DateTimeProperty {
          * The optional value data type parameter.
          */
         private ValueDataType valueDataType;
-        
+
         /**
          * The optional time zone identifier parameter.
          */
         private TimeZoneIdentifier timeZoneIdentifier;
-        
+
         /**
          * The optional recurrence identifier range parameter.
          */
@@ -189,8 +186,8 @@ public final class RecurrenceId implements ComponentProperty, DateTimeProperty {
     }
 
     /**
-     * Returns the formatted string representation of this recurrence identifier property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this recurrence identifier property for
+     * inclusion in an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications and includes any specified parameters.
      *

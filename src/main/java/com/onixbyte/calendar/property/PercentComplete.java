@@ -40,9 +40,6 @@ public final class PercentComplete implements ComponentProperty {
     /**
      * The percent completion value (0-100).
      */
-    /**
-     * The percent completion value (0-100).
-     */
     private final int value;
 
     /**
@@ -92,8 +89,8 @@ public final class PercentComplete implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this percent complete property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this percent complete property for inclusion
+     * in an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications.
      *

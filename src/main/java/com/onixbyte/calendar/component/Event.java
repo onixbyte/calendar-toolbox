@@ -843,8 +843,8 @@ public final class Event implements CalendarComponent {
         /**
          * Builds and returns a new Event instance.
          * <p>
-         * Validates that required properties (dateTimeStamp and uniqueIdentifier) are present
-         * and that mutually exclusive properties (dateTimeEnd and duration) are not both set.
+         * Validates that required properties (dateTimeStamp and uniqueIdentifier) are present and
+         * that mutually exclusive properties (dateTimeEnd and duration) are not both set.
          *
          * @return a new Event instance
          * @throws IllegalArgumentException if required properties are missing or if

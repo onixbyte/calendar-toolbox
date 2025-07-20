@@ -25,8 +25,8 @@ package com.onixbyte.calendar.parameter;
 /**
  * Enum representing the iCalendar encoding types for inline content.
  * <p>
- * This parameter specifies the encoding mechanism used for inline content, such as 8-bit data
- * or Base64 encoded data.
+ * This parameter specifies the encoding mechanism used for inline content, such as 8-bit data or
+ * Base64 encoded data.
  * <p>
  * The supported encoding types are as defined by the iCalendar specification.
  *

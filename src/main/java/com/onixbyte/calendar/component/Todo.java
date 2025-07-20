@@ -30,14 +30,14 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Represents an iCalendar VTODO component, which defines a to-do or task.
+ * Represents an iCalendar {@code VTODO} component, which defines a to-do or task.
  * <p>
- * The Todo class encapsulates all the properties and details of a calendar to-do item,
- * including timing information, completion status, priority, and other task-specific data.
- * This class follows the iCalendar specification (RFC 5545) for VTODO components.
+ * The To-do class encapsulates all the properties and details of a calendar to-do item, including
+ * timing information, completion status, priority, and other task-specific data. This class follows
+ * the iCalendar specification (RFC 5545) for {@code VTODO} components.
  * <p>
- * To-dos represent tasks that need to be accomplished, such as assignments, reminders,
- * or action items that can be tracked in a calendar system.
+ * To-dos represent tasks that need to be accomplished, such as assignments, reminders, or action
+ * items that can be tracked in a calendar system.
  * <p>
  * This class follows the builder pattern through the {@link TodoBuilder} nested class,
  * allowing for flexible construction of to-do objects with optional properties.
@@ -50,196 +50,176 @@ import java.util.Objects;
 public final class Todo implements ComponentProperty {
 
     /**
-     * The component name for VTODO as defined in RFC 5545.
+     * The component name for {@code VTODO} as defined in RFC 5545.
      */
     private final static String COMPONENT_NAME = "VTODO";
 
     /**
-     * The date and time stamp indicating when the to-do was created.
-     * This is a required property.
+     * The date and time stamp indicating when the to-do was created. This is a required property.
      */
     private final DateTimeStamp dateTimeStamp;
 
     /**
-     * The unique identifier for this to-do.
-     * This is a required property.
+     * The unique identifier for this to-do. This is a required property.
      */
     private final UniqueIdentifier uniqueIdentifier;
 
     /**
-     * The access classification for the to-do (e.g., PUBLIC, PRIVATE, CONFIDENTIAL).
-     * This is an optional property.
+     * The access classification for the to-do (e.g., PUBLIC, PRIVATE, CONFIDENTIAL). This is an
+     * optional property.
      */
     private final Classification classification;
 
     /**
-     * The date and time when the to-do was completed.
-     * This is an optional property.
+     * The date and time when the to-do was completed. This is an optional property.
      */
     private final DateTimeCompleted dateTimeCompleted;
 
     /**
-     * The date and time when the to-do was created.
-     * This is an optional property.
+     * The date and time when the to-do was created. This is an optional property.
      */
     private final DateTimeCreated dateTimeCreated;
 
     /**
-     * The description or notes for the to-do.
-     * This is an optional property.
+     * The description or notes for the to-do. This is an optional property.
      */
     private final Description description;
 
     /**
-     * The start date and time of the to-do.
-     * This is an optional property.
+     * The start date and time of the to-do. This is an optional property.
      */
     private final DateTimeStart dateTimeStart;
 
     /**
-     * The geographic position (latitude and longitude) of the to-do.
-     * This is an optional property.
+     * The geographic position (latitude and longitude) of the to-do. This is an optional property.
      */
     private final GeographicPosition geographicPosition;
 
     /**
-     * The date and time when the to-do was last modified.
-     * This is an optional property.
+     * The date and time when the to-do was last modified. This is an optional property.
      */
     private final LastModified lastModified;
 
     /**
-     * The location where the to-do takes place.
-     * This is an optional property.
+     * The location where the to-do takes place. This is an optional property.
      */
     private final Location location;
 
     /**
-     * The organiser of the to-do.
-     * This is an optional property.
+     * The organiser of the to-do. This is an optional property.
      */
     private final Organiser organiser;
 
     /**
-     * The percentage completion of the to-do.
-     * This is an optional property.
+     * The percentage completion of the to-do. This is an optional property.
      */
     private final PercentComplete percentComplete;
 
     /**
-     * The priority level of the to-do.
-     * This is an optional property.
+     * The priority level of the to-do. This is an optional property.
      */
     private final Priority priority;
 
     /**
-     * The recurrence identifier for the to-do.
-     * This is an optional property.
+     * The recurrence identifier for the to-do. This is an optional property.
      */
     private final RecurrenceId recurrenceId;
 
     /**
-     * The sequence number for the to-do (used for versioning).
-     * This is an optional property.
+     * The sequence number for the to-do (used for versioning). This is an optional property.
      */
     private final SequenceNumber sequenceNumber;
 
     /**
-     * The status of the to-do (e.g., NEEDS-ACTION, COMPLETED, IN-PROGRESS).
-     * This is an optional property.
+     * The status of the to-do (e.g., NEEDS-ACTION, COMPLETED, IN-PROGRESS). This is an
+     * optional property.
      */
     private final Status status;
 
     /**
-     * The summary or title of the to-do.
-     * This is an optional property.
+     * The summary or title of the to-do. This is an optional property.
      */
     private final Summary summary;
 
     /**
-     * The uniform resource locator (URL) associated with the to-do.
-     * This is an optional property.
+     * The uniform resource locator (URL) associated with the to-do. This is an optional property.
      */
     private final UniformResourceLocator uniformResourceLocator;
 
     /**
-     * The recurrence rule for the to-do.
-     * This is an optional property that should not occur more than once.
+     * The recurrence rule for the to-do. This is an optional property that should not occur more
+     * than once.
      */
     private final RecurrenceRule recurrenceRule;
 
     /**
-     * The due date and time of the to-do.
-     * Either this or duration may appear in a to-do, but not both.
-     * This is an optional property.
+     * The due date and time of the to-do. Either this or duration may appear in a to-do, but
+     * not both. This is an optional property.
      */
     private final DateTimeDue dateTimeDue;
 
     /**
-     * The duration of the to-do.
-     * Either this or dateTimeDue may appear in a to-do, but not both.
-     * If duration appears, then dateTimeStart must also appear.
-     * This is an optional property.
+     * The duration of the to-do. Either this or dateTimeDue may appear in a to-do, but not both. If
+     * duration appears, then dateTimeStart must also appear. This is an optional property.
      */
     private final Duration duration;
 
     /**
-     * The list of attachments associated with the to-do.
-     * This is an optional property that may occur more than once.
+     * The list of attachments associated with the to-do. This is an optional property that may
+     * occur more than once.
      */
     private final List<Attachment> attachments;
 
     /**
-     * The list of attendees for the to-do.
-     * This is an optional property that may occur more than once.
+     * The list of attendees for the to-do. This is an optional property that may occur more
+     * than once.
      */
     private final List<Attendee> attendees;
 
     /**
-     * The list of categories for the to-do.
-     * This is an optional property that may occur more than once.
+     * The list of categories for the to-do. This is an optional property that may occur more
+     * than once.
      */
     private final List<Categories> categories;
 
     /**
-     * The list of comments for the to-do.
-     * This is an optional property that may occur more than once.
+     * The list of comments for the to-do. This is an optional property that may occur more
+     * than once.
      */
     private final List<Comment> comments;
 
     /**
-     * The list of contacts for the to-do.
-     * This is an optional property that may occur more than once.
+     * The list of contacts for the to-do. This is an optional property that may occur more
+     * than once.
      */
     private final List<Contact> contacts;
 
     /**
-     * The list of exception date and times for the to-do.
-     * This is an optional property that may occur more than once.
+     * The list of exception date and times for the to-do. This is an optional property that may
+     * occur more than once.
      */
     private final List<ExceptionDateTimes> exceptionDateTimes;
 
     /**
-     * The list of request statuses for the to-do.
-     * This is an optional property that may occur more than once.
+     * The list of request statuses for the to-do. This is an optional property that may occur more
+     * than once.
      */
     private final List<RequestStatus> requestStatuses;
 
     /**
-     * The list of related to-dos.
-     * This is an optional property that may occur more than once.
+     * The list of related to-dos. This is an optional property that may occur more than once.
      */
     private final List<RelatedTo> relatedToList;
 
     /**
-     * The list of resources for the to-do.
-     * This is an optional property that may occur more than once.
+     * The list of resources for the to-do. This is an optional property that may occur more
+     * than once.
      */
     private final List<Resources> resources;
 
     /**
-     * The list of recurrence date and times for the to-do.
-     * This is an optional property that may occur more than once.
+     * The list of recurrence date and times for the to-do. This is an optional property that may
+     * occur more than once.
      */
     private final List<RecurrenceDateTimes> recurrenceDateTimes;
 
@@ -247,10 +227,10 @@ public final class Todo implements ComponentProperty {
      * Constructs a new To-do instance with the specified properties.
      * <p>
      * This constructor is private to enforce the use of the builder pattern for creating
-     * To-do instances. Use {@link #builder()} to create new To-do objects.
+     * {@code To-do} instances. Use {@link #builder()} to create new To-do objects.
      *
-     * @param dateTimeStamp          the date and time stamp when the to-do was created (required)
-     * @param uniqueIdentifier       the unique identifier for this to-do (required)
+     * @param dateTimeStamp          the date and time stamp when the to-do was created
+     * @param uniqueIdentifier       the unique identifier for this to-do
      * @param classification         the access classification for the to-do
      * @param dateTimeCompleted      the date and time when the to-do was completed
      * @param dateTimeCreated        the date and time when the to-do was created
@@ -350,8 +330,8 @@ public final class Todo implements ComponentProperty {
     /**
      * Creates a new builder instance for constructing To-do objects.
      * <p>
-     * This is the preferred way to create To-do instances, as it provides a flexible
-     * and readable approach to setting the various optional and required properties.
+     * This is the preferred way to create To-do instances, as it provides a flexible and readable
+     * approach to setting the various optional and required properties.
      *
      * @return a new TodoBuilder instance
      */
@@ -360,12 +340,12 @@ public final class Todo implements ComponentProperty {
     }
 
     /**
-     * Builder class for constructing To-do instances using the builder pattern.
+     * Builder class for constructing {@code To-do} instances using the builder pattern.
      * <p>
-     * This builder provides a fluent interface for creating Todo objects with the required
-     * dateTimeStamp and uniqueIdentifier properties, and various optional properties.
-     * The builder enforces RFC 5545 constraints, such as ensuring that dateTimeDue and
-     * duration are mutually exclusive.
+     * This builder provides a fluent interface for creating {@code To-do} objects with the required
+     * {@code dateTimeStamp} and uniqueIdentifier properties, and various optional properties. The
+     * builder enforces RFC 5545 constraints, such as ensuring that dateTimeDue and duration are
+     * mutually exclusive.
      * <p>
      * Example usage:
      * <pre>{@code
@@ -543,7 +523,7 @@ public final class Todo implements ComponentProperty {
         /**
          * Sets the date and time stamp for the to-do.
          *
-         * @param dateTimeStamp the date and time stamp when the to-do was created (required)
+         * @param dateTimeStamp the date and time stamp when the to-do was created
          * @return this builder instance for method chaining
          */
         public TodoBuilder withDateTimeStamp(DateTimeStamp dateTimeStamp) {
@@ -554,7 +534,7 @@ public final class Todo implements ComponentProperty {
         /**
          * Sets the unique identifier for the to-do.
          *
-         * @param uniqueIdentifier the unique identifier for this to-do (required)
+         * @param uniqueIdentifier the unique identifier for this to-do
          * @return this builder instance for method chaining
          */
         public TodoBuilder withUniqueIdentifier(UniqueIdentifier uniqueIdentifier) {
@@ -730,7 +710,8 @@ public final class Todo implements ComponentProperty {
         /**
          * Sets the URL for the to-do.
          *
-         * @param uniformResourceLocator the uniform resource locator (URL) associated with the to-do
+         * @param uniformResourceLocator the uniform resource locator (URL) associated with
+         *                               the to-do
          * @return this builder instance for method chaining
          */
         public TodoBuilder withUniformResourceLocator(UniformResourceLocator uniformResourceLocator) {
@@ -750,8 +731,8 @@ public final class Todo implements ComponentProperty {
         }
 
         /**
-         * Sets the due date and time for the to-do.
-         * Cannot be used together with {@link #withDuration(Duration)}.
+         * Sets the due date and time for the to-do. Cannot be used together
+         * with {@link #withDuration(Duration)}.
          *
          * @param dateTimeDue the due date and time of the to-do
          * @return this builder instance for method chaining
@@ -762,9 +743,9 @@ public final class Todo implements ComponentProperty {
         }
 
         /**
-         * Sets the duration for the to-do.
-         * Cannot be used together with {@link #withDateTimeDue(DateTimeDue)}.
-         * If duration is set, dateTimeStart should also be set.
+         * Sets the duration for the to-do. Cannot be used together
+         * with {@link #withDateTimeDue(DateTimeDue)}. If duration is set, dateTimeStart should also
+         * be set.
          *
          * @param duration the duration of the to-do
          * @return this builder instance for method chaining
@@ -885,14 +866,14 @@ public final class Todo implements ComponentProperty {
         }
 
         /**
-         * Builds a new {@link Todo} instance with the configured properties.
+         * Builds a new to-do instance with the configured properties.
          * <p>
-         * This method validates that all required properties are set and that
-         * mutually exclusive properties (such as dateTimeDue and duration) are
-         * not both specified.
+         * This method validates that all required properties are set and that mutually exclusive
+         * properties (such as {@code dateTimeDue} and {@code duration}) are not both specified.
          *
          * @return a new to-do instance
-         * @throws IllegalArgumentException if required fields (dateTimeStamp, uniqueIdentifier) are not set
+         * @throws IllegalArgumentException if required fields (dateTimeStamp, uniqueIdentifier) are
+         *                                  not set
          * @throws IllegalStateException    if both dateTimeDue and duration are set simultaneously
          */
         public Todo build() {
@@ -924,10 +905,10 @@ public final class Todo implements ComponentProperty {
     /**
      * Formats this to-do component as an iCalendar string representation.
      * <p>
-     * This method generates the iCalendar text format for the to-do component,
-     * including all its properties formatted according to RFC 5545 specification.
-     * The output includes the {@code BEGIN:VTODO} and {@code END:VTODO} delimiters and all
-     * configured properties in the proper format.
+     * This method generates the iCalendar text format for the to-do component, including all its
+     * properties formatted according to RFC 5545 specification. The output includes the
+     * {@code BEGIN:VTODO} and {@code END:VTODO} delimiters and all configured properties in the
+     * proper format.
      *
      * @return the iCalendar string representation of this to-do
      */

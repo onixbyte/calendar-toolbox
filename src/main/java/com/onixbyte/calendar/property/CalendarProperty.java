@@ -25,21 +25,20 @@ package com.onixbyte.calendar.property;
 /**
  * Base interface for all iCalendar calendar-level properties.
  * <p>
- * This interface defines the common contract for properties that belong to the
- * calendar object itself, rather than to individual components within the calendar.
- * Calendar properties provide metadata about the entire calendar and its supported
- * features.
+ * This interface defines the common contract for properties that belong to the calendar
+ * object itself, rather than to individual components within the calendar. Calendar properties
+ * provide metadata about the entire calendar and its supported features.
  * <p>
  * Examples of calendar properties include:
  * <ul>
- *   <li>VERSION - the iCalendar specification version</li>
- *   <li>PRODID - the product identifier that created the calendar</li>
- *   <li>CALSCALE - the calendar scale (e.g., Gregorian)</li>
- *   <li>METHOD - the iCalendar method (e.g., PUBLISH, REQUEST)</li>
+ *   <li>{@code VERSION} - the iCalendar specification version</li>
+ *   <li>{@code PRODID} - the product identifier that created the calendar</li>
+ *   <li>{@code CALSCALE} - the calendar scale (e.g., Gregorian)</li>
+ *   <li>{@code METHOD} - the iCalendar method (e.g., PUBLISH, REQUEST)</li>
  * </ul>
  * <p>
- * All implementing classes must provide a {@link #formatted()} method that returns
- * the iCalendar string representation of the property.
+ * All implementing classes must provide a {@link #formatted()} method that returns the iCalendar
+ * string representation of the property.
  *
  * @author siujamo
  * @author zihluwang
@@ -51,8 +50,8 @@ public interface CalendarProperty {
     /**
      * Returns the formatted iCalendar representation of this calendar property.
      * <p>
-     * The format typically follows the pattern: PROPERTY[;parameters]:value
-     * where parameters are optional and depend on the specific property type.
+     * The format typically follows the pattern: {@code PROPERTY[;parameters]:value} where
+     * parameters are optional and depend on the specific property type.
      *
      * @return the formatted iCalendar property string
      */

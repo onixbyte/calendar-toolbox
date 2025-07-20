@@ -27,13 +27,12 @@ import java.time.ZoneId;
 /**
  * Represents the {@code TZID} property in an iCalendar component.
  * <p>
- * This property specifies the identifier for the time zone definition for
- * a time component in the property value. This property parameter is
- * commonly used with date-time properties to specify the time zone
- * for interpreting the date-time value.
+ * This property specifies the identifier for the time zone definition for a time component in the
+ * property value. This property parameter is commonly used with date-time properties to specify the
+ * time zone for interpreting the date-time value.
  * <p>
- * The property value is a time zone identifier that references a time zone
- * definition in the iCalendar object.
+ * The property value is a time zone identifier that references a time zone definition in the
+ * iCalendar object.
  *
  * @author siujamo
  * @author zihluwang
@@ -102,8 +101,8 @@ public final class TimeZoneIdentifier implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this time zone identifier property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this time zone identifier property for
+     * inclusion in an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications.
      *

@@ -29,12 +29,10 @@ import java.time.ZonedDateTime;
 /**
  * Represents the {@code LAST-MODIFIED} property in an iCalendar component.
  * <p>
- * This property specifies the date and time when a calendar component was last
- * modified. It is used to track when the calendar entry was last updated in
- * the calendar store.
+ * This property specifies the date and time when a calendar component was last modified. It is used
+ * to track when the calendar entry was last updated in the calendar store.
  * <p>
- * The property value is always expressed in UTC time format according to
- * RFC 5545 specifications.
+ * The property value is always expressed in UTC time format according to RFC 5545 specifications.
  *
  * @author siujamo
  * @author zihluwang
@@ -48,7 +46,8 @@ public final class LastModified implements ComponentProperty {
     private final ZonedDateTime value;
 
     /**
-     * Constructs a new {@code LastModified} instance with the specified last modification date-time.
+     * Constructs a new {@code LastModified} instance with the specified last
+     * modification date-time.
      *
      * @param value the last modification date-time value in UTC
      */
@@ -76,7 +75,8 @@ public final class LastModified implements ComponentProperty {
         }
 
         /**
-         * Builds a new {@code LastModified} instance with the specified last modification date-time value.
+         * Builds a new {@code LastModified} instance with the specified last modification
+         * date-time value.
          *
          * @param value the last modification date-time value in UTC
          * @return a new {@code LastModified} instance
@@ -87,8 +87,8 @@ public final class LastModified implements ComponentProperty {
     }
 
     /**
-     * Returns the formatted string representation of this last modified property
-     * for inclusion in an iCalendar.
+     * Returns the formatted string representation of this last modified property for inclusion in
+     * an iCalendar.
      * <p>
      * The format follows RFC 5545 specifications and uses UTC timestamp format.
      *

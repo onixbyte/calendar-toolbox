@@ -31,18 +31,19 @@ import com.onixbyte.calendar.util.ParamAppender;
 import java.net.URI;
 
 /**
- * Represents an iCalendar ORGANIZER property, which specifies the organiser of a calendar component.
+ * Represents an iCalendar ORGANIZER property, which specifies the organiser of a
+ * calendar component.
  * <p>
- * The Organiser class encapsulates information about the individual who is responsible for 
- * organising a calendar event, to-do, or journal entry. This includes the organiser's
- * contact information and optional parameters as defined in RFC 5545.
+ * The {@code Organiser} class encapsulates information about the individual who is responsible for
+ * organising a calendar event, to-do, or journal entry. This includes the organiser's contact
+ * information and optional parameters as defined in RFC 5545.
  * <p>
  * The organiser is typically the person who created the calendar component and is responsible
  * for managing it, including sending invitations to attendees and handling responses.
  * <p>
  * This class follows the builder pattern through the {@link OrganiserBuilder} nested class,
  * allowing for flexible construction of organiser objects with optional parameters.
- * 
+ *
  * @author siujamo
  * @author zihluwang
  * @version 1.0.0
@@ -78,11 +79,11 @@ public final class Organiser implements ComponentProperty {
     /**
      * Constructs a new Organiser instance with the specified parameters.
      *
-     * @param commonName the common name (display name) of the organiser
+     * @param commonName              the common name (display name) of the organiser
      * @param directoryEntryReference the directory entry reference for the organiser
-     * @param sentBy the "sent by" information for the organiser
-     * @param language the language preference of the organiser
-     * @param value the URI identifying the organiser (typically a mailto: URI)
+     * @param sentBy                  the "sent by" information for the organiser
+     * @param language                the language preference of the organiser
+     * @param value                   the URI identifying the organiser (typically a mailto: URI)
      * @throws IllegalArgumentException if the URI scheme is not mailto
      */
     private Organiser(
@@ -104,37 +105,37 @@ public final class Organiser implements ComponentProperty {
     }
 
     /**
-     * Creates a new OrganiserBuilder instance for constructing Organiser objects.
+     * Creates a new {@code OrganiserBuilder} instance for constructing {@code Organiser} objects.
      *
-     * @return a new OrganiserBuilder instance
+     * @return a new {@code OrganiserBuilder} instance
      */
     public static OrganiserBuilder builder() {
         return new OrganiserBuilder();
     }
 
     /**
-     * Builder class for constructing Organiser instances using the builder pattern.
+     * Builder class for constructing {@code Organiser} instances using the builder pattern.
      * <p>
-     * This builder provides a fluent interface for creating Organiser objects with
-     * optional parameters. All parameters are optional and can be set independently
-     * according to the requirements of the organiser.
+     * This builder provides a fluent interface for creating {@code Organiser} objects with optional
+     * parameters. All parameters are optional and can be set independently according to the
+     * requirements of the organiser.
      */
     public static class OrganiserBuilder {
         /**
          * The common name (display name) of the organiser being built.
          */
         private CommonName commonName;
-        
+
         /**
          * The directory entry reference for the organiser being built.
          */
         private DirectoryEntryReference directoryEntryReference;
-        
+
         /**
          * The "sent by" information for the organiser being built.
          */
         private SentBy sentBy;
-        
+
         /**
          * The language preference of the organiser being built.
          */
@@ -191,9 +192,9 @@ public final class Organiser implements ComponentProperty {
         }
 
         /**
-         * Builds a new Organiser instance with the specified URI value.
+         * Builds a new {@code Organiser} instance with the specified URI value.
          *
-         * @param value the URI identifying the organiser (typically a mailto: URI)
+         * @param value the URI identifying the organiser (typically a {@code mailto:} URI)
          * @return a new Organiser instance
          * @throws IllegalArgumentException if the URI scheme is not mailto
          */
@@ -206,7 +207,8 @@ public final class Organiser implements ComponentProperty {
          *
          * @param value the string representation of the URI identifying the organiser
          * @return a new Organiser instance
-         * @throws IllegalArgumentException if the URI scheme is not mailto or if the string is invalid
+         * @throws IllegalArgumentException if the URI scheme is not mailto or if the string
+         *                                  is invalid
          */
         public Organiser build(String value) {
             return new Organiser(commonName, directoryEntryReference, sentBy, language, URI.create(value));
@@ -216,8 +218,8 @@ public final class Organiser implements ComponentProperty {
     /**
      * Returns the formatted string representation of this organiser property.
      * <p>
-     * The format follows the iCalendar specification for ORGANIZER properties,
-     * including all configured parameters and the organiser URI value.
+     * The format follows the iCalendar specification for {@code ORGANIZER} properties, including
+     * all configured parameters and the organiser URI value.
      *
      * @return the formatted organiser property string
      */

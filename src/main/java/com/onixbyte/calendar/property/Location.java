@@ -27,16 +27,15 @@ import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.ParamAppender;
 
 /**
- * Represents the iCalendar LOCATION property, which defines the intended venue 
- * for a calendar component.
+ * Represents the iCalendar {@code LOCATION} property, which defines the intended venue for a
+ * calendar component.
  * <p>
- * This property specifies the physical location where an event is taking place,
- * or where a to-do item should be completed. The location can be a simple text
- * description like "Conference Room A" or a more detailed address.
+ * This property specifies the physical location where an event is taking place, or where a to-do
+ * item should be completed. The location can be a simple text description like "Conference Room A"
+ * or a more detailed address.
  * <p>
- * The LOCATION property supports optional parameters for language specification
- * and alternate text representation, making it suitable for internationalised
- * calendar applications.
+ * The {@code LOCATION} property supports optional parameters for language specification and
+ * alternate text representation, making it suitable for internationalised calendar applications.
  * <p>
  * Instances of this class are immutable and can be created using the builder pattern
  * via {@link #builder()}.
@@ -49,20 +48,20 @@ import com.onixbyte.calendar.util.ParamAppender;
 public final class Location implements ComponentProperty {
 
     /**
-     * Optional parameter specifying an alternate text representation for the location.
-     * This can be used to reference external resources containing the location information.
+     * Optional parameter specifying an alternate text representation for the location. This can be
+     * used to reference external resources containing the location information.
      */
     private final AlternateTextRepresentation alternateTextRepresentation;
 
     /**
-     * Optional parameter specifying the language of the location text.
-     * This helps with internationalisation and localisation of calendar data.
+     * Optional parameter specifying the language of the location text. This helps with
+     * internationalisation and localisation of calendar data.
      */
     private final Language language;
 
     /**
-     * The actual location text value.
-     * This contains the venue or location description for the calendar component.
+     * The actual location text value. This contains the venue or location description for the
+     * calendar component.
      */
     private final String value;
 
@@ -70,8 +69,8 @@ public final class Location implements ComponentProperty {
      * Constructs a new Location instance with the specified parameters.
      *
      * @param alternateTextRepresentation optional alternate text representation parameter
-     * @param language optional language parameter
-     * @param value the location text value
+     * @param language                    optional language parameter
+     * @param value                       the location text value
      */
     private Location(
             AlternateTextRepresentation alternateTextRepresentation,
@@ -95,16 +94,16 @@ public final class Location implements ComponentProperty {
     /**
      * Builder class for constructing Location instances.
      * <p>
-     * This builder follows the builder pattern and allows for the optional configuration
-     * of alternate text representation and language parameters before creating the
-     * final Location instance.
+     * This builder follows the builder pattern and allows for the optional configuration of
+     * alternate text representation and language parameters before creating the final
+     * {@code Location} instance.
      */
     public static class LocationBuilder {
         /**
          * Optional alternate text representation parameter.
          */
         private AlternateTextRepresentation alternateTextRepresentation;
-        
+
         /**
          * Optional language parameter.
          */
@@ -154,8 +153,8 @@ public final class Location implements ComponentProperty {
     /**
      * Returns the formatted iCalendar representation of this location property.
      * <p>
-     * The format follows the iCalendar specification: LOCATION[;parameters]:value
-     * where parameters may include language and alternate text representation if specified.
+     * The format follows the iCalendar specification: {@code LOCATION[;parameters]:value} where
+     * parameters may include language and alternate text representation if specified.
      *
      * @return the formatted iCalendar property string
      */

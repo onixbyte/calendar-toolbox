@@ -32,14 +32,14 @@ import java.util.Objects;
  * Represents an iCalendar VJOURNAL component, which defines a journal entry.
  * <p>
  * The Journal class encapsulates all the properties and details of a calendar journal entry,
- * including timing information, content, and other journal-specific data.
- * This class follows the iCalendar specification (RFC 5545) for VJOURNAL components.
+ * including timing information, content, and other journal-specific data. This class follows the
+ * iCalendar specification (RFC 5545) for {@code VJOURNAL} components.
  * <p>
- * Journal entries represent diary entries, notes, or other textual content that can be
- * associated with a specific date and time in a calendar system.
+ * Journal entries represent diary entries, notes, or other textual content that can be associated
+ * with a specific date and time in a calendar system.
  * <p>
- * This class follows the builder pattern through the {@link JournalBuilder} nested class,
- * allowing for flexible construction of journal objects with optional properties.
+ * This class follows the builder pattern through the {@link JournalBuilder} nested class, allowing
+ * for flexible construction of journal objects with optional properties.
  *
  * @author siujamo
  * @author zihluwang
@@ -49,145 +49,138 @@ import java.util.Objects;
 public final class Journal implements ComponentProperty {
 
     /**
-     * The component name for VJOURNAL as defined in RFC 5545.
+     * The component name for {@code VJOURNAL} as defined in RFC 5545.
      */
     private final static String COMPONENT_NAME = "VJOURNAL";
 
     /**
-     * The date and time stamp indicating when the journal entry was created.
-     * This is a required property.
+     * The date and time stamp indicating when the journal entry was created. This is a
+     * required property.
      */
     private final DateTimeStamp dateTimeStamp;
 
     /**
-     * The unique identifier for this journal entry.
-     * This is a required property.
+     * The unique identifier for this journal entry. This is a required property.
      */
     private final UniqueIdentifier uniqueIdentifier;
 
     /**
-     * The access classification for the journal entry (e.g., PUBLIC, PRIVATE, CONFIDENTIAL).
-     * This is an optional property.
+     * The access classification for the journal entry (e.g., PUBLIC, PRIVATE, CONFIDENTIAL). This
+     * is an optional property.
      */
     private final Classification classification;
 
     /**
-     * The date and time when the journal entry was created.
-     * This is an optional property.
+     * The date and time when the journal entry was created. This is an optional property.
      */
     private final DateTimeCreated dateTimeCreated;
 
     /**
-     * The start date and time of the journal entry.
-     * This is an optional property.
+     * The start date and time of the journal entry. This is an optional property.
      */
     private final DateTimeStart dateTimeStart;
 
     /**
-     * The date and time when the journal entry was last modified.
-     * This is an optional property.
+     * The date and time when the journal entry was last modified. This is an optional property.
      */
     private final LastModified lastModified;
 
     /**
-     * The organiser of the journal entry.
-     * This is an optional property.
+     * The organiser of the journal entry. This is an optional property.
      */
     private final Organiser organiser;
 
     /**
-     * The recurrence identifier for the journal entry.
-     * This is an optional property.
+     * The recurrence identifier for the journal entry. This is an optional property.
      */
     private final RecurrenceId recurrenceId;
 
     /**
-     * The sequence number for the journal entry (used for versioning).
-     * This is an optional property.
+     * The sequence number for the journal entry (used for versioning). This is an
+     * optional property.
      */
     private final SequenceNumber sequenceNumber;
 
     /**
-     * The status of the journal entry (e.g., DRAFT, FINAL, CANCELLED).
-     * This is an optional property.
+     * The status of the journal entry (e.g., DRAFT, FINAL, CANCELLED). This is an
+     * optional property.
      */
     private final Status status;
 
     /**
-     * The summary or title of the journal entry.
-     * This is an optional property.
+     * The summary or title of the journal entry. This is an optional property.
      */
     private final Summary summary;
 
     /**
-     * The uniform resource locator (URL) associated with the journal entry.
-     * This is an optional property.
+     * The uniform resource locator (URL) associated with the journal entry. This is an
+     * optional property.
      */
     private final UniformResourceLocator uniformResourceLocator;
 
     /**
-     * The recurrence rule for the journal entry.
-     * This is an optional property that should not occur more than once.
+     * The recurrence rule for the journal entry. This is an optional property that should not occur
+     * more than once.
      */
     private final RecurrenceRule recurrenceRule;
 
     /**
-     * The list of attachments associated with the journal entry.
-     * This is an optional property that may occur more than once.
+     * The list of attachments associated with the journal entry. This is an optional property that
+     * may occur more than once.
      */
     private final List<Attachment> attachments;
 
     /**
-     * The list of attendees for the journal entry.
-     * This is an optional property that may occur more than once.
+     * The list of attendees for the journal entry. This is an optional property that may occur more
+     * than once.
      */
     private final List<Attendee> attendees;
 
     /**
-     * The list of categories for the journal entry.
-     * This is an optional property that may occur more than once.
+     * The list of categories for the journal entry. This is an optional property that may occur
+     * more than once.
      */
     private final List<Categories> categories;
 
     /**
-     * The list of comments for the journal entry.
-     * This is an optional property that may occur more than once.
+     * The list of comments for the journal entry. This is an optional property that may occur more
+     * than once.
      */
     private final List<Comment> comments;
 
     /**
-     * The list of contacts for the journal entry.
-     * This is an optional property that may occur more than once.
+     * The list of contacts for the journal entry. This is an optional property that may occur more
+     * than once.
      */
     private final List<Contact> contacts;
 
     /**
-     * The list of descriptions for the journal entry.
-     * This is an optional property that may occur more than once.
+     * The list of descriptions for the journal entry. This is an optional property that may occur
+     * more than once.
      */
     private final List<Description> descriptions;
 
     /**
-     * The list of exception date and times for the journal entry.
-     * This is an optional property that may occur more than once.
+     * The list of exception date and times for the journal entry. This is an optional property that
+     * may occur more than once.
      */
     private final List<ExceptionDateTimes> exceptionDateTimes;
 
     /**
-     * The list of related journal entries.
-     * This is an optional property that may occur more than once.
+     * The list of related journal entries. This is an optional property that may occur more
+     * than once.
      */
     private final List<RelatedTo> relatedToList;
 
     /**
-     * The list of recurrence date and times for the journal entry.
-     * This is an optional property that may occur more than once.
+     * The list of recurrence date and times for the journal entry. This is an optional property
+     * that may occur more than once.
      */
     private final List<RecurrenceDateTimes> recurrenceDate;
 
     /**
-     * The list of request statuses for the journal entry.
-     * This is an optional property that may occur more than once.
+     * The list of request statuses for the journal entry. This is an optional property that may
+     * occur more than once.
      */
     private final List<RequestStatus> requestStatuses;
 
@@ -195,10 +188,10 @@ public final class Journal implements ComponentProperty {
      * Constructs a new Journal instance with the specified properties.
      * <p>
      * This constructor is private to enforce the use of the builder pattern for creating
-     * Journal instances. Use {@link #builder()} to create new Journal objects.
+     * {@code Journal} instances. Use {@link #builder()} to create new Journal objects.
      *
-     * @param dateTimeStamp          the date and time stamp when the journal entry was created (required)
-     * @param uniqueIdentifier       the unique identifier for this journal entry (required)
+     * @param dateTimeStamp          the date and time stamp when the journal entry was created
+     * @param uniqueIdentifier       the unique identifier for this journal entry
      * @param classification         the access classification for the journal entry
      * @param dateTimeCreated        the date and time when the journal entry was created
      * @param dateTimeStart          the start date and time of the journal entry
@@ -274,8 +267,8 @@ public final class Journal implements ComponentProperty {
     /**
      * Creates a new builder instance for constructing Journal objects.
      * <p>
-     * This is the preferred way to create Journal instances, as it provides a flexible
-     * and readable approach to setting the various optional and required properties.
+     * This is the preferred way to create Journal instances, as it provides a flexible and readable
+     * approach to setting the various optional and required properties.
      *
      * @return a new JournalBuilder instance
      */
@@ -287,8 +280,8 @@ public final class Journal implements ComponentProperty {
      * Builder class for constructing Journal instances using the builder pattern.
      * <p>
      * This builder provides a fluent interface for creating Journal objects with the required
-     * dateTimeStamp and uniqueIdentifier properties, and various optional properties.
-     * The builder enforces RFC 5545 constraints for journal components.
+     * {@code dateTimeStamp} and uniqueIdentifier properties, and various optional properties. The
+     * builder enforces RFC 5545 constraints for journal components.
      * <p>
      * Example usage:
      * <pre>{@code
@@ -419,7 +412,7 @@ public final class Journal implements ComponentProperty {
         /**
          * Sets the date and time stamp for the journal entry.
          *
-         * @param stamp the date and time stamp when the journal entry was created (required)
+         * @param stamp the date and time stamp when the journal entry was created
          * @return this builder instance for method chaining
          */
         public JournalBuilder withDateTimeStamp(DateTimeStamp stamp) {
@@ -430,7 +423,7 @@ public final class Journal implements ComponentProperty {
         /**
          * Sets the unique identifier for the journal entry.
          *
-         * @param uid the unique identifier for this journal entry (required)
+         * @param uid the unique identifier for this journal entry
          * @return this builder instance for method chaining
          */
         public JournalBuilder withUniqueIdentifier(UniqueIdentifier uid) {

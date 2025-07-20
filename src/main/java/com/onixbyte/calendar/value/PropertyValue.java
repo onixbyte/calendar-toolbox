@@ -25,9 +25,9 @@ package com.onixbyte.calendar.value;
 /**
  * Base interface for all iCalendar property values.
  * <p>
- * This interface defines the common contract for value objects that represent
- * the data portion of iCalendar properties. Property values are the actual
- * content that appears after the colon in iCalendar property lines.
+ * This interface defines the common contract for value objects that represent the data portion of
+ * iCalendar properties. Property values are the actual content that appears after the colon in
+ * iCalendar property lines.
  * <p>
  * Examples of property values include:
  * <ul>
@@ -37,11 +37,11 @@ package com.onixbyte.calendar.value;
  *   <li>Free/busy time values (time periods with availability status)</li>
  * </ul>
  * <p>
- * Property values are typically more complex than simple strings and require
- * specific formatting rules defined by the iCalendar specification (RFC 5545).
+ * Property values are typically more complex than simple strings and require specific formatting
+ * rules defined by the iCalendar specification (RFC 5545).
  * <p>
- * All implementing classes must provide a {@link #formatted()} method that returns
- * the iCalendar-compliant string representation of the value.
+ * All implementing classes must provide a {@link #formatted()} method that returns the
+ * iCalendar-compliant string representation of the value.
  *
  * @author siujamo
  * @author zihluwang
@@ -53,8 +53,8 @@ public interface PropertyValue {
     /**
      * Returns the formatted iCalendar representation of this property value.
      * <p>
-     * The format must comply with the iCalendar specification (RFC 5545)
-     * for the specific value type being represented.
+     * The format must comply with the iCalendar specification (RFC 5545) for the specific value
+     * type being represented.
      *
      * @return the formatted iCalendar value string
      */
