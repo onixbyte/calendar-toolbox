@@ -26,27 +26,104 @@ import com.onixbyte.calendar.util.Formatters;
 
 import java.time.ZonedDateTime;
 
+/**
+ * Represents the iCalendar DTSTAMP property, which specifies the date and time 
+ * when a calendar component was created or last modified.
+ * <p>
+ * The DTSTAMP property indicates when the calendar component instance was created
+ * or last modified by the calendar user agent. This property is required for most
+ * calendar components and provides important metadata about the component's lifecycle.
+ * <p>
+ * Key characteristics of the date/time stamp:
+ * <ul>
+ *   <li>Always expressed in UTC time (with 'Z' suffix)</li>
+ *   <li>Automatically set by the calendar application</li>
+ *   <li>Updated whenever the component is modified</li>
+ *   <li>Used for synchronization and conflict resolution</li>
+ * </ul>
+ * <p>
+ * The DTSTAMP property is essential for:
+ * <ul>
+ *   <li>Calendar synchronization protocols</li>
+ *   <li>Determining the most recent version of a component</li>
+ *   <li>Conflict resolution in collaborative calendaring</li>
+ *   <li>Audit trails and change tracking</li>
+ *   <li>Performance optimization in calendar applications</li>
+ * </ul>
+ * <p>
+ * Unlike CREATED and LAST-MODIFIED properties, DTSTAMP is updated every time
+ * the component is processed, even if no substantive changes are made. This
+ * makes it useful for tracking when components were last processed by the
+ * calendar system.
+ * <p>
+ * The value is always formatted in UTC using the pattern: YYYYMMDDTHHMMSSZ
+ * <p>
+ * Instances of this class are immutable and can be created using the builder pattern
+ * via {@link #builder()}.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public final class DateTimeStamp implements ComponentProperty {
 
+    /**
+     * The date and time stamp value.
+     * This represents when the component was created or last modified.
+     */
     private final ZonedDateTime value;
 
+    /**
+     * Constructs a new DateTimeStamp instance with the specified date/time value.
+     *
+     * @param value the date and time stamp value
+     */
     private DateTimeStamp(ZonedDateTime value) {
         this.value = value;
     }
 
+    /**
+     * Creates a new builder instance for constructing a DateTimeStamp.
+     *
+     * @return a new DateTimeStampBuilder instance
+     */
     public static DateTimeStampBuilder builder() {
         return new DateTimeStampBuilder();
     }
 
+    /**
+     * Builder class for constructing DateTimeStamp instances.
+     * <p>
+     * This builder provides a simple factory method for creating DateTimeStamp
+     * instances with the specified date/time value.
+     */
     public static class DateTimeStampBuilder {
+        /**
+         * Private constructor to enforce use of the factory method.
+         */
         private DateTimeStampBuilder() {
         }
 
+        /**
+         * Creates a new DateTimeStamp instance with the specified date/time value.
+         *
+         * @param value the date and time stamp value
+         * @return a new DateTimeStamp instance
+         */
         public DateTimeStamp build(ZonedDateTime value) {
             return new DateTimeStamp(value);
         }
     }
 
+    /**
+     * Returns the formatted iCalendar representation of this date/time stamp property.
+     * <p>
+     * The format follows the iCalendar specification: DTSTAMP:YYYYMMDDTHHMMSSZ
+     * The value is always formatted in UTC with the 'Z' suffix.
+     *
+     * @return the formatted iCalendar property string
+     */
     @Override
     public String formatted() {
         return "DTSTAMP:" + value.format(Formatters.ICALENDAR_UTC_TIMESTAMP_FORMATTER);

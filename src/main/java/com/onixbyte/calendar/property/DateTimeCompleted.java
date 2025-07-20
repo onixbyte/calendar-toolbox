@@ -26,27 +26,74 @@ import com.onixbyte.calendar.util.Formatters;
 
 import java.time.ZonedDateTime;
 
+/**
+ * Represents the {@code COMPLETED} property in an iCalendar component.
+ * <p>
+ * This property defines the date and time when a calendar component (typically
+ * a to-do) was completed. It is commonly used with {@code VTODO} components
+ * to track when a task was finished.
+ * <p>
+ * The property value is always expressed in UTC time format according to
+ * RFC 5545 specifications.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ */
 public final class DateTimeCompleted implements ComponentProperty {
 
+    /**
+     * The completion date-time value in UTC.
+     */
     private final ZonedDateTime value;
 
+    /**
+     * Constructs a new {@code DateTimeCompleted} instance with the specified completion date-time.
+     *
+     * @param value the completion date-time value in UTC
+     */
     private DateTimeCompleted(ZonedDateTime value) {
         this.value = value;
     }
 
+    /**
+     * Creates a new builder for constructing {@code DateTimeCompleted} instances.
+     *
+     * @return a new {@code DateTimeCompletedBuilder}
+     */
     public static DateTimeCompletedBuilder builder() {
         return new DateTimeCompletedBuilder();
     }
 
+    /**
+     * Builder class for creating {@code DateTimeCompleted} instances.
+     */
     public static class DateTimeCompletedBuilder {
+        /**
+         * Private constructor to enforce builder pattern usage.
+         */
         private DateTimeCompletedBuilder() {
         }
 
+        /**
+         * Builds a new {@code DateTimeCompleted} instance with the specified completion date-time value.
+         *
+         * @param value the completion date-time value in UTC
+         * @return a new {@code DateTimeCompleted} instance
+         */
         public DateTimeCompleted build(ZonedDateTime value) {
             return new DateTimeCompleted(value);
         }
     }
 
+    /**
+     * Returns the formatted string representation of this completion date-time property
+     * for inclusion in an iCalendar.
+     * <p>
+     * The format follows RFC 5545 specifications and uses UTC timestamp format.
+     *
+     * @return the formatted {@code COMPLETED} property string
+     */
     @Override
     public String formatted() {
         return "COMPLETED:" + value.format(Formatters.ICALENDAR_UTC_TIMESTAMP_FORMATTER);

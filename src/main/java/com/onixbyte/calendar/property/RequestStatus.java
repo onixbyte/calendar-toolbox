@@ -33,12 +33,29 @@ import java.util.Objects;
  * provides a brief explanation, and additional data may include further context.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class RequestStatus implements ComponentProperty {
 
+    /**
+     * The status class value (1-5) indicating the general outcome category.
+     */
     private final int statusClass;
+    
+    /**
+     * The status detail value (0-99) providing additional specificity within the class.
+     */
     private final int statusDetail;
+    
+    /**
+     * The mandatory description providing human-readable explanation of the status.
+     */
     private final String description;
+    
+    /**
+     * Optional additional data providing further context for the status.
+     */
     private final String additionalData;
 
     /**
@@ -72,11 +89,25 @@ public final class RequestStatus implements ComponentProperty {
         this.additionalData = additionalData;
     }
 
+    /**
+     * Creates a new builder instance for constructing RequestStatus objects.
+     *
+     * @return a new RequestStatusBuilder instance
+     */
     public static RequestStatusBuilder builder() {
         return new RequestStatusBuilder();
     }
 
+    /**
+     * Builder class for constructing RequestStatus instances.
+     * <p>
+     * This builder provides factory methods for creating RequestStatus instances
+     * with or without additional data.
+     */
     public static class RequestStatusBuilder {
+        /**
+         * Private constructor to enforce use through the factory method.
+         */
         private RequestStatusBuilder() {
         }
 
@@ -184,6 +215,18 @@ public final class RequestStatus implements ComponentProperty {
         return additionalData;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this RequestStatus.
+     * <p>
+     * Two RequestStatus objects are considered equal if they have the same
+     * status class, status detail, description, and additional data (including
+     * both being null for additional data).
+     * </p>
+     *
+     * @param o the reference object with which to compare
+     * @return {@code true} if this object is the same as the obj argument;
+     *         {@code false} otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -195,6 +238,16 @@ public final class RequestStatus implements ComponentProperty {
                 Objects.equals(additionalData, that.additionalData);
     }
 
+    /**
+     * Returns a hash code value for this RequestStatus.
+     * <p>
+     * This method is supported for the benefit of hash tables such as those
+     * provided by {@link java.util.HashMap}. The hash code is computed based
+     * on the status class, status detail, description, and additional data.
+     * </p>
+     *
+     * @return a hash code value for this object
+     */
     @Override
     public int hashCode() {
         return Objects.hash(statusClass, statusDetail, description, additionalData);

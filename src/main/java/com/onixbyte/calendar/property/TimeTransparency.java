@@ -22,12 +22,69 @@
 
 package com.onixbyte.calendar.property;
 
+/**
+ * Enumeration representing the iCalendar TRANSP property values.
+ * <p>
+ * The TRANSP property defines whether a calendar component is transparent or
+ * opaque with respect to busy time searches. This property is used to indicate
+ * whether the time consumed by the component should be considered when performing
+ * free/busy time calculations.
+ * <p>
+ * Time transparency affects how calendar applications handle scheduling:
+ * <ul>
+ *   <li>OPAQUE events block out time and show as busy</li>
+ *   <li>TRANSPARENT events do not block out time and show as free</li>
+ * </ul>
+ * <p>
+ * Common use cases:
+ * <ul>
+ *   <li>OPAQUE - Regular meetings, appointments, important events</li>
+ *   <li>TRANSPARENT - Reminders, birthdays, holidays, tentative events</li>
+ * </ul>
+ * <p>
+ * This property is particularly important for:
+ * <ul>
+ *   <li>Free/busy time calculations</li>
+ *   <li>Automatic scheduling systems</li>
+ *   <li>Calendar conflict detection</li>
+ *   <li>Resource booking systems</li>
+ * </ul>
+ * <p>
+ * If not specified, the default value is OPAQUE for most calendar components.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public enum TimeTransparency implements ComponentProperty {
 
+    /**
+     * Indicates that the time covered by the component should be considered busy.
+     * <p>
+     * Events with OPAQUE transparency will block out time in free/busy calculations
+     * and appear as busy time slots. This is the typical setting for meetings,
+     * appointments, and other events that require the person's full attention.
+     */
     OPAQUE,
+
+    /**
+     * Indicates that the time covered by the component should be considered free.
+     * <p>
+     * Events with TRANSPARENT transparency will not block out time in free/busy
+     * calculations and allow other events to be scheduled at the same time.
+     * This is useful for reminders, birthdays, holidays, or tentative events.
+     */
     TRANSPARENT,
     ;
 
+    /**
+     * Returns the formatted iCalendar representation of this time transparency property.
+     * <p>
+     * The format follows the iCalendar specification: TRANSP:value
+     *
+     * @return the formatted iCalendar property string
+     */
     @Override
     public String formatted() {
         return "TRANSP:" + name();

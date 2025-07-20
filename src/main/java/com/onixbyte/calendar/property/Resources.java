@@ -28,14 +28,47 @@ import com.onixbyte.calendar.util.ParamAppender;
 
 import java.util.List;
 
+/**
+ * Represents the {@code RESOURCES} property in an iCalendar component.
+ * <p>
+ * This property defines the equipment or resources anticipated for an activity
+ * specified by a calendar component. It can contain multiple resource values
+ * separated by commas.
+ * <p>
+ * The property supports optional parameters for alternate text representation
+ * and language specification to enhance accessibility and internationalisation.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ */
 public final class Resources implements ComponentProperty {
 
+    /**
+     * The optional alternate text representation parameter for this resources list.
+     */
     private final AlternateTextRepresentation alternateTextRepresentation;
 
+    /**
+     * The optional language parameter for this resources list.
+     */
     private final Language language;
 
+    /**
+     * The list of resource names.
+     */
+    /**
+     * The list of resource names.
+     */
     private final List<String> values;
 
+    /**
+     * Constructs a new {@code Resources} instance with the specified parameters.
+     *
+     * @param alternateTextRepresentation the optional alternate text representation parameter
+     * @param language                   the optional language parameter
+     * @param values                     the list of resource names
+     */
     private Resources(
             AlternateTextRepresentation alternateTextRepresentation,
             Language language,
@@ -46,17 +79,41 @@ public final class Resources implements ComponentProperty {
         this.values = values;
     }
 
+    /**
+     * Creates a new builder for constructing {@code Resources} instances.
+     *
+     * @return a new {@code ResourcesBuilder}
+     */
     public static ResourcesBuilder builder() {
         return new ResourcesBuilder();
     }
 
+    /**
+     * Builder class for creating {@code Resources} instances with optional parameters.
+     */
     public static class ResourcesBuilder {
+        /**
+         * The optional alternate text representation parameter.
+         */
         private AlternateTextRepresentation alternateTextRepresentation;
+        
+        /**
+         * The optional language parameter.
+         */
         private Language language;
 
+        /**
+         * Private constructor to enforce builder pattern usage.
+         */
         private ResourcesBuilder() {
         }
 
+        /**
+         * Sets the alternate text representation parameter for this resources list.
+         *
+         * @param alternateTextRepresentation the alternate text representation parameter
+         * @return this builder instance for method chaining
+         */
         public ResourcesBuilder withAlternateTextRepresentation(
                 AlternateTextRepresentation alternateTextRepresentation
         ) {
@@ -64,20 +121,37 @@ public final class Resources implements ComponentProperty {
             return this;
         }
 
+        /**
+         * Sets the language parameter for this resources list.
+         *
+         * @param language the language parameter
+         * @return this builder instance for method chaining
+         */
         public ResourcesBuilder withLanguage(Language language) {
             this.language = language;
             return this;
         }
 
-        public Resources build(List<String> values) {
-            return new Resources(alternateTextRepresentation, language, values);
-        }
-
+        /**
+         * Builds a new {@code Resources} instance with the specified resource names.
+         *
+         * @param values the resource names as varargs
+         * @return a new {@code Resources} instance
+         */
         public Resources build(String... values) {
             return new Resources(alternateTextRepresentation, language, List.of(values));
         }
     }
 
+    /**
+     * Returns the formatted string representation of this resources property
+     * for inclusion in an iCalendar.
+     * <p>
+     * The format follows RFC 5545 specifications and includes any specified parameters.
+     * Multiple resource names are joined with commas.
+     *
+     * @return the formatted {@code RESOURCES} property string
+     */
     @Override
     public String formatted() {
         var builder = new StringBuilder();

@@ -30,12 +30,42 @@ import com.onixbyte.calendar.value.FreeBusyTimeValue;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Represents the {@code FREEBUSY} property in an iCalendar free/busy component.
+ * <p>
+ * This property defines one or more free or busy time intervals. It is used to
+ * specify times when a calendar user is free or busy. The property can contain
+ * multiple time periods and supports optional free/busy time type specification.
+ * <p>
+ * The property value consists of one or more period values that define the
+ * free/busy time intervals.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ */
 public final class FreeBusyTime implements ComponentProperty {
 
+    /**
+     * The optional free/busy time type parameter.
+     */
     private final FreeBusyTimeType fbType;
 
+    /**
+     * The list of free/busy time period values.
+     */
+    /**
+     * The list of free/busy time period values.
+     */
     private final List<FreeBusyTimeValue> values;
 
+    /**
+     * Constructs a new {@code FreeBusyTime} instance with the specified parameters.
+     *
+     * @param fbType the optional free/busy time type parameter
+     * @param values the list of free/busy time period values (must not be empty)
+     * @throws IllegalArgumentException if the values list is null or empty
+     */
     private FreeBusyTime(FreeBusyTimeType fbType, List<FreeBusyTimeValue> values) {
         if (Objects.isNull(values) || values.isEmpty()) {
             throw new IllegalArgumentException("Free/Busy Time values should not be empty.");
@@ -45,30 +75,73 @@ public final class FreeBusyTime implements ComponentProperty {
         this.values = values;
     }
 
+    /**
+     * Creates a new builder for constructing {@code FreeBusyTime} instances.
+     *
+     * @return a new {@code FreeBusyTimeBuilder}
+     */
     public static FreeBusyTimeBuilder builder() {
         return new FreeBusyTimeBuilder();
     }
 
+    /**
+     * Builder class for creating {@code FreeBusyTime} instances with optional parameters.
+     */
     public static class FreeBusyTimeBuilder {
+        /**
+         * The optional free/busy time type parameter.
+         */
         private FreeBusyTimeType fbType;
 
+        /**
+         * Private constructor to enforce builder pattern usage.
+         */
         private FreeBusyTimeBuilder() {
         }
 
+        /**
+         * Sets the free/busy time type parameter for this free/busy time property.
+         *
+         * @param fbType the free/busy time type parameter
+         * @return this builder instance for method chaining
+         */
         public FreeBusyTimeBuilder withFreeBusyType(FreeBusyTimeType fbType) {
             this.fbType = fbType;
             return this;
         }
 
+        /**
+         * Builds a new {@code FreeBusyTime} instance with the specified list of time period values.
+         *
+         * @param values the list of free/busy time period values
+         * @return a new {@code FreeBusyTime} instance
+         * @throws IllegalArgumentException if the values list is null or empty
+         */
         public FreeBusyTime build(List<FreeBusyTimeValue> values) {
             return new FreeBusyTime(fbType, values);
         }
 
+        /**
+         * Builds a new {@code FreeBusyTime} instance with the specified time period values.
+         *
+         * @param values the free/busy time period values as varargs
+         * @return a new {@code FreeBusyTime} instance
+         * @throws IllegalArgumentException if no values are provided
+         */
         public FreeBusyTime build(FreeBusyTimeValue... values) {
             return new FreeBusyTime(fbType, List.of(values));
         }
     }
 
+    /**
+     * Returns the formatted string representation of this free/busy time property
+     * for inclusion in an iCalendar.
+     * <p>
+     * The format follows RFC 5545 specifications and includes any specified parameters.
+     * Multiple time periods are separated by commas.
+     *
+     * @return the formatted {@code FREEBUSY} property string
+     */
     public String formatted() {
         var builder = new StringBuilder();
         builder.append("FREEBUSY");
