@@ -25,16 +25,82 @@ package com.onixbyte.calendar.value;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Represents a UTC offset value used in iCalendar time zone properties.
+ * <p>
+ * UTC offset values specify the offset from Coordinated Universal Time (UTC)
+ * for a particular time zone. The offset is represented as a signed time
+ * difference in hours, minutes, and optionally seconds.
+ * <p>
+ * UTC offsets are used in:
+ * <ul>
+ *   <li>TZOFFSETFROM - the offset from UTC before a time zone transition</li>
+ *   <li>TZOFFSETTO - the offset from UTC after a time zone transition</li>
+ * </ul>
+ * <p>
+ * The format follows the pattern: [+/-]HHMM[SS]
+ * <ul>
+ *   <li>Sign: + for positive offset (east of UTC), - for negative offset (west of UTC)</li>
+ *   <li>Hours: 00-12 (time zones do not exceed ±12 hours from UTC)</li>
+ *   <li>Minutes: 00-59</li>
+ *   <li>Seconds: 00-59 (optional, for sub-minute precision)</li>
+ * </ul>
+ * <p>
+ * Examples:
+ * <ul>
+ *   <li>+0500 - 5 hours ahead of UTC (e.g., Pakistan Standard Time)</li>
+ *   <li>-0800 - 8 hours behind UTC (e.g., Pacific Standard Time)</li>
+ *   <li>+0530 - 5 hours 30 minutes ahead of UTC (e.g., India Standard Time)</li>
+ *   <li>-0330 - 3 hours 30 minutes behind UTC (e.g., Newfoundland Standard Time)</li>
+ * </ul>
+ * <p>
+ * Special restrictions:
+ * <ul>
+ *   <li>The values "-0000" and "-000000" are not allowed (use "+0000" for UTC)</li>
+ *   <li>Hours must be between 0 and 12 inclusive</li>
+ *   <li>Minutes and seconds must be between 0 and 59 inclusive</li>
+ * </ul>
+ * <p>
+ * Instances of this class are immutable and can be created using the static
+ * factory methods {@link #ofPositive(int, int)} and {@link #ofNegative(int, int)}.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public final class UtcOffset implements PropertyValue {
 
+    /**
+     * The sign of the offset: '+' for positive (east of UTC), '-' for negative (west of UTC).
+     */
     private final char sign;
 
+    /**
+     * The hours component of the offset (0-12).
+     */
     private final int hour;
 
+    /**
+     * The minutes component of the offset (0-59).
+     */
     private final int minute;
 
+    /**
+     * The seconds component of the offset (0-59), optional.
+     * May be null if seconds precision is not needed.
+     */
     private final Integer second;
 
+    /**
+     * Constructs a new UtcOffset with the specified components.
+     *
+     * @param sign   the sign of the offset ('+' or '-')
+     * @param hour   the hours component (0-12)
+     * @param minute the minutes component (0-59)
+     * @param second the seconds component (0-59), may be null
+     * @throws IllegalArgumentException if any component is out of range or if "-0000" is specified
+     */
     private UtcOffset(char sign, int hour, int minute, Integer second) {
         // The value of "-0000" and "-000000" are not allowed.
         if (sign == '-' && hour == 0 && minute == 0 && (Objects.isNull(second) || second == 0)) {
@@ -59,22 +125,64 @@ public final class UtcOffset implements PropertyValue {
         this.second = second;
     }
 
+    /**
+     * Creates a positive UTC offset (east of UTC) with the specified components.
+     *
+     * @param hour   the hours component (0-12)
+     * @param minute the minutes component (0-59)
+     * @param second the seconds component (0-59), may be null
+     * @return a new UtcOffset instance
+     * @throws IllegalArgumentException if any component is out of range
+     */
     public static UtcOffset ofPositive(int hour, int minute, Integer second) {
         return new UtcOffset('+', hour, minute, second);
     }
 
+    /**
+     * Creates a positive UTC offset (east of UTC) with the specified hours and minutes.
+     *
+     * @param hour   the hours component (0-12)
+     * @param minute the minutes component (0-59)
+     * @return a new UtcOffset instance
+     * @throws IllegalArgumentException if any component is out of range
+     */
     public static UtcOffset ofPositive(int hour, int minute) {
         return ofPositive(hour, minute, null);
     }
 
+    /**
+     * Creates a negative UTC offset (west of UTC) with the specified components.
+     *
+     * @param hour   the hours component (0-12)
+     * @param minute the minutes component (0-59)
+     * @param second the seconds component (0-59), may be null
+     * @return a new UtcOffset instance
+     * @throws IllegalArgumentException if any component is out of range or if "-0000" is specified
+     */
     public static UtcOffset ofNegative(int hour, int minute, Integer second) {
         return new UtcOffset('-', hour, minute, second);
     }
 
+    /**
+     * Creates a negative UTC offset (west of UTC) with the specified hours and minutes.
+     *
+     * @param hour   the hours component (0-12)
+     * @param minute the minutes component (0-59)
+     * @return a new UtcOffset instance
+     * @throws IllegalArgumentException if any component is out of range or if "-0000" is specified
+     */
     public static UtcOffset ofNegative(int hour, int minute) {
         return ofNegative(hour, minute, null);
     }
 
+    /**
+     * Returns the formatted iCalendar representation of this UTC offset.
+     * <p>
+     * The format follows the pattern: [+/-]HHMM[SS]
+     * where seconds are included only if specified.
+     *
+     * @return the formatted UTC offset string
+     */
     @Override
     public String formatted() {
         var builder = new StringBuilder();
