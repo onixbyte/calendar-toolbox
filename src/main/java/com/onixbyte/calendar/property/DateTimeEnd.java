@@ -200,7 +200,7 @@ public final class DateTimeEnd implements ComponentProperty, DateTimeProperty {
     @Override
     public String formatted() {
         var builder = new StringBuilder();
-        builder.append("{@code DTEND}");
+        builder.append("DTEND");
 
         var paramAppender = ParamAppender.of(builder);
 
