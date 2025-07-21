@@ -67,6 +67,10 @@ public final class Calendar {
      */
     private final Version version;
 
+    /**
+     * The list of additional calendar properties such as custom properties with {@code X-} prefix
+     * or app-specific properties associated with this calendar.
+     */
     private final List<CalendarProperty> calendarProperties;
 
     /**
@@ -84,7 +88,7 @@ public final class Calendar {
      * @param method             the method property defining the calendar's intended use
      * @param productIdentifier  the product identifier that created this calendar
      * @param version            the version of the iCalendar specification used
-     * @param calendarProperties other {@code X-} calendar properties and app-specific properties
+     * @param calendarProperties the list of additional calendar properties
      * @param components         the list of calendar components to include
      */
     private Calendar(
@@ -220,9 +224,9 @@ public final class Calendar {
         }
 
         /**
-         * Lorem ipsum.
+         * sets the list of additional properties for this builder's {@code Calendar}
          *
-         * @param calendarProperties calendar properties
+         * @param calendarProperties array of individual {@code CalendarProperty} objects to add
          * @return this builder instance for method chaining
          */
         public CalendarBuilder withCalendarProperties(CalendarProperty... calendarProperties) {
