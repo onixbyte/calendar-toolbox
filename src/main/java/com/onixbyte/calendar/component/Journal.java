@@ -410,6 +410,12 @@ public final class Journal implements ComponentProperty {
         private List<RequestStatus> requestStatuses;
 
         /**
+         * Private constructor prevent from being instantiated from non-standard operations.
+         */
+        private JournalBuilder() {
+        }
+
+        /**
          * Sets the date and time stamp for the journal entry.
          *
          * @param stamp the date and time stamp when the journal entry was created
