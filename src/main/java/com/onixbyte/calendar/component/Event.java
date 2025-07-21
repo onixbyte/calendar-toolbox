@@ -23,7 +23,6 @@
 package com.onixbyte.calendar.component;
 
 import com.onixbyte.calendar.component.property.*;
-import com.onixbyte.calendar.util.PropertyAppender;
 
 import java.time.Duration;
 import java.util.List;
@@ -883,49 +882,45 @@ public final class Event implements CalendarComponent {
      * @return the formatted iCalendar {@code VEVENT} component string
      */
     public String formatted() {
-        var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
+        var composer = ComponentComposer.of(COMPONENT_NAME);
 
-        builder.append("BEGIN").append(":").append(COMPONENT_NAME);
+        composer.append(dateTimeStamp);
+        composer.append(uniqueIdentifier);
+        composer.append(dateTimeStart);
 
-        propertyAppender.append(dateTimeStamp);
-        propertyAppender.append(uniqueIdentifier);
-        propertyAppender.append(dateTimeStart);
-
-        propertyAppender.append(classification);
-        propertyAppender.append(dateTimeCreated);
-        propertyAppender.append(description);
-        propertyAppender.append(geographicPosition);
-        propertyAppender.append(lastModified);
-        propertyAppender.append(location);
-        propertyAppender.append(organiser);
-        propertyAppender.append(priority);
-        propertyAppender.append(sequenceNumber);
-        propertyAppender.append(status);
-        propertyAppender.append(summary);
-        propertyAppender.append(timeTransparency);
-        propertyAppender.append(uniformResourceLocator);
-        propertyAppender.append(recurrenceId);
-        propertyAppender.append(recurrenceRule);
+        composer.append(classification);
+        composer.append(dateTimeCreated);
+        composer.append(description);
+        composer.append(geographicPosition);
+        composer.append(lastModified);
+        composer.append(location);
+        composer.append(organiser);
+        composer.append(priority);
+        composer.append(sequenceNumber);
+        composer.append(status);
+        composer.append(summary);
+        composer.append(timeTransparency);
+        composer.append(uniformResourceLocator);
+        composer.append(recurrenceId);
+        composer.append(recurrenceRule);
 
         if (Objects.nonNull(dateTimeEnd)) {
-            propertyAppender.append(dateTimeEnd);
+            composer.append(dateTimeEnd);
         } else if (Objects.nonNull(duration)) {
-            propertyAppender.append(duration);
+            composer.append(duration);
         }
 
-        propertyAppender.append(attachments);
-        propertyAppender.append(attendees);
-        propertyAppender.append(categories);
-        propertyAppender.append(comments);
-        propertyAppender.append(contacts);
-        propertyAppender.append(exceptionDateTimes);
-        propertyAppender.append(requestStatuses);
-        propertyAppender.append(related);
-        propertyAppender.append(resources);
-        propertyAppender.append(recurrenceDateTimes);
+        composer.append(attachments);
+        composer.append(attendees);
+        composer.append(categories);
+        composer.append(comments);
+        composer.append(contacts);
+        composer.append(exceptionDateTimes);
+        composer.append(requestStatuses);
+        composer.append(related);
+        composer.append(resources);
+        composer.append(recurrenceDateTimes);
 
-        builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
-        return builder.toString();
+        return composer.end();
     }
 }

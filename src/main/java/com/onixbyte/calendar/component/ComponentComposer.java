@@ -20,9 +20,10 @@
  * SOFTWARE.
  */
 
-package com.onixbyte.calendar.util;
+package com.onixbyte.calendar.component;
 
 import com.onixbyte.calendar.component.property.ComponentProperty;
+import com.onixbyte.calendar.util.Formatters;
 import com.onixbyte.common.util.CollectionUtil;
 
 import java.time.Duration;
@@ -30,7 +31,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Utility class for appending iCalendar properties to a StringBuilder.
+ * Utility class for appending iCalendar properties to a {@code StringBuilder}.
  * <p>
  * This class provides a convenient way to append formatted property strings to iCalendar component
  * output. It handles the proper formatting of properties including line breaks, folding for
@@ -49,43 +50,39 @@ import java.util.Objects;
  * <p>
  * Usage example:
  * <pre>{@code
- * StringBuilder builder = new StringBuilder("BEGIN:VEVENT");
- * PropertyAppender appender = PropertyAppender.of(builder);
- * appender.append(summary);
- * appender.append(description);
- * appender.append(attendees);
- * builder.append("\nEND:VEVENT");
  * }</pre>
  *
  * @author siujamo
  * @author zihluwang
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
-public final class PropertyAppender {
+final class ComponentComposer {
 
-    /**
-     * The {@code StringBuilder} instance to which properties are appended.
-     */
     private final StringBuilder builder;
 
-    /**
-     * Constructs a new {@code PropertyAppender} with the specified {@code StringBuilder}.
-     *
-     * @param builder the {@code StringBuilder} to append properties to
-     */
-    private PropertyAppender(StringBuilder builder) {
-        this.builder = builder;
+    private final String componentName;
+
+    private ComponentComposer(String componentName) {
+        this.builder = new StringBuilder();
+        this.componentName = componentName;
+    }
+
+    public static ComponentComposer of(String componentName) {
+        return new ComponentComposer(componentName);
     }
 
     /**
-     * Creates a new {@code PropertyAppender} instance for the specified {@code StringBuilder}.
+     * Start composing a component.
+     * <p>
+     * A header refers to the start of this component, in the pattern of
+     * "{@code BEGIN:componentName}".
      *
-     * @param builder the {@code StringBuilder} to append properties to
-     * @return a new PropertyAppender instance
+     * @return the appender instance
      */
-    public static PropertyAppender of(StringBuilder builder) {
-        return new PropertyAppender(builder);
+    public ComponentComposer start() {
+        builder.append("BEGIN").append(":").append(componentName);
+        return this;
     }
 
     /**
@@ -97,11 +94,11 @@ public final class PropertyAppender {
      * @param duration the duration to append, may be null
      * @return the underlying {@code StringBuilder} for method chaining
      */
-    public StringBuilder append(Duration duration) {
+    public ComponentComposer append(Duration duration) {
         if (Objects.nonNull(duration)) {
             builder.append("\n").append(Formatters.folding(Formatters.formatDuration(duration)));
         }
-        return builder;
+        return this;
     }
 
     /**
@@ -113,11 +110,11 @@ public final class PropertyAppender {
      * @param componentProperty the component property to append, may be null
      * @return the underlying {@code StringBuilder} for method chaining
      */
-    public StringBuilder append(ComponentProperty componentProperty) {
+    public ComponentComposer append(ComponentProperty componentProperty) {
         if (Objects.nonNull(componentProperty)) {
             builder.append("\n").append(Formatters.folding(componentProperty.formatted()));
         }
-        return builder;
+        return this;
     }
 
     /**
@@ -129,12 +126,20 @@ public final class PropertyAppender {
      * @param componentProperties the list of component properties to append, may be null or empty
      * @return the underlying {@code StringBuilder} for method chaining
      */
-    public StringBuilder append(List<? extends ComponentProperty> componentProperties) {
+    public ComponentComposer append(List<? extends ComponentProperty> componentProperties) {
         if (CollectionUtil.notEmpty(componentProperties)) {
-            componentProperties.forEach((componentProperty) -> builder
-                    .append("\n")
-                    .append(Formatters.folding(componentProperty.formatted())));
+            componentProperties.forEach((componentProperty) -> builder.append("\n").append(Formatters.folding(componentProperty.formatted())));
         }
-        return builder;
+        return this;
+    }
+
+    /**
+     * End composing.
+     *
+     * @return a text block represents the component in iCalendar format.
+     */
+    public String end() {
+        builder.append("\n").append("END").append(":").append(componentName);
+        return builder.toString();
     }
 }

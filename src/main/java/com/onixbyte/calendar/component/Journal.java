@@ -23,7 +23,6 @@
 package com.onixbyte.calendar.component;
 
 import com.onixbyte.calendar.component.property.*;
-import com.onixbyte.calendar.util.PropertyAppender;
 
 import java.util.List;
 import java.util.Objects;
@@ -705,37 +704,33 @@ public final class Journal implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
+        var composer = ComponentComposer.of(COMPONENT_NAME);
 
-        builder.append("BEGIN").append(":").append(COMPONENT_NAME);
+        composer.start()
+                .append(dateTimeStamp)
+                .append(uniqueIdentifier)
+                .append(classification)
+                .append(dateTimeCreated)
+                .append(dateTimeStart)
+                .append(lastModified)
+                .append(organiser)
+                .append(recurrenceId)
+                .append(sequenceNumber)
+                .append(status)
+                .append(summary)
+                .append(uniformResourceLocator)
+                .append(recurrenceRule)
+                .append(attachments)
+                .append(attendees)
+                .append(categories)
+                .append(comments)
+                .append(contacts)
+                .append(descriptions)
+                .append(exceptionDateTimes)
+                .append(relatedToList)
+                .append(recurrenceDate)
+                .append(requestStatuses);
 
-        propertyAppender.append(dateTimeStamp);
-        propertyAppender.append(uniqueIdentifier);
-        propertyAppender.append(classification);
-        propertyAppender.append(dateTimeCreated);
-        propertyAppender.append(dateTimeStart);
-        propertyAppender.append(lastModified);
-        propertyAppender.append(organiser);
-        propertyAppender.append(recurrenceId);
-        propertyAppender.append(sequenceNumber);
-        propertyAppender.append(status);
-        propertyAppender.append(summary);
-        propertyAppender.append(uniformResourceLocator);
-        propertyAppender.append(recurrenceRule);
-        propertyAppender.append(attachments);
-        propertyAppender.append(attendees);
-        propertyAppender.append(categories);
-        propertyAppender.append(comments);
-        propertyAppender.append(contacts);
-        propertyAppender.append(descriptions);
-        propertyAppender.append(exceptionDateTimes);
-        propertyAppender.append(relatedToList);
-        propertyAppender.append(recurrenceDate);
-        propertyAppender.append(requestStatuses);
-
-        builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
-
-        return builder.toString();
+        return composer.end();
     }
 }

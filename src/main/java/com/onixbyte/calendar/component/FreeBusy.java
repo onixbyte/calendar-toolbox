@@ -23,7 +23,6 @@
 package com.onixbyte.calendar.component;
 
 import com.onixbyte.calendar.component.property.*;
-import com.onixbyte.calendar.util.PropertyAppender;
 
 import java.util.List;
 
@@ -383,26 +382,21 @@ public final class FreeBusy implements CalendarComponent {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
+        var composer = ComponentComposer.of(COMPONENT_NAME);
 
-        builder.append("BEGIN:").append(COMPONENT_NAME);
-
-        propertyAppender.append(dateTimeStamp);
-        propertyAppender.append(uniqueIdentifier);
-        propertyAppender.append(contact);
-        propertyAppender.append(dateTimeStart);
-        propertyAppender.append(dateTimeEnd);
-        propertyAppender.append(organiser);
-        propertyAppender.append(contact);
-        propertyAppender.append(uniformResourceLocator);
-        propertyAppender.append(attendees);
-        propertyAppender.append(comments);
-        propertyAppender.append(freeBusyTimes);
-        propertyAppender.append(requestStatuses);
-
-        builder.append("\n").append("END:").append(COMPONENT_NAME);
-
-        return builder.toString();
+        return composer.start()
+                .append(dateTimeStamp)
+                .append(uniqueIdentifier)
+                .append(contact)
+                .append(dateTimeStart)
+                .append(dateTimeEnd)
+                .append(organiser)
+                .append(contact)
+                .append(uniformResourceLocator)
+                .append(attendees)
+                .append(comments)
+                .append(freeBusyTimes)
+                .append(requestStatuses)
+                .end();
     }
 }

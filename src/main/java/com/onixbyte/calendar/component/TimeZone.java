@@ -23,7 +23,6 @@
 package com.onixbyte.calendar.component;
 
 import com.onixbyte.calendar.component.property.*;
-import com.onixbyte.calendar.util.PropertyAppender;
 
 import java.util.List;
 
@@ -222,18 +221,15 @@ public final class TimeZone implements CalendarComponent {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
+        var composer = ComponentComposer.of(COMPONENT_NAME);
 
-        builder.append("BEGIN").append(":").append(COMPONENT_NAME);
+        composer.start()
+                .append(timeZoneIdentifier)
+                .append(lastModified)
+                .append(timeZoneUrl)
+                .append(timeZoneProperties);
 
-        propertyAppender.append(timeZoneIdentifier);
-        propertyAppender.append(lastModified);
-        propertyAppender.append(timeZoneUrl);
-        propertyAppender.append(timeZoneProperties);
-
-        builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
-        return builder.toString();
+        return composer.end();
     }
 
     /**
@@ -480,7 +476,7 @@ public final class TimeZone implements CalendarComponent {
              *
              * @return a new TimeZoneProperty instance for standard time
              */
-            public TimeZoneProperty buildAsStandard() {
+            public TimeZoneProperty buildStandard() {
                 return new TimeZoneProperty("STANDARD", dateTimeStart,
                         timeZoneOffsetTo, timeZoneOffsetFrom, recurrenceRule, comments,
                         recurrenceDateTimes, timeZoneNames);
@@ -494,7 +490,7 @@ public final class TimeZone implements CalendarComponent {
              *
              * @return a new TimeZoneProperty instance for daylight time
              */
-            public TimeZoneProperty buildAsDaylight() {
+            public TimeZoneProperty buildDaylight() {
                 return new TimeZoneProperty("DAYLIGHT", dateTimeStart,
                         timeZoneOffsetTo, timeZoneOffsetFrom, recurrenceRule, comments,
                         recurrenceDateTimes, timeZoneNames);
@@ -513,22 +509,18 @@ public final class TimeZone implements CalendarComponent {
          */
         @Override
         public String formatted() {
-            var builder = new StringBuilder();
-            var propertyAppender = PropertyAppender.of(builder);
+            var composer = ComponentComposer.of(componentName);
 
-            builder.append("BEGIN").append(":").append(componentName);
+            composer.start()
+                    .append(dateTimeStart)
+                    .append(timeZoneOffsetTo)
+                    .append(timeZoneOffsetFrom)
+                    .append(recurrenceRule)
+                    .append(comments)
+                    .append(recurrenceDateTimes)
+                    .append(timeZoneNames);
 
-            propertyAppender.append(dateTimeStart);
-            propertyAppender.append(timeZoneOffsetTo);
-            propertyAppender.append(timeZoneOffsetFrom);
-            propertyAppender.append(recurrenceRule);
-
-            propertyAppender.append(comments);
-            propertyAppender.append(recurrenceDateTimes);
-            propertyAppender.append(timeZoneNames);
-
-            builder.append("\n").append("END").append(":").append(componentName);
-            return builder.toString();
+            return composer.end();
         }
     }
 }
