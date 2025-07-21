@@ -96,7 +96,7 @@ final class ComponentComposer {
      */
     public ComponentComposer append(Duration duration) {
         if (Objects.nonNull(duration)) {
-            builder.append("\n").append(Formatters.folding(Formatters.formatDuration(duration)));
+            builder.append("\n").append(Formatters.formatDuration(duration));
         }
         return this;
     }
@@ -112,7 +112,7 @@ final class ComponentComposer {
      */
     public ComponentComposer append(ComponentProperty componentProperty) {
         if (Objects.nonNull(componentProperty)) {
-            builder.append("\n").append(Formatters.folding(componentProperty.formatted()));
+            builder.append("\n").append(componentProperty.formatted());
         }
         return this;
     }
@@ -128,7 +128,7 @@ final class ComponentComposer {
      */
     public ComponentComposer append(List<? extends ComponentProperty> componentProperties) {
         if (CollectionUtil.notEmpty(componentProperties)) {
-            componentProperties.forEach((componentProperty) -> builder.append("\n").append(Formatters.folding(componentProperty.formatted())));
+            componentProperties.forEach((componentProperty) -> builder.append("\n").append(componentProperty.formatted()));
         }
         return this;
     }

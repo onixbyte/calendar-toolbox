@@ -23,6 +23,7 @@
 package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.Parameter;
+import com.onixbyte.calendar.util.Formatters;
 import com.onixbyte.common.util.CollectionUtil;
 
 import java.net.URI;
@@ -72,7 +73,7 @@ final class PropertyComposer {
             builder.append(":").append(value);
         }
 
-        return builder.toString();
+        return Formatters.folding(builder.toString());
     }
 
     public String end(URI value) {
@@ -80,7 +81,7 @@ final class PropertyComposer {
             builder.append(":").append(value.toASCIIString());
         }
 
-        return builder.toString();
+        return Formatters.folding(builder.toString());
     }
 
     public String end(List<String> values) {
@@ -88,7 +89,7 @@ final class PropertyComposer {
             builder.append(":").append(String.join(",", values));
         }
 
-        return builder.toString();
+        return Formatters.folding(builder.toString());
     }
 
     public String end(Duration value) {
@@ -96,6 +97,6 @@ final class PropertyComposer {
             builder.append(":").append(value);
         }
 
-        return builder.toString();
+        return Formatters.folding(builder.toString());
     }
 }
