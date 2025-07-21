@@ -23,6 +23,7 @@
 package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.RelationshipType;
+import com.onixbyte.calendar.util.PropertyComposer;
 
 /**
  * Represents the {@code RELATED-TO} property in an iCalendar component.

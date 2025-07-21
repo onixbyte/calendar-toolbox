@@ -23,6 +23,7 @@
 package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.Language;
+import com.onixbyte.calendar.util.PropertyComposer;
 
 /**
  * Represents the {@code TZNAME} property in an iCalendar time zone component.

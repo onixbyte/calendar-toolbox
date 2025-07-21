@@ -24,6 +24,7 @@ package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.FreeBusyTimeType;
 import com.onixbyte.calendar.util.Formatters;
+import com.onixbyte.calendar.util.PropertyComposer;
 import com.onixbyte.calendar.value.FreeBusyTimeValue;
 
 import java.util.List;

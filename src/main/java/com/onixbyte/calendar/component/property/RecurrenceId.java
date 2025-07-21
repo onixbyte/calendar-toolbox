@@ -25,6 +25,7 @@ package com.onixbyte.calendar.component.property;
 import com.onixbyte.calendar.parameter.RecurrenceIdentifierRange;
 import com.onixbyte.calendar.parameter.TimeZoneIdentifier;
 import com.onixbyte.calendar.parameter.ValueDataType;
+import com.onixbyte.calendar.util.PropertyComposer;
 
 import java.time.ZonedDateTime;
 

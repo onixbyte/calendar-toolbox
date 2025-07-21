@@ -24,6 +24,7 @@ package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
+import com.onixbyte.calendar.util.PropertyComposer;
 
 /**
  * Represents the iCalendar DESCRIPTION property, which provides a detailed description of a

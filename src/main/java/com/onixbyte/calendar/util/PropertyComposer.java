@@ -20,10 +20,9 @@
  * SOFTWARE.
  */
 
-package com.onixbyte.calendar.component.property;
+package com.onixbyte.calendar.util;
 
 import com.onixbyte.calendar.parameter.Parameter;
-import com.onixbyte.calendar.util.Formatters;
 import com.onixbyte.common.util.CollectionUtil;
 
 import java.net.URI;
@@ -31,7 +30,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
-final class PropertyComposer {
+public final class PropertyComposer {
 
     private final StringBuilder builder;
 

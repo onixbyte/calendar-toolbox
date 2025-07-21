@@ -26,6 +26,7 @@ import com.onixbyte.calendar.parameter.CommonName;
 import com.onixbyte.calendar.parameter.DirectoryEntryReference;
 import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.parameter.SentBy;
+import com.onixbyte.calendar.util.PropertyComposer;
 
 import java.net.URI;
 

@@ -23,6 +23,7 @@
 package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.Language;
+import com.onixbyte.calendar.util.PropertyComposer;
 
 import java.util.List;
 

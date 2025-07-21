@@ -25,6 +25,7 @@ package com.onixbyte.calendar.component.property;
 import com.onixbyte.calendar.parameter.AlarmTriggerRelationship;
 import com.onixbyte.calendar.parameter.ValueDataType;
 import com.onixbyte.calendar.util.Formatters;
+import com.onixbyte.calendar.util.PropertyComposer;
 
 import java.time.Duration;
 import java.time.ZonedDateTime;
