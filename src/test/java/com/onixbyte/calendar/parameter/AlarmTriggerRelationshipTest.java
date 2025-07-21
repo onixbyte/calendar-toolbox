@@ -42,7 +42,7 @@ class AlarmTriggerRelationshipTest {
 
     @Test
     void testEnumNameMapping() {
-        // 验证枚举名称是否符合 RFC 5545
+        // Verify that enum names comply with RFC 5545
         assertEquals("START", AlarmTriggerRelationship.START.name());
         assertEquals("END", AlarmTriggerRelationship.END.name());
     }
