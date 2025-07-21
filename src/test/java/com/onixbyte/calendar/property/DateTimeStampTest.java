@@ -22,6 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
+import com.onixbyte.calendar.component.property.DateTimeStamp;
 import org.junit.jupiter.api.Test;
 
 import java.time.ZonedDateTime;

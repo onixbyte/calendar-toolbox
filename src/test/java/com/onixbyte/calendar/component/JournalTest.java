@@ -22,17 +22,16 @@
 
 package com.onixbyte.calendar.component;
 
-import com.onixbyte.calendar.property.DateTimeStamp;
-import com.onixbyte.calendar.property.UniqueIdentifier;
-import com.onixbyte.calendar.property.Summary;
-import com.onixbyte.calendar.property.Description;
-import com.onixbyte.calendar.property.Status;
-import com.onixbyte.calendar.property.Classification;
+import com.onixbyte.calendar.component.property.DateTimeStamp;
+import com.onixbyte.calendar.component.property.UniqueIdentifier;
+import com.onixbyte.calendar.component.property.Summary;
+import com.onixbyte.calendar.component.property.Description;
+import com.onixbyte.calendar.component.property.Status;
+import com.onixbyte.calendar.component.property.Classification;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.time.ZonedDateTime;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

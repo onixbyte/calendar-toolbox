@@ -22,9 +22,9 @@
 
 package com.onixbyte.calendar.component;
 
-import com.onixbyte.calendar.property.TimeZoneIdentifier;
-import com.onixbyte.calendar.property.LastModified;
-import com.onixbyte.calendar.property.TimeZoneUrl;
+import com.onixbyte.calendar.component.property.TimeZoneIdentifier;
+import com.onixbyte.calendar.component.property.LastModified;
+import com.onixbyte.calendar.component.property.TimeZoneUrl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 

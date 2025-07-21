@@ -22,9 +22,8 @@
 
 package com.onixbyte.calendar.component;
 
-import com.onixbyte.calendar.property.*;
+import com.onixbyte.calendar.component.property.*;
 import com.onixbyte.calendar.util.PropertyAppender;
-import com.onixbyte.common.util.CollectionUtil;
 
 import java.util.List;
 

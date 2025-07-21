@@ -22,7 +22,7 @@
 
 package com.onixbyte.calendar.util;
 
-import com.onixbyte.calendar.property.ComponentProperty;
+import com.onixbyte.calendar.component.property.ComponentProperty;
 import com.onixbyte.common.util.CollectionUtil;
 
 import java.time.Duration;

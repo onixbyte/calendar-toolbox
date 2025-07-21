@@ -22,17 +22,16 @@
 
 package com.onixbyte.calendar.component;
 
-import com.onixbyte.calendar.property.Action;
-import com.onixbyte.calendar.property.Trigger;
-import com.onixbyte.calendar.property.Description;
-import com.onixbyte.calendar.property.Summary;
-import com.onixbyte.calendar.property.Attachment;
-import com.onixbyte.calendar.property.RepeatCount;
+import com.onixbyte.calendar.component.property.Action;
+import com.onixbyte.calendar.component.property.Trigger;
+import com.onixbyte.calendar.component.property.Description;
+import com.onixbyte.calendar.component.property.Summary;
+import com.onixbyte.calendar.component.property.Attachment;
+import com.onixbyte.calendar.component.property.RepeatCount;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.time.Duration;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
