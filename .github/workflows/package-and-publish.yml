@@ -58,7 +58,7 @@ jobs:
         run: ./gradlew build -PartefactVersion=${{ github.event.release.tag_name }}
 
       - name: List Output Items
-        run: ls -l ./**/build/libs
+        run: ls -l **/build/libs
 
       - name: Publish to Maven Central
         run: ./gradlew publish
