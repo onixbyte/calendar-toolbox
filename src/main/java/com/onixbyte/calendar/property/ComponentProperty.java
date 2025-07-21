@@ -22,7 +22,40 @@
 
 package com.onixbyte.calendar.property;
 
+/**
+ * Base interface for all iCalendar component properties.
+ * <p>
+ * This interface defines the common contract for properties that can be associated with calendar
+ * components such as events, to-do items, journal entries, and alarms. Component properties contain
+ * descriptive information about the calendar component they belong to.
+ * <p>
+ * Examples of component properties include:
+ * <ul>
+ *   <li>{@code SUMMARY} - a brief description of the component</li>
+ *   <li>{@code DESCRIPTION} - a detailed description of the component</li>
+ *   <li>{@code DTSTART} - the start date/time of the component</li>
+ *   <li>{@code DTEND} - the end date/time of the component</li>
+ *   <li>{@code LOCATION} - the location where the component takes place</li>
+ *   <li>{@code PRIORITY} - the priority level of the component</li>
+ * </ul>
+ * <p>
+ * All implementing classes must provide a {@link #formatted()} method that returns the iCalendar
+ * string representation of the property.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public interface ComponentProperty {
 
+    /**
+     * Returns the formatted iCalendar representation of this component property.
+     * <p>
+     * The format typically follows the pattern: {@code PROPERTY[;parameters]:value} where
+     * parameters are optional and depend on the specific property type.
+     *
+     * @return the formatted iCalendar property string
+     */
     String formatted();
 }

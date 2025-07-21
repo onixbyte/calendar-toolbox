@@ -22,7 +22,43 @@
 
 package com.onixbyte.calendar.component;
 
+/**
+ * Base interface for all iCalendar components.
+ * <p>
+ * This interface defines the common contract for calendar components that can be contained within
+ * an iCalendar object. Components represent the core entities in a calendar system, each with their
+ * own set of properties and behaviors.
+ * <p>
+ * The main types of calendar components include:
+ * <ul>
+ *   <li>{@code VEVENT} - represents a scheduled event</li>
+ *   <li>{@code VTODO} - represents a to-do item or task</li>
+ *   <li>{@code VJOURNAL} - represents a journal entry</li>
+ *   <li>{@code VFREEBUSY} - represents free/busy time information</li>
+ *   <li>{@code VTIMEZONE} - represents time zone information</li>
+ *   <li>{@code VALARM} - represents alarm/reminder information</li>
+ * </ul>
+ * <p>
+ * Each component is delimited by {@code BEGIN:COMPONENT} and {@code END:COMPONENT} markers in the
+ * iCalendar format, with properties specified between these markers.
+ * <p>
+ * All implementing classes must provide a {@link #formatted()} method that returns the complete
+ * iCalendar string representation of the component.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public interface CalendarComponent {
 
+    /**
+     * Returns the formatted iCalendar representation of this component.
+     * <p>
+     * The format includes the {@code BEGIN:COMPONENT} and {@code END:COMPONENT} delimiters with all
+     * component properties formatted between them.
+     *
+     * @return the formatted iCalendar component string
+     */
     String formatted();
 }

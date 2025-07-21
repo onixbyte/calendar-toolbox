@@ -30,6 +30,7 @@ package com.onixbyte.calendar.parameter;
  *
  * @author zihluwang
  * @author siujamo
+ * @version 1.0.0
  */
 public interface Parameter {
 

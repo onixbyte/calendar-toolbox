@@ -22,12 +22,40 @@
 
 package com.onixbyte.calendar.property;
 
+/**
+ * Enumeration representing the iCalendar {@code CALSCALE} property values.
+ * <p>
+ * The {@code CALSCALE} property defines the calendar scale used for the calendar information. This
+ * property specifies the calendar system that should be used to interpret the calendar data, such
+ * as the Gregorian calendar system.
+ * <p>
+ * Currently, only the Gregorian calendar scale is supported as defined in RFC 5545.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public enum CalendarScale implements CalendarProperty {
 
+    /**
+     * The Gregorian calendar scale.
+     * <p>
+     * This is the standard calendar scale used in most calendar applications and is the default
+     * (and currently only) calendar scale supported by the iCalendar specification.
+     */
     GREGORIAN,
     ;
 
+    /**
+     * Returns the formatted string representation of this calendar scale property.
+     * <p>
+     * The format follows the iCalendar specification: "{@code CALSCALE:}" followed by the scale
+     * name in uppercase.
+     *
+     * @return the formatted calendar scale string (e.g., "{@code CALSCALE:GREGORIAN}")
+     */
     public String formatted() {
-        return "CALSCALE:" + name();
+        return "{@code CALSCALE:}" + name();
     }
 }

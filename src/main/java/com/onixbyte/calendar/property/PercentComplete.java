@@ -22,10 +22,32 @@
 
 package com.onixbyte.calendar.property;
 
+/**
+ * Represents the {@code PERCENT-COMPLETE} property in an iCalendar component.
+ * <p>
+ * This property is used to specify the percent completion of a calendar component.
+ * It is commonly used with {@code VTODO} components to track the progress of a task.
+ * <p>
+ * The property value is an integer between 0 and 100, where 0 indicates no completion
+ * and 100 indicates full completion.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ */
 public final class PercentComplete implements ComponentProperty {
 
+    /**
+     * The percent completion value (0-100).
+     */
     private final int value;
 
+    /**
+     * Constructs a new {@code PercentComplete} instance with the specified completion percentage.
+     *
+     * @param value the percent completion value (must be between 0 and 100 inclusive)
+     * @throws IllegalArgumentException if the value is not between 0 and 100
+     */
     private PercentComplete(int value) {
         if (value < 0 || value > 100) {
             throw new IllegalArgumentException("Property PERCENT-COMPLETE should between 0 and 100.");
@@ -34,20 +56,46 @@ public final class PercentComplete implements ComponentProperty {
         this.value = value;
     }
 
+    /**
+     * Creates a new builder for constructing {@code PercentComplete} instances.
+     *
+     * @return a new {@code PercentCompleteBuilder}
+     */
     public static PercentCompleteBuilder builder() {
         return new PercentCompleteBuilder();
     }
 
+    /**
+     * Builder class for creating {@code PercentComplete} instances.
+     */
     public static class PercentCompleteBuilder {
 
+        /**
+         * Private constructor to enforce builder pattern usage.
+         */
         private PercentCompleteBuilder() {
         }
 
+        /**
+         * Builds a new {@code PercentComplete} instance with the specified completion percentage.
+         *
+         * @param value the percent completion value (must be between 0 and 100 inclusive)
+         * @return a new {@code PercentComplete} instance
+         * @throws IllegalArgumentException if the value is not between 0 and 100
+         */
         public PercentComplete build(int value) {
             return new PercentComplete(value);
         }
     }
 
+    /**
+     * Returns the formatted string representation of this percent complete property for inclusion
+     * in an iCalendar.
+     * <p>
+     * The format follows RFC 5545 specifications.
+     *
+     * @return the formatted {@code PERCENT-COMPLETE} property string
+     */
     @Override
     public String formatted() {
         return "PERCENT-COMPLETE:" + value;

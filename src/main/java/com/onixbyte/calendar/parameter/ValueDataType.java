@@ -35,6 +35,8 @@ package com.onixbyte.calendar.parameter;
  * requirements (e.g., {@code DATE-TIME}).
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public enum ValueDataType implements Parameter {
 

@@ -22,28 +22,74 @@
 
 package com.onixbyte.calendar.property;
 
+/**
+ * Represents the {@code URL} property in an iCalendar component.
+ * <p>
+ * This property defines a Uniform Resource Locator (URL) associated with the iCalendar object. It
+ * provides a way to associate a location where additional information about the calendar component
+ * can be found.
+ * <p>
+ * The property value is a URL string that points to a resource on the internet or a local network.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ */
 public final class UniformResourceLocator implements ComponentProperty {
 
+    /**
+     * The URL string value.
+     */
     private final String value;
 
+    /**
+     * Constructs a new {@code UniformResourceLocator} instance with the specified URL.
+     *
+     * @param value the URL string
+     */
     private UniformResourceLocator(String value) {
         this.value = value;
     }
 
+    /**
+     * Creates a new builder for constructing {@code UniformResourceLocator} instances.
+     *
+     * @return a new {@code UniformResourceLocatorBuilder}
+     */
     public static UniformResourceLocatorBuilder builder() {
         return new UniformResourceLocatorBuilder();
     }
 
+    /**
+     * Builder class for creating {@code UniformResourceLocator} instances.
+     */
     public static class UniformResourceLocatorBuilder {
 
+        /**
+         * Private constructor to enforce builder pattern usage.
+         */
         private UniformResourceLocatorBuilder() {
         }
 
+        /**
+         * Builds a new {@code UniformResourceLocator} instance with the specified URL value.
+         *
+         * @param value the URL string
+         * @return a new {@code UniformResourceLocator} instance
+         */
         public UniformResourceLocator build(String value) {
             return new UniformResourceLocator(value);
         }
     }
 
+    /**
+     * Returns the formatted string representation of this URL property for inclusion in
+     * an iCalendar.
+     * <p>
+     * The format follows RFC 5545 specifications.
+     *
+     * @return the formatted {@code URL} property string
+     */
     @Override
     public String formatted() {
         return "URL:" + value;

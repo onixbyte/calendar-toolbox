@@ -25,12 +25,14 @@ package com.onixbyte.calendar.parameter;
 /**
  * Defines the iCalendar {@code CUTYPE} parameter.
  * <p>
- * This parameter specifies the type of calendar user associated with a calendar component.
- * Valid types include individual users, groups, resources, rooms, and unknown types.
+ * This parameter specifies the type of calendar user associated with a calendar component. Valid
+ * types include individual users, groups, resources, rooms, and unknown types.
  * <p>
  * Each constant corresponds to a specific user type defined by the iCalendar specification.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public enum CalendarUserType implements Parameter {
 

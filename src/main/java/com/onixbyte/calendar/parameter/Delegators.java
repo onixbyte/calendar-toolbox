@@ -23,6 +23,7 @@
 package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -36,6 +37,8 @@ import java.util.stream.Stream;
  * the delegators.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class Delegators implements Parameter {
 
@@ -64,8 +67,8 @@ public final class Delegators implements Parameter {
     }
 
     /**
-     * Creates a {@code Delegators} instance from an array of strings that represent URIs.
-     * Each string is converted to a {@link URI}.
+     * Creates a {@code Delegators} instance from an array of strings that represent URIs. Each
+     * string is converted to a {@link URI}.
      *
      * @param delegators one or more strings representing the delegator URIs
      * @return a new {@code Delegators} instance
@@ -73,7 +76,13 @@ public final class Delegators implements Parameter {
      */
     public static Delegators of(String... delegators) {
         var _delegators = Stream.of(delegators)
-                .map(URI::create)
+                .map((delegator) -> {
+                    try {
+                        return new URI(delegator);
+                    } catch (URISyntaxException e) {
+                        throw new IllegalArgumentException("Invalid URI: " + delegator, e);
+                    }
+                })
                 .toList();
         return new Delegators(_delegators);
     }
@@ -90,7 +99,7 @@ public final class Delegators implements Parameter {
     @Override
     public String formatted() {
         var _delegators = values.stream()
-                .map((delegator) -> '"' + delegator.toString() + '"')
+                .map((delegator) -> '"' + delegator.toASCIIString() + '"')
                 .toList();
 
         return "DELEGATED-FROM=" + String.join(",", _delegators);

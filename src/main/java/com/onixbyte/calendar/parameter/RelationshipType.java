@@ -35,6 +35,8 @@ package com.onixbyte.calendar.parameter;
  * where the standard requires a different format, such as {@code DEPENDS-ON}).
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public enum RelationshipType implements Parameter {
 

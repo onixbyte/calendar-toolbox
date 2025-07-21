@@ -29,22 +29,84 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * Utility class providing formatting methods for iCalendar properties and values.
+ * <p>
+ * The Formatters class contains static methods and constants for formatting various iCalendar data
+ * types according to RFC 5545 specifications. This includes date and time formatting,
+ * duration formatting, and value list formatting.
+ * <p>
+ * This class provides predefined {@link DateTimeFormatter} instances for common iCalendar date and
+ * time formats, as well as methods for formatting complex property values.
+ * <p>
+ * All methods in this class are static and the class cannot be instantiated.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public final class Formatters {
 
+    /**
+     * Date and time formatter for UTC timestamps in iCalendar format.
+     * <p>
+     * This formatter produces timestamps in the format "{@code yyyyMMdd'T'HHmmss'Z'}" and is
+     * configured to use UTC timezone.
+     */
     public static final DateTimeFormatter ICALENDAR_UTC_TIMESTAMP_FORMATTER = DateTimeFormatter
             .ofPattern("yyyyMMdd'T'HHmmss'Z'")
             .withZone(ZoneOffset.UTC);
 
+    /**
+     * Date and time formatter for local timestamps in iCalendar format.
+     * <p>
+     * This formatter produces timestamps in the format "{@code yyyyMMdd'T'HHmmss}" without
+     * timezone information.
+     */
     public static final DateTimeFormatter ICALENDAR_TIMESTAMP_FORMATTER = DateTimeFormatter
             .ofPattern("yyyyMMdd'T'HHmmss");
 
+    /**
+     * Date formatter for iCalendar date values.
+     * <p>
+     * This formatter produces dates in the format "{@code yyyyMMdd}".
+     */
     public static final DateTimeFormatter ICALENDAR_DATE_FORMATTER = DateTimeFormatter
             .ofPattern("yyyyMMdd");
 
+    /**
+     * Private constructor to prevent instantiation.
+     * <p>
+     * This class is a utility class with only static methods and should not be instantiated.
+     */
+    private Formatters() {
+        throw new UnsupportedOperationException("Utility class cannot be instantiated");
+    }
+
+    /**
+     * Formats a Duration object into an iCalendar DURATION property string.
+     * <p>
+     * This method converts a Java Duration object into the iCalendar {@code DURATION} property
+     * format as specified in RFC 5545.
+     *
+     * @param duration the duration to format
+     * @return a formatted DURATION property string
+     */
     public static String formatDuration(Duration duration) {
         return "DURATION:" + duration.toString();
     }
 
+    /**
+     * Formats a list of PropertyValue objects into a delimited string.
+     * <p>
+     * This method takes a list of PropertyValue objects and formats them into
+     * a single string with the specified delimiter between values.
+     *
+     * @param delimiter the delimiter to use between values
+     * @param values    the list of PropertyValue objects to format
+     * @return a formatted string with delimited values
+     */
     public static String formatValue(String delimiter, List<? extends PropertyValue> values) {
         var _values = values.stream()
                 .map(PropertyValue::formatted)
@@ -72,7 +134,7 @@ public final class Formatters {
      * </pre>
      *
      * @param builder the StringBuilder containing the text line(s) to be folded
-     * @return a new StringBuilder containing the folded content
+     * @return a folded string with proper line breaks and spacing
      */
     public static String folding(StringBuilder builder) {
         return folding(builder.toString());
@@ -97,7 +159,7 @@ public final class Formatters {
      *   that exists on a long line.
      * </pre>
      *
-     * @param builder the StringBuilder containing the text line(s) to be folded
+     * @param string the string containing the text line(s) to be folded
      * @return a new StringBuilder containing the folded content
      */
     public static String folding(String string) {
@@ -112,15 +174,14 @@ public final class Formatters {
         // Handle first line with max 75 chars
         var end = Math.min(pos + firstLineMaxLength, length);
         folded.append(string, pos, end);
-        folded.append("\r\n");
         pos = end;
 
         // Handle subsequent lines with max 74 chars, each starting with a space
         while (pos < length) {
+            folded.append("\r\n");
             folded.append(' '); // folding space
             end = Math.min(pos + subsequentLineMaxLength, length);
             folded.append(string, pos, end);
-            folded.append("\r\n");
             pos = end;
         }
 

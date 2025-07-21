@@ -24,8 +24,8 @@ package com.onixbyte.calendar.parameter;
 
 /**
  * Represents the iCalendar {@code FMTTYPE} parameter, which specifies the format type of a
- * property value. This parameter is used to indicate the media type (MIME type) of the value
- * of a property, such as the format of a calendar attachment or the content type of a
+ * property value. This parameter is used to indicate the media type (MIME type) of the value of
+ * a property, such as the format of a calendar attachment or the content type of a
  * descriptive property.
  * <p>
  * Instances of this class are immutable and can be created via the static factory method
@@ -33,6 +33,8 @@ package com.onixbyte.calendar.parameter;
  * (e.g., "text/plain", "application/pdf").
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class FormatType implements Parameter {
 

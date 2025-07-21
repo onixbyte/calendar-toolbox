@@ -34,6 +34,8 @@ import java.util.Locale;
  * IETF BCP 47 standard using {@link Locale#toLanguageTag()}.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class Language implements Parameter {
 

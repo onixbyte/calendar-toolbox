@@ -31,16 +31,49 @@ import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
+/**
+ * Represents the {@code TRIGGER} property in an iCalendar alarm component.
+ * <p>
+ * This property specifies when an alarm will trigger. It can specify either a duration before or
+ * after the start or end of the event, or an absolute date-time when the alarm should trigger.
+ * <p>
+ * The property supports optional parameters for value data type specification and alarm trigger
+ * relationship to define relative triggering.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ */
 public final class Trigger implements ComponentProperty {
 
+    /**
+     * The value data type parameter for this trigger (DURATION or DATE-TIME).
+     */
     private final ValueDataType valueDataType;
 
+    /**
+     * The optional alarm trigger relationship parameter (START or END).
+     */
     private final AlarmTriggerRelationship relationship;
 
+    /**
+     * The duration value for relative triggers.
+     */
     private final Duration durationValue;
 
+    /**
+     * The absolute date-time value for absolute triggers.
+     */
     private final ZonedDateTime dateTimeValue;
 
+    /**
+     * Constructs a new {@code Trigger} instance with the specified parameters.
+     *
+     * @param valueDataType the value data type parameter (DURATION or DATE-TIME)
+     * @param relationship  the optional alarm trigger relationship parameter
+     * @param durationValue the duration value for relative triggers
+     * @param dateTimeValue the absolute date-time value for absolute triggers
+     */
     private Trigger(
             ValueDataType valueDataType,
             AlarmTriggerRelationship relationship,
@@ -53,30 +86,70 @@ public final class Trigger implements ComponentProperty {
         this.dateTimeValue = dateTimeValue;
     }
 
+    /**
+     * Creates a new builder for constructing {@code Trigger} instances.
+     *
+     * @return a new {@code TriggerBuilder}
+     */
     public static TriggerBuilder builder() {
         return new TriggerBuilder();
     }
 
+    /**
+     * Builder class for creating {@code Trigger} instances with optional parameters.
+     */
     public static class TriggerBuilder {
+        /**
+         * The optional alarm trigger relationship parameter.
+         */
         private AlarmTriggerRelationship relationship;
 
+        /**
+         * Private constructor to enforce builder pattern usage.
+         */
         private TriggerBuilder() {
         }
 
+        /**
+         * Sets the alarm trigger relationship parameter for this trigger.
+         *
+         * @param relationship the alarm trigger relationship parameter
+         * @return this builder instance for method chaining
+         */
         public TriggerBuilder withRelationship(AlarmTriggerRelationship relationship) {
             this.relationship = relationship;
             return this;
         }
 
+        /**
+         * Builds a new {@code Trigger} instance with a duration value for relative triggering.
+         *
+         * @param value the duration value relative to the event start or end
+         * @return a new {@code Trigger} instance
+         */
         public Trigger build(Duration value) {
             return new Trigger(ValueDataType.DURATION, relationship, value, null);
         }
 
+        /**
+         * Builds a new {@code Trigger} instance with an absolute date-time value.
+         *
+         * @param value the absolute date-time value when the alarm should trigger
+         * @return a new {@code Trigger} instance
+         */
         public Trigger build(ZonedDateTime value) {
             return new Trigger(ValueDataType.DATE_TIME, relationship, null, value);
         }
     }
 
+    /**
+     * Returns the formatted string representation of this trigger property for inclusion in
+     * an iCalendar.
+     * <p>
+     * The format follows RFC 5545 specifications and includes any specified parameters.
+     *
+     * @return the formatted {@code TRIGGER} property string
+     */
     @Override
     public String formatted() {
         var builder = new StringBuilder();

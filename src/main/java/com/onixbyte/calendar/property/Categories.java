@@ -28,39 +28,124 @@ import com.onixbyte.calendar.util.ParamAppender;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the iCalendar {@code CATEGORIES} property, which specifies categories or
+ * subtypes for a calendar component.
+ * <p>
+ * This property is used to categorise or classify calendar components, making it easier to organise
+ * and filter calendar data. Categories can be used to group related events, tasks, or journal
+ * entries together.
+ * <p>
+ * Examples of categories might include:
+ * <ul>
+ *   <li>APPOINTMENT</li>
+ *   <li>BUSINESS</li>
+ *   <li>EDUCATION</li>
+ *   <li>HOLIDAY</li>
+ *   <li>MEETING</li>
+ *   <li>MISCELLANEOUS</li>
+ *   <li>PERSONAL</li>
+ *   <li>PHONE CALL</li>
+ *   <li>SICK DAY</li>
+ *   <li>SPECIAL OCCASION</li>
+ *   <li>TRAVEL</li>
+ *   <li>VACATION</li>
+ * </ul>
+ * <p>
+ * Multiple categories can be specified for a single component, and the property supports optional
+ * language specification for internationalisation.
+ * <p>
+ * Instances of this class are immutable and can be created using the builder pattern
+ * via {@link #builder()}.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public final class Categories implements ComponentProperty {
 
+    /**
+     * Optional parameter specifying the language of the category text. This helps with
+     * internationalisation and localisation of calendar data.
+     */
     private final Language language;
 
+    /**
+     * The list of category names for this component. Each category is a text string that classifies
+     * the component.
+     */
     private final List<String> categories;
 
+    /**
+     * Constructs a new Categories instance with the specified parameters.
+     *
+     * @param language   optional language parameter
+     * @param categories the list of category names
+     */
     private Categories(Language language, List<String> categories) {
         this.language = language;
         this.categories = categories;
     }
 
+    /**
+     * Creates a new builder instance for constructing a Categories property.
+     *
+     * @return a new CategoriesBuilder instance
+     */
     public static CategoriesBuilder builder() {
         return new CategoriesBuilder();
     }
 
+    /**
+     * Builder class for constructing Categories instances.
+     * <p>
+     * This builder allows for optional configuration of language parameters before creating the
+     * final Categories instance with one or more category names.
+     */
     public static class CategoriesBuilder {
+        /**
+         * Optional language parameter.
+         */
         private Language language;
-        private List<String> categories;
 
+        /**
+         * Private constructor to enforce use of the factory method.
+         */
         private CategoriesBuilder() {
-            this.categories = new ArrayList<>();
         }
 
+        /**
+         * Sets the language parameter for the categories.
+         *
+         * @param language the language parameter
+         * @return this builder instance for method chaining
+         */
         public CategoriesBuilder withLanguage(Language language) {
             this.language = language;
             return this;
         }
 
+        /**
+         * Creates a new {@code Categories} instance with the specified category names.
+         *
+         * @param categories one or more category names
+         * @return a new Categories instance
+         */
         public Categories build(String... categories) {
             return new Categories(language, List.of(categories));
         }
     }
 
+    /**
+     * Returns the formatted iCalendar representation of this categories property.
+     * <p>
+     * The format follows the iCalendar specification:
+     * {@code CATEGORIES[;parameters]:value1,value2,...} where multiple categories are separated by
+     * commas and parameters may include language if specified.
+     *
+     * @return the formatted iCalendar property string
+     */
     @Override
     public String formatted() {
         var builder = new StringBuilder();

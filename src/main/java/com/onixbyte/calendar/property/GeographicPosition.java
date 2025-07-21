@@ -22,31 +22,87 @@
 
 package com.onixbyte.calendar.property;
 
+/**
+ * Represents the {@code GEO} property in an iCalendar component.
+ * <p>
+ * This property specifies information related to the global position for the activity specified by
+ * a calendar component. The property value consists of latitude and longitude coordinates expressed
+ * as decimal degrees.
+ * <p>
+ * The latitude represents the location north or south of the equator, and the longitude represents
+ * the location east or west of the prime meridian. Both values are expressed as floating-point
+ * numbers in decimal degrees.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ */
 public final class GeographicPosition implements ComponentProperty {
 
+    /**
+     * The latitude coordinate in decimal degrees. Positive values represent north of the equator,
+     * negative values represent south.
+     */
     private final double latitude;
 
+    /**
+     * The longitude coordinate in decimal degrees. Positive values represent east of the prime
+     * meridian, negative values represent west.
+     */
     private final double longitude;
 
+    /**
+     * Constructs a new {@code GeographicPosition} instance with the specified coordinates.
+     *
+     * @param latitude  the latitude coordinate in decimal degrees
+     * @param longitude the longitude coordinate in decimal degrees
+     */
     private GeographicPosition(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
+    /**
+     * Creates a new builder for constructing {@code GeographicPosition} instances.
+     *
+     * @return a new {@code GeographicPositionBuilder}
+     */
     public static GeographicPositionBuilder builder() {
         return new GeographicPositionBuilder();
     }
 
+    /**
+     * Builder class for creating {@code GeographicPosition} instances.
+     */
     public static class GeographicPositionBuilder {
 
+        /**
+         * Private constructor to enforce builder pattern usage.
+         */
         private GeographicPositionBuilder() {
         }
 
+        /**
+         * Builds a new {@code GeographicPosition} instance with the specified coordinates.
+         *
+         * @param latitude  the latitude coordinate in decimal degrees
+         * @param longitude the longitude coordinate in decimal degrees
+         * @return a new {@code GeographicPosition} instance
+         */
         public GeographicPosition build(double latitude, double longitude) {
             return new GeographicPosition(latitude, longitude);
         }
     }
 
+    /**
+     * Returns the formatted string representation of this geographic position property for
+     * inclusion in an iCalendar.
+     * <p>
+     * The format follows RFC 5545 specifications with latitude and longitude separated by
+     * a semicolon.
+     *
+     * @return the formatted {@code GEO} property string in the format "{@code GEO:latitude;longitude}"
+     */
     @Override
     public String formatted() {
         return "GEO:" + latitude + ";" + longitude;

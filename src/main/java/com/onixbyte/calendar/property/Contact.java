@@ -26,14 +26,44 @@ import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.util.ParamAppender;
 
+/**
+ * Represents the {@code CONTACT} property in an iCalendar component.
+ * <p>
+ * This property is used to specify contact information for the calendar component. It provides a
+ * way to include contact details for someone associated with the calendar event, such as an
+ * organiser or other relevant person.
+ * <p>
+ * The property supports optional parameters for alternate text representation and language
+ * specification to enhance accessibility and internationalisation.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ */
 public final class Contact implements ComponentProperty {
 
+    /**
+     * The optional alternate text representation parameter for this contact information.
+     */
     private final AlternateTextRepresentation alternateTextRepresentation;
 
+    /**
+     * The optional language parameter for this contact information.
+     */
     private final Language language;
 
+    /**
+     * The contact information text value.
+     */
     private final String value;
 
+    /**
+     * Constructs a new {@code Contact} instance with the specified parameters.
+     *
+     * @param alternateTextRepresentation the optional alternate text representation parameter
+     * @param language                    the optional language parameter
+     * @param value                       the contact information text value
+     */
     private Contact(
             AlternateTextRepresentation alternateTextRepresentation,
             Language language,
@@ -44,17 +74,41 @@ public final class Contact implements ComponentProperty {
         this.value = value;
     }
 
+    /**
+     * Creates a new builder for constructing {@code Contact} instances.
+     *
+     * @return a new {@code ContactBuilder}
+     */
     public static ContactBuilder builder() {
         return new ContactBuilder();
     }
 
+    /**
+     * Builder class for creating {@code Contact} instances with optional parameters.
+     */
     public static class ContactBuilder {
+        /**
+         * The optional alternate text representation parameter.
+         */
         private AlternateTextRepresentation alternateTextRepresentation;
+
+        /**
+         * The optional language parameter.
+         */
         private Language language;
 
+        /**
+         * Private constructor to enforce builder pattern usage.
+         */
         private ContactBuilder() {
         }
 
+        /**
+         * Sets the alternate text representation parameter for this contact information.
+         *
+         * @param alternateTextRepresentation the alternate text representation parameter
+         * @return this builder instance for method chaining
+         */
         public ContactBuilder withAlternateTextRepresentation(
                 AlternateTextRepresentation alternateTextRepresentation
         ) {
@@ -62,16 +116,36 @@ public final class Contact implements ComponentProperty {
             return this;
         }
 
+        /**
+         * Sets the language parameter for this contact information.
+         *
+         * @param language the language parameter
+         * @return this builder instance for method chaining
+         */
         public ContactBuilder withLanguage(Language language) {
             this.language = language;
             return this;
         }
 
+        /**
+         * Builds a new {@code Contact} instance with the specified contact information value.
+         *
+         * @param value the contact information text value
+         * @return a new {@code Contact} instance
+         */
         public Contact build(String value) {
             return new Contact(alternateTextRepresentation, language, value);
         }
     }
 
+    /**
+     * Returns the formatted string representation of this contact property for inclusion in
+     * an iCalendar.
+     * <p>
+     * The format follows RFC 5545 specifications and includes any specified parameters.
+     *
+     * @return the formatted {@code CONTACT} property string
+     */
     @Override
     public String formatted() {
         var builder = new StringBuilder();
@@ -85,6 +159,5 @@ public final class Contact implements ComponentProperty {
         builder.append(":").append(value);
         return builder.toString();
     }
-
 
 }

@@ -23,6 +23,8 @@
 package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -36,6 +38,8 @@ import java.util.stream.Stream;
  * the delegatees.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class Delegatees implements Parameter {
 
@@ -64,8 +68,8 @@ public final class Delegatees implements Parameter {
     }
 
     /**
-     * Creates a {@code Delegatees} instance from an array of strings that represent URIs.
-     * Each string is converted to a {@link URI}.
+     * Creates a {@code Delegatees} instance from an array of strings that represent URIs. Each
+     * string is converted to a {@link URI}.
      *
      * @param delegatees one or more strings representing the delegatee URIs
      * @return a new {@code Delegatees} instance
@@ -73,7 +77,13 @@ public final class Delegatees implements Parameter {
      */
     public static Delegatees of(String... delegatees) {
         var _delegatees = Stream.of(delegatees)
-                .map(URI::create)
+                .map((delegatee) -> {
+                    try {
+                        return new URI(delegatee);
+                    } catch (URISyntaxException e) {
+                        throw new IllegalArgumentException("Invalid URI: " + delegatee, e);
+                    }
+                })
                 .toList();
         return new Delegatees(_delegatees);
     }
@@ -90,7 +100,7 @@ public final class Delegatees implements Parameter {
     @Override
     public String formatted() {
         var _delegatees = values.stream()
-                .map((delegatee) -> '"' + delegatee.toString() + '"')
+                .map((delegatee) -> '"' + delegatee.toASCIIString() + '"')
                 .toList();
 
         return "DELEGATED-TO=" + String.join(",", _delegatees);

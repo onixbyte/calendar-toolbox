@@ -23,6 +23,7 @@
 package com.onixbyte.calendar.parameter;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -36,6 +37,8 @@ import java.util.stream.Stream;
  * the members.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public final class Membership implements Parameter {
 
@@ -73,7 +76,13 @@ public final class Membership implements Parameter {
      */
     public static Membership of(String... members) {
         return new Membership(Stream.of(members)
-                .map(URI::create)
+                .map((member) -> {
+                    try {
+                        return new URI(member);
+                    } catch (URISyntaxException e) {
+                        throw new IllegalArgumentException("Invalid URI: " + member, e);
+                    }
+                })
                 .toList());
     }
 
@@ -89,7 +98,7 @@ public final class Membership implements Parameter {
     @Override
     public String formatted() {
         var _members = values.stream()
-                .map((member) -> '"' + member.toString() + '"')
+                .map((member) -> '"' + member.toASCIIString() + '"')
                 .toList();
         return "MEMBER=" + String.join(",", _members);
     }

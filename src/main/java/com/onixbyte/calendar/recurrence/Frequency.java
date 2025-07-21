@@ -23,8 +23,61 @@
 package com.onixbyte.calendar.recurrence;
 
 /**
- * Frequency enumeration for recurrence rules.
+ * Enumeration representing the frequency values for iCalendar recurrence rules.
+ * <p>
+ * The Frequency enum defines the intervals at which recurrence rules repeat. These values are used
+ * in the RRULE property to specify how often an event, task, or journal entry should recur.
+ * <p>
+ * Each frequency value corresponds to a specific time interval:
+ * <ul>
+ * <li>{@code SECONDLY} - Recurs every second</li>
+ * <li>{@code MINUTELY} - Recurs every minute</li>
+ * <li>{@code HOURLY} - Recurs every hour</li>
+ * <li>{@code DAILY} - Recurs every day</li>
+ * <li>{@code WEEKLY} - Recurs every week</li>
+ * <li>{@code MONTHLY} - Recurs every month</li>
+ * <li>{@code YEARLY} - Recurs every year</li>
+ * </ul>
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public enum Frequency {
-    SECONDLY, MINUTELY, HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY;
+
+    /**
+     * Recurrence frequency of every second. The event will repeat every second.
+     */
+    SECONDLY,
+
+    /**
+     * Recurrence frequency of every minute. The event will repeat every minute.
+     */
+    MINUTELY,
+
+    /**
+     * Recurrence frequency of every hour. The event will repeat every hour.
+     */
+    HOURLY,
+
+    /**
+     * Recurrence frequency of every day. The event will repeat every day.
+     */
+    DAILY,
+
+    /**
+     * Recurrence frequency of every week. The event will repeat every week.
+     */
+    WEEKLY,
+
+    /**
+     * Recurrence frequency of every month. The event will repeat every month.
+     */
+    MONTHLY,
+
+    /**
+     * Recurrence frequency of every year. The event will repeat every year.
+     */
+    YEARLY;
 }

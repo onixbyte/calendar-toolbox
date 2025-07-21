@@ -20,15 +20,30 @@
  * SOFTWARE.
  */
 
-package com.onixbyte.calendar.util;
+package com.onixbyte.calendar.parameter;
 
 import org.junit.jupiter.api.Test;
 
-public class FormattersTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class AlarmTriggerRelationshipTest {
 
     @Test
-    void testFolding() {
-        var folded = Formatters.folding("ATTACH;FMTTYPE=image/vnd.microsoft.icon;ENCODING=BASE64;VALUE=BINARY:AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgIAAAICAgADAwMAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwAAAAAAABNEMQAAAAAAAkQgAAAAAAJEREQgAAACECQ0QgEgAAQxQzM0E0AABERCRCREQAADRDJEJEQwAAAhA0QwEQAAAAAEREAAAAAAAAREQAAAAAAAAkQgAAAAAAAAMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        System.out.println(folded);
+    void testFormattedStart() {
+        AlarmTriggerRelationship start = AlarmTriggerRelationship.START;
+        assertEquals("RELATED=START", start.formatted(), "START should format as RELATED=START");
+    }
+
+    @Test
+    void testFormattedEnd() {
+        AlarmTriggerRelationship end = AlarmTriggerRelationship.END;
+        assertEquals("RELATED=END", end.formatted(), "END should format as RELATED=END");
+    }
+
+    @Test
+    void testEnumNameMapping() {
+        // Verify that enum names comply with RFC 5545
+        assertEquals("START", AlarmTriggerRelationship.START.name());
+        assertEquals("END", AlarmTriggerRelationship.END.name());
     }
 }

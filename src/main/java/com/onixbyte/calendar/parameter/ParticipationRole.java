@@ -33,6 +33,8 @@ package com.onixbyte.calendar.parameter;
  * required participant.
  *
  * @author siujamo
+ * @author zihluwang
+ * @version 1.0.0
  */
 public enum ParticipationRole implements Parameter {
 
