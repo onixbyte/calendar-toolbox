@@ -23,19 +23,18 @@
 package com.onixbyte.calendar;
 
 import com.onixbyte.calendar.component.CalendarComponent;
-import com.onixbyte.calendar.property.CalendarScale;
-import com.onixbyte.calendar.property.Method;
-import com.onixbyte.calendar.property.ProductIdentifier;
-import com.onixbyte.calendar.property.Version;
+import com.onixbyte.calendar.property.*;
+import com.onixbyte.common.util.CollectionUtil;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents an iCalendar (RFC 5545) calendar object, which serves as a container for calendar
  * components such as events, tasks, journal entries, and free/busy information.
  * <p>
- * The Calendar class provides a structured way to build and format iCalendar data according to
- * the iCalendar specification. It includes essential calendar properties like scale, method,
+ * The {@code Calendar} class provides a structured way to build and format iCalendar data according
+ * to the iCalendar specification. It includes essential calendar properties like scale, method,
  * product identifier, and version, along with a collection of calendar components.
  * <p>
  * This class follows the builder pattern through the {@link CalendarBuilder} nested class,
@@ -68,6 +67,8 @@ public final class Calendar {
      */
     private final Version version;
 
+    private final List<CalendarProperty> calendarProperties;
+
     /**
      * The list of calendar components contained within this calendar.
      */
@@ -79,23 +80,26 @@ public final class Calendar {
      * This constructor is private to enforce the use of the builder pattern for creating
      * calendar instances, ensuring proper validation and construction.
      *
-     * @param calendarScale     the calendar scale to use
-     * @param method            the method property defining the calendar's intended use
-     * @param productIdentifier the product identifier that created this calendar
-     * @param version           the version of the iCalendar specification used
-     * @param components        the list of calendar components to include
+     * @param calendarScale      the calendar scale to use
+     * @param method             the method property defining the calendar's intended use
+     * @param productIdentifier  the product identifier that created this calendar
+     * @param version            the version of the iCalendar specification used
+     * @param calendarProperties other {@code X-} calendar properties and app-specific properties
+     * @param components         the list of calendar components to include
      */
     private Calendar(
             CalendarScale calendarScale,
             Method method,
             ProductIdentifier productIdentifier,
             Version version,
+            List<CalendarProperty> calendarProperties,
             List<CalendarComponent> components
     ) {
         this.calendarScale = calendarScale;
         this.method = method;
         this.productIdentifier = productIdentifier;
         this.version = version;
+        this.calendarProperties = calendarProperties;
         this.components = components;
     }
 
@@ -139,6 +143,11 @@ public final class Calendar {
          * The version of the iCalendar specification used.
          */
         private Version version;
+
+        /**
+         * The calendar properties.
+         */
+        private List<CalendarProperty> calendarProperties;
 
         /**
          * The list of calendar components to include in this calendar.
@@ -211,6 +220,17 @@ public final class Calendar {
         }
 
         /**
+         * Lorem ipsum.
+         *
+         * @param calendarProperties calendar properties
+         * @return this builder instance for method chaining
+         */
+        public CalendarBuilder withCalendarProperties(CalendarProperty... calendarProperties) {
+            this.calendarProperties = List.of(calendarProperties);
+            return this;
+        }
+
+        /**
          * Sets the components to include in this calendar.
          * <p>
          * Components are the main content of the calendar and can include events, tasks,
@@ -231,11 +251,12 @@ public final class Calendar {
          * The resulting calendar will be properly formatted according to the
          * iCalendar specification.
          *
-         * @return a new Calendar instance
+         * @return a new {@code Calendar} instance
          */
         public Calendar build() {
             return new Calendar(
-                    calendarScale, method, productIdentifier, version, components
+                    calendarScale, method, productIdentifier, version, calendarProperties,
+                    components
             );
         }
     }
@@ -257,6 +278,10 @@ public final class Calendar {
         builder.append("\n").append(method.formatted());
         builder.append("\n").append(productIdentifier.formatted());
         builder.append("\n").append(version.formatted());
+        if (CollectionUtil.notEmpty(calendarProperties)) {
+            calendarProperties.forEach((property) ->
+                    builder.append("\n").append(property.formatted()));
+        }
         components.forEach((component) ->
                 builder.append("\n").append(component.formatted())
         );
