@@ -23,7 +23,6 @@
 package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.Language;
-import com.onixbyte.calendar.util.ParamAppender;
 
 /**
  * Represents the {@code TZNAME} property in an iCalendar time zone component.
@@ -118,14 +117,8 @@ public final class TimeZoneName implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("TZNAME");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(language);
-
-        builder.append(":").append(value);
-        return builder.toString();
+        return PropertyComposer.of("TZNAME")
+                .append(language)
+                .end(value);
     }
 }

@@ -24,7 +24,6 @@ package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.FreeBusyTimeType;
 import com.onixbyte.calendar.util.Formatters;
-import com.onixbyte.calendar.util.ParamAppender;
 import com.onixbyte.calendar.value.FreeBusyTimeValue;
 
 import java.util.List;
@@ -140,14 +139,8 @@ public final class FreeBusyTime implements ComponentProperty {
      * @return the formatted {@code FREEBUSY} property string
      */
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("FREEBUSY");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(fbType);
-
-        builder.append(":").append(Formatters.formatValue(",", values));
-        return builder.toString();
+        var composer = PropertyComposer.of("FREEBUSY")
+                .append(fbType);
+        return composer.end(Formatters.formatValue(",", values));
     }
 }

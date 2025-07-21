@@ -24,7 +24,6 @@ package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
-import com.onixbyte.calendar.util.ParamAppender;
 
 import java.util.List;
 
@@ -150,15 +149,9 @@ public final class Resources implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("RESOURCES");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(alternateTextRepresentation);
-        paramAppender.append(language);
-
-        builder.append(":").append(String.join(",", values));
-        return builder.toString();
+        return PropertyComposer.of("RESOURCES")
+                .append(alternateTextRepresentation)
+                .append(language)
+                .end(values);
     }
 }

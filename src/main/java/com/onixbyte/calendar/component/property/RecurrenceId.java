@@ -25,7 +25,6 @@ package com.onixbyte.calendar.component.property;
 import com.onixbyte.calendar.parameter.RecurrenceIdentifierRange;
 import com.onixbyte.calendar.parameter.TimeZoneIdentifier;
 import com.onixbyte.calendar.parameter.ValueDataType;
-import com.onixbyte.calendar.util.ParamAppender;
 
 import java.time.ZonedDateTime;
 
@@ -195,16 +194,10 @@ public final class RecurrenceId implements ComponentProperty, DateTimeProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("RECURRENCE-ID");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(valueDataType);
-        paramAppender.append(timeZoneIdentifier);
-        paramAppender.append(recurrenceIdentifierRange);
-
-        builder.append(":").append(value.format(getDateTimeFormatter()));
-        return builder.toString();
+        var composer = PropertyComposer.of("RECURRENCE-ID")
+                .append(valueDataType)
+                .append(timeZoneIdentifier)
+                .append(recurrenceIdentifierRange);
+        return composer.end(value.format(getDateTimeFormatter()));
     }
 }

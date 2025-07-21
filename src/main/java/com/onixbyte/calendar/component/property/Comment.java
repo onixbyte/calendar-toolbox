@@ -24,7 +24,6 @@ package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
-import com.onixbyte.calendar.util.ParamAppender;
 
 /**
  * Represents the iCalendar {@code COMMENT} property, which specifies non-processing information
@@ -179,15 +178,9 @@ public final class Comment implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("COMMENT");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(alternateTextRepresentation);
-        paramAppender.append(language);
-
-        builder.append(":").append(value);
-        return builder.toString();
+        var composer = PropertyComposer.of("COMMENT")
+                .append(alternateTextRepresentation)
+                .append(language);
+        return composer.end(value);
     }
 }

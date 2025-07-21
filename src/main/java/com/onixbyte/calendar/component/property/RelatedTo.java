@@ -23,7 +23,6 @@
 package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.RelationshipType;
-import com.onixbyte.calendar.util.ParamAppender;
 
 /**
  * Represents the {@code RELATED-TO} property in an iCalendar component.
@@ -119,14 +118,8 @@ public final class RelatedTo implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("RELATED-TO");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(relationshipType);
-
-        builder.append(":").append(value);
-        return builder.toString();
+        return PropertyComposer.of("RELATED-TO")
+                .append(relationshipType)
+                .end(value);
     }
 }

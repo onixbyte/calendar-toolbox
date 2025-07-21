@@ -23,7 +23,6 @@
 package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.*;
-import com.onixbyte.calendar.util.ParamAppender;
 
 import java.net.URI;
 
@@ -441,24 +440,18 @@ public final class Attendee implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("ATTENDEE");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(calendarUserType);
-        paramAppender.append(membership);
-        paramAppender.append(participationRole);
-        paramAppender.append(participationStatus);
-        paramAppender.append(rsvpExpectation);
-        paramAppender.append(delegatees);
-        paramAppender.append(delegators);
-        paramAppender.append(sentBy);
-        paramAppender.append(commonName);
-        paramAppender.append(directoryEntryReference);
-        paramAppender.append(language);
-
-        builder.append(":").append(value.toString());
-        return builder.toString();
+        var composer = PropertyComposer.of("ATTENDEE")
+                .append(calendarUserType)
+                .append(membership)
+                .append(participationRole)
+                .append(participationStatus)
+                .append(rsvpExpectation)
+                .append(delegatees)
+                .append(delegators)
+                .append(sentBy)
+                .append(commonName)
+                .append(directoryEntryReference)
+                .append(language);
+        return composer.end(value);
     }
 }

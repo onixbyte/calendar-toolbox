@@ -23,7 +23,6 @@
 package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.Language;
-import com.onixbyte.calendar.util.ParamAppender;
 
 import java.util.List;
 
@@ -147,14 +146,9 @@ public final class Categories implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("CATEGORIES");
+        var composer = PropertyComposer.of("CATEGORIES");
 
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(language);
-
-        builder.append(":").append(String.join(",", categories));
-        return builder.toString();
+        return composer.append(language)
+                .end(categories);
     }
 }

@@ -24,7 +24,6 @@ package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
-import com.onixbyte.calendar.util.ParamAppender;
 
 /**
  * Represents the iCalendar {@code SUMMARY} property, which provides a short, one-line summary or
@@ -165,14 +164,9 @@ public final class Summary implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("SUMMARY");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(alternateTextRepresentation);
-        paramAppender.append(language);
-        builder.append(":").append(value);
-        return builder.toString();
+        return PropertyComposer.of("SUMMARY")
+                .append(alternateTextRepresentation)
+                .append(language)
+                .end(value);
     }
 }

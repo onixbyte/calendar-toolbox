@@ -24,7 +24,6 @@ package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
-import com.onixbyte.calendar.util.ParamAppender;
 
 /**
  * Represents the iCalendar DESCRIPTION property, which provides a detailed description of a
@@ -160,15 +159,9 @@ public final class Description implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("DESCRIPTION");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(alternateTextRepresentation);
-        paramAppender.append(language);
-
-        builder.append(":").append(value);
-        return builder.toString();
+        var composer = PropertyComposer.of("DESCRIPTION")
+                .append(alternateTextRepresentation)
+                .append(language);
+        return composer.end(value);
     }
 }

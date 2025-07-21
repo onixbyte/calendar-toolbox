@@ -24,7 +24,6 @@ package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.TimeZoneIdentifier;
 import com.onixbyte.calendar.parameter.ValueDataType;
-import com.onixbyte.calendar.util.ParamAppender;
 
 import java.time.ZonedDateTime;
 
@@ -194,15 +193,9 @@ public final class DateTimeStart implements ComponentProperty, DateTimeProperty 
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("DTSTART");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(timeZoneIdentifier);
-        paramAppender.append(valueDataType);
-        builder.append(":").append(value.format(getDateTimeFormatter()));
-
-        return builder.toString();
+        var composer = PropertyComposer.of("DTSTART")
+                .append(timeZoneIdentifier)
+                .append(valueDataType);
+        return composer.end(value.format(getDateTimeFormatter()));
     }
 }

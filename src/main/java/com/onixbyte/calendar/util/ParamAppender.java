@@ -22,10 +22,6 @@
 
 package com.onixbyte.calendar.util;
 
-import com.onixbyte.calendar.parameter.*;
-
-import java.util.Objects;
-
 /**
  * Utility class for appending iCalendar parameters to a StringBuilder.
  * <p>
@@ -83,20 +79,5 @@ public final class ParamAppender {
         return new ParamAppender(builder);
     }
 
-    /**
-     * Appends the specified parameter to the {@code StringBuilder}.
-     * <p>
-     * If the parameter is not null, it is formatted and appended to the builder with a semicolon
-     * separator. If the parameter is null, it is ignored.
-     *
-     * @param param the parameter to append, may be null
-     * @return the underlying StringBuilder for method chaining
-     */
-    public StringBuilder append(Parameter param) {
-        if (Objects.nonNull(param)) {
-            builder.append(";").append(param.formatted());
-        }
 
-        return builder;
-    }
 }

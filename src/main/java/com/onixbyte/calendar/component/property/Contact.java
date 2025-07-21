@@ -24,7 +24,6 @@ package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.AlternateTextRepresentation;
 import com.onixbyte.calendar.parameter.Language;
-import com.onixbyte.calendar.util.ParamAppender;
 
 /**
  * Represents the {@code CONTACT} property in an iCalendar component.
@@ -148,16 +147,11 @@ public final class Contact implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("CONTACT");
+        var composer = PropertyComposer.of("CONTACT")
+                .append(alternateTextRepresentation)
+                .append(language);
 
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(alternateTextRepresentation);
-        paramAppender.append(language);
-
-        builder.append(":").append(value);
-        return builder.toString();
+        return composer.end(value);
     }
 
 }

@@ -25,7 +25,6 @@ package com.onixbyte.calendar.component.property;
 import com.onixbyte.calendar.parameter.TimeZoneIdentifier;
 import com.onixbyte.calendar.parameter.ValueDataType;
 import com.onixbyte.calendar.util.Formatters;
-import com.onixbyte.calendar.util.ParamAppender;
 import com.onixbyte.calendar.value.PeriodOfTime;
 
 import java.time.LocalDate;
@@ -238,32 +237,22 @@ public class RecurrenceDateTimes implements ComponentProperty {
                 .orElse(ValueDataType.DATE_TIME);
 
         // create builder
-        var builder = new StringBuilder();
-        builder.append("RDATE");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        // append property parameters
-        paramAppender.append(valueDataType);
-        paramAppender.append(timeZoneIdentifier);
-
-        // append colon
-        builder.append(":");
+        var composer = PropertyComposer.of("RDATE")
+                .append(valueDataType)
+                .append(timeZoneIdentifier);
 
         // append value
-        switch (_valueType) {
+        return switch (_valueType) {
             case DATE_TIME -> {
                 var formatter = Objects.nonNull(timeZoneIdentifier) ?
                         Formatters.ICALENDAR_TIMESTAMP_FORMATTER.withZone(timeZoneIdentifier.getZoneId()) :
                         Formatters.ICALENDAR_UTC_TIMESTAMP_FORMATTER;
-                builder.append(dateTimeValue.format(formatter));
+                yield composer.end(dateTimeValue.format(formatter));
             }
-            case DATE -> builder.append(dateValue.format(Formatters.ICALENDAR_DATE_FORMATTER));
-            case PERIOD -> builder.append(periodValue.formatted());
+            case DATE -> composer.end(dateValue.format(Formatters.ICALENDAR_DATE_FORMATTER));
+            case PERIOD -> composer.end(periodValue.formatted());
             // this situation should never happen
-            default -> throw new NullPointerException("No value is existed.");
-        }
-
-        return builder.toString();
+            default -> throw new IllegalArgumentException("No value is existed.");
+        };
     }
 }

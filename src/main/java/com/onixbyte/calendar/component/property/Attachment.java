@@ -26,7 +26,6 @@ import com.onixbyte.calendar.parameter.FormatType;
 import com.onixbyte.calendar.parameter.InlineEncoding;
 import com.onixbyte.calendar.parameter.ValueDataType;
 import com.onixbyte.calendar.util.Formatters;
-import com.onixbyte.calendar.util.ParamAppender;
 
 import java.net.URI;
 import java.util.Base64;
@@ -177,23 +176,18 @@ public final class Attachment implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        var paramAppender = ParamAppender.of(builder);
-
-        builder.append("ATTACH");
+        var composer = PropertyComposer.of("ATTACH");
 
         if (Objects.nonNull(binary) && binary.length > 0) {
-            paramAppender.append(encoding);
-            paramAppender.append(value);
-            paramAppender.append(formatType);
-
-            builder.append(":").append(Base64.getEncoder().encodeToString(binary));
+            return Formatters.folding(composer
+                    .append(encoding)
+                    .append(value)
+                    .append(formatType)
+                    .end(Base64.getEncoder().encodeToString(binary)));
         } else {
-            paramAppender.append(formatType);
-
-            builder.append(":").append(uri);
+            return Formatters.folding(composer
+                    .append(formatType)
+                    .end(uri));
         }
-
-        return Formatters.folding(builder);
     }
 }

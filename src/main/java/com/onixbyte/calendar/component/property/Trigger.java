@@ -25,7 +25,6 @@ package com.onixbyte.calendar.component.property;
 import com.onixbyte.calendar.parameter.AlarmTriggerRelationship;
 import com.onixbyte.calendar.parameter.ValueDataType;
 import com.onixbyte.calendar.util.Formatters;
-import com.onixbyte.calendar.util.ParamAppender;
 
 import java.time.Duration;
 import java.time.ZonedDateTime;
@@ -152,20 +151,13 @@ public final class Trigger implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("TRIGGER");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(valueDataType);
-        paramAppender.append(relationship);
-
-        builder.append(":");
+        var composer = PropertyComposer.of("TRIGGER")
+                .append(valueDataType)
+                .append(relationship);
         if (Objects.equals(ValueDataType.DURATION, valueDataType) && Objects.nonNull(durationValue)) {
-            builder.append(durationValue);
+            return composer.end(durationValue);
         } else {
-            builder.append(dateTimeValue.format(Formatters.ICALENDAR_UTC_TIMESTAMP_FORMATTER));
+            return composer.end(dateTimeValue.format(Formatters.ICALENDAR_UTC_TIMESTAMP_FORMATTER));
         }
-        return builder.toString();
     }
 }

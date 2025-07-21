@@ -24,7 +24,6 @@ package com.onixbyte.calendar.component.property;
 
 import com.onixbyte.calendar.parameter.TimeZoneIdentifier;
 import com.onixbyte.calendar.parameter.ValueDataType;
-import com.onixbyte.calendar.util.ParamAppender;
 
 import java.time.ZonedDateTime;
 
@@ -169,15 +168,9 @@ public final class ExceptionDateTimes implements ComponentProperty, DateTimeProp
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("EXDATE");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(valueDataType);
-        paramAppender.append(timeZoneIdentifier);
-
-        builder.append(":").append(zonedDateTime.format(getDateTimeFormatter()));
-        return builder.toString();
+        var composer = PropertyComposer.of("EXDATE")
+                .append(valueDataType)
+                .append(timeZoneIdentifier);
+        return composer.end(zonedDateTime.format(getDateTimeFormatter()));
     }
 }

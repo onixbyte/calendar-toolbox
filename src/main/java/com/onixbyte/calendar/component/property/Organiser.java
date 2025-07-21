@@ -26,7 +26,6 @@ import com.onixbyte.calendar.parameter.CommonName;
 import com.onixbyte.calendar.parameter.DirectoryEntryReference;
 import com.onixbyte.calendar.parameter.Language;
 import com.onixbyte.calendar.parameter.SentBy;
-import com.onixbyte.calendar.util.ParamAppender;
 
 import java.net.URI;
 
@@ -225,17 +224,11 @@ public final class Organiser implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        builder.append("ORGANIZER");
-
-        var paramAppender = ParamAppender.of(builder);
-
-        paramAppender.append(commonName);
-        paramAppender.append(directoryEntryReference);
-        paramAppender.append(sentBy);
-        paramAppender.append(language);
-
-        builder.append(":").append(value.toString());
-        return builder.toString();
+        var composer = PropertyComposer.of("ORGANIZER")
+                .append(commonName)
+                .append(directoryEntryReference)
+                .append(sentBy)
+                .append(language);
+        return composer.end(value);
     }
 }
