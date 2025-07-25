@@ -51,6 +51,7 @@ public final class Calendar {
     private final Version version;
     private final Owner owner;
     private final PrimaryCalendar primaryCalendar;
+    private final PublishedTTL publishedTTL;
     private final List<CalendarComponent> components;
 
     private Calendar(
@@ -58,7 +59,9 @@ public final class Calendar {
             Method method,
             ProductIdentifier productIdentifier,
             Version version,
-            Owner owner, PrimaryCalendar primaryCalendar,
+            Owner owner,
+            PrimaryCalendar primaryCalendar,
+            PublishedTTL publishedTTL,
             List<CalendarComponent> components
     ) {
         this.calendarScale = calendarScale;
@@ -67,6 +70,7 @@ public final class Calendar {
         this.version = version;
         this.owner = owner;
         this.primaryCalendar = primaryCalendar;
+        this.publishedTTL = publishedTTL;
         this.components = components;
     }
 
@@ -96,6 +100,7 @@ public final class Calendar {
         private Version version;
         private Owner owner;
         private PrimaryCalendar primaryCalendar;
+        private PublishedTTL publishedTTL;
         private List<CalendarComponent> components;
 
         private CalendarBuilder() {
@@ -180,6 +185,17 @@ public final class Calendar {
         }
 
         /**
+         * Sets the published TTL.
+         *
+         * @param publishedTTL the published TTL
+         * @return the builder instance
+         */
+        public CalendarBuilder withPublishedTTL(PublishedTTL publishedTTL) {
+            this.publishedTTL = publishedTTL;
+            return this;
+        }
+
+        /**
          * Sets the components to include in this calendar.
          * <p>
          * Components are the main content of the calendar and can include events, tasks,
@@ -205,7 +221,8 @@ public final class Calendar {
         public Calendar build() {
             return new Calendar(
                     calendarScale, method, productIdentifier, version, owner, primaryCalendar,
-                    components);
+                    publishedTTL, components
+            );
         }
     }
 
@@ -228,6 +245,7 @@ public final class Calendar {
         builder.append("\n").append(version.formatted());
         builder.append("\n").append(owner.formatted());
         builder.append("\n").append(primaryCalendar.formatted());
+        builder.append("\n").append(publishedTTL.formatted());
         components.forEach((component) ->
                 builder.append("\n").append(component.formatted())
         );
