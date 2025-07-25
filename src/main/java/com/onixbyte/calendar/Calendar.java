@@ -55,6 +55,7 @@ public final class Calendar {
     private final CalendarDescription calendarDescription;
     private final CalendarName calendarName;
     private final CalendarId calendarId;
+    private final List<CustomCalendarProperty> customProperties;
     private final List<CalendarComponent> components;
 
     private Calendar(
@@ -68,6 +69,7 @@ public final class Calendar {
             CalendarDescription calendarDescription,
             CalendarName calendarName,
             CalendarId calendarId,
+            List<CustomCalendarProperty> customProperties,
             List<CalendarComponent> components
     ) {
         this.calendarScale = calendarScale;
@@ -80,6 +82,7 @@ public final class Calendar {
         this.calendarDescription = calendarDescription;
         this.calendarName = calendarName;
         this.calendarId = calendarId;
+        this.customProperties = customProperties;
         this.components = components;
     }
 
@@ -113,6 +116,7 @@ public final class Calendar {
         private CalendarDescription calendarDescription;
         private CalendarName calendarName;
         private CalendarId calendarId;
+        private List<CustomCalendarProperty> customProperties;
         private List<CalendarComponent> components;
 
         private CalendarBuilder() {
@@ -240,6 +244,11 @@ public final class Calendar {
             return this;
         }
 
+        public CalendarBuilder withCustomProperties(CustomCalendarProperty... customProperties) {
+            this.customProperties = List.of(customProperties);
+            return this;
+        }
+
         /**
          * Sets the components to include in this calendar.
          * <p>
@@ -266,8 +275,8 @@ public final class Calendar {
         public Calendar build() {
             return new Calendar(
                     calendarScale, method, productIdentifier, version, owner, primaryCalendar,
-                    publishedTTL, calendarDescription, calendarName, calendarId, components
-            );
+                    publishedTTL, calendarDescription, calendarName, calendarId, customProperties,
+                    components);
         }
     }
 
@@ -294,6 +303,9 @@ public final class Calendar {
         builder.append("\n").append(calendarDescription.formatted());
         builder.append("\n").append(calendarName.formatted());
         builder.append("\n").append(calendarId.formatted());
+        customProperties.forEach((customProperty) ->
+                builder.append("\n").append(customProperty.formatted())
+        );
         components.forEach((component) ->
                 builder.append("\n").append(component.formatted())
         );
