@@ -885,25 +885,25 @@ public final class Event implements CalendarComponent {
     public String formatted() {
         var composer = ComponentComposer.of(COMPONENT_NAME);
 
-        composer.append(dateTimeStamp);
-        composer.append(uniqueIdentifier);
-        composer.append(dateTimeStart);
-
-        composer.append(classification);
-        composer.append(dateTimeCreated);
-        composer.append(description);
-        composer.append(geographicPosition);
-        composer.append(lastModified);
-        composer.append(location);
-        composer.append(organiser);
-        composer.append(priority);
-        composer.append(sequenceNumber);
-        composer.append(status);
-        composer.append(summary);
-        composer.append(timeTransparency);
-        composer.append(uniformResourceLocator);
-        composer.append(recurrenceId);
-        composer.append(recurrenceRule);
+        composer.start()
+                .append(dateTimeStamp)
+                .append(uniqueIdentifier)
+                .append(dateTimeStart)
+                .append(classification)
+                .append(dateTimeCreated)
+                .append(description)
+                .append(geographicPosition)
+                .append(lastModified)
+                .append(location)
+                .append(organiser)
+                .append(priority)
+                .append(sequenceNumber)
+                .append(status)
+                .append(summary)
+                .append(timeTransparency)
+                .append(uniformResourceLocator)
+                .append(recurrenceId)
+                .append(recurrenceRule);
 
         if (Objects.nonNull(dateTimeEnd)) {
             composer.append(dateTimeEnd);
@@ -911,16 +911,16 @@ public final class Event implements CalendarComponent {
             composer.append(duration);
         }
 
-        composer.append(attachments);
-        composer.append(attendees);
-        composer.append(categories);
-        composer.append(comments);
-        composer.append(contacts);
-        composer.append(exceptionDateTimes);
-        composer.append(requestStatuses);
-        composer.append(related);
-        composer.append(resources);
-        composer.append(recurrenceDateTimes);
+        composer.append(attachments)
+                .append(attendees)
+                .append(categories)
+                .append(comments)
+                .append(contacts)
+                .append(exceptionDateTimes)
+                .append(requestStatuses)
+                .append(related)
+                .append(resources)
+                .append(recurrenceDateTimes);
 
         return composer.end();
     }
