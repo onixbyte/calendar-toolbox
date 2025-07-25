@@ -24,6 +24,11 @@ package com.onixbyte.calendar.property;
 
 import com.onixbyte.calendar.util.PropertyComposer;
 
+/**
+ * This property specifies a globally unique identifier for a calendar.
+ *
+ * @author siujamo
+ */
 public final class CalendarId implements CalendarProperty {
 
     private final String value;
@@ -32,19 +37,38 @@ public final class CalendarId implements CalendarProperty {
         this.value = value;
     }
 
+    /**
+     * Create a builder for calendar ID.
+     *
+     * @return a builder instance
+     */
     public static CalendarIdBuilder builder() {
         return new CalendarIdBuilder();
     }
 
+    /**
+     * Builder for calendar ID.
+     */
     public static class CalendarIdBuilder {
         private CalendarIdBuilder() {
         }
 
+        /**
+         * Build a calendar ID with given value.
+         *
+         * @param value ID of a calendar
+         * @return calendar ID instance with given value
+         */
         public CalendarId build(String value) {
             return new CalendarId(value);
         }
     }
 
+    /**
+     * Output this property in <code>ics</code> format.
+     *
+     * @return <code>ics</code>-formatted string
+     */
     @Override
     public String formatted() {
         var propertyComposer = PropertyComposer.of("X-WR-RELCALID");
