@@ -54,6 +54,7 @@ public final class Calendar {
     private final PublishedTTL publishedTTL;
     private final CalendarDescription calendarDescription;
     private final CalendarName calendarName;
+    private final CalendarId calendarId;
     private final List<CalendarComponent> components;
 
     private Calendar(
@@ -66,6 +67,7 @@ public final class Calendar {
             PublishedTTL publishedTTL,
             CalendarDescription calendarDescription,
             CalendarName calendarName,
+            CalendarId calendarId,
             List<CalendarComponent> components
     ) {
         this.calendarScale = calendarScale;
@@ -77,6 +79,7 @@ public final class Calendar {
         this.publishedTTL = publishedTTL;
         this.calendarDescription = calendarDescription;
         this.calendarName = calendarName;
+        this.calendarId = calendarId;
         this.components = components;
     }
 
@@ -109,6 +112,7 @@ public final class Calendar {
         private PublishedTTL publishedTTL;
         private CalendarDescription calendarDescription;
         private CalendarName calendarName;
+        private CalendarId calendarId;
         private List<CalendarComponent> components;
 
         private CalendarBuilder() {
@@ -226,6 +230,17 @@ public final class Calendar {
         }
 
         /**
+         * Sets the calendar ID.
+         *
+         * @param calendarId ID of the calendar
+         * @return the builder instance
+         */
+        public CalendarBuilder withCalendarId(CalendarId calendarId) {
+            this.calendarId = calendarId;
+            return this;
+        }
+
+        /**
          * Sets the components to include in this calendar.
          * <p>
          * Components are the main content of the calendar and can include events, tasks,
@@ -251,7 +266,7 @@ public final class Calendar {
         public Calendar build() {
             return new Calendar(
                     calendarScale, method, productIdentifier, version, owner, primaryCalendar,
-                    publishedTTL, calendarDescription, calendarName, components
+                    publishedTTL, calendarDescription, calendarName, calendarId, components
             );
         }
     }
@@ -278,6 +293,7 @@ public final class Calendar {
         builder.append("\n").append(publishedTTL.formatted());
         builder.append("\n").append(calendarDescription.formatted());
         builder.append("\n").append(calendarName.formatted());
+        builder.append("\n").append(calendarId.formatted());
         components.forEach((component) ->
                 builder.append("\n").append(component.formatted())
         );
