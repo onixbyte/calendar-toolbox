@@ -26,6 +26,12 @@ import com.onixbyte.calendar.util.PropertyComposer;
 
 import java.time.Duration;
 
+/**
+ * This property specifies a suggested iCalendar file download frequency for clients and servers
+ * with sync capabilities.
+ *
+ * @author siujamo
+ */
 public final class PublishedTTL implements CalendarProperty {
 
     private final Duration value;
@@ -34,19 +40,38 @@ public final class PublishedTTL implements CalendarProperty {
         this.value = value;
     }
 
+    /**
+     * Get a new builder instance for building a <code>PublishedTTL</code>.
+     *
+     * @return a new builder instance
+     */
     public static PublishedTTLBuilder builder() {
         return new PublishedTTLBuilder();
     }
 
+    /**
+     * Builder for building <code>PublishedTTL</code>.
+     */
     public static class PublishedTTLBuilder {
         private PublishedTTLBuilder() {
         }
 
+        /**
+         * Build <code>PublishedTTL</code> with specific value.
+         *
+         * @param value the duration value
+         * @return the <code>PublishedTTL</code> instance built with given duration value
+         */
         public PublishedTTL build(Duration value) {
             return new PublishedTTL(value);
         }
     }
 
+    /**
+     * Output this property in <code>ics</code> format.
+     *
+     * @return <code>ics</code>-formatted string
+     */
     @Override
     public String formatted() {
         var propertyComposer = PropertyComposer.of("X-PUBLISHED-TTL");
