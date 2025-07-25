@@ -67,6 +67,12 @@ public final class ComponentComposer {
         this.componentName = componentName;
     }
 
+    /**
+     * Create and start composing a component.
+     *
+     * @param componentName name of a component
+     * @return the component composer
+     */
     public static ComponentComposer of(String componentName) {
         var composer = new ComponentComposer(componentName);
         return composer.start();
