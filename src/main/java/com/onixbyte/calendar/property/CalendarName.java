@@ -24,6 +24,11 @@ package com.onixbyte.calendar.property;
 
 import com.onixbyte.calendar.util.PropertyComposer;
 
+/**
+ * This property specifies the name of a calendar.
+ *
+ * @author siujamo
+ */
 public final class CalendarName implements CalendarProperty {
 
     private final String value;
@@ -32,19 +37,38 @@ public final class CalendarName implements CalendarProperty {
         this.value = value;
     }
 
+    /**
+     * Create a builder instance for calendar name.
+     *
+     * @return a builder instance
+     */
     public static CalendarNameBuilder builder() {
         return new CalendarNameBuilder();
     }
 
+    /**
+     * Builder for calendar name.
+     */
     public static class CalendarNameBuilder {
         private CalendarNameBuilder() {
         }
 
+        /**
+         * Build a calendar name with given value.
+         *
+         * @param value name of a calendar
+         * @return calendar name instance with given value
+         */
         public CalendarName build(String value) {
             return new CalendarName(value);
         }
     }
 
+    /**
+     * Output this property in <code>ics</code> format.
+     *
+     * @return <code>ics</code>-formatted string
+     */
     @Override
     public String formatted() {
         var propertyComposer = PropertyComposer.of("X-WR-CALNAME");
