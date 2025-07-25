@@ -23,10 +23,7 @@
 package com.onixbyte.calendar;
 
 import com.onixbyte.calendar.component.CalendarComponent;
-import com.onixbyte.calendar.property.CalendarScale;
-import com.onixbyte.calendar.property.Method;
-import com.onixbyte.calendar.property.ProductIdentifier;
-import com.onixbyte.calendar.property.Version;
+import com.onixbyte.calendar.property.*;
 
 import java.util.List;
 
@@ -48,54 +45,28 @@ import java.util.List;
  */
 public final class Calendar {
 
-    /**
-     * The calendar scale used for this calendar (typically Gregorian).
-     */
     private final CalendarScale calendarScale;
-
-    /**
-     * The method property defining the calendar's intended use (e.g., PUBLISH, REQUEST).
-     */
     private final Method method;
-
-    /**
-     * The product identifier that created this calendar.
-     */
     private final ProductIdentifier productIdentifier;
-
-    /**
-     * The version of the iCalendar specification used.
-     */
     private final Version version;
-
-    /**
-     * The list of calendar components contained within this calendar.
-     */
+    private final Owner owner;
+    private final PrimaryCalendar primaryCalendar;
     private final List<CalendarComponent> components;
 
-    /**
-     * Constructs a new Calendar instance with the specified properties and components.
-     * <p>
-     * This constructor is private to enforce the use of the builder pattern for creating
-     * calendar instances, ensuring proper validation and construction.
-     *
-     * @param calendarScale     the calendar scale to use
-     * @param method            the method property defining the calendar's intended use
-     * @param productIdentifier the product identifier that created this calendar
-     * @param version           the version of the iCalendar specification used
-     * @param components        the list of calendar components to include
-     */
     private Calendar(
             CalendarScale calendarScale,
             Method method,
             ProductIdentifier productIdentifier,
             Version version,
+            Owner owner, PrimaryCalendar primaryCalendar,
             List<CalendarComponent> components
     ) {
         this.calendarScale = calendarScale;
         this.method = method;
         this.productIdentifier = productIdentifier;
         this.version = version;
+        this.owner = owner;
+        this.primaryCalendar = primaryCalendar;
         this.components = components;
     }
 
@@ -119,38 +90,14 @@ public final class Calendar {
      * properly constructed and formatted.
      */
     public static class CalendarBuilder {
-
-        /**
-         * The calendar scale to use for this calendar.
-         */
         private CalendarScale calendarScale;
-
-        /**
-         * The method property defining the calendar's intended use.
-         */
         private Method method;
-
-        /**
-         * The product identifier that created this calendar.
-         */
         private ProductIdentifier productIdentifier;
-
-        /**
-         * The version of the iCalendar specification used.
-         */
         private Version version;
-
-        /**
-         * The list of calendar components to include in this calendar.
-         */
+        private Owner owner;
+        private PrimaryCalendar primaryCalendar;
         private List<CalendarComponent> components;
 
-        /**
-         * Constructs a new CalendarBuilder instance.
-         * <p>
-         * This constructor is private to enforce the use of the factory method
-         * {@link Calendar#builder()} for creating builder instances.
-         */
         private CalendarBuilder() {
         }
 
@@ -161,7 +108,7 @@ public final class Calendar {
          * In most cases, this will be the Gregorian calendar system.
          *
          * @param calendarScale the calendar scale to use
-         * @return this builder instance for method chaining
+         * @return this builder instance
          */
         public CalendarBuilder withCalendarScale(CalendarScale calendarScale) {
             this.calendarScale = calendarScale;
@@ -175,7 +122,7 @@ public final class Calendar {
          * publishing calendar information or REQUEST for scheduling requests.
          *
          * @param method the method property to set
-         * @return this builder instance for method chaining
+         * @return this builder instance
          */
         public CalendarBuilder withMethod(Method method) {
             this.method = method;
@@ -189,7 +136,7 @@ public final class Calendar {
          * It typically includes the product name and version information.
          *
          * @param productIdentifier the product identifier to set
-         * @return this builder instance for method chaining
+         * @return this builder instance
          */
         public CalendarBuilder withProductIdentifier(ProductIdentifier productIdentifier) {
             this.productIdentifier = productIdentifier;
@@ -203,10 +150,32 @@ public final class Calendar {
          * conforms to. This is typically "{@code 2.0}" for RFC 5545 compliance.
          *
          * @param version the version to set
-         * @return this builder instance for method chaining
+         * @return this builder instance
          */
         public CalendarBuilder withVersion(Version version) {
             this.version = version;
+            return this;
+        }
+
+        /**
+         * Sets the owner of the iCalendar.
+         *
+         * @param owner the owner of a primary calendar
+         * @return the builder instance
+         */
+        public CalendarBuilder withOwner(Owner owner) {
+            this.owner = owner;
+            return this;
+        }
+
+        /**
+         * Sets if the calendar is a primary calendar.
+         *
+         * @param primaryCalendar the primary calendar
+         * @return the builder instance
+         */
+        public CalendarBuilder withPrimaryCalendar(PrimaryCalendar primaryCalendar) {
+            this.primaryCalendar = primaryCalendar;
             return this;
         }
 
@@ -217,7 +186,7 @@ public final class Calendar {
          * journal entries, and free/busy information.
          *
          * @param components the calendar components to include
-         * @return this builder instance for method chaining
+         * @return this builder instance
          */
         public CalendarBuilder withComponents(CalendarComponent... components) {
             this.components = List.of(components);
@@ -235,8 +204,8 @@ public final class Calendar {
          */
         public Calendar build() {
             return new Calendar(
-                    calendarScale, method, productIdentifier, version, components
-            );
+                    calendarScale, method, productIdentifier, version, owner, primaryCalendar,
+                    components);
         }
     }
 
@@ -257,6 +226,8 @@ public final class Calendar {
         builder.append("\n").append(method.formatted());
         builder.append("\n").append(productIdentifier.formatted());
         builder.append("\n").append(version.formatted());
+        builder.append("\n").append(owner.formatted());
+        builder.append("\n").append(primaryCalendar.formatted());
         components.forEach((component) ->
                 builder.append("\n").append(component.formatted())
         );
