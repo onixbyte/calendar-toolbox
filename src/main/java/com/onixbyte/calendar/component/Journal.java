@@ -705,9 +705,7 @@ public final class Journal implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var composer = ComponentComposer.of(COMPONENT_NAME);
-
-        composer.start()
+        return ComponentComposer.of(COMPONENT_NAME)
                 .append(dateTimeStamp)
                 .append(uniqueIdentifier)
                 .append(classification)
@@ -730,8 +728,7 @@ public final class Journal implements ComponentProperty {
                 .append(exceptionDateTimes)
                 .append(relatedToList)
                 .append(recurrenceDate)
-                .append(requestStatuses);
-
-        return composer.end();
+                .append(requestStatuses)
+                .end();
     }
 }

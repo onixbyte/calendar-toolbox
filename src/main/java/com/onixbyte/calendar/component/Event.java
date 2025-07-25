@@ -885,8 +885,7 @@ public final class Event implements CalendarComponent {
     public String formatted() {
         var composer = ComponentComposer.of(COMPONENT_NAME);
 
-        composer.start()
-                .append(dateTimeStamp)
+        composer.append(dateTimeStamp)
                 .append(uniqueIdentifier)
                 .append(dateTimeStart)
                 .append(classification)

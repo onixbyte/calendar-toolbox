@@ -914,8 +914,7 @@ public final class Todo implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var composer = ComponentComposer.of(COMPONENT_NAME)
-                .start()
+        return ComponentComposer.of(COMPONENT_NAME)
                 .append(dateTimeStamp)
                 .append(uniqueIdentifier)
                 .append(classification)
@@ -946,8 +945,7 @@ public final class Todo implements ComponentProperty {
                 .append(requestStatuses)
                 .append(relatedToList)
                 .append(resources)
-                .append(recurrenceDateTimes);
-
-        return composer.end();
+                .append(recurrenceDateTimes)
+                .end();
     }
 }

@@ -224,8 +224,7 @@ public final class TimeZone implements CalendarComponent {
     public String formatted() {
         var composer = ComponentComposer.of(COMPONENT_NAME);
 
-        composer.start()
-                .append(timeZoneIdentifier)
+        composer.append(timeZoneIdentifier)
                 .append(lastModified)
                 .append(timeZoneUrl)
                 .append(timeZoneProperties);
@@ -510,18 +509,15 @@ public final class TimeZone implements CalendarComponent {
          */
         @Override
         public String formatted() {
-            var composer = ComponentComposer.of(componentName);
-
-            composer.start()
+            return ComponentComposer.of(componentName)
                     .append(dateTimeStart)
                     .append(timeZoneOffsetTo)
                     .append(timeZoneOffsetFrom)
                     .append(recurrenceRule)
                     .append(comments)
                     .append(recurrenceDateTimes)
-                    .append(timeZoneNames);
-
-            return composer.end();
+                    .append(timeZoneNames)
+                    .end();
         }
     }
 }

@@ -220,8 +220,7 @@ public final class Alarm implements CalendarComponent {
     public String formatted() {
         var composer = ComponentComposer.of(COMPONENT_NAME);
 
-        composer.start()
-                .append(action)
+        composer.append(action)
                 .append(trigger)
                 .append(duration)
                 .append(attachments)

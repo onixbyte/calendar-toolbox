@@ -385,7 +385,7 @@ public final class FreeBusy implements CalendarComponent {
     public String formatted() {
         var composer = ComponentComposer.of(COMPONENT_NAME);
 
-        return composer.start()
+        return composer
                 .append(dateTimeStamp)
                 .append(uniqueIdentifier)
                 .append(contact)

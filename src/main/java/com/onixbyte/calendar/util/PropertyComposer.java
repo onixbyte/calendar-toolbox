@@ -42,10 +42,11 @@ public final class PropertyComposer {
     }
 
     public static PropertyComposer of(String componentName) {
-        return new PropertyComposer(componentName);
+        var composer = new PropertyComposer(componentName);
+        return composer.start();
     }
 
-    public PropertyComposer start() {
+    PropertyComposer start() {
         builder.append(propertyName);
         return this;
     }

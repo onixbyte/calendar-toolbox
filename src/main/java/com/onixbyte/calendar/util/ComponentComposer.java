@@ -68,7 +68,8 @@ public final class ComponentComposer {
     }
 
     public static ComponentComposer of(String componentName) {
-        return new ComponentComposer(componentName);
+        var composer = new ComponentComposer(componentName);
+        return composer.start();
     }
 
     /**
@@ -79,7 +80,7 @@ public final class ComponentComposer {
      *
      * @return the appender instance
      */
-    public ComponentComposer start() {
+    ComponentComposer start() {
         builder.append("BEGIN").append(":").append(componentName);
         return this;
     }
