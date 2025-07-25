@@ -46,10 +46,6 @@ import java.util.Objects;
  *   <li>Component properties (any property implementing ComponentProperty)</li>
  *   <li>Lists of component properties</li>
  * </ul>
- * <p>
- * Usage example:
- * <pre>{@code
- * }</pre>
  *
  * @author siujamo
  * @author zihluwang

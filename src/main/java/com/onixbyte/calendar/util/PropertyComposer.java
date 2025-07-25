@@ -30,10 +30,21 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Utility class for appending iCalendar parameters to a {@code StringBuilder}.
+ * <p>
+ * This class provides a convenient way to append formatted property strings to iCalendar property
+ * output. It handles the proper formatting of properties including line breaks, folding for
+ * long lines, and collection handling.
+ *
+ * @author siujamo
+ * @author zihluwang
+ * @version 1.1.0
+ * @since 1.0.0
+ */
 public final class PropertyComposer {
 
     private final StringBuilder builder;
-
     private final String propertyName;
 
     private PropertyComposer(String propertyName) {
@@ -41,8 +52,14 @@ public final class PropertyComposer {
         this.propertyName = propertyName;
     }
 
-    public static PropertyComposer of(String componentName) {
-        var composer = new PropertyComposer(componentName);
+    /**
+     * Create and start to compose a property.
+     *
+     * @param propertyName name of the property
+     * @return the composer instance
+     */
+    public static PropertyComposer of(String propertyName) {
+        var composer = new PropertyComposer(propertyName);
         return composer.start();
     }
 
@@ -68,6 +85,12 @@ public final class PropertyComposer {
         return this;
     }
 
+    /**
+     * End composing property with string value.
+     *
+     * @param value property value
+     * @return composed property
+     */
     public String end(String value) {
         if (Objects.nonNull(value) && !value.isEmpty()) {
             builder.append(":").append(value);
@@ -76,6 +99,12 @@ public final class PropertyComposer {
         return Formatters.folding(builder.toString());
     }
 
+    /**
+     * End composing property with URI value.
+     *
+     * @param value property value
+     * @return composed property
+     */
     public String end(URI value) {
         if (Objects.nonNull(value)) {
             builder.append(":").append(value.toASCIIString());
@@ -84,6 +113,12 @@ public final class PropertyComposer {
         return Formatters.folding(builder.toString());
     }
 
+    /**
+     * End composing property with string values.
+     *
+     * @param values property values
+     * @return composed property
+     */
     public String end(List<String> values) {
         if (CollectionUtil.notEmpty(values)) {
             builder.append(":").append(String.join(",", values));
@@ -92,6 +127,12 @@ public final class PropertyComposer {
         return Formatters.folding(builder.toString());
     }
 
+    /**
+     * End composing property with duration value.
+     *
+     * @param value property value
+     * @return composed property
+     */
     public String end(Duration value) {
         if (Objects.nonNull(value)) {
             builder.append(":").append(value);
