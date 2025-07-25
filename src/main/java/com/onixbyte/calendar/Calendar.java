@@ -52,6 +52,7 @@ public final class Calendar {
     private final Owner owner;
     private final PrimaryCalendar primaryCalendar;
     private final PublishedTTL publishedTTL;
+    private final CalendarDescription calendarDescription;
     private final List<CalendarComponent> components;
 
     private Calendar(
@@ -62,6 +63,7 @@ public final class Calendar {
             Owner owner,
             PrimaryCalendar primaryCalendar,
             PublishedTTL publishedTTL,
+            CalendarDescription calendarDescription,
             List<CalendarComponent> components
     ) {
         this.calendarScale = calendarScale;
@@ -71,6 +73,7 @@ public final class Calendar {
         this.owner = owner;
         this.primaryCalendar = primaryCalendar;
         this.publishedTTL = publishedTTL;
+        this.calendarDescription = calendarDescription;
         this.components = components;
     }
 
@@ -101,6 +104,7 @@ public final class Calendar {
         private Owner owner;
         private PrimaryCalendar primaryCalendar;
         private PublishedTTL publishedTTL;
+        private CalendarDescription calendarDescription;
         private List<CalendarComponent> components;
 
         private CalendarBuilder() {
@@ -196,6 +200,17 @@ public final class Calendar {
         }
 
         /**
+         * Sets the calendar description.
+         *
+         * @param calendarDescription description of the calendar
+         * @return the builder instance
+         */
+        public CalendarBuilder withCalendarDescription(CalendarDescription calendarDescription) {
+            this.calendarDescription = calendarDescription;
+            return this;
+        }
+
+        /**
          * Sets the components to include in this calendar.
          * <p>
          * Components are the main content of the calendar and can include events, tasks,
@@ -221,7 +236,7 @@ public final class Calendar {
         public Calendar build() {
             return new Calendar(
                     calendarScale, method, productIdentifier, version, owner, primaryCalendar,
-                    publishedTTL, components
+                    publishedTTL, calendarDescription, components
             );
         }
     }
@@ -246,6 +261,7 @@ public final class Calendar {
         builder.append("\n").append(owner.formatted());
         builder.append("\n").append(primaryCalendar.formatted());
         builder.append("\n").append(publishedTTL.formatted());
+        builder.append("\n").append(calendarDescription.formatted());
         components.forEach((component) ->
                 builder.append("\n").append(component.formatted())
         );
