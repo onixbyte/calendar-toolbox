@@ -30,6 +30,12 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This component provides a grouping of component properties that define an alarm.
+ *
+ * @author zihluwang
+ * @author siujamo
+ */
 public final class Alarm implements CalendarComponent {
 
     private static final String COMPONENT_NAME = "VALARM";
@@ -70,12 +76,19 @@ public final class Alarm implements CalendarComponent {
         this.attendees = attendees;
     }
 
+    /**
+     * Create a builder for <code>Alarm</code>.
+     *
+     * @return builder instance for <code>Alarm</code>
+     */
     public static AlarmBuilder builder() {
         return new AlarmBuilder();
     }
 
+    /**
+     * Builder for <code>Alarm</code>.
+     */
     public static class AlarmBuilder {
-        private Action action;
         private Trigger trigger;
         private Duration duration;
         private List<Attachment> attachments;
@@ -87,41 +100,89 @@ public final class Alarm implements CalendarComponent {
         private AlarmBuilder() {
         }
 
+        /**
+         * Set the trigger for an <code>Alarm</code>.
+         *
+         * @param trigger trigger of the <code>Alarm</code>
+         * @return builder instance
+         */
         public AlarmBuilder withTrigger(Trigger trigger) {
             this.trigger = trigger;
             return this;
         }
 
+        /**
+         * Set the duration for an <code>Alarm</code>.
+         *
+         * @param duration duration of the <code>Alarm</code>
+         * @return builder instance
+         */
         public AlarmBuilder withDuration(Duration duration) {
             this.duration = duration;
             return this;
         }
 
+        /**
+         * Set the attachments for an <code>Alarm</code>.
+         *
+         * @param attachments attachments of the <code>Alarm</code>
+         * @return builder instance
+         */
         public AlarmBuilder withAttachments(Attachment... attachments) {
             this.attachments = List.of(attachments);
             return this;
         }
 
+        /**
+         * Set the description for an <code>Alarm</code>.
+         *
+         * @param description description of the <code>Alarm</code>
+         * @return builder instance
+         */
         public AlarmBuilder withDescription(Description description) {
             this.description = description;
             return this;
         }
 
+        /**
+         * Set the repeat count for an <code>Alarm</code>.
+         *
+         * @param repeatCount repeat count of the <code>Alarm</code>
+         * @return builder instance
+         */
         public AlarmBuilder withRepeatCount(RepeatCount repeatCount) {
             this.repeatCount = repeatCount;
             return this;
         }
 
+        /**
+         * Set the summary for an <code>Alarm</code>.
+         *
+         * @param summary summary of the <code>Alarm</code>
+         * @return builder instance
+         */
         public AlarmBuilder withSummary(Summary summary) {
             this.summary = summary;
             return this;
         }
 
+        /**
+         * Set the attendees for an <code>Alarm</code>.
+         *
+         * @param attendees attendees of the <code>Alarm</code>
+         * @return builder instance
+         */
         public AlarmBuilder withAttendees(Attendee... attendees) {
             this.attendees = List.of(attendees);
             return this;
         }
 
+        /**
+         * Builds an audio type {@code Alarm}.
+         *
+         * @return a new immutable audio alarm instance
+         * @throws IllegalArgumentException if any of the above constraints are violated
+         */
         public Alarm buildAudio() {
             // Properties `action` and `trigger` are both required, but must not occur more than once.
             if (Objects.isNull(trigger)) {
@@ -150,6 +211,12 @@ public final class Alarm implements CalendarComponent {
             );
         }
 
+        /**
+         * Builds a display type {@code Alarm}.
+         *
+         * @return newly constructed immutable display alarm instance
+         * @throws IllegalArgumentException if any of the above rules fail validation
+         */
         public Alarm buildDisplay() {
             // Properties `action`, `description` and `trigger` are both required, but must not
             // occur more than once.
@@ -183,6 +250,12 @@ public final class Alarm implements CalendarComponent {
             );
         }
 
+        /**
+         * Builds an email type {@code Alarm}.
+         *
+         * @return newly constructed immutable display alarm instance
+         * @throws IllegalArgumentException if any of the above rules fail validation
+         */
         public Alarm buildEmail() {
             // Properties `action`, `description`, `trigger` and `summary` are both required, but
             // must not occur more than once.
@@ -216,18 +289,22 @@ public final class Alarm implements CalendarComponent {
         }
     }
 
+    /**
+     * Output this property in <code>ics</code> format.
+     *
+     * @return <code>ics</code>-formatted string
+     */
     @Override
     public String formatted() {
-        var composer = ComponentComposer.of(COMPONENT_NAME);
-
-        composer.append(action)
+        return ComponentComposer.of(COMPONENT_NAME)
+                .append(action)
                 .append(trigger)
                 .append(duration)
                 .append(attachments)
                 .append(description)
                 .append(repeatCount)
                 .append(summary)
-                .append(attendees);
-        return composer.end();
+                .append(attendees)
+                .end();
     }
 }
