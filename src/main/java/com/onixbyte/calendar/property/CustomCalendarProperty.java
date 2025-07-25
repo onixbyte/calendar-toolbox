@@ -80,8 +80,13 @@ public final class CustomCalendarProperty implements CalendarProperty {
          * @param propertyName  name of the property
          * @param propertyValue value of the property
          * @return built <code>CustomCalendarProperty</code> with given name and value
+         * @throws IllegalArgumentException if property name is not start with `X-`
          */
         public CustomCalendarProperty build(String propertyName, String propertyValue) {
+            if (!propertyName.startsWith("X-")) {
+                throw new IllegalArgumentException("Custom properties should start with `X-`.");
+            }
+
             return new CustomCalendarProperty(propertyName, propertyValue, parameters);
         }
     }
