@@ -22,8 +22,8 @@
 
 package com.onixbyte.calendar.component;
 
-import com.onixbyte.calendar.property.*;
-import com.onixbyte.calendar.util.PropertyAppender;
+import com.onixbyte.calendar.component.property.*;
+import com.onixbyte.calendar.util.ComponentComposer;
 
 import java.time.Duration;
 import java.util.List;
@@ -914,44 +914,38 @@ public final class Todo implements ComponentProperty {
      */
     @Override
     public String formatted() {
-        var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
-
-        builder.append("BEGIN").append(":").append(COMPONENT_NAME);
-
-        propertyAppender.append(dateTimeStamp);
-        propertyAppender.append(uniqueIdentifier);
-        propertyAppender.append(classification);
-        propertyAppender.append(dateTimeCompleted);
-        propertyAppender.append(dateTimeCreated);
-        propertyAppender.append(description);
-        propertyAppender.append(dateTimeStart);
-        propertyAppender.append(geographicPosition);
-        propertyAppender.append(lastModified);
-        propertyAppender.append(location);
-        propertyAppender.append(organiser);
-        propertyAppender.append(percentComplete);
-        propertyAppender.append(priority);
-        propertyAppender.append(recurrenceId);
-        propertyAppender.append(sequenceNumber);
-        propertyAppender.append(status);
-        propertyAppender.append(summary);
-        propertyAppender.append(uniformResourceLocator);
-        propertyAppender.append(recurrenceRule);
-        propertyAppender.append(dateTimeDue);
-        propertyAppender.append(duration);
-        propertyAppender.append(attachments);
-        propertyAppender.append(attendees);
-        propertyAppender.append(categories);
-        propertyAppender.append(comments);
-        propertyAppender.append(contacts);
-        propertyAppender.append(exceptionDateTimes);
-        propertyAppender.append(requestStatuses);
-        propertyAppender.append(relatedToList);
-        propertyAppender.append(resources);
-        propertyAppender.append(recurrenceDateTimes);
-
-        builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
-        return builder.toString();
+        return ComponentComposer.of(COMPONENT_NAME)
+                .append(dateTimeStamp)
+                .append(uniqueIdentifier)
+                .append(classification)
+                .append(dateTimeCompleted)
+                .append(dateTimeCreated)
+                .append(description)
+                .append(dateTimeStart)
+                .append(geographicPosition)
+                .append(lastModified)
+                .append(location)
+                .append(organiser)
+                .append(percentComplete)
+                .append(priority)
+                .append(recurrenceId)
+                .append(sequenceNumber)
+                .append(status)
+                .append(summary)
+                .append(uniformResourceLocator)
+                .append(recurrenceRule)
+                .append(dateTimeDue)
+                .append(duration)
+                .append(attachments)
+                .append(attendees)
+                .append(categories)
+                .append(comments)
+                .append(contacts)
+                .append(exceptionDateTimes)
+                .append(requestStatuses)
+                .append(relatedToList)
+                .append(resources)
+                .append(recurrenceDateTimes)
+                .end();
     }
 }

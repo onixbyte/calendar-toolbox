@@ -22,8 +22,8 @@
 
 package com.onixbyte.calendar.component;
 
-import com.onixbyte.calendar.property.*;
-import com.onixbyte.calendar.util.PropertyAppender;
+import com.onixbyte.calendar.component.property.*;
+import com.onixbyte.calendar.util.ComponentComposer;
 
 import java.time.Duration;
 import java.util.List;
@@ -49,214 +49,39 @@ import java.util.Objects;
  */
 public final class Event implements CalendarComponent {
 
-    /**
-     * The component name for VEVENT as defined in RFC 5545.
-     */
     private static final String COMPONENT_NAME = "VEVENT";
 
-    /**
-     * The date and time stamp indicating when the event was created. This is a required property.
-     */
     private final DateTimeStamp dateTimeStamp;
-
-    /**
-     * The unique identifier for this event. This is a required property.
-     */
     private final UniqueIdentifier uniqueIdentifier;
-
-    /**
-     * The start date and time of the event. This is required if the component appears in an
-     * iCalendar object that doesn't specify the method property; otherwise, it is optional.
-     */
     private final DateTimeStart dateTimeStart;
-
-    /**
-     * The access classification for the event (e.g., PUBLIC, PRIVATE, CONFIDENTIAL). This is an
-     * optional property.
-     */
     private final Classification classification;
-
-    /**
-     * The date and time when the event was created. This is an optional property.
-     */
     private final DateTimeCreated dateTimeCreated;
-
-    /**
-     * The description or notes for the event. This is an optional property.
-     */
     private final Description description;
-
-    /**
-     * The geographic position (latitude and longitude) of the event. This is an optional property.
-     */
     private final GeographicPosition geographicPosition;
-
-    /**
-     * The date and time when the event was last modified. This is an optional property.
-     */
     private final LastModified lastModified;
-
-    /**
-     * The location where the event takes place. This is an optional property.
-     */
     private final Location location;
-
-    /**
-     * The organiser of the event. This is an optional property.
-     */
     private final Organiser organiser;
-
-    /**
-     * The priority level of the event. This is an optional property.
-     */
     private final Priority priority;
-
-    /**
-     * The sequence number for the event (used for versioning). This is an optional property.
-     */
     private final SequenceNumber sequenceNumber;
-
-    /**
-     * The status of the event (e.g., TENTATIVE, CONFIRMED, CANCELLED). This is an
-     * optional property.
-     */
     private final Status status;
-
-    /**
-     * The summary or title of the event. This is an optional property.
-     */
     private final Summary summary;
-
-    /**
-     * The time transparency for the event (e.g., OPAQUE, TRANSPARENT). This is an
-     * optional property.
-     */
     private final TimeTransparency timeTransparency;
-
-    /**
-     * The uniform resource locator (URL) associated with the event. This is an optional property.
-     */
     private final UniformResourceLocator uniformResourceLocator;
-
-    /**
-     * The recurrence identifier for the event. This is an optional property.
-     */
     private final RecurrenceId recurrenceId;
-
-    /**
-     * The recurrence rule for the event. This is an optional property that should not occur more
-     * than once.
-     */
     private final RecurrenceRule recurrenceRule;
-
-    /**
-     * The end date and time of the event. Either this or duration may appear in an event, but
-     * not both. This is an optional property.
-     */
     private final DateTimeEnd dateTimeEnd;
-
-    /**
-     * The duration of the event. Either this or dateTimeEnd may appear in an event, but not both.
-     * This is an optional property.
-     */
     private final Duration duration;
-
-    /**
-     * The list of attachments associated with the event. This is an optional property that may
-     * occur more than once.
-     */
     private final List<Attachment> attachments;
-
-    /**
-     * The list of attendees for the event. This is an optional property that may occur more
-     * than once.
-     */
     private final List<Attendee> attendees;
-
-    /**
-     * The list of categories for the event. This is an optional property that may occur more
-     * than once.
-     */
     private final List<Categories> categories;
-
-    /**
-     * The list of comments for the event. This is an optional property that may occur more
-     * than once.
-     */
     private final List<Comment> comments;
-
-    /**
-     * The list of contacts for the event. This is an optional property that may occur more
-     * than once.
-     */
     private final List<Contact> contacts;
-
-    /**
-     * The list of exception date and times for the event. This is an optional property that may
-     * occur more than once.
-     */
     private final List<ExceptionDateTimes> exceptionDateTimes;
-
-    /**
-     * The list of request statuses for the event. This is an optional property that may occur more
-     * than once.
-     */
     private final List<RequestStatus> requestStatuses;
-
-    /**
-     * The list of related events. This is an optional property that may occur more than once.
-     */
     private final List<RelatedTo> related;
-
-    /**
-     * The list of resources for the event. This is an optional property that may occur more
-     * than once.
-     */
     private final List<Resources> resources;
-
-    /**
-     * The list of recurrence date and times for the event. This is an optional property that may
-     * occur more than once.
-     */
     private final List<RecurrenceDateTimes> recurrenceDateTimes;
 
-    /**
-     * Constructs a new Event instance with the specified properties.
-     * <p>
-     * This constructor is private to enforce the use of the builder pattern for creating
-     * Event instances. Use {@link #builder()} to create new Event objects.
-     *
-     * @param dateTimeStamp          the date and time stamp when the event was created (required)
-     * @param uniqueIdentifier       the unique identifier for this event (required)
-     * @param dateTimeStart          the start date and time of the event
-     * @param classification         the access classification for the event
-     * @param dateTimeCreated        the date and time when the event was created
-     * @param description            the description or notes for the event
-     * @param geographicPosition     the geographic position of the event
-     * @param lastModified           the date and time when the event was last modified
-     * @param location               the location where the event takes place
-     * @param organiser              the organiser of the event
-     * @param priority               the priority level of the event
-     * @param sequenceNumber         the sequence number for the event
-     * @param status                 the status of the event
-     * @param summary                the summary or title of the event
-     * @param timeTransparency       the time transparency for the event
-     * @param uniformResourceLocator the URL associated with the event
-     * @param recurrenceId           the recurrence identifier for the event
-     * @param recurrenceRule         the recurrence rule for the event
-     * @param dateTimeEnd            the end date and time of the event
-     * @param duration               the duration of the event
-     * @param attachments            the list of attachments associated with the event
-     * @param attendees              the list of attendees for the event
-     * @param categories             the list of categories for the event
-     * @param comments               the list of comments for the event
-     * @param contacts               the list of contacts for the event
-     * @param exceptionDateTimes     the list of exception date and times for the event
-     * @param requestStatuses        the list of request statuses for the event
-     * @param related                the list of related events
-     * @param resources              the list of resources for the event
-     * @param recurrenceDateTimes    the list of recurrence date and times for the event
-     */
     private Event(
             DateTimeStamp dateTimeStamp,
             UniqueIdentifier uniqueIdentifier,
@@ -324,8 +149,8 @@ public final class Event implements CalendarComponent {
     /**
      * Creates a new builder instance for constructing Event objects.
      * <p>
-     * This is the preferred way to create Event instances, as it provides a flexible
-     * and readable approach to setting the various optional and required properties.
+     * This is the preferred way to create Event instances, as it provides a flexible and readable
+     * approach to setting the various optional and required properties.
      *
      * @return a new EventBuilder instance
      */
@@ -337,7 +162,9 @@ public final class Event implements CalendarComponent {
      * Builder class for constructing Event instances using the builder pattern.
      * <p>
      * This builder provides a fluent interface for creating Event objects with the required
-     * dateTimeStamp and uniqueIdentifier properties, and various optional properties.
+     * {@code dateTimeStamp} and {@code uniqueIdentifier} properties, and various
+     * optional properties.
+     * <p>
      * The builder enforces RFC 5545 constraints, such as ensuring that dateTimeEnd and
      * duration are mutually exclusive.
      * <p>
@@ -352,159 +179,37 @@ public final class Event implements CalendarComponent {
      * }</pre>
      */
     public static class EventBuilder {
-        /**
-         * The date and time stamp for the event being built.
-         */
         private DateTimeStamp dateTimeStamp;
-
-        /**
-         * The unique identifier for the event being built.
-         */
         private UniqueIdentifier uniqueIdentifier;
-
-        /**
-         * The start date and time for the event being built.
-         */
         private DateTimeStart dateTimeStart;
-
-        /**
-         * The classification for the event being built.
-         */
         private Classification classification;
-
-        /**
-         * The creation date and time for the event being built.
-         */
         private DateTimeCreated dateTimeCreated;
-
-        /**
-         * The description for the event being built.
-         */
         private Description description;
-
-        /**
-         * The geographic position for the event being built.
-         */
         private GeographicPosition geographicPosition;
-
-        /**
-         * The last modified date and time for the event being built.
-         */
         private LastModified lastModified;
-
-        /**
-         * The location for the event being built.
-         */
         private Location location;
-
-        /**
-         * The organiser for the event being built.
-         */
         private Organiser organiser;
-
-        /**
-         * The priority for the event being built.
-         */
         private Priority priority;
-
-        /**
-         * The sequence number for the event being built.
-         */
         private SequenceNumber sequenceNumber;
-
-        /**
-         * The status for the event being built.
-         */
         private Status status;
-
-        /**
-         * The summary for the event being built.
-         */
         private Summary summary;
-
-        /**
-         * The time transparency for the event being built.
-         */
         private TimeTransparency timeTransparency;
-
-        /**
-         * The URL for the event being built.
-         */
         private UniformResourceLocator uniformResourceLocator;
-
-        /**
-         * The recurrence identifier for the event being built.
-         */
         private RecurrenceId recurrenceId;
-
-        /**
-         * The recurrence rule for the event being built.
-         */
         private RecurrenceRule recurrenceRule;
-
-        /**
-         * The end date and time for the event being built.
-         */
         private DateTimeEnd dateTimeEnd;
-
-        /**
-         * The duration for the event being built.
-         */
         private Duration duration;
-
-        /**
-         * The list of attachments for the event being built.
-         */
         private List<Attachment> attachments;
-
-        /**
-         * The list of attendees for the event being built.
-         */
         private List<Attendee> attendees;
-
-        /**
-         * The list of categories for the event being built.
-         */
         private List<Categories> categories;
-
-        /**
-         * The list of comments for the event being built.
-         */
         private List<Comment> comments;
-
-        /**
-         * The list of contacts for the event being built.
-         */
         private List<Contact> contacts;
-
-        /**
-         * The list of exception date and times for the event being built.
-         */
         private List<ExceptionDateTimes> exceptionDateTimes;
-
-        /**
-         * The list of request statuses for the event being built.
-         */
         private List<RequestStatus> requestStatuses;
-
-        /**
-         * The list of related events for the event being built.
-         */
         private List<RelatedTo> related;
-
-        /**
-         * The list of resources for the event being built.
-         */
         private List<Resources> resources;
-
-        /**
-         * The list of recurrence date and times for the event being built.
-         */
         private List<RecurrenceDateTimes> recurrenceDateTimes;
 
-        /**
-         * Private constructor to enforce use through the factory method.
-         */
         private EventBuilder() {
         }
 
@@ -883,49 +588,44 @@ public final class Event implements CalendarComponent {
      * @return the formatted iCalendar {@code VEVENT} component string
      */
     public String formatted() {
-        var builder = new StringBuilder();
-        var propertyAppender = PropertyAppender.of(builder);
+        var composer = ComponentComposer.of(COMPONENT_NAME);
 
-        builder.append("BEGIN").append(":").append(COMPONENT_NAME);
-
-        propertyAppender.append(dateTimeStamp);
-        propertyAppender.append(uniqueIdentifier);
-        propertyAppender.append(dateTimeStart);
-
-        propertyAppender.append(classification);
-        propertyAppender.append(dateTimeCreated);
-        propertyAppender.append(description);
-        propertyAppender.append(geographicPosition);
-        propertyAppender.append(lastModified);
-        propertyAppender.append(location);
-        propertyAppender.append(organiser);
-        propertyAppender.append(priority);
-        propertyAppender.append(sequenceNumber);
-        propertyAppender.append(status);
-        propertyAppender.append(summary);
-        propertyAppender.append(timeTransparency);
-        propertyAppender.append(uniformResourceLocator);
-        propertyAppender.append(recurrenceId);
-        propertyAppender.append(recurrenceRule);
+        composer.append(dateTimeStamp)
+                .append(uniqueIdentifier)
+                .append(dateTimeStart)
+                .append(classification)
+                .append(dateTimeCreated)
+                .append(description)
+                .append(geographicPosition)
+                .append(lastModified)
+                .append(location)
+                .append(organiser)
+                .append(priority)
+                .append(sequenceNumber)
+                .append(status)
+                .append(summary)
+                .append(timeTransparency)
+                .append(uniformResourceLocator)
+                .append(recurrenceId)
+                .append(recurrenceRule);
 
         if (Objects.nonNull(dateTimeEnd)) {
-            propertyAppender.append(dateTimeEnd);
+            composer.append(dateTimeEnd);
         } else if (Objects.nonNull(duration)) {
-            propertyAppender.append(duration);
+            composer.append(duration);
         }
 
-        propertyAppender.append(attachments);
-        propertyAppender.append(attendees);
-        propertyAppender.append(categories);
-        propertyAppender.append(comments);
-        propertyAppender.append(contacts);
-        propertyAppender.append(exceptionDateTimes);
-        propertyAppender.append(requestStatuses);
-        propertyAppender.append(related);
-        propertyAppender.append(resources);
-        propertyAppender.append(recurrenceDateTimes);
+        composer.append(attachments)
+                .append(attendees)
+                .append(categories)
+                .append(comments)
+                .append(contacts)
+                .append(exceptionDateTimes)
+                .append(requestStatuses)
+                .append(related)
+                .append(resources)
+                .append(recurrenceDateTimes);
 
-        builder.append("\n").append("END").append(":").append(COMPONENT_NAME);
-        return builder.toString();
+        return composer.end();
     }
 }

@@ -22,12 +22,12 @@
 
 package com.onixbyte.calendar.component;
 
-import com.onixbyte.calendar.property.DateTimeStamp;
-import com.onixbyte.calendar.property.UniqueIdentifier;
-import com.onixbyte.calendar.property.Contact;
-import com.onixbyte.calendar.property.DateTimeStart;
-import com.onixbyte.calendar.property.DateTimeEnd;
-import com.onixbyte.calendar.property.Organiser;
+import com.onixbyte.calendar.component.property.DateTimeStamp;
+import com.onixbyte.calendar.component.property.UniqueIdentifier;
+import com.onixbyte.calendar.component.property.Contact;
+import com.onixbyte.calendar.component.property.DateTimeStart;
+import com.onixbyte.calendar.component.property.DateTimeEnd;
+import com.onixbyte.calendar.component.property.Organiser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 

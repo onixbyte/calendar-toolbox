@@ -22,6 +22,7 @@
 
 package com.onixbyte.calendar.property;
 
+import com.onixbyte.calendar.component.property.UniqueIdentifier;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

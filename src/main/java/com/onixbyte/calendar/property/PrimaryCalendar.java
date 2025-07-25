@@ -20,11 +20,38 @@
  * SOFTWARE.
  */
 
-package com.onixbyte.calendar.component;
+package com.onixbyte.calendar.property;
+
+import com.onixbyte.calendar.util.PropertyComposer;
 
 /**
- * Unit tests for the Alarm class.
+ * This property specifies whether the calendar contains free/busy information for a specific user
+ * or resource. It enables a user or resource to schedule their appointments and other types
+ * of events, and the calendar objects within it are used to process and respond to
+ * meeting requests.
+ *
+ * @author siujamo
  */
-class AlarmTest {
+public enum PrimaryCalendar implements CalendarProperty {
 
+    /**
+     * Indicates this calendar is a primary calendar.
+     */
+    TRUE,
+
+    /**
+     * Indicates this calendar is not a primary calendar.
+     */
+    FALSE;
+
+    /**
+     * Output this property in <code>ics</code> format.
+     *
+     * @return <code>ics</code>-formatted string
+     */
+    @Override
+    public String formatted() {
+        var propertyComposer = PropertyComposer.of("X-PRIMARY-CALENDAR");
+        return propertyComposer.end(name());
+    }
 }

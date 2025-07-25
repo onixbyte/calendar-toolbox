@@ -29,7 +29,7 @@ plugins {
     id("signing")
 }
 
-val artefactVersion = "1.0.0"
+val artefactVersion: String by project
 
 group = "com.onixbyte"
 version = artefactVersion
