@@ -24,6 +24,11 @@ package com.onixbyte.calendar.property;
 
 import com.onixbyte.calendar.util.PropertyComposer;
 
+/**
+ * This property specifies the description of a calendar.
+ *
+ * @author siujamo
+ */
 public final class CalendarDescription implements CalendarProperty {
 
     private final String value;
@@ -32,19 +37,38 @@ public final class CalendarDescription implements CalendarProperty {
         this.value = value;
     }
 
+    /**
+     * Create a new builder instance of <code>CalendarDescription</code>.
+     *
+     * @return a builder instance
+     */
     public static CalendarDescriptionBuilder builder() {
         return new CalendarDescriptionBuilder();
     }
 
+    /**
+     * Builder for <code>CalendarDescription</code>
+     */
     public static class CalendarDescriptionBuilder {
         private CalendarDescriptionBuilder() {
         }
 
+        /**
+         * Build a calendar description with given value.
+         *
+         * @param value description content
+         * @return a <code>CalendarDescription</code> with given value
+         */
         public CalendarDescription build(String value) {
             return new CalendarDescription(value);
         }
     }
 
+    /**
+     * Output this property in <code>ics</code> format.
+     *
+     * @return <code>ics</code>-formatted string
+     */
     @Override
     public String formatted() {
         var propertyComposer = PropertyComposer.of("X-WR-CALDESC");
