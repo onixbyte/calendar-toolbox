@@ -22,19 +22,18 @@
 
 package com.onixbyte.calendar.property;
 
-import com.onixbyte.calendar.component.property.ComponentProperty;
 import com.onixbyte.calendar.parameter.Parameter;
 import com.onixbyte.calendar.util.PropertyComposer;
 
 import java.util.List;
 
 /**
- * This class represents all custom properties that are not implemented and
+ * This class represents all custom calendar properties that are not implemented and
  * start with <code>X-</code>.
  *
  * @author siujamo
  */
-public final class CustomCalendarProperty implements ComponentProperty {
+public final class CustomCalendarProperty implements CalendarProperty {
 
     private final String propertyName;
     private final String value;
@@ -47,7 +46,7 @@ public final class CustomCalendarProperty implements ComponentProperty {
     }
 
     /**
-     * Create a builder instance of <code>CustomComponentProperty</code>.
+     * Create a builder instance of <code>CustomCalendarProperty</code>.
      *
      * @return a builder instance
      */
@@ -56,7 +55,7 @@ public final class CustomCalendarProperty implements ComponentProperty {
     }
 
     /**
-     * Builder of <code>CustomComponentProperty</code>.
+     * Builder of <code>CustomCalendarProperty</code>.
      */
     public static class CustomCalendarPropertyBuilder {
         private List<Parameter> parameters;
@@ -76,11 +75,11 @@ public final class CustomCalendarProperty implements ComponentProperty {
         }
 
         /**
-         * Build a <code>CustomComponentProperty</code> with given property name and value.
+         * Build a <code>CustomCalendarProperty</code> with given property name and value.
          *
          * @param propertyName  name of the property
          * @param propertyValue value of the property
-         * @return built <code>CustomComponentProperty</code> with given name and value
+         * @return built <code>CustomCalendarProperty</code> with given name and value
          */
         public CustomCalendarProperty build(String propertyName, String propertyValue) {
             return new CustomCalendarProperty(propertyName, propertyValue, parameters);

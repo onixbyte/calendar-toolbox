@@ -27,12 +27,16 @@ import com.onixbyte.calendar.util.PropertyComposer;
 
 import java.util.List;
 
+/**
+ * This class represents all custom component properties that are not implemented and
+ * start with <code>X-</code>.
+ *
+ * @author siujamo
+ */
 public final class CustomComponentProperty implements ComponentProperty {
 
     private final String propertyName;
-
     private final String value;
-
     private final List<Parameter> parameters;
 
     private CustomComponentProperty(String propertyName, String value, List<Parameter> parameters) {
@@ -41,26 +45,52 @@ public final class CustomComponentProperty implements ComponentProperty {
         this.parameters = parameters;
     }
 
+    /**
+     * Create a builder instance of <code>CustomComponentProperty</code>.
+     *
+     * @return a builder instance
+     */
     public static CustomComponentPropertyBuilder builder() {
         return new CustomComponentPropertyBuilder();
     }
 
+    /**
+     * Builder of <code>CustomComponentProperty</code>.
+     */
     public static class CustomComponentPropertyBuilder {
         private List<Parameter> parameters;
 
         private CustomComponentPropertyBuilder() {
         }
 
-        private CustomComponentPropertyBuilder withParameters(Parameter... parameters) {
+        /**
+         * Set parameters of a component property.
+         *
+         * @param parameters parameter list
+         * @return builder instance
+         */
+        public CustomComponentPropertyBuilder withParameters(Parameter... parameters) {
             this.parameters = List.of(parameters);
             return this;
         }
 
+        /**
+         * Build a <code>CustomComponentProperty</code> with given property name and value.
+         *
+         * @param propertyName  name of the property
+         * @param propertyValue value of the property
+         * @return built <code>CustomComponentProperty</code> with given name and value
+         */
         public CustomComponentProperty build(String propertyName, String propertyValue) {
             return new CustomComponentProperty(propertyName, propertyValue, parameters);
         }
     }
 
+    /**
+     * Output this property in <code>ics</code> format.
+     *
+     * @return <code>ics</code>-formatted string
+     */
     @Override
     public String formatted() {
         var composer = PropertyComposer.of(propertyName);
