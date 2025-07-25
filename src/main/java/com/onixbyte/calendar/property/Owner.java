@@ -28,36 +28,86 @@ import com.onixbyte.calendar.util.PropertyComposer;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+/**
+ * This property specifies the owner of a {@link PrimaryCalendar primary calendar}.
+ *
+ * @author siujamo
+ */
 public final class Owner implements CalendarProperty {
 
+    /**
+     * Common name parameter.
+     */
     private final CommonName commonName;
 
+    /**
+     * The owner uri.
+     */
     private final URI value;
 
+    /**
+     * Private constructor prevent from being instantiated from non-standard operations.
+     *
+     * @param commonName common name of the owner
+     * @param value      owner uri
+     */
     private Owner(CommonName commonName, URI value) {
         this.commonName = commonName;
         this.value = value;
     }
 
+    /**
+     * Get a builder instance of owner.
+     *
+     * @return the builder instance of a owner
+     */
     public static OwnerBuilder builder() {
         return new OwnerBuilder();
     }
 
+    /**
+     * Builder of owner.
+     */
     public static class OwnerBuilder {
+        /**
+         * Common name parameter.
+         */
         private CommonName commonName;
 
+        /**
+         * Constructs a new builder instance.
+         */
         private OwnerBuilder() {
         }
 
+        /**
+         * Sets the common name of the owner.
+         *
+         * @param commonName common name of the owner
+         * @return the builder instance
+         */
         public OwnerBuilder withCommonName(CommonName commonName) {
             this.commonName = commonName;
             return this;
         }
 
+        /**
+         * Build an owner with specified value.
+         *
+         * @param value the owner
+         * @return the built owner
+         */
         public Owner build(URI value) {
             return new Owner(commonName, value);
         }
 
+        /**
+         * Build an owner with specified value.
+         *
+         * @param value the owner
+         * @return the built owner
+         * @throws IllegalArgumentException if the given value does not match the URI syntax
+         */
         public Owner build(String value) {
             try {
                 var _value = new URI(value);
@@ -68,6 +118,11 @@ public final class Owner implements CalendarProperty {
         }
     }
 
+    /**
+     * Output this property in <code>ics</code> format.
+     *
+     * @return <code>ics</code>-formatted string
+     */
     @Override
     public String formatted() {
         var propertyComposer = PropertyComposer.of("X-OWNER");
